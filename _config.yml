@@ -94,7 +94,7 @@ analytics:
 # Site Author
 author:
   name             : "Seungho Jang"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/bio-photo.jpg"
   bio              : "You just have to feel the pain once!"
   location         : "Somewhere"
   email            : "sjang1594@gmail.com"

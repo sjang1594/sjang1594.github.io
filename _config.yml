@@ -97,7 +97,7 @@ author:
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "You just have to feel the pain once!"
   location         : "Somewhere"
-  email            : ""
+  email            : "sjang1594@gmail.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
@@ -129,7 +129,7 @@ footer:
       url: https://www.facebook.com/sjang1594
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      #url: https://github.com/sjang1594
+      url: https://github.com/sjang1594
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:

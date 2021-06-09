@@ -12,21 +12,21 @@
 
 #theme                  : "minimal-mistakes-jekyll"
 remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "aqua" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Be Creative!"
+title                    : "Seungho's Blog"
 title_separator          : "-"
-subtitle                 : "Testing"
+subtitle                 : "Creativity & Open-minded"
 name                     : "Seungho Jang"
-description              : "You just have to feel the pain once !"
+description              : "Studying on Computer Vision & Deep Learning & Writing some useful info in this blog"
 url                      : "https://sjang1594.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "sjang1594/sjang1594.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
+masthead_title           : "Seungho's Blog"
 breadcrumbs              : true # true, false (default)
 words_per_minute         : 200
 comments:
@@ -95,13 +95,13 @@ analytics:
 author:
   name             : "Seungho Jang"
   avatar           : "/assets/images/bio-photo.jpg"
-  bio              : "You just have to feel the pain once!"
-  location         : "South Korea"
+  bio              : "Software Developer who loves playing drum and coding. <br> Favorite Quote "You just have to feel the pain once!""
+  location         : "Republic of Korea"
   email            : "sjang1594@gmail.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      # url: "sjang1594@gmail.com"
+      url: "sjang1594@gmail.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
@@ -110,10 +110,10 @@ author:
       # url: "https://twitter.com/"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
-      # url: "https://facebook.com/"
+      url: "https://facebook.com/sjang1594"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://github.com/sjang1594"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"

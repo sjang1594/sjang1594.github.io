@@ -14,7 +14,7 @@ font-weight:bold">
 </span>
 </center>
 
-<center>MAJOR : AI EENGINEERING</center>
+<center>MAJOR : AI EENGINEERING</center>`
 
 <center>Korean University</center>
 

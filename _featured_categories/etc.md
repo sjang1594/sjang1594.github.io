@@ -3,8 +3,8 @@ layout: list
 title: etc
 slug: etc
 menu: true
-submenu: false
+submenu: true
 order: 6
 description: >
-  Guitar and Drum Playing
+  etc
 ---

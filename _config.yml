@@ -2,7 +2,7 @@
 #  User configuration
 # -----------------------------------------------------------------------------
 
-title:               따라쟁이의 블로그
+title:               Seungho's Blog
 
 # The unique resource location of your page.
 # Set to `https://<username>.github.io` when hosting on GitHub Pages
@@ -13,12 +13,12 @@ url:                 https://sjang1594.github.io
 baseurl:             ""
 
 # A very short description of your page
-tagline:             "따라쟁이 블로그"
+tagline:             "Seungho's Blog"
 
 # A short description of the page, used in the sidebar and as fallback for the meta description tag.
 # Markdown enabled, but don't use more than one paragraph (enforced by `>`)
 description:         >
-  따라쟁이의 샘플 블로그입니다.
+  "Software Developer plays drum and break the code."
 
 # This should be the same author as first entry in `_data/authors.yml`
 author:
@@ -51,7 +51,7 @@ disqus: True
 disqus_shortname:    xxxx
 
 # This text will appear in the footer of every page. Markdown enabled.
-copyright:           '&copy; 2020.12. by 따라쟁이'
+copyright:           '&copy; 2020.12. by Seungho Jang'
 
 # Format of the permalinks
 permalink:           

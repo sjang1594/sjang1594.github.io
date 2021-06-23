@@ -72,9 +72,9 @@ Seungho Jang (장승호)
 
 * **BCI(Brain Computing Interface) Data Augmentation & Filtering**
 
-Summer Research Program : Washington University in St. Louis - in ShiNung Ching Lab (Undergrads)
+`Summer Research Program : Washington University in St. Louis - in ShiNung Ching Lab (Undergrads)`
 
-Conic Method : Recording & Filtering the brain signals using the signal processing for input to the system. 
+Conic Method : Recording & Filtering the brain signals(inputs) to the system using the signal processing techniques
 
 * **Ambient Care System with Amazon Alexa**
 

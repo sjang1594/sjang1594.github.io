@@ -85,7 +85,7 @@ Conic Method : Recording & Filtering the brain signals using the signal processi
 
 * **Operatring System/System Programming - CS4760**
 
-`Environment: Linux Terminal, Language : C`
+`Environment: Linux Terminal`, `Language : C`
 
 Learning Linux Environment and Resource/Process/Memory Managements written in C.
 
@@ -103,7 +103,7 @@ The repository for this private for a reason. Contact me if you want the source 
 `Environment : Ubuntu 18.04 - ROS Melodic`
 `Language : C++`
 
-1. [Build a Simulation World with Gazebo]()
+1. [Build a Simulation World with Gazebo](https://github.com/sjang1594/RoboND-Udacity/tree/master/Robotics-UD-MyWorld)
 2. [Go Chase it](https://github.com/sjang1594/RoboND-Udacity/tree/master/Robotics-UD-GoChaseIt)
 3. [MapMyWorld](https://github.com/sjang1594/RoboND-Udacity/tree/master/Robotics-UD-MapMyWorld)
 4. [WhereAmI](https://github.com/sjang1594/RoboND-Udacity/tree/master/Robotics-UD-WhereAmI)

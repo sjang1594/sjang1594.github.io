@@ -111,7 +111,7 @@ The repository for this private for a reason. Contact me if you want the source 
 
 * **Image Processing / Computer Vision Projects**
 
-`Environment : Windows 10, Visual Studio 2019 - OpenCV4& CUDA.`
+`Environment : Windows 10, Visual Studio 2019 - OpenCV4 & CUDA.`
 `Language : C++`
 
 1. [Potter Duff Operation](https://github.com/sjang1594/UMSL/tree/master/CS6420/project1)
@@ -135,7 +135,7 @@ Build the software system and algorithm to detect the root system from the given
 
 * **Udacity - Computer Vision (In progress)**
 
-`Environment : Jupyter Notebook & OpenCV4, Framework: Pytorch`
+`Environment : Jupyter Notebook & OpenCV4`, `Framework: Pytorch`
 `Language : Python`
 
 1. [Facial Keypoints - Eye & Face Recognition](https://github.com/sjang1594/cvnn-udacity/tree/master/P1-Facial_KeyPoints)

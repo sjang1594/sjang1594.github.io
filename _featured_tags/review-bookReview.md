@@ -1,8 +1,8 @@
 ---
 layout: tag-blog
-title: Book Review
-slug: Book Review
-category: Review
+title: Book Reviews
+slug: Book Reviews
+category: Reviews
 menu: false
 order: 2
 ---

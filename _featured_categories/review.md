@@ -1,10 +1,10 @@
 ---
 layout: list
-title: Review  
-slug: Review
+title: Reviews  
+slug: Reviews
 menu: true
 submenu: true
 order: 3
 description: >
-  Book, Movie, and Paper Review
+  Book, Movie, and Paper Reviews
 ---

@@ -1,7 +1,7 @@
 ---
 layout: tag-blog
-title: interview
-slug: interview
+title: interviews
+slug: interviews
 category: etc
 menu: false
 order: 1

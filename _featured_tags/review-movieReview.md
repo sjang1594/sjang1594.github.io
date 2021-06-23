@@ -2,7 +2,7 @@
 layout: tag-blog
 title: Movie Review
 slug: Movie Review
-category: Review
+category: Reviews
 menu: false
 order: 3
 ---

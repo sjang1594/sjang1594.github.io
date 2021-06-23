@@ -1,10 +1,10 @@
 ---
 layout: list
-title: Project
-slug: project
+title: Travel
+slug: Travel
 menu: true
 submenu: false
-order: 3
+order: 5
 description: >
-  OpenCV Project
+  Travel
 ---

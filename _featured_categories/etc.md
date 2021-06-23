@@ -6,5 +6,5 @@ menu: true
 submenu: false
 order: 6
 description: >
-  Guitar, Drum Playing
+  Guitar and Drum Playing
 ---

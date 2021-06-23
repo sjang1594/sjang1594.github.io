@@ -49,7 +49,7 @@ Seungho Jang (장승호)
 * Computer Vision
     + Image Object Detection
     + Depth Prediction
-    + Pose Prediction
+    + Pose Estimation
     + Video Object Segmentation
     + Remote PPG
 
@@ -154,4 +154,6 @@ Build the software system and algorithm to detect the root system from the given
 2. **Robotic Software Engineering - Udacity**
 
 
+## Classmate Comments
+---
 

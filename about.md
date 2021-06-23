@@ -15,7 +15,7 @@ I just graduated with my master's degree in Computer Science. I enjoyed all my c
 
 * I have played the drum since 6<sup>th</sup> grade and played guitar for 2 years. 
 * I like to watch movies because I can gain indirect experiences, rather reading a whole book.
-* I have taught C/C++ since 2019. I had a wonderful experience with students and their input for the projects.
+* I have taught C/C++ since 2019. I had a wonderful experience with students and their input to the projects.
 * I've been playing soccer since last year. My position is wing back or full back
 * Regardless of most of my friends being a fan of Manchester United, but I am a fan of Manchester City Fan.
 * Interestingly, my bachelor degree was in Electrical Engineering, and I have reasonable doubts on how I was able to pass all the exams.

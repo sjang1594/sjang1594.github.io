@@ -60,10 +60,10 @@ font-weight:bold">
 ## Projects
 ---
 
-* **BCI Data Augmentation & Filtering **
+* **BCI Data Augmentation & Filtering**
 
-Washington University of St. Louis - in ShiNung Ching Lab (Undergrads)
-Lightfield 영상에서의 Siamease Network를 이용한 단일 객체 추적
+Washington University in St. Louis - in ShiNung Ching Lab (Undergrads)
+Conic Method : Recording & Filtering the brain signals using the signal processing for input to the system. 
 
 * **Ambient Care System with Amazon Alexa**
 
@@ -73,12 +73,11 @@ Lightfield 영상에서의 Siamease Network를 이용한 단일 객체 추적
 SSD를 활용한 드론 탐지프로그램으로 라즈베리파이와 3D프린터를 이용해 만든 로봇이 드론을 인식하고 pan and tilt모터 체계를 이용하여 드론 트래킹
 
 * **Udacity - Robotic Software Engineering**
-
-mobileNet을 이용한 classification으로 버섯을 구별해주는 인공지능 버섯 도감 어플로서 독버섯 채취 및 섭취 방지를 위한 어플
-
-* **Root Analysis (In progress for publication)**
+Development Environment : Ubuntu 18.04 & ROS Melodic
 
 * **Udacity - C (Not completed)**
+ 
+* **Root Analysis (In progress for publication)**
 
 * **Udacity - Computer Vision (In progress)**
 

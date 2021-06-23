@@ -26,7 +26,32 @@
 - Resolutions to Disadvantages
   - Scale 과 Depth 를 구하기 위해서는 스트레오 카메라 또는 다중 카메라 시스템을 구축하면 된다
   - Scale 을 구하기 위해 IMU를 함께 사용하는 방법이 있다. IMU 는 metric scale 복원이 가능하다.
-  - 
+  - 마커와 같이 이미 알고있는 랜드마크 물체를 사용해 scale 추정을 할 수 있다.
+  - 최근 딥러닝 기반 monocular depth estimation, 또는 single image monocular depth estimation 기술을 사용해 depth 정보를 추출하기도 한다. 아직 엄청나게 정확한 편은 아니지만, CNN-SLAM 의 경우 depth estimation 프론트엔드에 LSD-SLAM 백엔드를 사용해서 SLAM 시스템을 만들기도 했다.
+
+**3. Advantages and Disadvantage of LiDAR, RADAR**
+
+* **LiDAR:**
+
+  * 가격이 (아직) 비싼편
+  * 레이저 반사와 TOF 를 이용해서 카메라보다 훨씬 먼 거리임에도 정확한 Depth 추정이 가능. 하지만 눈이나 비, 안개가 낀 상황에 성능이 급격하게 떨어짐
+  * LiDAR SLAM 이 가능
+  * 딥러닝 기술을 이용하여 object detection 도 가능
+
+* **RADAR:**
+
+  * Doppler 효과를 이용해서 움직이는 장애물의 속도 추정 가능
+  * 데이터에 잡음이 엄청 많음
+  * 안 좋은 날씨에는 라이다나 카메라보다 잘됨
+
+* **Camera:**
+
+  * The price is cheap
+  * 딥러닝 기반 detection 등을 이용해서 장애물을 구분한다던지, 차선을 본다던지, 신호등 신호를 구분할 수 있음
+  * 다중 카메라로 꾸밀 경우 depth 정보 추출 가능하나, 단안 카메라로는 불가능함. 다중 카메라를 사용해도 라이다보다 훨씬 거리가 작음
+  * 어둡거나, 눈/비/안개 등으로 인해 보이지 않을 경우 성능이 급격하게 떨어짐
+
+  **Comments: ** 안전을 위해서는 모두 다 쓸 것 같음. GPS(Global Positioning System) 와 IMP 
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: tag-blog
-title: instrument
-slug: instrument
+title: instruments
+slug: instruments
 category: etc
 menu: false
 order: 2

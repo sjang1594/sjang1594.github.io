@@ -1,8 +1,8 @@
 ---
 layout: tag-blog
-title: Paper Review
-slug: Paper Review
+title: Movie Reviews
+slug: Movie Reviews
 category: Reviews
 menu: false
-order: 1
+order: 3
 ---

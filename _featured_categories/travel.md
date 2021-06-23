@@ -1,10 +1,10 @@
 ---
 layout: list
-title: Travel
-slug: Travel
+title: Travels
+slug: Travels
 menu: true
 submenu: false
 order: 5
 description: >
-  Travel
+  Travels
 ---

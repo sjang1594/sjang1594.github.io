@@ -57,7 +57,12 @@
 
 * RANSAC 은 Fischer 와 Balls의 예엣날 논문으로써 Random sample consensus 의 약자이다. 모델 추정을 할때 outlier 가 끼어있으면 정확한 모델 추정이 불가능한데, RANSAC을 통해 수많은 데이터로부터 outlier 를 제거 하고 (확률적으로) 올바른 모델을 찾을수 있다. 
 * The basic assumption of the RANSAC algorithm is that the sample contains correct data(inliers, data that can be described by the model) and abnormal data (outliers, data that deviates far from the normal range and cannot adapt to the mathematical model), that is, the dataset contains noise. These abnormal data may be caused by wrong measurements, wrong assumption, wrong calculations, etc. At the same time, RANSAC also assumes that given a set of correct data, there are methods that can calculate model parameters that conform to these data
-* 
+* RANSAC 이 진행되는 방법은 다음과 같다. 우선 모델을 구성할 수 있는 minimal set 의 데이터를 무작위로 뽑는다. 예를 들어, homography 의 경우 4 개의 feature match 를, p3p 인 경우 3 개를 고르는 것 같다. 뽑은 데이터로 부터 모델을 만들고, 이 모델을 사용할 때 다른 데이터들이 얼마나 에러를 가지는지를 구한다. 이 때, 이 에러가 지금 까지 찾은 모델들보다 낮다면 (i.e. best model 이라면), 그 정보를 저장한다 (물론 첫 iter 에서는 항상 best model이다). 그 다음에 또 다시 minimal set 의 데이터를 무작위로 뽑고, 그 모델이 best model 인 경우 모델 정보를 저장, 그게 아니라면 정보를 버린다. 이렇게 해서 정해놓은 iteration, 또는 정해놓은 error threshold에 도달할 때 까지 돌리는데, 랜덤한 성격을 가지고 있다보니 예정보다 빨리 끝날 때도 있고, 주어진 시간 안에 해결 하지 못할 때도 있다.
+* Advantages of RANSAC:
+  * 통계적으로 대충 몇 iteration 이면, 몇 %의 확률로 좋은 모델이 나올 지 추정을 할 수 있다는 것이다. 그렇기에 알고리즘 planning 할때 유용하다. 또, 수많은 경우의 수에서 빠르게 모델을 추정할 수 있다. 개량된 RANSAC (e.g. Lo-RANSAC 이나 PROSAC) 등을 이용할 경우, 더욱 더 빠르게 답을 찾을수 있다.
+  * The advantage of the RANSAC algorithm is that it can estimate model parameters robustly. For example, it can estimate high-precision parameters from a dataset containing a large number of outliers. 
+* Disadvantages of RANSAC
+  * 
 
 ---
 

@@ -51,7 +51,12 @@
   * 다중 카메라로 꾸밀 경우 depth 정보 추출 가능하나, 단안 카메라로는 불가능함. 다중 카메라를 사용해도 라이다보다 훨씬 거리가 작음
   * 어둡거나, 눈/비/안개 등으로 인해 보이지 않을 경우 성능이 급격하게 떨어짐
 
-  **Comments: ** 안전을 위해서는 모두 다 쓸 것 같음. GPS(Global Positioning System) 와 IMP 
+  **Comments: ** 안전을 위해서는 모두 다 쓸 것 같음. GPS(Global Positioning System) 와 IMP(Inertial Measurement Unit) Sensor 같이 씀. 카메라가 60Hz, 라이다가 10Hz, 레이더가 100Hz, IMU가 200Hz, GPS가 5Hz 라서 속도가 다 다를텐데, Extended Kalman Filter 등을 사용해서 퓨전을 할 것 같음. 물론 센서들의 특성을 분석하고 퓨전을 함.
+
+**4. Explain what is RANSAC and Discuss about advantages and disadvantages**
+
+* RANSAC 은 Fischer 와 Balls의 예엣날 논문으로써 Random sample consensus 의 약자이다. 모델 추정을 할때 outlier 가 끼어있으면 정확한 모델 추정이 불가능한데, RANSAC을 통해 수많은 데이터로부터 outlier 를 제거 하고 (확률적으로) 올바른 모델을 찾을수 있다. 
+* 
 
 ---
 

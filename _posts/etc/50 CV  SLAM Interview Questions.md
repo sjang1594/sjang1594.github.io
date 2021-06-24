@@ -56,6 +56,7 @@
 **4. Explain what is RANSAC and Discuss about advantages and disadvantages**
 
 * RANSAC 은 Fischer 와 Balls의 예엣날 논문으로써 Random sample consensus 의 약자이다. 모델 추정을 할때 outlier 가 끼어있으면 정확한 모델 추정이 불가능한데, RANSAC을 통해 수많은 데이터로부터 outlier 를 제거 하고 (확률적으로) 올바른 모델을 찾을수 있다. 
+* The basic assumption of the RANSAC algorithm is that the sample contains correct data(inliers, data that can be described by the model) and abnormal data (outliers, data that deviates far from the normal range and cannot adapt to the mathematical model), that is, the dataset contains noise. These abnormal data may be caused by wrong measurements, wrong assumption, wrong calculations, etc. At the same time, RANSAC also assumes that given a set of correct data, there are methods that can calculate model parameters that conform to these data
 * 
 
 ---

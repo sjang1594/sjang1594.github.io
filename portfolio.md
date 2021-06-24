@@ -34,10 +34,11 @@ Seungho Jang (장승호)
 > May.2014 ~ May 2015 : University of Minnesota - Twin City
 >
 > B.Bm.E. in Biomedical Engineering
->
+
 > Jan.2016 ~ Dec.2018 : University of Missouri/Washington University Joint Engineering
 >
-> B.S.EE in Electrical Engineering (Emphasis on Signal Processing & Radar System) Minor in Computer Science and Mathematics
+> B.S.EE in Electrical Engineering (Emphasis on Signal Processing & Radar System)
+> Minor in Computer Science and Mathematics
 
 > Jan.2020 ~ May.2021 : University of Missouri - Saint Louis 
 >

@@ -1,8 +1,8 @@
 ---
 layout: tag-blog
-title: C++
-slug: C++
+title: C/C++
+slug: C/C++
 category: Study
 menu: false
-order: 3
+order: 5
 ---

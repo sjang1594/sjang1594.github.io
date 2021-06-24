@@ -6,5 +6,5 @@ menu: true
 submenu: true
 order: 5
 description: >
-  Computer Vision
+  Computer Vision/Image Processing/Python/Pytorch/C/C++/C#
 ---

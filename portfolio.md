@@ -150,9 +150,8 @@ Build the software system and algorithm to detect the root system from the given
 -FrameWork: Pytorch, Tensorflow(Keras), OpenCV, ROS - Melodic, Foxy
 
 -Certification : 
-
-1. AI Certification - University of Missouri - Saint Louis
-2. Robotic Software Engineering - Udacity
+* AI Certification - University of Missouri - Saint Louis
+* Robotic Software Engineering - Udacity
 
 
 ## Classmate Comments & Endorsements

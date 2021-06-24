@@ -2,6 +2,16 @@
 
 ---
 
+## Basic Concepts
+
+
+
+## 
+
+----
+
+## Questions
+
 **1. What is Image Projection and Process**
 
 3D 공간에서 2D 이미지로 변환하는 과정을 image projection이라고 합니다. 3D 공간 위의 어떤 위치를 $[X,Y,Z,1]^T$로 표현하고, 2D 이미지 위의 픽셀 위치를 $[u,v,1]^T$ 로 표현하겠습니다. $X,Y,Z$는 3D coordinate고, $u,v$는 픽셀 coordinate 위의 column, row를 의미하며, 1은 euclidean space가 아닌 projective space 에서의 변환을 고려하기 위한 homogeneous coordinate 표기법 때문에 붙었습니다.
@@ -62,7 +72,7 @@
   * 통계적으로 대충 몇 iteration 이면, 몇 %의 확률로 좋은 모델이 나올 지 추정을 할 수 있다는 것이다. 그렇기에 알고리즘 planning 할때 유용하다. 또, 수많은 경우의 수에서 빠르게 모델을 추정할 수 있다. 개량된 RANSAC (e.g. Lo-RANSAC 이나 PROSAC) 등을 이용할 경우, 더욱 더 빠르게 답을 찾을수 있다.
   * The advantage of the RANSAC algorithm is that it can estimate model parameters robustly. For example, it can estimate high-precision parameters from a dataset containing a large number of outliers. 
 * Disadvantages of RANSAC
-  * 
+  * 첫째는, 랜덤하게 샘플을 뽑기 때문에, 거의 대부분의 경우 매번 다른 모델이 추정된다. 이때문에 SLAM 알고리즘의 정확도에 대해 계산할 때, 매번 다른 결과가 나오게된다. Deterministic test 도 믿기 조금 어려울 때가 있다. (random seed 를 고정해도, 그냥 그 seed가 않좋아서... 운이 안좋아서 결과가 잘 안나오는건지, 아니면 진짜 내)
 
 ---
 

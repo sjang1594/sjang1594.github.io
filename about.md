@@ -13,11 +13,11 @@ I just graduated with my master's degree in Computer Science. I enjoyed all my c
 
 **Who am I ?**
 
-* I have played the drum since 6<sup>th</sup> grade and played guitar for 2 years. 
-* I like to watch movies because I can gain indirect experiences, rather reading a whole book.
+* I have played the drums since 6<sup>th</sup> grade and played guitar for 2 years. 
+* Watching movies are one of my hobbies because I can gain indirect experiences, rather reading a whole book.
 * I have taught C/C++ since 2019. I had a wonderful experience with students and their input to the projects.
-* I've been playing soccer since last year. My position is wing back or full back
-* Regardless of most of my friends being a fan of Manchester United and liverpool, but I am a fan of Manchester City Fan.
+* Playing soccer are also one of my hobbies, I've been playing since last year. My position is wing back or full back
+* I've been a "long time" fan of Manchester City club. However most of my friends being a fan of Manchester United and Liverpool club.
 * Interestingly, my bachelor degree was in Electrical Engineering, and I have reasonable doubts on how I was able to pass all the exams.
 
 **What I am really interested in ?**

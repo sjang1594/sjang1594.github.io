@@ -159,7 +159,7 @@ Build the software system and algorithm to detect the root system from the given
 ---
 
 * **Vibhav Chemarla (Classmate) - [Linkedin](https://www.linkedin.com/in/vibhav-chemarla/)**
-> Nick(Seungho) is gifted problem solver. Nick(Seungho) and I have been classmates at UMSL for over 4 years, and have collaborated on many projects. I was constantly impressed by this positive attitude, work ethic, and analytical aptitude. Nick would be an oustanding asset to any company, and I highly recommend him - Associate Agile Engineer at Emerson.
+> Nick(Seungho) is gifted problem solver. Nick(Seungho) and I have been classmates at UMSL for over 4 years, and have collaborated on many projects. I was constantly impressed by this positive attitude, work ethic, and analytical aptitude. Nick would be an oustanding asset to any company, and I highly recommend him **- Associate Agile Engineer at Emerson.**
 
 * **Joseph Hill (Classmate) - [Linkedin](https://www.linkedin.com/in/joseph-hill-78275b165/)**
-> As a classmate during my undergrad program at UMSL, Seungho helped me on both an academic and personal level as my classmate and friend. He was always ready to tutor me on difficult concepts, and was quick to assist other students he didn't know. Every class I shared with Seungho was made better by his presence. - Associate Business Intelligence Engineer at Aegion Corporation
+> As a classmate during my undergrad program at UMSL, Seungho helped me on both an academic and personal level as my classmate and friend. He was always ready to tutor me on difficult concepts, and was quick to assist other students he didn't know. Every class I shared with Seungho was made better by his presence. **- Associate Business Intelligence Engineer at Aegion Corporation.**

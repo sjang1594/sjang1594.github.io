@@ -1,10 +1,10 @@
 ---
-title: CV / SLAM Interview Questions
 layout: post
-subtitle: Interviews in Computer Vision and SLAM
+bigtitle: Interviews in Computer Vision and SLAM
+date: '2021-06-24 12:30:00 +0900'
 categories: 
-  - etc
-  - interviews
+    - etc
+    - interviews
 tags:
   - Interviews Question
 comments: true

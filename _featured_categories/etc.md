@@ -1,6 +1,7 @@
 ---
 layout: list
-title: etc
+type: category
+bigtitle: etc
 slug: etc
 menu: true
 submenu: true
@@ -14,8 +15,6 @@ sitemap: true
 
 ## Categories
 
-* [Interviews]{:.heading.flip-title} --- Interviews  
-* [Instrument]{:.heading.flip-title} --- Instruments
+* [interviews]{:.heading.flip-title} --- interviews  
 
-[Diary]: /Interviews/
-[Travel]: /Instruments/
+[interviews]: /interviews/

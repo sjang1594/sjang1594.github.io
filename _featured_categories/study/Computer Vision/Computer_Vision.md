@@ -1,6 +1,6 @@
 ---
 layout: post
-category: computer vision
+category: Computer Vision
 title: Computer Vision
 description: >
   Computer Vision

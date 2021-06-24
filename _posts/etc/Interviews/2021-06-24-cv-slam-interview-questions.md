@@ -1,12 +1,12 @@
 ---
 layout: post
-bigtitle: Interviews in Computer Vision and SLAM
-date: '2021-06-24 12:30:00 +0900'
-categories: 
+bigtitle: 'CV & SLAM Interviews'
+date: '2020-12-31 12:45:51 +0900'
+categories:
     - etc
     - interviews
 tags:
-  - Interviews Question
+    - interviews
 comments: true
 published: true
 ---

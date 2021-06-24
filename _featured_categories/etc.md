@@ -1,7 +1,7 @@
 ---
 layout: list
 type: category
-bigtitle: etc
+title: etc
 slug: etc
 menu: true
 submenu: true

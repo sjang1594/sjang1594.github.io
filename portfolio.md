@@ -101,7 +101,7 @@ The repository for this private for a reason. Contact me if you want the source 
 
 * **Udacity - Robotic Software Engineering**
 
-`Environment : Ubuntu 18.04 - ROS Melodic`
+`Environment : Ubuntu 18.04`,`ROS Melodic`
 `Language : C++`
 
 1. [Build a Simulation World with Gazebo](https://github.com/sjang1594/RoboND-Udacity/tree/master/Robotics-UD-MyWorld)
@@ -112,7 +112,7 @@ The repository for this private for a reason. Contact me if you want the source 
 
 * **Image Processing / Computer Vision Projects**
 
-`Environment : Windows 10, Visual Studio 2019 - OpenCV4 & CUDA.`
+`Environment : Windows 10`,`Visual Studio 2019`,`OpenCV4 & CUDA.`
 `Language : C++`
 
 1. [Potter Duff Operation](https://github.com/sjang1594/UMSL/tree/master/CS6420/project1)
@@ -124,7 +124,7 @@ The repository for this private for a reason. Contact me if you want the source 
 
 * **Udacity - C++ (Not completed)**
 
-`Environment : Ubuntu 20.04 - Visual Studio Code, CMAKE`
+`Environment : Ubuntu 20.04`,`Visual Studio Code`,`CMAKE`
 `Language : C++`
 
 1. [Route Planning Project](https://github.com/sjang1594/CppND_Udacity/tree/master/CppND-Route-Planning-Project)
@@ -136,7 +136,7 @@ Build the software system and algorithm to detect the root system from the given
 
 * **Udacity - Computer Vision (In progress)**
 
-`Environment : Jupyter Notebook & OpenCV4`, `Framework: Pytorch`
+`Environment : Jupyter Notebook`,`OpenCV4`,`Framework: Pytorch`
 `Language : Python`
 
 1. [Facial Keypoints - Eye & Face Recognition](https://github.com/sjang1594/cvnn-udacity/tree/master/P1-Facial_KeyPoints)
@@ -147,13 +147,12 @@ Build the software system and algorithm to detect the root system from the given
 ---
 -Language : Python, C/C++/C#, Java
 
--FrameWork: Pytorch, Tensorflow(Keras), OpenCV, ROS - Melodic, Foxy
+-FrameWork: Pytorch, Tensorflow(Keras), OpenCV, ROS - Melodic & Foxy
 
 -Certification : 
 - Graduate Certificate in Artificial Intelligence 
     -  University of Missouri - Saint Louis | NSA/DHS National Center of Academic Excellence in Cyber Defense Education
 - Robotic Software Engineering - Udacity
-
 
 ## Classmate Comments & Endorsements
 ---

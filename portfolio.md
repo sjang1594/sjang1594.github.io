@@ -33,11 +33,11 @@ Seungho Jang (장승호)
 ---
 > May.2014 ~ May 2015 : University of Minnesota - Twin City
 >
-> B.Bm.E. in Biomedical Engineering (Not Completed)
+> B.Bm.E. in Biomedical Engineering
 >
 > Jan.2016 ~ Dec.2018 : University of Missouri/Washington University Joint Engineering
 >
-> BSEE in Electrical Engineering (Emphasis on Signal Processing & Radar System) Minor in Computer Science and Mathematics
+> B.S.EE in Electrical Engineering (Emphasis on Signal Processing & Radar System) Minor in Computer Science and Mathematics
 
 > Jan.2020 ~ May.2021 : University of Missouri - Saint Louis 
 >
@@ -150,7 +150,8 @@ Build the software system and algorithm to detect the root system from the given
 -FrameWork: Pytorch, Tensorflow(Keras), OpenCV, ROS - Melodic, Foxy
 
 -Certification : 
-- Graduate Certificate in Artificial Intelligence - `University of Missouri - Saint Louis | NSA/DHS National Center of Academic Excellence in Cyber Defense Education`
+- Graduate Certificate in Artificial Intelligence 
+    -  University of Missouri - Saint Louis | NSA/DHS National Center of Academic Excellence in Cyber Defense Education
 - Robotic Software Engineering - Udacity
 
 

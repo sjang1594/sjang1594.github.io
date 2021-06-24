@@ -1,8 +1,8 @@
 ---
 layout: tag-blog
-title: Movie Reviews
-slug: Movie Reviews
+title: Class Reviews
+slug: Class Reviews
 category: Reviews
 menu: false
-order: 4
+order: 3
 ---

@@ -1,5 +1,5 @@
 ---
-title: Robotic Operating System
+title: ROS
 layout: tag-blog
 slug: ROS
 category: Study

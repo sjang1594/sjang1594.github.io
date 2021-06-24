@@ -23,7 +23,7 @@ I just graduated with my master's degree in Computer Science. I enjoyed all my c
 **What I am really interested in ?**
 
 * I am interested in Deep Learning in Computer Vision Applications.
-* Within Computer Vision Application, I am eager to learn `3D Reconstruction`, `Depth Estimation`, and `Visual-SLAM`.
+* Within Computer Vision Applications, I am eager to learn `3D Reconstruction`, `Depth Estimation`, and `Visual-SLAM`.
 
 Please feel free to contact me, if you have any good feedback!
 

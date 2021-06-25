@@ -45,7 +45,7 @@ Seungho Jang (장승호)
 > M.S in Computer Science (Emphasis on Deep Learning & Computer Vision)
 
 
-## Research Interest
+## Research Interests
 ---
 
 * Computer Vision

@@ -85,7 +85,19 @@ published: true
   * 통계적으로 대충 몇 iteration 이면, 몇 %의 확률로 좋은 모델이 나올 지 추정을 할 수 있다는 것이다. 그렇기에 알고리즘 planning 할때 유용하다. 또, 수많은 경우의 수에서 빠르게 모델을 추정할 수 있다. 개량된 RANSAC (e.g. Lo-RANSAC 이나 PROSAC) 등을 이용할 경우, 더욱 더 빠르게 답을 찾을수 있다.
   * The advantage of the RANSAC algorithm is that it can estimate model parameters robustly. For example, it can estimate high-precision parameters from a dataset containing a large number of outliers. 
 * Disadvantages of RANSAC
-  * 첫째는, 랜덤하게 샘플을 뽑기 때문에, 거의 대부분의 경우 매번 다른 모델이 추정된다. 이때문에 SLAM 알고리즘의 정확도에 대해 계산할 때, 매번 다른 결과가 나오게된다. Deterministic test 도 믿기 조금 어려울 때가 있다. (random seed 를 고정해도, 그냥 그 seed가 않좋아서... 운이 안좋아서 결과가 잘 안나오는건지, 아니면 진짜 내)
+  * 첫째는, 랜덤하게 샘플을 뽑기 때문에, 거의 대부분의 경우 매번 다른 모델이 추정된다. 이때문에 SLAM 알고리즘의 정확도에 대해 계산할 때, 매번 다른 결과가 나오게된다. Deterministic test 도 믿기 조금 어려울 때가 있다. (random seed 를 고정해도, 그냥 그 seed가 않좋아서... 운이 안좋아서 결과가 잘 안나오는건지, 아니면 알고리즘이 좋지 않아서 안나오는건지 구분하기 어려울 때가 있다.)
+  * 둘째는, error threshold 를 넘겨도 local minimum 모델이 나올 수 있다. local minimum 모델이 나올때는 두가지 경우가 생길 수 있다. 첫째는 모델 자체가 완전히 잘못된 경우 geometric verification 에 실패할 수 있다. 둘째는 모델이 global minimum 에 가까운 local minimum 인 경우 인데, 이 경우 error 가 쌓이게 누적되게 된다. 이러한 단점을 해결하기 위해서는 100% 확률로 global minimum 모델을 찾는 방법을 써야 되는데, 이 경우 탐색해야하는 경우의 수도 많고 수많읜 최적화 계신이 들어가기 때문에 실시간으로 작동할 수 없다. 실시간으로 작동해야하는 경우에는 RANSAC 이 적합하지만, 비 실시간으로 돌아도 괜찮다면 최적화 manifold를 쉽게 만들어주는 convex relaxation을 거친 후 MAXCON 방식으로 풀어가는 방식이 종종 사용되기도 한다. 셋째는 데이터에서 여러 모델이 나올 수 있는 경우에도 단 하나의 모델만 찾을 수 있다.
+
+**5. What is Loop Closure**
+
+* SLAM을 진행하면서 로봇이 이전에 왔던 공간에 다시 도달 했을 때, 경로에 loop이 생기게 됩니다. 이는 geometric constraints가 생긴다는 것을 의미하며, graph optimization 이 가능하게 합니다. Graph Optimization 을 수행하면 모든 카메라 pose와 map point 들에 대해서 최적화를 진행 함으로써, 가장 에러가 적어지는 pose 와 map point 들의 위치를 구할 수 있습니다.
+
+* Loop closure를 수행하기 위해서는 우선적으로 loop 이 생겼음을 인지해야합니다. Visual-SLAM의 경우에는 image retrieval 기술을 통해, 현재 내가 보고있는 이미지와 이전에 저장해두었던 keyframe 이미지의 유사도를 계산하고, loop closure detection 을 수행합니다. 이부분에서 Bag-of-visual-words 나 VLAD 기법을 사용합니다. 최근에는 NetVLAD 나 DELF와 같은 딥러닝 기반 image retrieval 기능들도 주목을 받고 있습니다. LiDar SLAM의 경우에는 아마 3D feature 들을 벡터화 시킨 것들의 유사도로 loop closure detection 을 추측하지 않을까 합니다.
+* Loop 이 있다면, 두 이미지간의 transformation 을 계산을 함으로써, geometric constraints를 만듭니다. 이 두 constraint 를 hard constraint 로 잡고, loop에 있는 카메라 pose나 map point 들을 최적화합니다. 최적화 경우, 모든 카메라 pose 와  map point 를 최적화 할 수도 있고, 때와 목적에 따라서 motion-only BA 를 할수도 있습니다. 
+
+**6. Kalman Filter vs Particle Filter**
+
+
 
 ---
 

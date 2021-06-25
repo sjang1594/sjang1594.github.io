@@ -26,7 +26,12 @@
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   {% unless include.excerpt %}
     <div class="markdown-body">
-
+  
+  <div style="text-align: center;">
+      <a href="https://hits.seeyoufarm.com/{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}">
+        <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2F{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}&count_bg=%230F143D&title_bg=%238B1CDD&icon=aiqfome.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false"/>
+      </a>
+  </div>
 
 {% if post.header-img %}<div class="head-image"><img src="{{ site.url }}/{% if post.header-img %}assets/{{ post.header-img }}{% endif %}"/></div>
 <br/>{% elsif tag.header-img %}

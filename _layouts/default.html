@@ -18,7 +18,7 @@ Looks like you are using the `{{ page.layout }}` layout. This layout is not supp
       {% include post-list-item.html post=post %}
     {% endfor %}
   </ul>
-
+  {% include analytics.html %}
   <h2>Pages</h2>
   <ul class="related-posts">
     {% for page in site.html_pages %}

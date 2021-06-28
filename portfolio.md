@@ -152,7 +152,7 @@ Build the software system and algorithm to detect the root system from the given
 
 -Certification : 
 - Graduate Certificate in Artificial Intelligence 
-    -  University of Missouri - Saint Louis | NSA/DHS National Center of Academic Excellence in Cyber Defense Education
+    -  University of Missouri in Saint Louis / NSA/DHS National Center of Academic Excellence in Cyber Defense Education
 - Robotic Software Engineering - Udacity
 
 ## Classmate Comments & Endorsements

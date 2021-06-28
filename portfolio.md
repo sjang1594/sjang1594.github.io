@@ -158,11 +158,14 @@ Build the software system and algorithm to detect the root system from the given
 ## Classmate Comments & Endorsements
 ---
 
-* **Vibhav Chemarla (Classmate) - [Linkedin](https://www.linkedin.com/in/vibhav-chemarla/)**
+* **Vibhav Chemarla (Classmate) - [LinkedIn](https://www.linkedin.com/in/vibhav-chemarla/)**
 > Nick(Seungho) is gifted problem solver. Nick(Seungho) and I have been classmates at UMSL for over 4 years, and have collaborated on many projects. I was constantly impressed by this positive attitude, work ethic, and analytical aptitude. Nick would be an oustanding asset to any company, and I highly recommend him **- Associate Agile Engineer at Emerson.**
 
-* **Joseph Hill (Classmate) - [Linkedin](https://www.linkedin.com/in/joseph-hill-78275b165/)**
+* **Joseph Hill (Classmate) - [LinkedIn](https://www.linkedin.com/in/joseph-hill-78275b165/)**
 > As a classmate during my undergrad program at UMSL, Seungho helped me on both an academic and personal level as my classmate and friend. He was always ready to tutor me on difficult concepts, and was quick to assist other students he didn't know. Every class I shared with Seungho was made better by his presence. **- Associate Business Intelligence Engineer at Aegion Corporation.**
 
-* **Alberto Maiocco (Classmate) - [Linkedin](https://www.linkedin.com/in/alberto-maiocco/)**
+* **Alberto Maiocco (Classmate) - [LinkedIn](https://www.linkedin.com/in/alberto-maiocco/)**
 > Seungho possesses rare analytical skills and has the ability to quickly assess a problem and form an inventive solution. He possesses great technical knowledge of many languages and tools and the ingenuity to use them in novel ways to solve any problem. I've been fortunate to benefit from his intelligence and experience, and know that he would be a boon to any organization **- Application Software Engineer at Centene Corporation**
+
+* **Khanh Vong (Classmate) - [LinkedIn](https://www.linkedin.com/in/khanh-vong-6b6561171/)**
+> "I met Nick during my time at UMSL. We have taken many classes together and have collaborated on many projects. Nick is very motivated, and driven when it comes to learning. His biggest asset is his ability to learn and absorb new topics quickly. Meeting Nick has motivated me to take my studying more seriously. And thus, he has my highest recommendation. His drive for learning, and his ability to motivate those around him would make him an asset to any company. **- Web Developer at Beanstalk Web Solutions**

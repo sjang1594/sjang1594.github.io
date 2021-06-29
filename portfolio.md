@@ -85,7 +85,7 @@ Conic Method : Recording & Filtering the brain signals(inputs) to the system usi
 [Project Repo](https://github.com/sntrenter/FA2020GroupProject) and [Presentation Video](https://vimeo.com/490250102/2e52524b6a)
 
 
-* **Operatring System/System Programming - CS4760**
+* **Operating System/System Programming - CS4760**
 
 `Environment: Linux Terminal`, `Language : C`
 
@@ -116,7 +116,7 @@ The repository for this private for a reason. Contact me if you want the source 
 `Environment : Windows 10`,`Visual Studio 2019`,`OpenCV4 & CUDA.`
 `Language : C++`
 
-1. [Potter Duff Operation](https://github.com/sjang1594/UMSL/tree/master/CS6420/project1)
+1. [Poter Duff Operation](https://github.com/sjang1594/UMSL/tree/master/CS6420/project1)
 2. [Image Registeration](https://github.com/sjang1594/UMSL/tree/master/CS6420/project2)
 3. [Frequency Filtering (Denoise the Periodic Noise)](https://github.com/sjang1594/UMSL/tree/master/CS6420/project3)
 4. [Image Segmentation using K-mean (Detecting the USA map)](https://github.com/sjang1594/UMSL/tree/master/CS6420/project4)

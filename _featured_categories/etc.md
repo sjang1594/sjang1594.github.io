@@ -17,4 +17,4 @@ sitemap: true
 
 * [interviews]{:.heading.flip-title} --- interviews  
 
-[interviews]: /interviews/
+[Interviews]: /etc/interviews/

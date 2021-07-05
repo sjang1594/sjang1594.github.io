@@ -2,7 +2,7 @@
 layout: tag-blog
 title: Computer Vision
 slug: Computer Vision
-category: Study
+category: study
 menu: false
 order: 1
 ---

@@ -2,7 +2,7 @@
 title: ROS
 layout: tag-blog
 slug: ROS
-category: Study
+category: study
 menu: false
 order: 7
 ---

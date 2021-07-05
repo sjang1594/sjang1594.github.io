@@ -20,14 +20,59 @@ tagline:             "Seungho's Blog"
 description:         >
   "Software Developer plays drum and break the code."
 
+# Fallback image and color
+image:               /assets/img/cover.jpg
+color:               '#4f86aa'
+
 # This should be the same author as first entry in `_data/authors.yml`
 author:
   name:              Seungho Jang
   email:             sjang1594@gmail.com
 
-# Fallback image and color
-image:               /assets/img/cover.jpg
-color:               '#4f86aa'
+# Add links to the sidebar
+menu:
+  - title:             Portfolio
+    url:               /portfolio/
+  - title:             About
+    url:               /about/
+  - title:             Reviews
+    url:               /reviews/
+    submenu:
+      - title:  Paper Reviews
+        url:      /paper_reviews/
+      - title:  Book Reviews
+        url:      /book_reviews/
+      - title:  Class Reviews
+        url:      /class_reviews/
+      - title:  Movie Reviews
+        url:      /movie_reviews/
+  - title:             Study
+    url:               /study/
+    submenu:
+      - title:  Computer Vision
+        url:      /computer_vision/
+      - title:  Image Processing
+        url:      /image_processing/
+      - title:  Python
+        url:      /python/
+      - title:  Pytorch
+        url:      /pytorch/
+      - title:  ROS
+        url:      /ros/
+      - title:  Algorithms
+        url:      /algorithms/
+  - title:             Travels
+    url:               /travels/
+  - title:             Etc
+    url:               /etc/
+    submenu:
+      - title:  Interviews
+        url:      /interviews/
+      - title:  Instruments
+        url:      /instruments/
+      - title:   Memes
+        url:      /memes/
+
 
 # The font used for headings. Expects a string that is a valid CSS font-family value.
 font_heading:        "'Merriweather-Light','Lato','-apple-system','Verdana','PingFang SC','Helvetica Neue','Arial','Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei','sans-serif'"
@@ -39,26 +84,25 @@ font:                "'Merriweather-Light','Lato','-apple-system','Verdana','Pin
 # See: https://qwtel.com/hydejack/docs/configuration/
 google_fonts:        Lato
 
-# If you do not use a Google Fonts, uncomment the line below
-# no_google_fonts:     true
-
 # Set your Google Analytics id to receive `pageview` events.
 # To remove Google Anaylics from your page, remove the line below.
 google_analytics:    G-GFFWR46MWQ
 
-# 댓글기능
+# -----------------------------------------------------------------------------
+#  Comments Customization
+# -----------------------------------------------------------------------------
 disqus: True
 disqus_shortname:    xxxx
 
 # This text will appear in the footer of every page. Markdown enabled.
-copyright:           '&copy; 2020.12. by Seungho Jang'
+copyright:           '&copy; 2021.6. by Seungho Jang'
 
 # Format of the permalinks
-permalink:           
+permalink:           /:categories/:year-:month-:day-:title/
 
 # Pagination configuration (used by the `blog` layout)
-paginate:            3
-paginate_path:       '/page-:num/'
+paginate:            10
+paginate_path:       /:num/
 
 # If you are upgrading form a v5 verison of Hydejack, uncomment the two lines below,
 # so that the location of the feed XML stays the same.
@@ -84,17 +128,18 @@ paginate_path:       '/page-:num/'
 
 collections:
   featured_categories:
-    permalink:       /category/:name/
+    permalink:       /:name/
     output:          true
   featured_tags:
-    permalink:       /tag/:name/
+    permalink:       /:name/
     output:          true
   projects:
     permalink:       /projects/:path/
     output:          true
 
+
 # -----------------------------------------------------------------------------
-#  Advanced configuration
+#  Advanced configuration : plugins
 # -----------------------------------------------------------------------------
 
 plugins:

@@ -4,10 +4,9 @@ layout: post
 bigtitle: Kalman Filter / Extennded Kalman Filter
 date: '2021-6-24 4:00:00 +0900'
 categories:
-- Study
-- Computer Vision
+- study
 tags:
-- SLAM
+- Computer Vision
 comments: true
 published: true
 ---

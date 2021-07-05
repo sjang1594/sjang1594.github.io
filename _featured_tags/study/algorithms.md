@@ -2,7 +2,7 @@
 layout: tag-blog
 title: Algorithms
 slug: Algorithms
-category: Study
+category: study
 menu: false
 order: 6
 ---

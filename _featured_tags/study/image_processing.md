@@ -2,7 +2,7 @@
 layout: tag-blog
 title: Image Processing
 slug: Image Processing
-category: Study
+category: study
 menu: false
 order: 2
 ---

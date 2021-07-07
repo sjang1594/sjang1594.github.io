@@ -4,8 +4,8 @@ layout: post
 bigtitle: Kalman Filter / Extennded Kalman Filter
 date: '2021-6-24 4:00:00 +0900'
 categories:
-    - study
-    - computer vision
+- study
+- Computer Vision
 tags:
 - Computer Vision
 comments: true
@@ -177,5 +177,4 @@ How can the Kalman filter help us make better sense of our robot's current state
 
 * The Kalman filter can very quickly develop a surprisingly accurate estimate of the true value of the variable being measured. (e.g. robot's location in one dimensional world)
 * Unlike other algorithms that require a lot of data to make an estimate, the Kalman filter is able to do so after just a few sensor measurements. It does so by using an initial guess and by taking into account the expected uncertainty of a sensor or movement.
-* Let's say that my robot is using GPS data to identify its location. Today's GPS measurements are only accurate to a few meters. Sensor fusion uses the Kalman filter to calculate a more accurate estimate using data from multiple sensors. 
-
+* Let's say that my robot is using GPS data to identify its location. Today's GPS measurements are only accurate to a few meters. Sensor fusion uses the Kalman filter to calculate a more accurate estimate using data from multiple sensors.

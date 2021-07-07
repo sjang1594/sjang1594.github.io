@@ -3,7 +3,7 @@ layout: post
 category: study
 bigtitle: Algorithms
 description: >
-  새로알게된 Github Pages 블로그, Jekyll 기술과 내용 설명 등등
+  Algorithm
 related_posts:
   -
 addons:

@@ -3,8 +3,8 @@ title: CV & SLAM Interview Questions
 layout: post
 bigtitle: CV & SLAM Interviews
 date: '2020-12-31 12:45:51 +0900'
-categories:
-- etc
+categories: 
+- etc 
 - interviews
 tags:
 - interviews
@@ -17,9 +17,6 @@ published: true
 ---
 
 ## Basic Concepts
-
-
-
 
 ----
 

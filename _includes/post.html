@@ -21,15 +21,13 @@
 
     <div class="post-date">
       {% assign category_start     = " Categories : "     | default:" in " %}
-      {% assign category_separator = site.data.strings.category_separator | default:" >> " %}
-      {% include tag-list.html tags=post.categories meta=site.featured_categories start_with=category_start separator=category_separator %}
       
       <br>
       <!--년월일-->
       {% assign post_format = "%Y년 %m월 %d일 글" | default:"%Y %m %d" %}
       <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date:post_format }}</time>
     </div>
-    
+
     
   </header>
   

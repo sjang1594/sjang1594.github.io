@@ -156,7 +156,6 @@ exclude:
   - package-lock.json
   - Gemfile
   - Gemfile.lock
-  - _posts/study/2020-12-26-making-blog04.md
 
 
 kramdown:

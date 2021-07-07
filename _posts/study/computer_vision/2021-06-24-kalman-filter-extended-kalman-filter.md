@@ -4,7 +4,8 @@ layout: post
 bigtitle: Kalman Filter / Extennded Kalman Filter
 date: '2021-6-24 4:00:00 +0900'
 categories:
-- study
+    - study
+    - computer vision
 tags:
 - Computer Vision
 comments: true

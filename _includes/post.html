@@ -1,27 +1,39 @@
 {% assign post = include.post %}
+{% assign no_link_title    = include.no_link_title    %}
+{% assign no_excerpt       = include.no_excerpt       %}
+{% assign hide_image       = include.hide_image       %}
+{% assign hide_description = include.hide_description %}
 
-<article id="post-{{ post.id | slice: 1,9999 }}" class="post{% if include.link_title %} mb6{% endif %}" role="article">
+<article id="post{{ post.id | replace:'/','-' }}" class="page post mb6" role="article">
   <header>
 
-    <h1 class="post-title">
-      {% if include.link_title %}<a href="{{ post.url | relative_url }}" data-flip="title">{% endif %}
-        {{ post.title }}
-      {% if include.link_title %}</a>{% endif %}
+    <h1 class="post-title flip-project-title">
+      {% unless no_link_title %}<a href="{{ post.url | relative_url }}" class="flip-title">{% endunless %}
+        {{ post.bigtitle }}
+      {% unless no_link_title %}</a>{% endunless %}
     </h1>
 
-    <p class="post-date heading">
-      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d %b %Y" }}</time>
-      {% include tag-list.html tags=post.categories meta=site.featured_categories start_with="in " separator=" / " %}
-      {% include tag-list.html tags=post.tags meta=site.featured_tags start_with="on " separator=", " %}
-    </p>
+    <h2 class="post-title flip-project-shubtitle">
+      {% unless no_link_title %}<a href="{{ post.url | relative_url }}" class="flip-subtitle">{% endunless %}
+        {{ post.subtitle }}
+      {% unless no_link_title %}</a>{% endunless %}
+    </h2>
 
-    {% include message.html text=post.description %}
+    <div class="post-date">
+      {% assign category_start     = " Categories : "     | default:" in " %}
+      {% assign category_separator = site.data.strings.category_separator | default:" >> " %}
+      {% include tag-list.html tags=post.categories meta=site.featured_categories start_with=category_start separator=category_separator %}
+      
+      <br>
+      <!--년월일-->
+      {% assign post_format = "%Y년 %m월 %d일 글" | default:"%Y %m %d" %}
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date:post_format }}</time>
+    </div>
+    
+    
   </header>
-  {% for tag_slug in post.tags %}
-    {% unless tag.header-img %}
-      {% assign tag = site.featured_tags | where: "slug", tag_slug | first %}
-    {% endunless %}
-  {% endfor %}
+  
+  
 
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   {% unless include.excerpt %}

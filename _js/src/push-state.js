@@ -1,235 +1,212 @@
-// Copyright (c) 2017 Florian Klampfer
-// Licensed under MIT
+// Copyright (c) 2019 Florian Klampfer <https://qwtel.com/>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-/*
-eslint-disable
-no-param-reassign,
-import/no-extraneous-dependencies,
-import/no-unresolved,
-import/extensions
-*/
+import { fromEvent, merge, timer, zip } from 'rxjs';
+import {
+  tap,
+  exhaustMap,
+  map,
+  mapTo,
+  mergeMap,
+  pairwise,
+  share,
+  startWith,
+  switchMap,
+  takeUntil,
+} from 'rxjs/operators';
 
-import { Observable } from 'rxjs/Observable';
-import { fromEvent } from 'rxjs/observable/fromEvent';
+import { animate, empty, importTemplate, webComponentsReady } from './common';
+import { CrossFader } from './cross-fader';
+import { setupFLIP } from './flip';
 
-import { _catch as recover } from 'rxjs/operator/catch';
-import { _do as effect } from 'rxjs/operator/do';
-import { debounceTime } from 'rxjs/operator/debounceTime';
-import { exhaustMap } from 'rxjs/operator/exhaustMap';
-import { filter } from 'rxjs/operator/filter';
-import { map } from 'rxjs/operator/map';
-import { mergeMap } from 'rxjs/operator/mergeMap';
-import { pairwise } from 'rxjs/operator/pairwise';
-import { share } from 'rxjs/operator/share';
-import { startWith } from 'rxjs/operator/startWith';
-import { switchMap } from 'rxjs/operator/switchMap';
-import { takeUntil } from 'rxjs/operator/takeUntil';
-import { zipProto as zipWith } from 'rxjs/operator/zip';
+(async () => {
+  await Promise.all([
+    ...('fetch' in window ? [] : [import(/* webpackChunkName: "fetch" */ './polyfills/fetch')]),
+    ...('customElements' in window
+      ? []
+      : [import(/* webpackChunkName: "webcomponents" */ './polyfills/webcomponents')]),
+    ...('animate' in Element.prototype ? [] : [import(/* webpackChunkName: "webanimations" */ 'web-animations-js')]),
+    ...('IntersectionObserver' in window
+      ? []
+      : [import(/* webpackChunkName: "intersection-observer" */ 'intersection-observer')]),
+  ]);
 
-import PushState from 'y-push-state/src/vanilla';
-import elemDataset from 'elem-dataset';
+  await webComponentsReady;
 
-import { hasFeatures, animate } from './common';
-import CrossFader from './cross-fader';
-import upgradeMathBlocks from './katex';
+  const NAVBAR_SEL = '#_navbar > .content > .nav-btn-bar';
 
-import Flip from './flip/flip';
-import './flip/title';
+  const CROSS_FADE_DURATION = 2000;
 
-const REQUIREMENTS = [
-  'eventlistener',
-  'queryselector',
-  'requestanimationframe',
-  'classlist',
-  'documentfragment',
-  'history',
-  'opacity',
-  'cssanimations',
-];
+  const FADE_OUT = [{ opacity: 1 }, { opacity: 0 }];
+  const FADE_IN = [
+    { opacity: 0, transform: 'translateY(-3rem)' },
+    { opacity: 1, transform: 'translateY(0)' },
+  ];
 
-const DURATION = 250;
-const FADE_DURATION = 500;
-
-// whenever the source observable encounters an error,
-// we log it to the console, but continue as if it never happend
-function makeUnstoppable() {
-  return this::recover((error, caught) => {
-    console.error(error); // eslint-disable-line
-    return caught;
-  });
-}
-
-if (!window.disablePushState && hasFeatures(REQUIREMENTS)) {
-  const ua = navigator.userAgent.toLowerCase();
-  const isSafari = ua.indexOf('safari') > 0 && ua.indexOf('chrome') < 0;
-
-  const crossFader = new CrossFader({ duration: FADE_DURATION });
-
-  const pushState = document.getElementById('_yPushState');
-
-  const animationMain = document.createElement('div');
-  animationMain.classList.add('animation-main');
-  animationMain.classList.add('fixed-top');
-  animationMain.innerHTML = `
-    <div class="content">
-      <div class="page"></div>
-    </div>`;
-  pushState.parentNode.insertBefore(animationMain, pushState);
-
-  const loading = document.createElement('div');
-  loading.classList.add('loading');
-  loading.innerHTML = `
-    <span class="sr-only">Loading...</span>
-    <div class="sk-folding-cube">
-      <div class="sk-cube1 sk-cube"></div>
-      <div class="sk-cube2 sk-cube"></div>
-      <div class="sk-cube4 sk-cube"></div>
-      <div class="sk-cube3 sk-cube"></div>
-    </div>
-  `;
-  document.querySelector('.navbar .content').appendChild(loading);
-
-  const start$ = Observable::fromEvent(pushState, 'y-push-state-start')
-    ::map(({ detail }) => detail)
-    ::map(detail => [detail, document.getElementById('_main')])
-    ::effect(() => {
-      // If a link on the drawer has been clicked, close it
-      if (!window.isDesktop && window.drawer.opened) {
-        window.drawer.close();
-      }
-    })
-    ::share();
-
-  const ready$ = Observable::fromEvent(pushState, 'y-push-state-ready')
-    ::map(({ detail }) => detail)
-    ::share();
-
-  const progress$ = Observable::fromEvent(pushState, 'y-push-state-progress')
-    ::map(({ detail }) => detail);
-    // ::share();
-
-  const after$ = Observable::fromEvent(pushState, 'y-push-state-after')
-    ::map(({ detail }) => detail)
-    ::share();
-
-  // const error$ = Observable.fromEvent(pushState, 'y-push-state-error');
-
-  // HACK
-  if (isSafari) {
-    Observable::fromEvent(window, 'popstate')
-      .subscribe(() => { document.body.style.minHeight = '999999px'; });
-
-    after$
-      .subscribe(() => { document.body.style.minHeight = ''; });
+  function setupAnimationMain(pushStateEl) {
+    pushStateEl?.parentNode?.insertBefore(importTemplate('_animation-template'), pushStateEl);
+    return pushStateEl?.previousElementSibling;
   }
 
-  // FLIP animation (when applicable)
+  function setupLoading(navbarEl) {
+    navbarEl?.appendChild(importTemplate('_loading-template'));
+    return navbarEl?.lastElementChild;
+  }
+
+  function setupErrorPage(main, url) {
+    const { pathname } = url;
+    const error = importTemplate('_error-template');
+    const anchor = error?.querySelector('.this-link');
+    if (anchor) {
+      anchor.href = pathname;
+      anchor.textContent = pathname;
+    }
+    main?.appendChild(error);
+    return main?.lastElementChild;
+  }
+
+  function getFlipType(el) {
+    if (el?.classList.contains('flip-title')) return 'title';
+    if (el?.classList.contains('flip-project')) return 'project';
+    return el?.getAttribute?.('data-flip');
+  }
+
+  const pushStateEl = document.querySelector('hy-push-state');
+  if (!pushStateEl) return;
+
+  const duration = Number(pushStateEl.getAttribute('duration')) || 350;
+  const settings = {
+    duration: duration,
+    easing: 'ease',
+  };
+
+  const animateFadeOut = ({ main }) => animate(main, FADE_OUT, { ...settings, fill: 'forwards' }).pipe(mapTo({ main }));
+
+  const animateFadeIn = ({ replaceEls: [main], flipType }) =>
+    animate(main, FADE_IN, settings).pipe(mapTo({ main, flipType }));
+
+  const drawerEl = document.querySelector('hy-drawer');
+  const navbarEl = document.querySelector(NAVBAR_SEL);
+
+  const animationMain = setupAnimationMain(pushStateEl);
+  const loadingEl = setupLoading(navbarEl);
+
+  const fromEventX = (eventName, mapFn) =>
+    fromEvent(pushStateEl, eventName).pipe(
+      map(({ detail }) => detail),
+      mapFn ? map(mapFn) : (_) => _,
+      share(),
+    );
+
+  const start$ = fromEventX('hy-push-state-start', (detail) =>
+    Object.assign(detail, { flipType: getFlipType(detail.anchor) }),
+  );
+  const ready$ = fromEventX('hy-push-state-ready');
+  const after$ = fromEventX('hy-push-state-after');
+  const progress$ = fromEventX('hy-push-state-progress');
+  const error$ = fromEventX('hy-push-state-networkerror');
+
+  const fadeOut$ = start$.pipe(
+    map((context) => Object.assign(context, { main: document.getElementById('_main') })),
+    tap(({ main }) => {
+      main.style.pointerEvents = 'none';
+    }),
+    window._noDrawer && drawerEl?.classList.contains('cover')
+      ? tap(() => {
+          drawerEl.classList.remove('cover');
+          drawerEl.parentNode?.appendChild(drawerEl);
+        })
+      : (_) => _,
+    exhaustMap(animateFadeOut),
+    tap(({ main }) => empty.call(main)),
+    share(),
+  );
+
+  if (loadingEl) {
+    progress$.subscribe(() => {
+      loadingEl.style.display = 'flex';
+    });
+    ready$.subscribe(() => {
+      loadingEl.style.display = 'none';
+    });
+  }
+
+  const fadeIn$ = after$.pipe(
+    switchMap((context) => {
+      const p = animateFadeIn(context).toPromise();
+      context.transitionUntil(p);
+      return p;
+    }),
+    share(),
+  );
+
+  const flip$ = setupFLIP(start$, ready$, merge(fadeIn$, error$), {
+    animationMain,
+    settings: settings,
+  }).pipe(share());
+
   start$
-    ::switchMap(([detail]) => {
-      const { event: { currentTarget } } = detail;
-
-      const flip = Flip.create(
-        currentTarget.getAttribute &&
-        currentTarget.getAttribute('data-flip'), {
-          animationMain,
-          currentTarget,
-          duration: DURATION,
-        });
-
-      // HACK: This assumes knowledge of the internal rx pipeline.
-      // Could possibly be replaced with `withLatestFrom` shinanigans,
-      // but it's more convenient like that.
-      detail.flip = flip;
-
-      return flip.start(currentTarget);
-    })
-    ::makeUnstoppable()
+    .pipe(
+      switchMap((context) => {
+        const promise = zip(timer(duration), fadeOut$, flip$).toPromise();
+        context.transitionUntil(promise);
+        return promise;
+      }),
+    )
     .subscribe();
 
-  // Fade main content out
-  start$
-    ::effect(([, main]) => { main.style.opacity = 0; })
-    ::filter(([{ type }]) => type === 'push' || !isSafari)
-    ::exhaustMap(([{ type }, main]) =>
-      animate(main, [
-        { opacity: 1 },
-        { opacity: 0 },
-      ], {
-        duration: DURATION,
-        // easing: 'ease',
-        easing: 'cubic-bezier(0,0,0.32,1)',
-      })
-        ::effect(() => { if (type === 'push') window.scroll(0, 0); })
-        ::zipWith(after$))
-    ::makeUnstoppable()
+  // FIXME: Keeping permanent subscription? turn into hot observable?
+  fadeOut$.subscribe();
+  flip$.subscribe();
+
+  const sidebarBg = document.querySelector('.sidebar-bg');
+  if (sidebarBg) {
+    const crossFader = new CrossFader(CROSS_FADE_DURATION);
+    after$
+      .pipe(
+        switchMap(({ document }) =>
+          zip(crossFader.fetchImage(document), fadeIn$).pipe(
+            map(([x]) => x),
+            takeUntil(start$),
+          ),
+        ),
+        startWith([sidebarBg]),
+        pairwise(),
+        mergeMap(([prev, curr]) => crossFader.fade(prev, curr)),
+      )
+      .subscribe();
+  }
+
+  error$
+    .pipe(
+      switchMap(({ url }) => {
+        if (loadingEl) loadingEl.style.display = 'none';
+
+        const main = document.getElementById('_main');
+        if (main) main.style.pointerEvents = '';
+        empty.call(animationMain?.querySelector('.page'));
+        empty.call(main);
+
+        setupErrorPage(main, url);
+
+        return animate(main, FADE_IN, { ...settings, fill: 'forwards' });
+      }),
+    )
     .subscribe();
 
-  // Show loading bar when taking longer than expected
-  progress$
-    ::effect(() => { loading.style.display = 'block'; })
-    ::makeUnstoppable()
-    .subscribe();
+  import(/* webpackMode: "eager" */ '@hydecorp/push-state');
 
-  // TODO: error message!?
-  // error$
-  //   // .delay(DURATION) // HACK
-  //   .do(() => {
-  //     loading.style.display = 'none';
-  //   })
-  //   .subscribe();
-
-  // Prepare showing the new content
-  ready$
-    ::effect(() => { loading.style.display = 'none'; })
-    ::filter(({ type }) => type === 'push' || !isSafari)
-    ::switchMap(({ flip, content: [main] }) => flip.ready(main)::takeUntil(start$))
-    ::makeUnstoppable()
-    .subscribe();
-
-  ready$
-    ::switchMap(({ content: [main] }) =>
-      crossFader.fetchImage(elemDataset(main))::takeUntil(start$))
-    ::startWith(document.querySelector('.sidebar-bg'))
-    ::pairwise()
-    ::mergeMap(::crossFader.crossFade)
-    ::makeUnstoppable()
-    .subscribe();
-
-  // Animate the new content
-  after$
-    ::filter(({ type }) => type === 'push' || !isSafari)
-    ::map(kind => [kind, document.querySelector('main')])
-    ::switchMap(([, main]) =>
-      animate(main, [
-        { transform: 'translateY(-2rem)', opacity: 0 },
-        { transform: 'translateY(0)', opacity: 1 },
-      ], {
-        duration: DURATION,
-        // easing: 'ease',
-        easing: 'cubic-bezier(0,0,0.32,1)',
-      }))
-    ::makeUnstoppable()
-    .subscribe();
-
-  after$
-    // Don't send a pageview when the user blasts through the history..
-    ::debounceTime(2 * DURATION)
-    ::effect(() => {
-      // Send google analytics pageview
-      if (window.ga) window.ga('send', 'pageview');
-
-      // Upgrade math blocks
-      upgradeMathBlocks();
-    })
-    ::makeUnstoppable()
-    .subscribe();
-
-  new PushState(pushState, {
-    replaceIds: ['_main'],
-    linkSelector: 'a[href^="/"]',
-    scriptSelector: 'script:not([type^="math/tex"])',
-    duration: DURATION,
-    noPopDuration: isSafari,
-    scrollRestoration: !isSafari,
-  }).startHistory();
-}
+  window._pushState = pushStateEl;
+})();

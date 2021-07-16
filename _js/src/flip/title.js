@@ -1,84 +1,111 @@
-// Copyright (c) 2017 Florian Klampfer
-// Licensed under MIT
+// Copyright (c) 2019 Florian Klampfer <https://qwtel.com/>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-/*
-eslint-disable
-no-param-reassign,
-import/no-extraneous-dependencies,
-import/no-unresolved,
-import/extensions,
-class-methods-use-this,
-*/
+import { Observable, of, zip } from 'rxjs';
+import { tap, finalize, filter, map, switchMap } from 'rxjs/operators';
 
-import { Observable } from 'rxjs/Observable';
-import { timer } from 'rxjs/observable/timer';
-
-import { _do as effect } from 'rxjs/operator/do';
-import { _finally as cleanup } from 'rxjs/operator/finally';
-
-import { animate } from '../common';
-import Flip from './flip';
+import { animate, empty } from '../common';
 
 const TITLE_SELECTOR = '.page-title, .post-title';
 
-class TitleFlip extends Flip {
-  start(currentTarget) {
-    const title = document.createElement('h1');
+/**
+ * @param {Observable<any>} start$
+ * @param {Observable<any>} ready$
+ * @param {Observable<any>} fadeIn$
+ * @param {any} opts
+ */
+export function setupFLIPTitle(start$, ready$, fadeIn$, { animationMain, settings }) {
+  if (!animationMain) return start$;
 
-    title.classList.add('page-title');
-    title.textContent = currentTarget.textContent;
-    title.style.transformOrigin = 'left top';
+  const flip$ = start$.pipe(
+    filter(({ flipType }) => flipType === 'title'),
+    switchMap(({ anchor }) => {
+      if (!anchor) return of({});
 
-    this.animationMain.querySelector('.page').innerHTML = '';
-    this.animationMain.querySelector('.page').appendChild(title);
-    this.animationMain.style.position = 'fixed';
-    this.animationMain.style.opacity = 1;
+      const title = document.createElement('h1');
 
-    const first = currentTarget.getBoundingClientRect();
-    const firstFontSize = parseInt(getComputedStyle(currentTarget).fontSize, 10);
-    const last = title.getBoundingClientRect();
-    const lastFontSize = parseInt(getComputedStyle(title).fontSize, 10);
+      title.classList.add('page-title');
+      title.textContent = anchor.textContent;
+      title.style.transformOrigin = 'left top';
 
-    const invertX = first.left - last.left;
-    const invertY = first.top - last.top;
-    const invertScale = firstFontSize / lastFontSize;
+      const page = animationMain.querySelector('.page');
+      if (!page) return of({});
 
-    currentTarget.style.opacity = 0;
+      empty.call(page);
+      page.appendChild(title);
 
-    return animate(title, [
-      { transform: `translate3d(${invertX}px, ${invertY}px, 0) scale(${invertScale})` },
-      { transform: 'translate3d(0, 0, 0) scale(1)' },
-    ], {
-      duration: this.duration,
-      // easing: 'ease',
-      easing: 'cubic-bezier(0,0,0.32,1)',
-    })
-      ::effect(() => { this.animationMain.style.position = 'absolute'; });
-  }
+      animationMain.style.position = 'fixed';
+      animationMain.style.opacity = 1;
 
-  ready(main) {
-    this.animationMain.style.willChange = 'opacity';
+      const first = anchor.getBoundingClientRect();
+      const last = title.getBoundingClientRect();
+      const firstFontSize = parseInt(getComputedStyle(anchor).fontSize, 10);
+      const lastFontSize = parseInt(getComputedStyle(title).fontSize, 10);
 
-    const title = main.querySelector(TITLE_SELECTOR);
+      const invertX = first.left - last.left;
+      const invertY = first.top - last.top;
+      const invertScale = firstFontSize / lastFontSize;
 
-    if (title != null) {
-      title.style.opacity = 0;
-      title.style.willChange = 'opacity';
-    }
+      anchor.style.opacity = 0;
 
-    // HACK: add some extra time to prevent hiccups
-    return Observable::timer(this.duration + 100)
-      ::effect(() => {
-        if (title != null) {
-          title.style.opacity = 1;
-          title.style.willChange = '';
-        }
-      })
-      ::cleanup(() => {
-        this.animationMain.style.opacity = 0;
-        this.animationMain.style.willChange = '';
-      });
-  }
+      const transform = [
+        {
+          transform: `translate3d(${invertX}px, ${invertY}px, 0) scale(${invertScale})`,
+        },
+        { transform: 'translate3d(0, 0, 0) scale(1)' },
+      ];
+
+      return animate(title, transform, settings).pipe(
+        tap({
+          complete() {
+            animationMain.style.position = 'absolute';
+          },
+        }),
+      );
+    }),
+  );
+
+  start$
+    .pipe(
+      switchMap(({ flipType }) =>
+        zip(
+          ready$.pipe(
+            filter(() => flipType === 'title'),
+            map(({ replaceEls: [main] }) => {
+              const title = main.querySelector(TITLE_SELECTOR);
+              if (title) title.style.opacity = 0;
+              return title;
+            }),
+          ),
+          fadeIn$,
+        ).pipe(
+          map(([x]) => x),
+          tap((title) => {
+            if (title) title.style.opacity = 1;
+            animationMain.style.opacity = 0;
+          }),
+          finalize(() => {
+            animationMain.style.opacity = 0;
+
+            const page = animationMain.querySelector('.page');
+            empty.call(page);
+          }),
+        ),
+      ),
+    )
+    .subscribe();
+
+  return flip$;
 }
-
-Flip.types.title = TitleFlip;

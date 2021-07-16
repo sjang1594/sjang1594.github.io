@@ -24,7 +24,7 @@ vvs:
   social:
     facebook:         sjang1594
     # twitter:         <username>
-    google:          sjang1594
+    #google:          sjang1594#gmail.com
     # vk:              <username>
     # youtube:         <string_string_string>
     # vimeo:           <username>
@@ -57,8 +57,8 @@ vvs:
     # delicious:       <username>
     # stumbleupon:     <username>
     # paypal:          <username>
-    email:           sjang1594@gmail.com
-    rss:             https://sjang1594.github.io/feed.xml
+    #email:           sjang1594@gmail.com
+    #rss:             https://sjang1594.github.io/feed.xml
 
 # Another author
 #author2:

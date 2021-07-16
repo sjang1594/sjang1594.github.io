@@ -1,6 +1,7 @@
 ---
 layout: about
 title: Portfolio
+image: /assets/img/bio-photo.jpg
 menu: true
 order: 1
 ---

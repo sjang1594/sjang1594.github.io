@@ -18,7 +18,7 @@ url:                   https://sjang1594.github.io
 lang:                  ko-KR, en-US
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title:                Seungho's Blog
+title:                Sh.J Home
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
@@ -43,53 +43,54 @@ author:
   # Used by `jekyll-feed`:
   name:                Seungho Jang
   email:               sjang1594@gmail.com
+
   
   # # Used by `jekyll-seo-tag`:
   # twitter:             <username>
 
 # Add links to the sidebar.
-menu:
-  - title: Portfolio
-    url:   /portfolio/
-  - title: About
-    url:   /about/
-  - title: Reviews
-    url:   /reviews/
-    submenu:
-      - title: Paper Reviews
-        url:   /paper_reviews/
-      - title: Book Reviews
-        url:   /book_reviews/
-      - title: Class Reviews
-        url:   /class_reviews/
-      - title: Movie Reviews
-        url:   /movie_reviews/
-  - title: Study
-    url:   /study/
-    submenu:
-      - title: Algorithms
-        url:   /algorithms/
-      - title: CV
-        url:   /computer_vision/
-      - title: Python
-        url:   /python/
-      - title:  Pytorch
-        url:    /pytorch/
-      - title:  ROS
-        url:    /ros/
-      - title:  C/C++/C#
-        url:    /cpp/
-  - title: Travels
-    url:   /travels/
-  - title: Etcs
-    url:   /etc/
-    submenu:
-      - title: Interviews
-        url:   /interviews/
-      - title: Instruments
-        url:   /instruments/
-      - title: Memes
-        url:   /memes/
+# menu:
+#   - title: Portfolio
+#     url:   /portfolio/
+#   - title: About
+#     url:   /about/
+#   - title: Reviews
+#     url:   /reviews/
+#     submenu:
+#       - title: Paper
+#         url:   /paper_reviews/
+#       - title: Book
+#         url:   /book_reviews/
+#       - title: Class
+#         url:   /class_reviews/
+#       - title: Movie
+#         url:   /movie_reviews/
+#   - title: Study
+#     url:   /study/
+#     submenu:
+#       - title: Algorithms
+#         url:   /algorithms/
+#       - title: CV
+#         url:   /computer_vision/
+#       - title: Python
+#         url:   /python/
+#       - title:  Pytorch
+#         url:    /pytorch/
+#       - title:  ROS
+#         url:    /ros/
+#       - title:  C/C++/C#
+#         url:    /cpp/
+#   - title: Travels
+#     url:   /travels/
+#   - title: Etcs
+#     url:   /etc/
+#     submenu:
+#       - title: Interviews
+#         url:   /interviews/
+#       - title: Instruments
+#         url:   /instruments/
+#       - title: Memes
+#         url:   /memes/
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..

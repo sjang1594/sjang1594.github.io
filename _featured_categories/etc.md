@@ -1,8 +1,8 @@
 ---
 layout: list
 type: category
-title: etc
-slug: etc
+title: Etc
+slug: Etc
 menu: true
 submenu: true
 order: 6
@@ -15,6 +15,6 @@ sitemap: true
 
 ## Categories
 
-* [interviews]{:.heading.flip-title} --- interviews  
+* [Interviews]{:.heading.flip-title} --- interviews  
 
-[Interviews]: /etc/interviews/
+

@@ -1,10 +1,12 @@
 ---
 layout: list
-title: Reviews  
-slug: Reviews
+type: category
+title: Review
+slug: review
+sidebar: true
 menu: true
 submenu: true
 order: 3
 description: >
-  Book, Movie, and Paper Reviews
+  Anything about Development
 ---

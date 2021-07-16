@@ -1,10 +1,10 @@
 ---
 layout: list
-title: Travels
-slug: Travels
+title: Travel
+slug: study
+sidebar: true
 menu: true
-submenu: false
 order: 6
 description: >
-  Travels
+  Travel
 ---

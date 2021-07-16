@@ -14,19 +14,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-layout: base
+layout: page
 ---
-{% include_cached components/post.html post=page no_link_title=true no_excerpt=true hide_image=page.hide_image hide_description=page.hide_description %}
 
-<div class="markdown-body">
-  {{ content }}
-</div>
+{{ content }}
 
 {% assign posts = site.tags[page.slug] %}
 
 {% assign date_formats  = site.data.strings.date_formats               %}
 {% assign list_group_by = date_formats.list_group_by | default:"%Y"    %}
-{% assign list_entry    = date_formats.list_entry    | default:"%m %d" %}
+{% assign list_entry    = date_formats.list_entry    | default:"%d %b" %}
 
 {% for post in posts %}
   {% assign currentdate = post.date | date:list_group_by %}

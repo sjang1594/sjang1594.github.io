@@ -10,8 +10,6 @@ author1:
   about:             |
     I am a Software Developer who likes to research in Computer Vision and Deep Learning
 
-    Please check my [CV](/public.CV.pdf) to find out for more about me !
-
   # This photo will be used in the about section
   picture:
     path:            /assets/img/bio-photo.jpg

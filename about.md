@@ -1,7 +1,8 @@
 ---
 layout: about
 title: About
-menu: true
+permalink: /about/
+sidebar: true
 order: 2
 ---
 

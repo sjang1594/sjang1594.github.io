@@ -3,11 +3,8 @@ title: Kalman Filter / Extended Kalman Filter
 layout: post
 bigtitle: Kalman Filter / Extennded Kalman Filter
 date: '2021-6-24 4:00:00 +0900'
-categories:
-- study
-- Computer Vision
-tags:
-- Computer Vision
+categories: [study, Computer Vision]
+tags: [Computer Vision]
 comments: true
 published: true
 ---

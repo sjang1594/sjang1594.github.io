@@ -8,7 +8,6 @@ submenu: true
 order: 6
 description: >
   etc
-sitemap: true
 ---
 
 ## etc

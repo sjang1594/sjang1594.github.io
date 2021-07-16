@@ -31,47 +31,47 @@ author:
 
 # Add links to the sidebar
 menu:
-  - title:             Portfolio
-    url:               /portfolio/
-  - title:             About
-    url:               /about/
-  - title:             Reviews
-    url:               /reviews/
+  - title: Portfolio
+    url:   /portfolio/
+  - title: About
+    url:   /about/
+  - title: Reviews
+    url:   /reviews/
     submenu:
-      - title:  Paper Reviews
-        url:      /paper_reviews/
-      - title:  Book Reviews
-        url:      /book_reviews/
-      - title:  Class Reviews
-        url:      /class_reviews/
-      - title:  Movie Reviews
-        url:      /movie_reviews/
-  - title:             Study
-    url:               /study/
+      - title: Paper Reviews
+        url:   /paper_reviews/
+      - title: Book Reviews
+        url:   /book_reviews/
+      - title: Class Reviews
+        url:   /class_reviews/
+      - title: Movie Reviews
+        url:   /movie_reviews/
+  - title: Study
+    url:   /study/
     submenu:
-      - title:  Computer Vision
-        url:      /computer_vision/
-      - title:  Image Processing
-        url:      /image_processing/
-      - title:  Python
-        url:      /python/
-      - title:  Pytorch
-        url:      /pytorch/
-      - title:  ROS
-        url:      /ros/
-      - title:  Algorithms
-        url:      /algorithms/
-  - title:             Travels
-    url:               /travels/
-  - title:             Etc
-    url:               /etc/
+      - title: Computer Vision
+        url:   /computer_vision/
+      - title: Image Processing
+        url:   /image_processing/
+      - title: Python
+        url:   /python/
+      - title: Pytorch
+        url:   /pytorch/
+      - title: ROS
+        url:   /ros/
+      - title: Algorithms
+        url:   /algorithms/
+  - title: Travels
+    url:   /travels/
+  - title: Etc
+    url:   /etc/
     submenu:
-      - title:  Interviews
-        url:      /interviews/
-      - title:  Instruments
-        url:      /instruments/
-      - title:   Memes
-        url:      /memes/
+      - title: Interviews
+        url:   /interviews/
+      - title: Instruments
+        url:   /instruments/
+      - title: Memes
+        url:   /memes/
 
 
 # The font used for headings. Expects a string that is a valid CSS font-family value.
@@ -102,7 +102,8 @@ permalink:           /:categories/:year-:month-:day-:title/
 
 # Pagination configuration (used by the `blog` layout)
 paginate:            10
-paginate_path:       /:num/
+paginate_path:       /page-:num/
+excerpt_separator:   <!--more-->
 
 # If you are upgrading form a v5 verison of Hydejack, uncomment the two lines below,
 # so that the location of the feed XML stays the same.
@@ -132,9 +133,6 @@ collections:
     output:          true
   featured_tags:
     permalink:       /:name/
-    output:          true
-  projects:
-    permalink:       /projects/:path/
     output:          true
 
 

@@ -1,5 +1,5 @@
 ---
-layout: tag-list
+layout: list
 title: Book Reviews
 slug: book reviews
 category: review

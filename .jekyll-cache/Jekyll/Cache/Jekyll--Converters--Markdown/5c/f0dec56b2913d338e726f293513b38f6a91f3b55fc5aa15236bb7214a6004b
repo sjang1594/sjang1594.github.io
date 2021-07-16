@@ -1,0 +1,167 @@
+I"�I<h2 id="kalman-filter--extended-kalman-filter">Kalman Filter / Extended Kalman Filter</h2>
+
+<blockquote>
+  <p>I studied little bit while I was pursuing to get the certification from Udacity.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="what-is-kalman-filter-and-extended-kalman-filter"><strong>What is Kalman Filter and Extended Kalman Filter?</strong></h3>
+<p>Tracking is important in self-driving cars, this technique is crucial for estimating the state of a system. This is very similar to the probabilistic localization method(Monte Carlo localization). However, the difference in Kalman Filter estimates a continuous states whereas in Monte Carlo localization, it is forced to chop the world in the discrete places. As a result, the Kalman Filter happens to give us a uni-model distribution, whereas the Monte Carlo was fine with multi-model distributions. Both of these techniques are applicable to robot localization and tracking other vehicles.</p>
+
+<h3 id="definition-of-kalman-filter">Definition of Kalman Filter</h3>
+<p>A Kalman filter gives us a mathematical way to infer velocity from only a set of measured locations. `The Kalman filter is used to estimate the state of a system when the measurement is noisy</p>
+
+<h3 id="kalman-filter---common-types">Kalman Filter - Common Types</h3>
+
+<ul>
+  <li>KF - linear</li>
+  <li>EKF - nonlinear</li>
+  <li>UKF(unscented Kalman filter) - highly nonlinear</li>
+</ul>
+
+<h3 id="the-basis-of-the-kalman-filter">The Basis of the Kalman Filter</h3>
+
+<p>The basis of the Kalman Filter is the Gaussian Distribution.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;math.h&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">double</span> <span class="nf">calculateGaussian</span><span class="p">(</span><span class="kt">double</span> <span class="n">mu</span><span class="p">,</span> <span class="kt">double</span> <span class="n">sigma2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">){</span>
+	<span class="kt">double</span> <span class="n">prob</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">M_PI</span> <span class="o">*</span> <span class="n">sigma2</span><span class="p">)</span> <span class="o">*</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">.5</span> <span class="o">*</span> <span class="n">pow</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">mu</span><span class="p">),</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma2</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">prob</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">calculateGaussian</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The representation of Gaussian distribution gives</p>
+
+<ol>
+  <li>Predicted Motion</li>
+  <li>Sensor Measurement</li>
+  <li>Estimated State of Robot</li>
+</ol>
+
+<h3 id="measurement-updates">Measurement Updates</h3>
+
+<p>The prior belief + Measurement Updates will provide the posterior (with mean and the variance), which is also called new states. The two Gaussians will provide us with more information together than either Gaussian offered alone. As a result, the new state estimate is more confident than our prior belief and our measurement. This means that it has a higher peak(mean) and is narrower(variance).</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;math.h&gt;
+#include &lt;tuple&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">double</span> <span class="n">new_mean</span><span class="p">,</span> <span class="n">new_var</span><span class="p">;</span>
+
+<span class="n">tuple</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">measurement_update</span><span class="p">(</span><span class="kt">double</span> <span class="n">mean1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">var1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">mean2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">var2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">new_mean</span> <span class="o">=</span> <span class="p">(</span><span class="n">var2</span> <span class="o">*</span> <span class="n">mean1</span> <span class="o">+</span> <span class="n">var1</span> <span class="o">*</span> <span class="n">mean2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span><span class="p">);</span>
+    <span class="n">new_var</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">var1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">var2</span><span class="p">);</span> 
+    <span class="k">return</span> <span class="n">make_tuple</span><span class="p">(</span><span class="n">new_mean</span><span class="p">,</span> <span class="n">new_var</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">tie</span><span class="p">(</span><span class="n">new_mean</span><span class="p">,</span> <span class="n">new_var</span><span class="p">)</span> <span class="o">=</span> <span class="n">measurement_update</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"[%f, %f]"</span><span class="p">,</span> <span class="n">new_mean</span><span class="p">,</span> <span class="n">new_var</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="state-prediction">State Prediction</h3>
+
+<p>The state prediction is the estimation that takes place after an inevitably uncertain motion. Since the measurement update and state prediction are an iterative cycle, it makes sense for us to continue where we left off. After taking into account the measurement, the posterior distribution can be calculated. However, since we’ve moved onto the state prediction step in the common filter cycle, this Gaussian is now referred to a s the prior belief.</p>
+
+<p>Now robot’s executes the command, “Move forward 7.5 meters”. Calculating the new estimate is as easy as adding the mean of the motion to the mean of the prior, and similarly, adding the two variances together to produce the posterior estimates.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;math.h&gt;
+#include &lt;tuple&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">double</span> <span class="n">new_mean</span><span class="p">,</span> <span class="n">new_var</span><span class="p">;</span>
+
+<span class="n">tuple</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">state_prediction</span><span class="p">(</span><span class="kt">double</span> <span class="n">mean1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">var1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">mean2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">var2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">new_mean</span> <span class="o">=</span> <span class="n">mean1</span> <span class="o">+</span> <span class="n">mean2</span><span class="p">;</span>
+    <span class="n">new_var</span> <span class="o">=</span>  <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">make_tuple</span><span class="p">(</span><span class="n">new_mean</span><span class="p">,</span> <span class="n">new_var</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+
+    <span class="n">tie</span><span class="p">(</span><span class="n">new_mean</span><span class="p">,</span> <span class="n">new_var</span><span class="p">)</span> <span class="o">=</span> <span class="n">state_prediction</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"[%f, %f]"</span><span class="p">,</span> <span class="n">new_mean</span><span class="p">,</span> <span class="n">new_var</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="implementation---1d-kalman-filter">Implementation - 1D Kalman Filter</h3>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;math.h&gt;
+#include &lt;tuple&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">double</span> <span class="n">new_mean</span><span class="p">,</span> <span class="n">new_var</span><span class="p">;</span>
+
+<span class="n">tuple</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">measurement_update</span><span class="p">(</span><span class="kt">double</span> <span class="n">mean1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">var1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">mean2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">var2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">new_mean</span> <span class="o">=</span> <span class="p">(</span><span class="n">var2</span> <span class="o">*</span> <span class="n">mean1</span> <span class="o">+</span> <span class="n">var1</span> <span class="o">*</span> <span class="n">mean2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span><span class="p">);</span>
+    <span class="n">new_var</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">var1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">var2</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">make_tuple</span><span class="p">(</span><span class="n">new_mean</span><span class="p">,</span> <span class="n">new_var</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">tuple</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">state_prediction</span><span class="p">(</span><span class="kt">double</span> <span class="n">mean1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">var1</span><span class="p">,</span> <span class="kt">double</span> <span class="n">mean2</span><span class="p">,</span> <span class="kt">double</span> <span class="n">var2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">new_mean</span> <span class="o">=</span> <span class="n">mean1</span> <span class="o">+</span> <span class="n">mean2</span><span class="p">;</span>
+    <span class="n">new_var</span> <span class="o">=</span> <span class="n">var1</span> <span class="o">+</span> <span class="n">var2</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">make_tuple</span><span class="p">(</span><span class="n">new_mean</span><span class="p">,</span> <span class="n">new_var</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">//Measurements and measurement variance</span>
+    <span class="kt">double</span> <span class="n">measurements</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span> <span class="p">};</span>
+    <span class="kt">double</span> <span class="n">measurement_sig</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    
+    <span class="c1">//Motions and motion variance</span>
+    <span class="kt">double</span> <span class="n">motion</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="p">};</span>
+    <span class="kt">double</span> <span class="n">motion_sig</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    
+    <span class="c1">//Initial state</span>
+    <span class="kt">double</span> <span class="n">mu</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">sig</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">measurements</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="n">i</span> <span class="o">++</span><span class="p">){</span>
+        <span class="n">tie</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sig</span><span class="p">)</span> <span class="o">=</span> <span class="n">measurement_update</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">measurements</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">measurement_sig</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"update:  [%f, %f]</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sig</span><span class="p">);</span>
+        
+        <span class="n">tie</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sig</span><span class="p">)</span> <span class="o">=</span> <span class="n">state_prediction</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">motion</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">motion_sig</span><span class="p">);</span>
+             <span class="n">printf</span><span class="p">(</span><span class="s">"predict: [%f, %f]</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sig</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="advantage-of-kalman-filter">Advantage of Kalman Filter</h3>
+
+<p>How can the Kalman filter help us make better sense of our robot’s current state?</p>
+
+<ul>
+  <li>The Kalman filter can very quickly develop a surprisingly accurate estimate of the true value of the variable being measured. (e.g. robot’s location in one dimensional world)</li>
+  <li>Unlike other algorithms that require a lot of data to make an estimate, the Kalman filter is able to do so after just a few sensor measurements. It does so by using an initial guess and by taking into account the expected uncertainty of a sensor or movement.</li>
+  <li>Let’s say that my robot is using GPS data to identify its location. Today’s GPS measurements are only accurate to a few meters. Sensor fusion uses the Kalman filter to calculate a more accurate estimate using data from multiple sensors.</li>
+</ul>
+:ET

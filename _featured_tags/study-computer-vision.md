@@ -1,5 +1,5 @@
 ---
-layout: tag-list
+layout: list
 title: Computer Vision
 slug: computer vision
 category: study

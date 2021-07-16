@@ -1,6 +1,6 @@
 ---
-layout: tag-list
-title: Ros
+layout: list
+title: ROS
 slug: ros
 category: study
 menu: false

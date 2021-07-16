@@ -1,5 +1,5 @@
 ---
-layout: tag-list
+layout: list
 title: Linux
 slug: linux
 category: study

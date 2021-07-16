@@ -1,5 +1,5 @@
 ---
-layout: tag-list
+layout: list
 title: Instruments
 slug: instruments
 category: etc

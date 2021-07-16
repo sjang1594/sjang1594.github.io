@@ -1,5 +1,5 @@
 ---
-layout: tag-list
+layout: list
 title: Class Reviews
 slug: class reviews
 category: review

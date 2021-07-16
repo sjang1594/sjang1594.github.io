@@ -1,5 +1,5 @@
 ---
-layout: tag-list
+layout: list
 title: Meme 
 slug: meme
 category: etc

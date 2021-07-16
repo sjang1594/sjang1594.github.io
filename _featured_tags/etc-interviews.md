@@ -1,5 +1,5 @@
 ---
-layout: tag-list
+layout: list
 title: Interviews
 slug: interviews
 category: etc

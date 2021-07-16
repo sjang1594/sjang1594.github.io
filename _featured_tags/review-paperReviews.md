@@ -1,5 +1,5 @@
 ---
-layout: tag-list
+layout: list
 title: Paper Reviews
 slug: paper reviews
 category: review

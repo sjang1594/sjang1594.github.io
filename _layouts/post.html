@@ -1,7 +1,9 @@
 ---
 layout: base
 ---
+
 {% include_cached components/post.html post=page no_link_title=true no_excerpt=true hide_image=page.hide_image hide_description=page.hide_description %}
+
 
 <!-- list layout -->
 {% if page.list %}
@@ -34,12 +36,13 @@ layout: base
 {% assign addons = page.addons | default:site.hydejack.post_addons %}
 {% unless addons %}{% assign addons = "about,newsletter,related,random" | split:"," %}{% endunless %}
 
+<!-- <script>console.log("{{addons}}"); console.log("{{page.addons}}"); console.log("{{site.hydejack.post_addons}}")</script> -->
 {% for addon in addons %}
   {% case addon %}
   {% when 'about' %}
-     {% include_cached components/about.html author=page.author %}
+    {% include_cached components/about.html author=page.author %}
   {% when 'related' %}
-    {% include if-non-null try="components/related-posts.html" %}
+    {% include components/related-posts.html %}
   {% when 'comments' %}
     {% include body/comments.html %}
   {% else %}

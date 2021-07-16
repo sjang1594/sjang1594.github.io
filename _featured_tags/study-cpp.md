@@ -1,5 +1,5 @@
 ---
-layout: tag-list
+layout: list
 title: C/C++/C#
 slug: C/C++/C#
 category: study

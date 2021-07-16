@@ -1,5 +1,5 @@
 ---
-layout: tag-list
+layout: list
 title: Movie Reviews
 slug: movie reviews
 category: review

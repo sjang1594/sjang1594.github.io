@@ -1,5 +1,5 @@
 ---
-layout: tag-list
+layout: list
 title: Pytorch
 slug: pytorch
 category: study

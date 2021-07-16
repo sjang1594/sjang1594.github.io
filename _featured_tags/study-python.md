@@ -1,5 +1,5 @@
 ---
-layout: tag-list
+layout: list
 title: Python
 slug: python
 category: study

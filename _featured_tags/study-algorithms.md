@@ -1,5 +1,5 @@
 ---
-layout: tag-list
+layout: list
 title: Algorithm
 slug: algorithm
 category: study

@@ -1,0 +1,375 @@
+I" <div class="sidebar-sticky">
+  <div class="sidebar-about"style="margin-bottom: 10px;">
+    
+    <!--Blog Title-->
+    <div class="sidebartitle" style="margin-bottom: 45px;">
+    <a class="sidebar-title" href="/"><h2 class="h1">Seungho's Blog</h2></a>
+    </div>
+
+    <!--blog logo -->
+    
+
+    <!--Short Description about blog-->
+    
+    
+      <p class="">
+        Seungho’s Blog
+
+      </p>
+      <div style="text-align: center;">
+          <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fkhw11044.github.io&count_bg=%23020672&title_bg=%233B30DF&icon=tesla.svg&icon_color=%23E7E7E7&title=%EC%A1%B0%ED%9A%8C%EC%88%98&edge_flat=false"/>
+      </div>
+    
+  </div>
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <!--네이게이션바에 메뉴선정-->
+<span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+      
+      
+      <li>
+        <div class="menu-wrapper" onmouseover="javascript:spread(9)" onmouseout="javascript:spread(9)">
+          
+          <a
+            id="_drawer--opened"
+            href="/portfolio/"
+            class="sidebar-nav-item "
+            
+            >
+            Portfolio
+          </a>
+        
+          
+       </div>
+      </li>
+    
+      
+      
+      <li>
+        <div class="menu-wrapper" onmouseover="javascript:spread(10)" onmouseout="javascript:spread(10)">
+          
+          <a
+            
+            href="/about/"
+            class="sidebar-nav-item "
+            
+            >
+            About
+          </a>
+        
+          
+       </div>
+      </li>
+    
+      
+      
+      <li>
+        <div class="menu-wrapper" onmouseover="javascript:spread(11)" onmouseout="javascript:spread(11)">
+          
+          <button class="spread-btn">
+              <span id="spread-icon-11" class="material-icons">arrow_right</span>
+          </button>
+          
+          <a
+            
+            href="/reviews/"
+            class="sidebar-nav-item "
+            
+            >
+            Reviews
+          </a>
+        
+          
+          <div id="submenu-11" class="menu-wrapper submenu hide">
+            <ul style="list-style: none;">
+            
+              <li>
+                <a
+                  class="sidebar-nav-item "
+                  href="/paper_reviews/"
+                  >
+                  Paper Reviews
+                </a>
+              </li>
+            
+              <li>
+                <a
+                  class="sidebar-nav-item "
+                  href="/book_reviews/"
+                  >
+                  Book Reviews
+                </a>
+              </li>
+            
+              <li>
+                <a
+                  class="sidebar-nav-item "
+                  href="/class_reviews/"
+                  >
+                  Class Reviews
+                </a>
+              </li>
+            
+              <li>
+                <a
+                  class="sidebar-nav-item "
+                  href="/movie_reviews/"
+                  >
+                  Movie Reviews
+                </a>
+              </li>
+            
+            </ul>
+          </div>
+          
+       </div>
+      </li>
+    
+      
+      
+      <li>
+        <div class="menu-wrapper" onmouseover="javascript:spread(12)" onmouseout="javascript:spread(12)">
+          
+          <button class="spread-btn">
+              <span id="spread-icon-12" class="material-icons">arrow_right</span>
+          </button>
+          
+          <a
+            
+            href="/study/"
+            class="sidebar-nav-item "
+            
+            >
+            Study
+          </a>
+        
+          
+          <div id="submenu-12" class="menu-wrapper submenu hide">
+            <ul style="list-style: none;">
+            
+              <li>
+                <a
+                  class="sidebar-nav-item "
+                  href="/computer_vision/"
+                  >
+                  Computer Vision
+                </a>
+              </li>
+            
+              <li>
+                <a
+                  class="sidebar-nav-item "
+                  href="/image_processing/"
+                  >
+                  Image Processing
+                </a>
+              </li>
+            
+              <li>
+                <a
+                  class="sidebar-nav-item "
+                  href="/python/"
+                  >
+                  Python
+                </a>
+              </li>
+            
+              <li>
+                <a
+                  class="sidebar-nav-item "
+                  href="/pytorch/"
+                  >
+                  Pytorch
+                </a>
+              </li>
+            
+              <li>
+                <a
+                  class="sidebar-nav-item "
+                  href="/ros/"
+                  >
+                  ROS
+                </a>
+              </li>
+            
+              <li>
+                <a
+                  class="sidebar-nav-item "
+                  href="/algorithms/"
+                  >
+                  Algorithms
+                </a>
+              </li>
+            
+            </ul>
+          </div>
+          
+       </div>
+      </li>
+    
+      
+      
+      <li>
+        <div class="menu-wrapper" onmouseover="javascript:spread(13)" onmouseout="javascript:spread(13)">
+          
+          <a
+            
+            href="/travels/"
+            class="sidebar-nav-item "
+            
+            >
+            Travels
+          </a>
+        
+          
+       </div>
+      </li>
+    
+      
+      
+      <li>
+        <div class="menu-wrapper" onmouseover="javascript:spread(14)" onmouseout="javascript:spread(14)">
+          
+          <button class="spread-btn">
+              <span id="spread-icon-14" class="material-icons">arrow_right</span>
+          </button>
+          
+          <a
+            
+            href="/etc/"
+            class="sidebar-nav-item "
+            
+            >
+            Etc
+          </a>
+        
+          
+          <div id="submenu-14" class="menu-wrapper submenu hide">
+            <ul style="list-style: none;">
+            
+              <li>
+                <a
+                  class="sidebar-nav-item "
+                  href="/interviews/"
+                  >
+                  Interviews
+                </a>
+              </li>
+            
+              <li>
+                <a
+                  class="sidebar-nav-item "
+                  href="/instruments/"
+                  >
+                  Instruments
+                </a>
+              </li>
+            
+              <li>
+                <a
+                  class="sidebar-nav-item "
+                  href="/memes/"
+                  >
+                  Memes
+                </a>
+              </li>
+            
+            </ul>
+          </div>
+          
+       </div>
+      </li>
+    
+  
+</ul>
+  </nav>
+
+  <!--소셜바-->
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://facebook.com/sjang1594" title="Facebook" class="no-mark-external">
+      <span class="icon-facebook"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/sjang1594@github.com" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://www.linkedin.com/in/seungho-jang-41b3b9145/" title="LinkedIn" class="no-mark-external">
+      <span class="icon-linkedin2"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+
+
+</div>:ET

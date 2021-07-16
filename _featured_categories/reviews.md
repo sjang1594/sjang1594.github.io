@@ -1,7 +1,7 @@
 ---
 layout: list
 title: Reviews  
-slug: Reviews
+slug: reviews
 menu: true
 submenu: true
 order: 3

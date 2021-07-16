@@ -41,6 +41,7 @@ redirecting:           Redirecting…
 
 continue_reading:      >
   Continue reading <!--post_title-->
+
 cookies_banner:
   text:                >
     This site uses cookies. [Cookies Policy](/cookies-policy/).
@@ -64,6 +65,7 @@ error:
   title:               Error
   message:             |
     Sorry, an error occurred while loading <!--link-->.
+
 # Separators
 # ---------------------------------------------------------------------------------------
 posted:                'Posted'
@@ -101,9 +103,12 @@ tinyletter:
     Pay the *iron price* for this theme by adding yourself to the mailing list.
     Receive development updates, advanced tutorials,
     and anything else I can come up with as it relates to **Hydejack**.
+
     <!--form-->
+
     No 3rd party products, no spam. Emails handled by [Tinyletter](https://tinyletter.com/)
     {:.faded}
+
 welcome:
   more_projects:       See <!--projects_title--> for more
   more_posts:          See <!--posts_title--> for more

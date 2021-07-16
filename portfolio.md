@@ -1,7 +1,6 @@
 ---
 layout: about
 title: Portfolio
-image: /assets/img/bio-photo.jpg
 menu: true
 order: 1
 ---
@@ -9,7 +8,7 @@ order: 1
 * * *
 <center>
 <span style=
-"font-size:170%;
+"font-size:150%;
 font-weight:bold">
 Seungho Jang (장승호)
 </span>

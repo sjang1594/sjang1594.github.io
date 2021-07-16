@@ -1,14 +1,14 @@
 ---
 layout: post
-category: blog
-bigtitle: GithubPages
+category: study
+bigtitle: Algorithms
 description: >
-  Algorithms / Problem Solving 
+  Algorithm
 related_posts:
   -
 addons:
   - related
   - comments
 list: true
-order: 1
+order: 7
 ---

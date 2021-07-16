@@ -12,7 +12,6 @@ _drafts
 *.rej
 *.swo
 *.swp
-*.zip
 *.vi
 *~
 
@@ -39,9 +38,14 @@ validation-status.json
 validation-report.json
 
 # Folders to ignore
-_posts_ing
-theorydb.github.io
 node_modules
+vendor
 .sass-cache
 .jekyll-metadata
+.jekyll-cache
 *.gem
+_zip
+/stats.json
+
+/assets/js/*hydejack-*
+/_sass/*/__*__/*

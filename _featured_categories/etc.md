@@ -1,20 +1,20 @@
 ---
 layout: list
 type: category
-bigtitle: Etc
+title: etc
 slug: etc
 menu: true
 submenu: true
 order: 6
 description: >
-  일기, 여행등 기타 이것저것
+  etc
 sitemap: true
 ---
 
-## ETC
+## etc
 
-## 카테고리
- 
-* [Travel]{:.heading.flip-title} --- Travel
+## Categories
 
-[Travel]: /travel/
+* [interviews]{:.heading.flip-title} --- interviews  
+
+[Interviews]: /etc/interviews/

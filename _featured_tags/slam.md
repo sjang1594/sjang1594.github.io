@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: C
-slug: c
+title: SLAM
+slug: slam
 category: study
 sidebar: false
 description: >
-   C 
+   Simultaneous Localization and Mapping
 ---

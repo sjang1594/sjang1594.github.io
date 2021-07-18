@@ -23,15 +23,16 @@ baseurl:               ''
 lang:                  ko-KR, en-US
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title:                 Seungho Jang
+title:                 SJ.Home
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
-description:           >
+description:           > 
+    "Software Developer plays drum and break the code."
 
 # A shorter description for the sidebar.
-tagline:               >
-  Work Hard to be Lazy.
+tagline:               "Software Developer plays drum and break the code."
+  
 
 # A list of keywords for your blog
 keywords:              []

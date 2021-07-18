@@ -18,6 +18,12 @@
 @import "my-variables";
 @import "mixins";
 
+{% if site.hydejack.dark_mode.dynamic %}
+  @import "pro/dark-mode-dynamic";
+{% else %}
+  @import "pro/dark-mode";
+{% endif %}
+
 @import "reboot-mod";
 
 {% unless site.hydejack.no_inline_css or jekyll.environment == 'development' %}
@@ -45,6 +51,15 @@
   @import "hydejack/__link__/avatar";
   @import "hydejack/__link__/katex";
   @import "hydejack/__link__/footer";
+
+  @import "pro/projects";
+  @import "pro/resume";
+  @import "pro/bootstrap-mod/bootstrap";
+  @import "pro/message-newsletter";
+
+  {% unless site.hydejack.no_search %}
+    @import "pro/search";
+  {% endunless %}
 
   {% unless site.hydejack.no_mark_external or site.no_mark_external %}
     @import "hydejack/__link__/mark-external";
@@ -83,10 +98,19 @@
   @import "hydejack/_katex.pre.scss";
   @import "hydejack/_footer.pre.scss";
 
+  @import "pro/projects";
+  @import "pro/resume";
+  @import "pro/bootstrap-mod/bootstrap";
+  @import "pro/message-newsletter";
+
+  {% unless site.hydejack.no_search %}
+    @import "pro/_search.scss";
+  {% endunless %}
+
   {% unless site.hydejack.no_mark_external or site.no_mark_external %}
     @import "hydejack/_mark-external.pre.scss";
   {% endunless %}
-   
+
   {% unless site.hydejack.no_break_layout %}
     @import "hydejack/_break-layout.pre.scss";
   {% endunless %}
@@ -98,5 +122,10 @@
 {% endunless %}
 
 @import "spinner";
+@import "tippy";
 
 @import "syntax";
+@import "pro/syntax-dark";
+{% if site.hydejack.dark_mode.dynamic %}
+  @import "pro/dark-mode-dynamic-syntax";
+{% endif %}

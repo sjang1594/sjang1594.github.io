@@ -1,0 +1,114 @@
+basics:
+  name: "Seungho Jang"
+  label: "Software Engineer"
+  picture: /assets/img/bio-photo.jpg
+  email: "sjang1594@gmail.com"
+  phone: "(+1) 314-332-9498"
+  website: "https://sjang1594.github.io/"
+  summary: >
+    Hello, I'm DaeIn Lee from SAP Labs Korea.<br>
+    I like to solve brain teasing problems in the field of CSE.<br>
+    I'd like to describe myself as a fast learner;<br>
+    I am confident that I can satisfy expectations of coworkers.
+  # location:
+  #   address: "2712 Broadway St"
+  #   postalCode: "CA 94115"
+  #   city: "San Francisco"
+  #   countryCode: "US"
+  #   region: "California"
+  profiles:
+    - network: "Github"
+      username: "sjang1594"
+      url: "https://github.com/sjang1594"
+    - network: "LinkedIn"
+      username: "Seungho Jang"
+      url: "https://www.linkedin.com/in/seungho-jang-41b3b9145/"
+work:
+  - company: "University of Missouri - Saint Louis"
+    position: "Graduate Teaching Assistant"
+    website: ""
+    startDate: "2021-01-11"
+    endDate: ""
+    summary: >
+      SAP Labs Korea, a cornerstone of SAP HANA, now aims to bring the in-memory technology to the cloud where it acts as a single gateway to data of any size to harness the power of data wherever it resides and ensure the platform for intelligent enterprise.
+    highlights:
+education:
+  - institution: "University of Missouri - Saint Louis"
+    area: "Electrical & Electronic Engineering"
+    studyType: "Bachelor"
+    startDate: "2016-08-12"
+    endDate: "2018-12-21"
+    gpa: "3.7 (major 3.8) / 4.0"
+    courses:
+      - "Concurrent Programming"
+      - "Data Science"
+      - "Operating Systems"
+      - "Computer Architecture"
+      - "Database Systems"
+      - "System Programming"
+  - certificate: "Engineer Information Processing (정보처리기사)"
+    date: "2019-11-22"
+projects:
+  - title: ""
+    startDate: ""
+    endDate: ""
+    summary: ""
+    url: ""
+    highlights:
+      - ""
+      - ""
+      - ""
+  - title: ""
+    startDate: ""
+    endDate: "--"
+    summary: "  "
+    url: ""
+    highlights:
+      - "'"
+      - ""
+      - ""
+  - title: ""
+    startDate: ""
+    endDate: ""
+    summary: ""
+    url: ""
+    highlights:
+      - ""
+      - ""
+      - ""
+  - title: ""
+    awarder: ""
+    highlights:
+      - ""
+      - ""
+  - title: ""
+    awarder: ""
+    highlights:
+      - ""
+      - ""
+      - ""
+skills:
+  - name: "Kernel Development"
+    level: "Intermediate"
+    keywords:
+      - "Concurrent Programming"
+      - "Operating System"
+      - "C/C++"
+  - name: "Algorithm"
+    level: "Intermediate"
+languages:
+  - language: "Korean"
+    fluency: "Native speaker"
+  - language: "English"
+    fluency: "Fluent"
+interests:
+  - name: "Activity"
+    keywords:
+      - ""
+      - ""
+      - ""
+  - name: "Gaming"
+    keywords:
+      - ""
+      - ""
+      - ""

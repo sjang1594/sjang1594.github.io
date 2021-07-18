@@ -1,8 +1,10 @@
 ---
-layout: about
+layout: list
 title: Portfolio
-menu: true
+permalink: /portfolio/
+sidebar: true
 order: 1
+description: >
 ---
 
 * * *

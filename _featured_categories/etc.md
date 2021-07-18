@@ -1,20 +1,14 @@
 ---
 layout: list
 type: category
-title: Etc
-slug: Etc
-menu: true
-submenu: true
-order: 6
+title: Etcs
+slug: etc
+sidebar: true
+order: 5
 description: >
-  etc
-sitemap: true
+  Interviews, Instruments, Memes
 ---
 
-## etc
+# Etcs
 
 ## Categories
-
-* [Interviews]{:.heading.flip-title} --- interviews  
-
-

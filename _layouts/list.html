@@ -16,6 +16,7 @@
 
 layout: page
 ---
+
 {{ content }}
 
 {% assign posts = site.categories[page.slug] | default:site.tags[page.slug] | default:site.posts %}

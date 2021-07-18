@@ -1,11 +1,18 @@
 ---
-layout: about
+layout: welcome
 title: About
 permalink: /about/
+more_posts: posts.md
 sidebar: true
 order: 2
 ---
 
+
+***
+
+<!--posts_list-->
+
+***
 ## **Introduction**
 
 ---
@@ -43,7 +50,16 @@ Please feel free to contact me, if you have any good feedback!
 * 저의 학사는 전기 전자 공학입니다. 물론 너무 오래되서, 배웠던걸 많이 잃어버렸죠.. 그런데 어떻게 졸업을 했는지 합리적 의심?이 조금 듭니다.
 
 **저가 제일 관심있는 분야:**
+
 * 딥러닝과 컴퓨터 비전 애플리케이션에 관심을 가지구 있구요
 * 컴퓨터 비젼에 있는, `3D reconstruction`, `depth estimation`, `visual-SlAM` 관해서 배우고 있는 중입니다.
 
 언제나 피드백은 감사드리며.. 언제든지 댓글 남겨주세요. 
+
+***
+
+<!--author-->
+
+<!-- Links -->
+[resume]: /resume/
+[Hydejack]: https://hydejack.com

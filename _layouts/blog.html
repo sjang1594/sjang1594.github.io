@@ -18,6 +18,7 @@ layout: base
 ---
 
 {% assign plugins = site.plugins | default:site.gems %}
+
 {% if plugins contains 'jekyll-paginate' %}
   {% assign posts = paginator.posts %}
 {% else %}

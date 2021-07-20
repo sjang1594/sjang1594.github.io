@@ -12,3 +12,7 @@ description: >
 # Reviews
 
 ## Categories
+* Movies
+* Book
+* Class
+* Paper

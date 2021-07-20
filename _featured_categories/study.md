@@ -12,8 +12,8 @@ description: >
 # Study
 
 ## Categories
-* [Computer Vision]{:heading.flip-title} --- Computer Vision & Image Processing
-* [Pytorch]{:heading.flip-title} --- Pytorch 
+* Computer Vision Computer Vision & Image Processing
+* Pytorch 
 * Python
 * Robotic Operating System
 * C/C++/C#

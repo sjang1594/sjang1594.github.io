@@ -1,7 +1,7 @@
 ---
 layout: tags
-title: Tags
 permalink: /tags/
+title: Tags
 sidebar: true
 order: 6
 description: >

@@ -3,7 +3,7 @@ layout: resume
 title: Resume
 permalink: /resume/
 description: >
-  Hi, I'm Seungho Jang, SW engineer at Samsung Research.
+  Hi, I'm Seungho Jang, Graduate Teaching Assistant
 hide_description: false
 sidebar: false
 order: 5
@@ -24,5 +24,4 @@ no_skill_icons: false
 buttons:
   print: false
   pdf: /assets/Resume.pdf
-  json: /assets/resume.json
 ---

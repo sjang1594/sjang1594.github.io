@@ -174,3 +174,9 @@ Build the software system and algorithm to detect the root system from the given
 
 * **Jackson Hoeing (Classmate & Coworker) - [LinkedIn](https://www.linkedin.com/in/jackson-hoenig-419968160/)**
 > Seungho has always been very knowledgeable about all the topics we covered as students together. He worked harder than everyone on his projects and homework. He constantly was working on learning more whether it was school related, or extracurricular. Any employer would be lucky to him because of his quick learning and broad knowledge of so many fields. Computer Vision, Artificial Intelligence, Deep Learning, Operating Systems, if it was a class at UMSL you can bet he not only aced it but also taught it to other students as a Teacher Assistant/Teacher. **- Jr. Software Developer at Technology Partners**
+
+* **David Gillis (Classmate & Project Peer) - [LinkedIn](https://www.linkedin.com/in/david-gillis-107b20110/)**
+> Seungho always stood out among his peers. He was able to rapidly learn new information with ease. In group projects, Seungho always took on a leadership role. He always starts with a problem first approach - he aims to understand the problem deeply and learn the domain, then proposes an optimal solution. Seungho was an effective mentor and role model. This showed in his academic career as he was selected to be a graduate teaching assistant, and a tutor. **- Senior Data Engineer at Bayer Crop Science**
+
+* **Jared Diehl (Students) - [LinkedIn](https://www.linkedin.com/in/jmdiehl/)**
+> Seungho is very knowledgeable and passionate about many math and machine learning topics. Back when we were students, he could always explain complex math problems simply. He has the ability to quickly assess a problem and hypothesize solutions. He excelled as a teaching assistant and is always wanting to learn new things. Any employer should be fortunate to have him as part of their team. **- SI at UMSL**

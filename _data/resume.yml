@@ -24,10 +24,10 @@ work:
   - company: "University of Missouri - Saint Louis"
     position: "Graduate Teaching Assistant"
     website: ""
-    startDate: "2021-01-11"
+    startDate: "20-01-11"
     endDate: ""
     summary: >
-      SAP Labs Korea, a cornerstone of SAP HANA, now aims to bring the in-memory technology to the cloud where it acts as a single gateway to data of any size to harness the power of data wherever it resides and ensure the platform for intelligent enterprise.
+      Teaching
     highlights:
 education:
   - institution: "University of Missouri - Saint Louis"
@@ -37,14 +37,20 @@ education:
     endDate: "2018-12-21"
     gpa: "3.7 (major 3.8) / 4.0"
     courses:
-      - "Concurrent Programming"
-      - "Data Science"
-      - "Operating Systems"
-      - "Computer Architecture"
-      - "Database Systems"
-      - "System Programming"
-  - certificate: "Engineer Information Processing (정보처리기사)"
+      - "Operating System"
+      - "System Programming & Computer Architecture"
+      - "Deep Learning & Machine Learning"
+      - "Computer System"
+      - "Image Processing & Computer Vision"
+  - certificate: "Robotic Software Engineering (Udacity)"
     date: "2019-11-22"
+teaching:
+  - institution: "University of Missouri - Saint Louis"
+    course: 
+      - Introduction to Computing (C++) (CS1250) in Fall 2020 & Spring 2021 & Summer 2021
+      - Advanced C++ (CS2250) in SP2020 & Summer 2021
+      - Computer Architecture (CS2700) in Fall 2020 & Spring 2021
+      - Artificial Intelligence (CS4130/5130) in Spring 2021
 projects:
   - title: ""
     startDate: ""
@@ -101,11 +107,8 @@ languages:
 interests:
   - name: "Activity"
     keywords:
-      - ""
-      - ""
-      - ""
+      - "Soccer"
   - name: "Gaming"
     keywords:
-      - ""
-      - ""
-      - ""
+      - "Starcraft"
+      - "Overwatch"

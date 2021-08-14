@@ -137,14 +137,14 @@ The repository for this private for a reason. Contact me if you want the source 
 
 Build the software system and algorithm to detect the root system from the given the root imageries.
 
-* **Udacity - Computer Vision (In progress)**
+* **Udacity - Computer Vision (Completed)**
 
 `Environment : Jupyter Notebook`,`OpenCV4`,`Framework: Pytorch`
 `Language : Python`
 
 1. [Facial Keypoints - Eye & Face Recognition](https://github.com/sjang1594/cvnn-udacity/tree/master/P1-Facial_KeyPoints)
 2. [Image Captioning](https://github.com/sjang1594/cvnn-udacity/tree/master/P2-Image_Captioning) 
-
+3. [Landmark]
 
 ## Skills and Certification
 ---

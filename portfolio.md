@@ -144,7 +144,7 @@ Build the software system and algorithm to detect the root system from the given
 
 1. [Facial Keypoints - Eye & Face Recognition](https://github.com/sjang1594/cvnn-udacity/tree/master/P1-Facial_KeyPoints)
 2. [Image Captioning](https://github.com/sjang1594/cvnn-udacity/tree/master/P2-Image_Captioning) 
-3. [Landmark]
+3. [Landmark Detection Tracking(SLAM)](https://github.com/sjang1594/cvnn-udacity/tree/master/P3-Landmark%20Detection_Tracking(SLAM))
 
 ## Skills and Certification
 ---

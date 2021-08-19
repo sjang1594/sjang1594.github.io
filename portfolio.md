@@ -156,6 +156,7 @@ Build the software system and algorithm to detect the root system from the given
 - Graduate Certificate in Artificial Intelligence 
     -  University of Missouri in Saint Louis / NSA/DHS National Center of Academic Excellence in Cyber Defense Education
 - Robotic Software Engineering - Udacity
+- Computer Vision - Udacity
 
 ## Classmate Comments & Endorsements
 ---
@@ -180,3 +181,4 @@ Build the software system and algorithm to detect the root system from the given
 
 * **Jared Diehl (Students) - [LinkedIn](https://www.linkedin.com/in/jmdiehl/)**
 > Seungho is very knowledgeable and passionate about many math and machine learning topics. Back when we were students, he could always explain complex math problems simply. He has the ability to quickly assess a problem and hypothesize solutions. He excelled as a teaching assistant and is always wanting to learn new things. Any employer should be fortunate to have him as part of their team. **- SI at UMSL**
+

@@ -30,7 +30,6 @@ Seungho Jang (장승호)
 
 > Github : <a href="https://github.com/sjang1594">https://github.com/sjang1594</a>
 
-
 ## Education
 ---
 > May.2014 ~ May 2015 : University of Minnesota - Twin City
@@ -182,3 +181,5 @@ Build the software system and algorithm to detect the root system from the given
 * **Jared Diehl (Students) - [LinkedIn](https://www.linkedin.com/in/jmdiehl/)**
 > Seungho is very knowledgeable and passionate about many math and machine learning topics. Back when we were students, he could always explain complex math problems simply. He has the ability to quickly assess a problem and hypothesize solutions. He excelled as a teaching assistant and is always wanting to learn new things. Any employer should be fortunate to have him as part of their team. **- SI at UMSL**
 
+* **Nicholas Kalinowski (Student)**
+> Working with Nick as my teacher for CMP SCI 1250 this past summer semester (2020) was a great way to start in the CS community. The most valuable preliminary support he provided was always being available to students- quick to reply to email, even to the point of inviting you into the zoom meeting room if he was free at the time. I had several productive meetings, including working through passing variables by reference, which has been helpful as I moved into studying pointers in CMP SCI 2250, and wrestling with a lot of basic concepts (arrays, loops) which will give me a great foundation in CS. It was great to have Nick as a teacher, and I wish him all the best in his future endeavors.  **- Student at UMSL**

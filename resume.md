@@ -3,7 +3,7 @@ layout: resume
 title: Resume
 permalink: /resume/
 description: >
-  Hi, I'm Seungho Jang, Graduate Teaching Assistant
+  Hi, I'm Seungho Jang
 hide_description: false
 sidebar: false
 order: 5

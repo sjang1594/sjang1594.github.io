@@ -1,8 +1,8 @@
 ---
 layout: tag-list
 type: tag
-title: Etcs
-slug: etcs
+title: Etc
+slug: etc
 category: etc
 sidebar: true
 description: >

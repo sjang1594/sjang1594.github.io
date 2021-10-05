@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: Instruments
-slug: etcs
+title: Logs
+slug: logs
 category: etc
 sidebar: true
 description: >
-   Drum and Guitar Lession & Recordings
+   Doodle Doodle
 ---

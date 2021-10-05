@@ -6,7 +6,7 @@ slug: etc
 sidebar: true
 order: 5
 description: >
-  Interviews, Instruments, Memes
+  Interviews, Instruments, Memes, and Etcs
 ---
 
 # Etcs

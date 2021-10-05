@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: Memes
-slug: memes
+title: Etcs
+slug: etcs
 category: etc
 sidebar: true
 description: >
-   Meme "sometimes" makes our day!
+    Dooodle
 ---

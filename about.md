@@ -31,7 +31,7 @@ I just graduated with my master's degree in Computer Science. I enjoyed all my c
 **What I am really interested in ?**
 
 * I am interested in Deep Learning in Computer Vision Applications.
-* Within Computer Vision Applications, I am eager to learn `3D Reconstruction`, `Depth Estimation`, and `Visual-SLAM`.
+* Within Computer Vision Applications, I am eager to learn `3D Reconstruction`, `Depth Estimation`, `Visual-SLAM`, and `Point Cloud`.
 
 Please feel free to contact me, if you have any good feedback!
 
@@ -52,7 +52,7 @@ Please feel free to contact me, if you have any good feedback!
 **저가 제일 관심있는 분야:**
 
 * 딥러닝과 컴퓨터 비전 애플리케이션에 관심을 가지구 있구요
-* 컴퓨터 비젼에 있는, `3D reconstruction`, `depth estimation`, `visual-SlAM` 관해서 배우고 있는 중입니다.
+* 컴퓨터 비젼에 있는, `3D reconstruction`, `depth estimation`, `visual-SLAM`, `Point Cloud` 관해서 배우고 있는 중입니다.
 
 언제나 피드백은 감사드리며.. 언제든지 댓글 남겨주세요. 
 

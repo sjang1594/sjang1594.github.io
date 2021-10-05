@@ -12,3 +12,7 @@ description: >
 # Etcs
 
 ## Categories
+* Interviews
+* Instruments
+* Memes
+* Etcs

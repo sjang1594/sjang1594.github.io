@@ -6,5 +6,5 @@ slug: dl/ml
 category: study
 sidebar: false
 description: >
-   Deep Learning & machine learning
+   Deep Learning & Machine learning
 ---

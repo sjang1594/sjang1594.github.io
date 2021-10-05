@@ -2,7 +2,7 @@
 layout: tag-list
 type: tag
 title: Etcs
-slug: etcs
+slug: etc
 category: etc
 sidebar: true
 description: >

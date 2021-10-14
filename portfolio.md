@@ -32,7 +32,7 @@ Seungho Jang (장승호)
 
 ## Education
 ---
-> May.2014 ~ May 2015 : University of Minnesota - Twin City
+> May.2014 ~ May.2015 : University of Minnesota - Twin City
 >
 > B.Bm.E. in Biomedical Engineering
 
@@ -45,6 +45,24 @@ Seungho Jang (장승호)
 >
 > M.S in Computer Science (Emphasis on Deep Learning & Computer Vision)
 
+## Work Experience
+---
+> Aug.2017 ~ Aug.2019 : Washington University in St. Louis
+> Teaching Assistant in EE(Electrical Engineering)
+> 1. Give a specific lecture on Laplace Transform & Convolution Theory to students.
+> 2. Have a session for test reviews on the midterms and finals.
+
+> Aug.2018 ~ Dec.2018 : University of Missouri - Saint Louis
+> Math & Engineer Tutor
+> 1. Tutored for Calculus 1 through Calculus 3, Different Equation, Linear Algebra, and Engineering Statistics.
+
+> Dec.2019 ~ Aug.2021 : University of Missouri - Saint Louis
+> Graduate Teaching & Researching Assistant
+> 1. Teaching CS 1250 and CS2250 for a year.
+> 2. Researching Computer Vision Area(Image Segmentation)
+
+> Oct.2021 ~ Current : MORAI Inc.
+> Software Engineer - Core Developer Team
 
 ## Research Interests
 ---

@@ -77,6 +77,7 @@ Seungho Jang (장승호)
 * Machine Learning / Deep Learning
     + Neural Style Transfer
     + RCNN
+    + Robotic Perception
 
 ## Projects
 

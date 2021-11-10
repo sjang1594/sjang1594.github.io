@@ -13,12 +13,13 @@ Then, what would be the workaround to set up the ROS environment.
 
 --- 
 ### **Docker**
+There is a ros for docker. It depends on what ROS version you want to install. There are whole version of ros in this [link]()
 
 
 ### **Virtual Machine (VM)**
-As you may heard, sometimes you may need a different OS to test 
+As you may heard, sometimes you may need a different OS to build an envieronment with different platforms. Esepcially, you might need VM for setting up the ROS environment. 
+1. First, install ubuntu 20.04 in order for you to set up the ROS2. 
 
 --- 
 ## Resoource
-
 Resource : [ROS](https://endland.medium.com/ros2-ubuntu20-04-8241bfdf6a9f)

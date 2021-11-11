@@ -1,7 +1,7 @@
 ---
 layout: tag-list
 type: tag
-title: Visual SLam
+title: Visual Slam
 slug: visual slam
 category: study
 sidebar: false

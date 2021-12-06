@@ -81,6 +81,7 @@ class Bow(Weapon):
     print("%s %d %d" %(self.name, self.att_dmg, self.durability))
 
 ```
+위의 코드와 같이 `weapon` 이라는 클래스는 맞지만, 클래스가 아닌? 추상적인 클래스가 있고, 세부적인 무기들은  `weapon` 이라는 클래스를 상속 받는다. 파이썬에서 각각의 weapon 들을 instance 화 시키면, 결과 값은 다 다르다. 결국, 억지인 예일수 있지만, 달고나 만드는것 처럼, 달고나를 만드는 행위는 어떤 모양이든 다 같지만, 하지만 어떤한 모양으로 낼지는 다른거다 라고 말을 할수 있을것 같다.
 
 ### Resouce
 1. [Python Basic - Abstract & Class Variable](https://ybworld.tistory.com/27)

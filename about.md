@@ -7,12 +7,6 @@ sidebar: true
 order: 2
 ---
 
-
-***
-
-<!--posts_list-->
-
-***
 ## **Introduction**
 
 ---

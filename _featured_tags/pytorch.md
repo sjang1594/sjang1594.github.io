@@ -1,8 +1,8 @@
 ---
 layout: tag-list
 type: tag
-title: Python
-slug: python
+title: Pytorch
+slug: pytorch
 category: study
 sidebar: true
 description: >

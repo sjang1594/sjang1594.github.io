@@ -2,17 +2,10 @@
 layout: welcome
 title: About
 permalink: /about/
-more_posts: posts.md
 sidebar: true
 order: 2
 ---
 
-
-***
-
-<!--posts_list-->
-
-***
 ## **Introduction**
 
 ---

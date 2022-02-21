@@ -5,6 +5,6 @@ category: study
 tags: [Python, Software Design]
 ---
 
-# TITLE: Command Pattern
+# Title: Command Pattern
 
 

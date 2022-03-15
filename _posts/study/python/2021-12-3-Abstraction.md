@@ -4,10 +4,12 @@ layout: post
 category: study
 tags: [Python]
 ---
-# Title: What is the "Abstraction" ?
+## What is the "Abstraction" ?
+
 회사에서, UNDO / REDO 설계를 맡게 되었는데.. 여러의 source 들을 찾아보려고 하니 `@abstractstaticmethod` 라는 녀석을 보게 되었다. 과연 abstract 는 왜 사용 되는지, static method, class method, 그리고 instance method 를 알아보겠다.
 
 일단 아래의 그림을 보면, 대충 추상클래스가 왜 필요한지 볼 수 있다.
+
 <figure>
   <img src = "../../../assets/img/study/Abstract.JPG">
 </figure>
@@ -24,6 +26,7 @@ python 에서의 추상 클래스를 만들기 위해서, [abc](https://docs.pyt
 
 ---
 -코드-
+
 ```python
 from abc import *
 class MyAbstractClass(metaclass=ABCMeta):
@@ -34,6 +37,7 @@ class MyAbstractClass(metaclass=ABCMeta):
 ```
 
 예제 코드
+
 ```python
 
 from abc import *
@@ -81,9 +85,11 @@ class Bow(Weapon):
     print("%s %d %d" %(self.name, self.att_dmg, self.durability))
 
 ```
+
 위의 코드와 같이 `weapon` 이라는 클래스는 맞지만, 클래스가 아닌? 추상적인 클래스가 있고, 세부적인 무기들은  `weapon` 이라는 클래스를 상속 받는다. 파이썬에서 각각의 weapon 들을 instance 화 시키면, 결과 값은 다 다르다. 결국, 억지인 예일수 있지만, 달고나 만드는것 처럼, 달고나를 만드는 행위는 어떤 모양이든 다 같지만, 하지만 어떤한 모양으로 낼지는 다른거다 라고 말을 할수 있을것 같다.
 
 ### Resouce
+
 1. [Python Basic - Abstract & Class Variable](https://ybworld.tistory.com/27)
 2. [Abstract Method and Overriding](https://21413011.tistory.com/72)
 3. [Why do we need to use the Abstract Method](https://edu.goorm.io/learn/lecture/41/%EB%B0%94%EB%A1%9C%EC%8B%A4%EC%8A%B5-%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9-%EC%9E%90%EB%B0%94-java/lesson/734/%EC%B6%94%EC%83%81%ED%81%B4%EB%9E%98%EC%8A%A4%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0)

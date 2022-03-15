@@ -5,27 +5,33 @@ category: study
 tags: [c++, slam, computer vision]
 ---
 
-Tracking is important in self-driving cars, this technique is crucial for estimating the state of a system. This is very similar to the probabilistic localization method(Monte Carlo localization). However, the difference in Kalman Filter estimates a continuous states whereas in Monte Carlo localization, it is forced to chop the world in the discrete places. As a result, the Kalman Filter happens to give us a uni-model distribution, whereas the Monte Carlo was fine with multi-model distributions. Both of these techniques are applicable to robot localization and tracking other vehicles. 
+Tracking is important in self-driving cars, this technique is crucial for estimating the state of a system. This is very similar to the probabilistic localization method(Monte Carlo localization). However, the difference in Kalman Filter estimates a continuous states whereas in Monte Carlo localization, it is forced to chop the world in the discrete places. As a result, the Kalman Filter happens to give us a uni-model distribution, whereas the Monte Carlo was fine with multi-model distributions. Both of these techniques are applicable to robot localization and tracking other vehicles.
 
 ### Definition of Kalman Filter
+
 A Kalman filter gives us a mathematical way to infer velocity from only a set of measured locations. `The Kalman filter is used to estimate the state of a system when the measurement is noisy
+
 ### Kalman Filter - Common Types
+
 * KF - linear
 * EKF - nonlinear
 * UKF(unscented Kalman filter) - highly nonlinear
+
 ### The Basis of the Kalman Filter
+
 The basis of the Kalman Filter is the Gaussian Distribution.
+
 ```c++
 #include <iostream>
 #include <math.h>
 using namespace std;
 double calculateGaussian(double mu, double sigma2, double x){
-	double prob = 1.0 / sqrt(2.0 * M_PI * sigma2) * exp(-.5 * pow((x-mu), 2.0) / sigma2);
+ double prob = 1.0 / sqrt(2.0 * M_PI * sigma2) * exp(-.5 * pow((x-mu), 2.0) / sigma2);
     return prob;
 }
 int main(){
     cout << calculateGaussian(10.0, 4.0, 8.0) << endl;
-	return 0;
+ return 0;
 }
 ```
 
@@ -61,7 +67,7 @@ int main()
 
 ### State Prediction
 
-The state prediction is the estimation that takes place after an inevitably uncertain motion. Since the measurement update and state prediction are an iterative cycle, it makes sense for us to continue where we left off. After taking into account the measurement, the posterior distribution can be calculated. However, since we've moved onto the state prediction step in the common filter cycle, this Gaussian is now referred to a s the prior belief. 
+The state prediction is the estimation that takes place after an inevitably uncertain motion. Since the measurement update and state prediction are an iterative cycle, it makes sense for us to continue where we left off. After taking into account the measurement, the posterior distribution can be calculated. However, since we've moved onto the state prediction step in the common filter cycle, this Gaussian is now referred to a s the prior belief.
 
 Now robot's executes the command, "Move forward 7.5 meters". Calculating the new estimate is as easy as adding the mean of the motion to the mean of the prior, and similarly, adding the two variances together to produce the posterior estimates.
 
@@ -84,8 +90,6 @@ int main()
     return 0;
 }
 ```
-
-
 
 ### Implementation - 1D Kalman Filter
 
@@ -130,8 +134,6 @@ int main()
     return 0;
 }
 ```
-
-
 
 ### Advantage of Kalman Filter
 

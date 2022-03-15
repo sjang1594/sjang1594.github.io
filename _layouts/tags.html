@@ -21,9 +21,9 @@ layout: default
                 <!-- font_size 변수 지정: 태그숫자/전체태그숫자 * 100 + 50 -->
                 {% capture font_size %}{{tag_size | times: site.tags.size | divided_by:site.tags.size | plus: 14 }}{% endcapture %}
 
-                <div class="tagname">
+                <!-- <div class="tagname">
                     <a href="/tags/archives#{{tag_name}}" style="font-size:{{font_size}}px">{{ tag_name }}</a>
-                </div>
+                </div> -->
             {% endfor %}
         </div> 
     </div>

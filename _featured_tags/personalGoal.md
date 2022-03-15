@@ -2,7 +2,7 @@
 layout: tag-list
 type: tag
 title: Personal Goal in 2022
-slug: personal goal in 2022
+slug: goal
 category: etc
 sidebar: false
 description: >

@@ -9,9 +9,10 @@ description: >
   Interviews, Instruments, Memes, and Etcs
 ---
 
-# Etcs
+## Etcs
 
 ## Categories
+
 * Interviews
 * Instruments
 * Memes

@@ -5,6 +5,6 @@ title: Logs
 slug: logs
 category: etc
 sidebar: true
-description: >
+description: > 
    Doodle Doodle
 ---

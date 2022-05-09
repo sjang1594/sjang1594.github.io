@@ -1,5 +1,11 @@
 ---
-published: false
+title: BootCamp
+layout: post
+category: etc
+tags:
+  - logs
+published: true
+
 ---
 ### Boot Camp(3.17 ~ 4.7)
 

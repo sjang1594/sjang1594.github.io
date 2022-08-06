@@ -6,7 +6,6 @@ tags:
   - logs
   - book
 published: true
-
 ---
 
 ### The Greenhouse at the end of the earth

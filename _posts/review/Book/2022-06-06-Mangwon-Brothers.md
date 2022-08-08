@@ -2,9 +2,7 @@
 title: Mangwon-Brothers
 layout: post
 category: etc
-tags:
-  - logs
-  - book
+tags: [logs, book]
 published: true
 
 ---

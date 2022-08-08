@@ -2,9 +2,7 @@
 title: The Greenhouse At The End of The Earth
 layout: post
 category: etc
-tags:
-  - logs
-  - book
+tags: [logs, book]
 published: true
 ---
 

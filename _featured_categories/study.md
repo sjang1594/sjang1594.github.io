@@ -6,7 +6,14 @@ slug: study
 sidebar: true
 order: 4
 description: >
-  Computer Vision, Image Processing, Pytorch, Python, ROS, DL/ML/RL and C++/C#
+  1. Computer Vision, 
+  2. Image Processing, 
+  3. Pytorch, 
+  4. Python, 
+  5. ROS, 
+  6. DL/ML, 
+  7. C/C++/C#
+  8. Game Development 
 ---
 
 # Study
@@ -15,8 +22,10 @@ description: >
 * Computer Vision Computer Vision & Image Processing
 * Deep Learning & Machine Learning
 * Reinforcment Learning
-* Pytorch 
+* Pytorch
 * Python
-* Robotic Operating System
+* Robotic Operating System [ROS]
 * C/C++/C#
 * Autonomous Robot & Vehicle
+* Game Development
+* Mathematics

@@ -62,7 +62,9 @@ Seungho Jang (장승호)
 > 2. Researching Computer Vision Area(Image Segmentation)
 
 > Oct.2021 ~ Current : MORAI Inc.
-> Software Engineer - Core Developer Team
+> Software Engineer - Scenario Team
+> 1. Currently Developing Scenario Runner based on OpenScenario (ASAM)
+> 2. Implemented the Undo / Redo using the Momento Design Pattern
 
 ## Research Interests
 ---

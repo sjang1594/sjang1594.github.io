@@ -23,19 +23,19 @@ basics:
 work:
   - company: "University of Missouri - Saint Louis"
     position: "Graduate Teaching Assistant"
-    website: ""
+    website: "https://www.umsl.edu/"
     startDate: "20-01-11"
     endDate: "20-08-31"
     summary: >
-      Teaching
+      Teaching the C, C++, and Artificial Intelligence to undergraduate students
     highlights:
   - company: "MORAI Inc"
     position: "Software Engineer"
-    website: ""
+    website: "https://www.morai.ai/"
     startDate: "20-10-05"
     endDate: ""
-    summary: >
-      Core Develop
+    summary: > 
+      Building the Scenario Generation Software as well as Scenario Runner based on OpenScenario Standsards by [ASAM](https://www.asam.net/standards/detail/openscenario/)
 education:
   - institution: "Washington University in Saint Louis / UMSL"
     area: "Electrical & Electronic Engineering"
@@ -50,7 +50,7 @@ education:
   - certificate: "Robotic Software Engineering (Udacity)"
     date: "2019-11-22"
   - institution: "University of Missouri - Saint Louis"
-    area: "Computer Vision"
+    area: "Computer Vision & Deep Learning"
     studyType: "Master"
     startDate: "2020-01-22"
     endDate: "2021-05-12"
@@ -106,7 +106,7 @@ projects:
       - ""
       - ""
 skills:
-  - name: "Kernel Development"
+  - name: "Python Desktop Development"
     level: "Intermediate"
     keywords:
       - "Concurrent Programming"

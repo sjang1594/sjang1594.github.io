@@ -6,14 +6,7 @@ slug: study
 sidebar: true
 order: 4
 description: >
-  1. Computer Vision, 
-  2. Image Processing, 
-  3. Pytorch, 
-  4. Python, 
-  5. ROS, 
-  6. DL/ML, 
-  7. C/C++/C#
-  8. Game Development 
+I am interested in a lot of things... that's the problem. But you can gain a lot of knowledge to go over the boundaries of specific languages and have something to discuss with peers and coworkers
 ---
 
 # Study

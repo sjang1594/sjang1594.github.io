@@ -6,7 +6,7 @@ slug: study
 sidebar: true
 order: 4
 description: >
-I am interested in a lot of things...
+  I am interested in a lot of things
 ---
 
 # Study

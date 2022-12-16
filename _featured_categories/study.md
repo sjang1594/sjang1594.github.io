@@ -6,7 +6,7 @@ slug: study
 sidebar: true
 order: 4
 description: >
-I am interested in a lot of things... that's the problem. But you can gain a lot of knowledge to go over the boundaries of specific languages and have something to discuss with peers and coworkers
+I am interested in a lot of things...
 ---
 
 # Study

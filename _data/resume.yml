@@ -112,13 +112,14 @@ skills:
       - "Concurrent Programming"
       - "Operating System"
       - "C/C++"
+      - "C#"
   - name: "Algorithm"
     level: "Intermediate"
 languages:
   - language: "Korean"
     fluency: "Native speaker"
   - language: "English"
-    fluency: "Fluent"
+    fluency: "Very Fluent"
 interests:
   - name: "Activity"
     keywords:
@@ -126,4 +127,5 @@ interests:
   - name: "Gaming"
     keywords:
       - "Starcraft"
-      - "Overwatch"
+      - "Overwatch2"
+      - "FIFA Online"

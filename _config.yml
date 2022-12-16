@@ -199,7 +199,7 @@ google_analytics:      G-GFFWR46MWQ
 # Set which comment system to use
 comments:
   # 'disqus' or 'utterances' are available
-  provider:            giscus
+  provider:            disqus
 
 # Setting a disqus shortname will enable the comment section on
 # pages with `comments: true` in the front matter.

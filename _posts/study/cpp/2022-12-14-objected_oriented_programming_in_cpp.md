@@ -7,7 +7,6 @@ tags: [c++]
 
 ### Obejcted Oriented Programming
 
-
 ### Constructor & Destructor
 
 ### Inheritance

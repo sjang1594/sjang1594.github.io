@@ -1,11 +1,11 @@
 ---
-title: Dynamic Allocation in C++
+title: How to install Vulkan on Visual Studio 2019
 layout: post
 category: study
 tags: [Vulkan, Computer Graphics]
 ---
 
-### How to install the Vulkan on Visual Studio 2019
+### How to install Vulkan on Visual Studio 2019
 
 
 ### Resources:

@@ -10,7 +10,7 @@ Objected Oriented Programming 이란 객체지향 프로그래밍을 의미하�
 
 일단 바로 코드로 넘어가자. 일 단 아래와 같이 Knight 에 대한 간단한 class 를 생성했다. class 생성할떄 Modify 할수 있는 조건이있는데 그게 바로 `public` 과 `private` 이있다. 그 이외에건 지금은 생략하고, Inheritance 에서 더 자세하게 설명을 할건데. 지금은 `public` 은 공공으로 사용할수 있는 변수나 함수(method) 라고 하자. `public` 으로 기본으로 지정된 Member Variable 과 Methods 가 존재한다. 
 
-생각을해보자 클래스라는건 빵틀이라고 생각하면 된다. 예를들어서 Knight 이라는 틀은 기본적으로 Health bar, Attack Attributes, and its position 을 들고 있을거다. 그리고 움직일수도있고, 공격할수도 있고, 죽을수도 있다. 그렇게해서 여러개의 Knight 을 만들수 있을것이다. 
+생각을해보자 클래스라는건 빵틀이라고 생각하면 된다. 예를들어서 Knight 이라는 틀은 기본적으로 Health bar, Attack Attributes, and its position 을 들고 있을거다. 그리고 움직일수도있고, 공격할수도 있고, 죽을수도 있다. 그렇게해서 여러개의 Knight 을 만들수 있을것이다. 이제 구현부에 대해서 이야기 하자. Member Function 또는 Method 같은 경우는 구현부를 `Knight` class 안에다가 구현할수 있으며, 또는 `Knight::Attack` 이렇게 구현할수 있는데, 이말은 Knight 클래스 안에 속해 있는 함수다라는 말이다. 똑같은 함수인 `move` 가 있다고 보여지는데, 하나는 `Knight::Move` 이고 다른 하나는 parameter 로 Knight 의 주소값을 가져온다고 보여진다. `void Move(Knight*)` 이 signature 같은 경우, 다른 Knight 를 instantiate 했을때 사용할수 있고, `Knight::Move` 그 객체가 들고 있는 built-in 함수라고 생각하면 된다.
 
 ```c++
 class Knight
@@ -63,7 +63,6 @@ int main()
     return 0;
 }
 ```
-
 
 ### Constructor & Destructor
 

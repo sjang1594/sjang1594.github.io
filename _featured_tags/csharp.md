@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: Vulkan
-slug: vulkan
+title: C#
+slug: c#
 category: study
-sidebar: false
+sidebar: true
 description: >
-   Vulkan
+   C# 
 ---

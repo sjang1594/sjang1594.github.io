@@ -246,7 +246,72 @@ int main()
 그렇다면 위의 코드를 한번 봐보자, 일단 child 나 parent 의 기본 생성자와 소멸자를 만들었다. 그렇다면 궁금즘은 이거다 생성자는 class 가 instantiate 했을때, 또는 탄생했을때 호출되는 함수라고 했었다. 그렇다고 한다면 `Knight` 를 생성했을때, `Player` 의 생성자가 호출이 될지 `knight` 의 생성자가가 호출 될지 궁금증이 생긴다.
 결론적인 답은 둘다 호출하자 이렇게 생성이된다. 그리고 생성이되는 순서는 부모님 먼저 호출이 되고 그다음에 child 가 호출이 된다음에 소멸될때에는 자식이 먼저 호출이 되고, 그다음 부모님이 호출이 된다고 볼수 있다.
 
+좀더 자세하게 child class 의 생성자가 언제 call 되는 영역이 어딘지 확인해보자. 아래와 같이 볼수 있다. 일단 Child 가 Instantiate 했을때, Knight 의 생성자 `Knight()` 이거나 `Knight(int stamina)` 가 call 이되면서, 선처리 영역에서 부모의 생성자가 호출이 된다. 그래서 부모인 `Player()` 가 호출이 되고 `cout` 으로 생성자가 호출 됬다는걸 확인 할 수 있다. 생성자와 달리 소멸자같은 경우는, `~Knight()` 가 호출이 되고, 즉 child 가 호출이 된다음, 후처리 영역에서 Parent 인 `~Player()`  소멸자가 호출 되는걸 볼수 있다. 그리고 추가해야할 문법은, 부모님의 생성자를 다른걸 선택? 하고 싶으면 
+`Knight(int stamina) : Player(100)` 이런식으로 해서 선처리 영역에서 `Player(int hp)` 를 호출 하게끔 하면 된다.
+
+```c++
+class Player
+{
+public:
+    Player(){ _hp=0; _attack=0, _defence=0; cout << "player constructor" << endl; }
+    Player(int hp){ _hp = hp; }
+    ~Player(){ cout << "player destructor" << endl; }
+    void Move() { cout << "Player " << endl; }
+    void Attack() { cout << "Player Attack" << endl; }
+    void Die() { cout << "Player Die " << endl; }
+
+public:
+    int _hp;
+    int _attack;
+    int _defence;
+};
+
+class Knight : public Player
+{
+public:
+    Knight() {
+        /*
+         * 선(처리) 영역
+         * - 여기서 Player() 생성자 호출
+         */
+        _stamina=0;
+        cout << "Knight Constructor" << endl;
+    }
+    Knight(int stamina) : Player(100)
+    {
+        //
+
+        /*
+         * 선(처리) 영역
+         * - 여기서 Player() 생성자 호출
+         */
+        _stamina=stamina;
+        cout << "Knight Constructor" << endl;
+    }
+    ~Knight() {cout << "Knight Desturctor" << endl; }
+    /*
+     * 후처리영역
+     * - 여기서 Player() 소멸자 호출
+     */
+    void Move() { cout << "Knight Move" << endl; }
+public:
+    int _stamina;
+};
+
+int main()
+{
+    Knight k;
+    return 0;
+}
+```
+
+결국에는 상속을 쓰면, 코드가 간결해지고 가독성이 높아진다는걸 알수 있다.
+
 ### Hiding
+
+Hiding 은 한마디로 은닉성(Data Hiding) 또는 Encapsulation 이라고 한다. 여기서 이야기하는건 데이터의 권한 문제라고 생각하면 된다. 그렇다면 왜 숨기고 이걸 보호 해야하냐 라는 질문을 할 수 있다. 대표적인 이유는 중 하나는 정말 위험하고 유저가 함부러 건드리면 안되는 경우가 있고, 나머지 하나는 다른 경로로 접근하길 원하는 경우가 있다. 예를 들어서, 자동차가 있다 유저가 실제로 보고 작동할수 있는건, Handle, Excel Pedal, and Break 가 있다. 물론 자동차를 관리하는 사람들을 제외 하고, 일반인들은 엔진이나 엔진에 묶여있는 와이어를 손을 덴다고 하면, 차가 쉽게 망가지기 마련이다. 어떤부분은 유저들에게 안보여지게 하고, 다른 부분들은 보여지는거다.
+
+그러면 이런것을 어떻게 문법으로 적용을 할것인가? 라는 질문을 할수있다. 이걸 `접근 지정자` 라고 한다. 
 
 ### Polymorphism
 

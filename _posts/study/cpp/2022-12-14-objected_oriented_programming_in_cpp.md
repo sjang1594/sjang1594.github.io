@@ -8,7 +8,7 @@ tags: [c++]
 ### Obejcted Oriented Programming
 Objected Oriented Programming 이란 객체지향 프로그래밍을 의미하며, 기존에 있던 절차지향 프로그래밍 같은경우에는 코드가 분산되서, readability 도 떨어지면서, 사용자에게 배려하는 느낌이 전혀 없어진다. 근데 객체지향에서의 귀찮은 점도 존재한다. 예를들어서 "참, 두세줄이면 끝날 코드인데, 꼭 이렇게 까지 내가 해야할까?" 라는 생각도 들수도 있다. 하지만 객체 지향을 통해서 사용자의 편의성을 극대화 하며, 사용자의 실수를 최대한 제작자가 차단을 해야한다라는 가정하에 객체지향적 프로그래밍을 해야한다.
 
-일단 바로 코드로 넘어가자. 일 단 아래와 같이 Knight 에 대한 간단한 class 를 생성했다. class 생성할떄 Modify 할수 있는 조건이있는데 그게 바로 `public` 과 `private` 이있다. 그 이외에건 지금은 생략하고, Inheritance 에서 더 자세하게 설명을 할건데. 지금은 `public` 은 공공으로 사용할수 있는 변수나 함수(method) 라고 하자. `public` 으로 기본으로 지정된 Member Variable 과 Methods 가 존재한다. 
+일단 바로 코드로 넘어가자. 일 단 아래와 같이 Knight 에 대한 간단한 class 를 생성했다. class 생성할떄 Modify 할수 있는 조건이있는데 그게 바로 `public` 과 `private` 이있다. 그 이외에건 지금은 생략하고, Inheritance 에서 더 자세하게 설명을 할건데. 지금은 `public` 은 공공으로 사용할수 있는 변수나 함수(method) 라고 하자. `public` 으로 기본으로 지정된 Member Variable 과 Methods 가 존재한다.
 
 생각을해보자 클래스라는건 빵틀이라고 생각하면 된다. 예를들어서 Knight 이라는 틀은 기본적으로 Health bar, Attack Attributes, and its position 을 들고 있을거다. 그리고 움직일수도있고, 공격할수도 있고, 죽을수도 있다. 그렇게해서 여러개의 Knight 을 만들수 있을것이다. 이제 구현부에 대해서 이야기 하자. Member Function 또는 Method 같은 경우는 구현부를 `Knight` class 안에다가 구현할수 있으며, 또는 `Knight::Attack` 이렇게 구현할수 있는데, 이말은 Knight 클래스 안에 속해 있는 함수다라는 말이다. 똑같은 함수인 `move` 가 있다고 보여지는데, 하나는 `Knight::Move` 이고 다른 하나는 parameter 로 Knight 의 주소값을 가져온다고 보여진다. `void Move(Knight*)` 이 signature 같은 경우, 다른 Knight 를 instantiate 했을때 사용할수 있고, `Knight::Move` 그 객체가 들고 있는 built-in 함수라고 생각하면 된다.
 
@@ -47,7 +47,7 @@ void Knight::Move(int y, int x)
 
 void Knight::Attack()
 {
-    cout << "Attack" << endl; 
+    cout << "Attack" << endl;
 }
 
 int main()
@@ -87,7 +87,7 @@ class Knight
 public:
     // Constructor.
     Knight()
-    { 
+    {
         cout << "Knight() 기본생성자 called" << endl;
         _hp = 100;
         _attack = 10;
@@ -95,17 +95,17 @@ public:
         _posY = 0;
     }
 
-    // Type Conversion Constructor  
+    // Type Conversion Constructor
     // explicit!
     explicit Knight(int hp)
     {
-        cout << "Knight(int ) called" << endl; 
+        cout << "Knight(int ) called" << endl;
         _hp = hp;
         _attack = 10;
         _posX = 0;
         _posY = 0;
     }
-    
+
     // Etc Constructor
     Knight(int hp, int attack, int posX, int posY)
     {
@@ -114,7 +114,7 @@ public:
         _posX = posX;
         _posY = posY;
     }
-    
+
     // Copy Constructor
     Knight(const Knight& knight)
     {
@@ -123,7 +123,7 @@ public:
         _posX = knight._posX;
         _posY = knight._posY;
     }
-    
+
     // Destructor
     ~Knight(){cout << "Knight() 소멸자 called" << endl;}
 
@@ -150,7 +150,7 @@ int main()
 
     // 1) Copy Constructor
     Knight k2(k1);
-    
+
     // 2) Copy Constructor
     Knight k3 = k1;
 
@@ -167,7 +167,7 @@ int main()
     float f = num; // explicit version float f = (float)num;
 
     Knight k6;
-    k6 = 1; // ? 
+    k6 = 1; // ?
 
     return 0;
 }
@@ -175,7 +175,7 @@ int main()
 
 ### Inheritance
 객체 지향 프로그래밍에서 중요한 속성들이 있는데 아래와 같다.
-1. 상속성 
+1. 상속성
 2. 은닉성
 3. 다형성
 
@@ -246,7 +246,7 @@ int main()
 그렇다면 위의 코드를 한번 봐보자, 일단 child 나 parent 의 기본 생성자와 소멸자를 만들었다. 그렇다면 궁금즘은 이거다 생성자는 class 가 instantiate 했을때, 또는 탄생했을때 호출되는 함수라고 했었다. 그렇다고 한다면 `Knight` 를 생성했을때, `Player` 의 생성자가 호출이 될지 `knight` 의 생성자가가 호출 될지 궁금증이 생긴다.
 결론적인 답은 둘다 호출하자 이렇게 생성이된다. 그리고 생성이되는 순서는 부모님 먼저 호출이 되고 그다음에 child 가 호출이 된다음에 소멸될때에는 자식이 먼저 호출이 되고, 그다음 부모님이 호출이 된다고 볼수 있다.
 
-좀더 자세하게 child class 의 생성자가 언제 call 되는 영역이 어딘지 확인해보자. 아래와 같이 볼수 있다. 일단 Child 가 Instantiate 했을때, Knight 의 생성자 `Knight()` 이거나 `Knight(int stamina)` 가 call 이되면서, 선처리 영역에서 부모의 생성자가 호출이 된다. 그래서 부모인 `Player()` 가 호출이 되고 `cout` 으로 생성자가 호출 됬다는걸 확인 할 수 있다. 생성자와 달리 소멸자같은 경우는, `~Knight()` 가 호출이 되고, 즉 child 가 호출이 된다음, 후처리 영역에서 Parent 인 `~Player()`  소멸자가 호출 되는걸 볼수 있다. 그리고 추가해야할 문법은, 부모님의 생성자를 다른걸 선택? 하고 싶으면 
+좀더 자세하게 child class 의 생성자가 언제 call 되는 영역이 어딘지 확인해보자. 아래와 같이 볼수 있다. 일단 Child 가 Instantiate 했을때, Knight 의 생성자 `Knight()` 이거나 `Knight(int stamina)` 가 call 이되면서, 선처리 영역에서 부모의 생성자가 호출이 된다. 그래서 부모인 `Player()` 가 호출이 되고 `cout` 으로 생성자가 호출 됬다는걸 확인 할 수 있다. 생성자와 달리 소멸자같은 경우는, `~Knight()` 가 호출이 되고, 즉 child 가 호출이 된다음, 후처리 영역에서 Parent 인 `~Player()`  소멸자가 호출 되는걸 볼수 있다. 그리고 추가해야할 문법은, 부모님의 생성자를 다른걸 선택? 하고 싶으면
 `Knight(int stamina) : Player(100)` 이런식으로 해서 선처리 영역에서 `Player(int hp)` 를 호출 하게끔 하면 된다.
 
 ```c++
@@ -309,11 +309,225 @@ int main()
 
 ### Hiding
 
-Hiding 은 한마디로 은닉성(Data Hiding) 또는 Encapsulation 이라고 한다. 여기서 이야기하는건 데이터의 권한 문제라고 생각하면 된다. 그렇다면 왜 숨기고 이걸 보호 해야하냐 라는 질문을 할 수 있다. 대표적인 이유는 중 하나는 정말 위험하고 유저가 함부러 건드리면 안되는 경우가 있고, 나머지 하나는 다른 경로로 접근하길 원하는 경우가 있다. 예를 들어서, 자동차가 있다 유저가 실제로 보고 작동할수 있는건, Handle, Excel Pedal, and Break 가 있다. 물론 자동차를 관리하는 사람들을 제외 하고, 일반인들은 엔진이나 엔진에 묶여있는 와이어를 손을 덴다고 하면, 차가 쉽게 망가지기 마련이다. 어떤부분은 유저들에게 안보여지게 하고, 다른 부분들은 보여지는거다.
+Hiding 은 한마디로 은닉성(Data Hiding) 또는 Encapsulation 이라고 한다. 여기서 이야기하는건 데이터의 권한 문제라고 생각하면 된다. 그렇다면 왜 숨기고 이걸 보호 해야하냐 라는 질문을 할 수 있다.
+대표적인 이유는 중 하나는 정말 위험하고 유저가 함부러 건드리면 안되는 경우가 있고, 나머지 하나는 다른 경로로 접근하길 원하는 경우가 있다.
+예를 들어서, 자동차가 있다 유저가 실제로 보고 작동할수 있는건, Handle, Excel Pedal, and Break 가 있다. 물론 자동차를 관리하는 사람들을 제외 하고, 일반인들은 엔진이나 엔진에 묶여있는 와이어를 손을 덴다고 하면, 차가 쉽게 망가지기 마련이다. 어떤부분은 유저들에게 안보여지게 하고, 다른 부분들은 보여지는거다.
+그러면 이런것을 어떻게 문법으로 적용을 할것인가? 라는 질문을 할수있다. 이걸 `접근 지정자` 라고 한다. 접근지정자 같은 경우 아래 세가지가 있고, 그에 관한 설명이 있다. 코드를 한번봐보자.
 
-그러면 이런것을 어떻게 문법으로 적용을 할것인가? 라는 질문을 할수있다. 이걸 `접근 지정자` 라고 한다. 
+- public    : 누구한테나 실컷 사용하세요
+- protected : 나의 자손들한테만 허락
+- private   : 나만 사용할께 (즉 자신 내부에서만)
+
+```c++
+class Car
+{
+public: // 접근 지정자
+    void MoveHandle() {}
+    void PushPedal() {}
+    void OpenDoor() {}
+
+    void TurnKey(){ RunEngine(); }
+
+protected:
+    void DisassembleCar() {}
+    void RunEngine() {}
+    void ConnectCircuit() {}
+};
+```
+위의 코드 같이, `MoveHandle`,`PushPedal`,`OpenDoor`,`TurnKey` 같은 경우는 유저가 자동차의 겉표면? 쉽게 사용할수 있는 기능들이다. 하지만 `DisassembleCar`, `RunEngine`, `ConnectCircuit` 같은 경우는 `private` 으로 class 내부에서만 사용할수 있지만, 상속을 받을수 있기 때문에 protected 로 보호할수있다. 또 `TurnKey()` 내부 함수에서 `protected` 로 지정된 함수를 call 할수 있게 해놓았다.
+
+```c++
+class Car
+{
+public: // 접근 지정자
+    void MoveHandle() {}
+    void PushPedal() {}
+    void OpenDoor() {}
+
+    void TurnKey(){ RunEngine(); }
+
+protected:
+    void DisassembleCar() {}
+    void RunEngine() {}
+    void ConnectCircuit() {}
+};
+
+class SuperCar : public Car // 상속 접근 지정자
+{
+public:
+    void PushRemoteController(){ RunEngine(); }
+};
+
+int main()
+{
+    Car car;
+    return 0;
+}
+```
+
+그렇다면 위에서 이야기 했던 상속 부분을 좀 더 생각해보자. 접근 지정자가 있다고 한더라면, 상속 접근 지정자를 빼먹을수 있다.
+상속 접근 지정자 같은 경우, 다음 세대에 어떻게 부모님의 유산을 어떻게 물려줄지? 가 테마라고 생각하면된다. 즉 부모님한테 물려받은 유산을
+꼭 나의 자손한테도 똑같이 물려줘야하지 않는다는 뜻이다. 멤버 접근 지정자처럼 상속 접근 지정자에 대한 설명을 해볼까 한다.
+
+- pubilc    : 공개적으로 상속? 부모님의 유산 설계 그대로! (public -> public / protected -> protected)
+- protected : 보호받는 상속? 내 자손들한테만 물려줄꺼야!  (public -> protected / protected -> protected )
+- private   : 개인적인 상속? 나까지만 잘쓰고 -> 자손들에게 아예 안물려 줄꺼야! (public -> private / protected -> private)
+
+아래의 코드를 한번 봐보자. 일단 SuperCar 라는 클래스는 Car 로 부터 private 으로 상속받았기 때문에 만약 SuperCar 라는 상속받은 아이는
+Car 에 대한것을 접근할수 있다. 즉 SuperCar는 자기까지만 욕심많게 상속을 받고 물려주지 않은것으로 보여진다. 이 코드에서 만약 상속 접근 지정자를 안했을 경우
+private 으로 인식하게 된다.
+
+```c++
+class SuperCar : private Car // 상속 접근 지정자
+{
+public:
+    void PushRemoteController(){ RunEngine(); }
+};
+
+class TestSuperCar : SuperCar
+{
+    void Test()
+    {
+        DisassembleCar(); // Cannot access
+    }
+};
+
+class SuperSuperCar : private Car
+{
+public:
+    void PushRemoteController(){ RunEngine(); }
+};
+
+
+class TestSuperSuperCar : public SuperSuperCar
+{
+public:
+    void Test() { /* .. Can't call DisassembleCar(); */}
+};
+```
+
+
+이유중에 2번째: `다른 경로로 접근` 이라는게 있다. 이거에 대한 예를 들어보자. 아래의 코드를 보면, main 함수에서
+버서커를 instantiate 한다음에, _hp를 바꾸는데, 버서커모드의 출력창이 안나온다. 그 이유는 일단 _hp 를 접근해서 바꾸는건 위험하고
+또 다른건 클래스는 그냥 틀에 불과 하기 때문에 설계를 잘못했다고 말을 할수 있다. 그래서 이 부분에서 `encapsulation` 에 대한 이야기를
+할까 싶다. 캡슐화는 한마디로 `연관된 데이터와 함수를 논리적으로 묶어 놓은것`이라고 볼수 있다.
+
+
+```c++
+class Berserker
+{
+public:
+    void SetBerserkerMode(){ cout << "Getting Stronger" << endl; }
+public:
+    int _hp = 100;
+};
+
+int main()
+{
+    Berserker berserker;
+    berserker._hp = 10;
+}
+```
+
+Encapsulate 된 클래스 구조를 코드로 확인 해보자. 일단 _hp 를 쉽게 건들수 없게 `private` 으로 막아놓으면, 일단 외부에서는
+접근을 못하게 막아 놓았다. 주로 member variable 을 가지고 나올때는 getter 와 setter 을 쓰기 때문에, `GetHp()` 와 `SetHp()`
+를 만들어준다. 그래서 일단 우리가 만들고 싶은거는 뭔가 hp 가 세팅이 됬을때, 버서커모드로 될지 안될지를 체크를 해주면 된다. 또 외부에서
+버서커 모드를 키게 하면 안되니까 `private` 으로 막아줬다.
+
+```c++
+class Berserker
+{
+public:
+    int GetHp() { return _hp; }
+    void SetHp(int hp)
+    {
+        _hp = hp;
+        if (_hp <= 50) SetBerserkerMode();
+    }
+
+private:
+    int _hp = 100;
+    void SetBerserkerMode(){ cout << "Getting Stronger" << endl; }
+};
+
+int main()
+{
+    Berserker berserker;
+    berserker.SetHp(20);
+    return 0;
+}
+```
 
 ### Polymorphism
+Polymorphism 이라는건 결국 다양한 형태로 존재 한다 라고 생각하면 된다. 즉 쉽게 말해서 겉은 똑같은데, 기능이 다르게 동작한다고 말할수 있다. 두가지로
+대표적으로 2 가지를 말을 할수 있다.
+
+1. 오버로딩(Overloading) = 함수 중복 정의 = 함수 이름의 재사용
+2. 오버라이딩(Overriding) = 재정의 = 부모 class method 를 사용해서 자식클래스에서 재정의
+
+잠깐 오버로딩에 대해서 이야기를 해보자. 바로 코드를 보겠다. 아래는 `Move()` 라는 함수를 이용해서 같은 이름이지만 signature 이 다른 함수인
+`Move(int)` 로 함수를 중복 정의 한걸 볼수 있다. 이게 바로 대표적인 오버로딩에 대한 예이다. 이와같이 오버로딩은 되게 간단하다고 볼수있다.
+
+```c++
+class Player
+{
+public:
+    Player() {_hp = 100;}
+    void Move(){cout << "Move()" << endl;}
+    void Move(int step){cout << "Move(int)" << endl;}
+};
+
+int main()
+{
+    Player player;
+    player.Move();
+    player.Move(20);
+    return 0;
+}
+```
+
+오버라이딩 같은 경우가 굉장히 polymorphism 에서 중요한 부분인데 한번 알아보자. 아래와 같이 오버라이딩에 대한 간단한 예라고 볼수 있다
+부모 클래스인 `Player()` 에서 상속받은 `Knight` 나 `Mage` 같은 경우 `Move()` 함수를 재정의 해서 사용한걸 볼수있다.
+
+```c++
+
+class Player()
+{
+public:
+    void Move(){ cout << "Move() " << endl; }
+public:
+    int _hp;
+};
+
+class Knight : public Player
+{
+public:
+    Knight() {_stamina = 100; }
+    void Move(){ cout << "Knight Move()" << endl; }
+
+public:
+    int _stamina;
+};
+
+class Mage : public Player
+{
+public;
+    void Move() {cout << "Mage Move()" << endl; }
+public:
+    int _mp;
+};
+
+int main()
+{
+    Knight k;
+    k.Move();
+
+    Mage m;
+    m.Move();
+    return 0;
+}
+```
+
 
 ### Initializing the List
 

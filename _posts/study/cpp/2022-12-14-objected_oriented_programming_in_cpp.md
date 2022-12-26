@@ -528,6 +528,124 @@ int main()
 }
 ```
 
+상속받아서 하는 클래스를 설계하는건 아주 중요한 스킬중에 하나인데, 그중에 또하나의 장점이 있다. 아래의 코드를 봐보자. Move 라는 기능의 함수를 클래스 별로 만들었다.
+여기에서 만약에 `MoveKnight()` 안에 player 의 주소값을 넣어주면 어떻게 될까? 호환이 되지 않는다. 일단 기존에 `PlayerMove()` 안에 넣었던걸 번역?을 하자면,
+플레이어는 플레이어다라고 말을 할수 있는데, 플레이어가 기사냐라고 물어봤을때, 지금 계층 구조에서는 의미가 맞지 않는다. 즉 플레이어는 Mage 일수도 있고, Knight 도 될수도 있다.
+그러면 그 반대의 케이스로 `MovePlayer()` 안에 Knight 의 주소값을 넣어줬다고 하면 어떨까? 앞의 해석에 의해서 빌드가 된다. 그렇다면 해석을 구지 하자면, Knight 는 Player 가 맞다.
+바로 이 점을 사용해서, MoveKnight() 나 MoveMage() 함수를 따로 안만들어주고, MovePlayer() 로 관리 할수 있게된다. 상속관계를 잘알게 된다면, 확실히 코드가 간결해진다.
+
+그렇다면, 여기서 더나아가서 MovePlayer() function 만 사용한다고 했을때, 과연 어떤 클래스에서 `Move()` method 를 사용할까? 라는 의문점이든다.
+실행을 해보면, 부모안에 있는 `Move()` 가 실행되는걸 확인 할수 있다. 그러면 이게 문제가 된다. overriding 을 사용해서 Knight `Move()` 를 만들었는데.. 라고 물을수 있다.
+그 이유는 바로 `Binding(바인딩)` 이라는 개념과 연관된다.
+
+`Binding(바인딩)` 은 결국 어떤걸 묶는다라는 걸 볼수 있는데, 정적 바인딩과 동적 바인딩이 있다. 아래의 정의를 잠깐 봐보자
+- Static Binding(정적 바인딩)  : compiler 시점에 결정
+- Dynamic Binding(동적 바인딩) : run time 에 결정
+
+주로 일반함수는 정적바인딩에 속한다. 즉 MovePlayer() 가 compiler 에서 봤을때는 Player 의 주소값을 받는 타입이 있으니까, 원본데이터가 Knight 였을지여도, Player 의
+`Move()` 함수가 실행되는거다. 그렇다면 이걸 어떻게 해결할까? 는 예상대로 동적바인딩을 사용하면 된다. 그렇다면 동적 바인딩을 사용하려면 조건이 필요하다.
+virtual(가상) 함수가 필요하다.
+
+```c++
+class Player()
+{
+public:
+    void Move(){ cout << "Move() " << endl; }
+public:
+    int _hp;
+};
+
+class Knight : public Player
+{
+public:
+    Knight() {_stamina = 100; }
+    void Move(){ cout << "Knight Move()" << endl; }
+
+public:
+    int _stamina;
+};
+
+class Mage : public Player
+{
+public;
+    void Move() {cout << "Mage Move()" << endl; }
+public:
+    int _mp;
+};
+
+void MovePlayer(Player* player)
+{
+    player->Move();
+}
+
+void MoveKnight(Knight* knight)
+{
+    knight->Move();
+}
+
+void MoveMage(Mage* mage)
+{
+    mage->Move();
+}
+
+int main()
+{
+    Player p;
+    p.Move(&p);
+    Kngiht k;
+    k.Move(&k);
+    return 0;
+}
+```
+
+가상함수를 사용하려면 어떻게 사용해야할까는 method 앞에 `keyword` 를 사용하면 된다. 그렇다면 위의 코드를 조금 정리해서 봐보자.
+일단 동적바인딩을 사용해서, `VMove()` 그리고 `VAttack()` 을 만들었다. 상속관계에서 virtual function 을 사용하면, virtual 함수인거다.
+
+
+```c++
+class Player
+{
+public:
+    Player() {_hp =100 ;}
+    virtual void VMove() { cout << "VMove" << endl;}
+    virtual void VAttack() = 0; // 순수 가상함수
+public:
+    int _hp;
+};
+
+class Knight : public Player
+{
+public:
+    Knight() {_stamina = 100; }
+    virtual void VMove() { cout << "VMove Knight" << endl;}
+    virtual void VAttack(){cout << "VAttack Knight" << endl;}
+public:
+    int _stamina;
+};
+
+void MovePlayer(Player* player)
+{
+    player->VMove();
+}
+
+int main()
+{
+    Knight k;
+    MovePlayer(&k);
+    return 0;
+}
+```
+
+앞에서 본건 구현방법이였다. 하지만 더 자세하게 보려면 어셈블리를 까봐서 어떻게 구현되어있는지 정확하게 필요가 있다. 일단 break point 를 걸어서 실행을 해보면
+Knight 앞 메모리에 뭔가가 추가 되었다는게 보인다. 즉 이 추가된게 가상함수의 어떤 플래그라는걸 알수있다. 즉 실제 객체가 어떤 타입읹지 어떻게 알고
+있어서 가상함수를 호출하는지를 찾아보면, 바로 가상함수 테이블(vftable) 이라는게 존재해서 그렇다. 그러면 가상함수 테이블에서 잠깐 보면
+가상함수 테이블(.vftable) 는 32 bit 에서는 4 바이트를 차지하고, 64 bit 에서는 8 바이트를 차지한다. 메모리 구조에서는 [VMove][] 즉 테이블 주소로 되어있다는 거다.
+즉 가상함수 테이블을 통해서 가상함수들을 관리 한다는걸 확인할수 있다. 그렇다면 가상함수를 쓰는 주체는 누구인가? 라는 질문도 할수 있다. 정답은 생성자에서 한다.
+생성자의 선처리 영역에서 vftable 을 채워넣는다.
+
+signature 만 가지고 있는 가상함수를 순수 가상함수라고 하는데, 이 가상함수는 구현은 없고 `interface` 만 전달하는 용도로 사용하고 싶을때 사용된다
+순수 가상함수를 만들었을 경우, 빌드를 시켰을때, 그 method 가 있는 클래스 abstract class 가 된다. 여기서 abstract class 가 뭐냐고 묻는다면, 순수 가상함수가
+1 개이상 존재하거나 포함되면 바로 추상클래스로 간주되고, 직접적으로 객체를 instantiate 하지 못하게 된다.
 
 ### Initializing the List
 

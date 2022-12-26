@@ -14,5 +14,5 @@ tags: [computer vision]
 6. [CS223a](https://cs.stanford.edu/groups/manips/teaching/cs223a/)
 7. [CS237A](https://stanfordasl.github.io/aa274a/)
 8. [CS348I](http://cs348i.stanford.edu/)
-9. [Photogrammetric Computer Vision Youtube](https://www.youtube.com/watch?v=X7AghhqMUm8&list=PLgnQpQtFTOGTPQhKBOGgjTgX-mzpsOGOX&ab_channel=CyrillStachniss)
+9. [Photogrammetric Computer Vision Youtube](https://www.youtube.com/watch?v=X7AghhqMUm8list=PLgnQpQtFTOGTPQhKBOGgjTgX-mzpsOGOX&ab_channel=CyrillStachniss)
 10. [Introduction to Photogrammetry](https://www.youtube.com/watch?v=SyB7Wg1e62A&list=PLgnQpQtFTOGRYjqjdZxTEQPZuFHQa7O7Y&ab_channel=CyrillStachniss)

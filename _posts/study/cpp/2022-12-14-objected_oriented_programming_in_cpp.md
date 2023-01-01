@@ -539,6 +539,7 @@ int main()
 그 이유는 바로 `Binding(바인딩)` 이라는 개념과 연관된다.
 
 `Binding(바인딩)` 은 결국 어떤걸 묶는다라는 걸 볼수 있는데, 정적 바인딩과 동적 바인딩이 있다. 아래의 정의를 잠깐 봐보자
+
 - Static Binding(정적 바인딩)  : compiler 시점에 결정
 - Dynamic Binding(동적 바인딩) : run time 에 결정
 
@@ -651,8 +652,136 @@ signature 만 가지고 있는 가상함수를 순수 가상함수라고 하는�
 이렇게 순수가상함수가 표현되면, 거의 무조건 상속받는 친구들은 무조건 재정의가 필요해 이렇게 말을하는거다.
 
 ### Initializing the List
+초기화를 하는 이유는 여러가지가 있다. 일단 초기화를 통해서 디버깅도 쉬어지고, 또한 초기화를 함에 따라서 어떤 값이 들어갔는지 확인이 가능하다. 즉 버그를 예방을 할수 있고, 포인트나 주소값이 연루 되어있다고 한다면 더더욱 중요시 생각해야한다. 아래의 코드를 한번 봐보자. 일단 `k._hp` 를 출력 한다고 가정하면, 엉뚱한 메모리값을 가지고 있다는걸 확인 할수 있다. 이렇게 초기화를 안한 상태에서, if statement 로 넘어간다면, 이제 Knight 가 죽었다는 사실을 들고 있다. 이런 실수를 방지 하고자 Initializing 을 할 필요가 있다.
+
+```c++
+#include <iostream>
+using namespace std;
+class Knight
+{
+public:
+    int _hp;
+};
+
+int main()
+{
+    Knight k;
+    cout << k._hp << endl;
+    if (k._hp < 0 )
+    {
+        cout << "Knight is Dead" << endl;
+    }
+    return 0;
+}
+```
+
+초기화 방법은 여러가지가 있지만, Object Oriented Programming 관점에서의 초기화는 일단 생성자 안에서 초기화를 하는 방법이 있고, 그리고 초기화 리스트가 있으며, c++11 에서 추가된 문법이 있다. 이거에 대해서 더 상세 하게 이야기를 할려고 한다. 일단 아래의 코드를 보자. `Knight` 클래스는 `Player` 클래스로 부터 상속을 받았고, 생성자에서 부모 클래스의 초기화를 했고, 또한 Knight 클래스의 member 변수인 `_hp` 를 100 으로 초기화 한걸 볼수있다. 또한 `Knight` 생성자 내에서 멤버 변수인 `_hp` 도 `_hp = 100` 이런식으로 초기화가 가능하다. 
+
+C++11 에서는 바로 class 내부에서 `int _hp = 100` 으로 설정이 가능하다.
+
+```c++
+class Player
+{
+public:
+    Player(){}
+    Player(int id){}
+};
+
+class Knight : public Player
+{
+public:
+    Knight() : Player(1), _hp(100)
+    // 선처리 영역 // 
+    {
+
+    }
+
+public:
+    int _hp;
+};
+```
+
+일단 초기화 리스트 같은경우, 상속 관계에서 원하는 부모를 생성자 호출할때 필요하다. 더나아가서 생성자내에서 초기화를 하는게 있고, 초기화 리스트의 비교를 따로 해보자. 일단 일반 변수 같은경우는 별 차이가 없으며, 만약 멤버 타입이 클래스인 경우 차이가 난다.
+
+일단 이걸 더 판별하기 위해서, `Is-A(Knight Is-A Player?)` 와 `Has-A(Knight Has-A Inventory)` 스스로에게 질문을 해보면 된다. 아래의 코드를 한번 봐보면 `Is-A` 같은 경우는 기사는 플레이어다 라고 생각해서 맞다고 하면, 상속관계 이다. 또 다른 예를 찾아보면 `Is-A` 를 사용해서 기사는 인벤토리냐 라고 묻는다면, 상속관계가 아닌 포함관계라는걸 볼수 있다. 큰그림을 그려보자면, 이렇게 생각하는 이유는 처음에 코드를 설계할때의 유용하기 때문이다.
+
+또 여기서 문제가 될게 있다. 만약 생성자 내부안에서 Inventory 를 만들어서 초기화를 할 경우, 각 다른 생성자를 한번씩 한번씩 호출이되고, 소멸자는 두번이 호출된거를 볼수 있는데, 멘붕이 올수 있다. 이부분은 선처리 영역에서 `Inventory` 를 만들었는데 생성자에 들어와서, 기존에 있던 기본 생성자를 날려버리고 `Inventory(int)` 의 생성자로 덮어씌우는 동시에 소멸자가 호출되면서, 코드가 끝나게 되면, 다시 소멸자가 호출이된다. 이럴 경우에는 애초에 선처리영역에서 아래와 같이 초기화를 하는걸 볼수 있다.
+
+```c++
+class Inventory
+{
+public:
+    Inventory(){ cout << "inventory()" << endl; }
+    Inventory(int size){ _size = size; }
+    ~Inventory(){ cout << "~Inventory()" << endl; }
+public:
+    int _size = 10;
+};
+
+class Player
+{
+public:
+    Player(){}
+    Player(int id){}
+};
+
+class Knight : public Player
+{
+public:
+    Knight() : Player(1), _hp(100), _inventory(20)
+    // 선처리 영역 // 
+    // inventory() // 
+    {
+
+    }
+
+public:
+    int _hp;
+    Inventory _inventory;
+};
+```
+
+또 정의함과 동시에 초기화가 필요한 경우가 있다. 주로 참조 타입이나 const 타입일 경우가 있다. 아래의 코드를 봐보자. 일단 테스트를 위해서, `_hpRef`,`_hpConst` 가 있다해보자. Knight 클래스 내부에서 생성자에서 저 두 멤버변수를 바꾼다고 해도 의미가 없어진다. Const 같은 경우는 바꿀수 없는거고, Reference 는 누군가 하나를 가르키고 있어야 하는건데, 이미 Knight 클래스가 생성이 될시 즉 선처리영역에서 이미 했기때문에 다른값으로 수정이 불가능하다. 그래서 하고 싶을 경우에는 마찬가지로 선처리 영역에서 하면된다.
+
+```c++
+class Inventory
+{
+public:
+    Inventory(){ cout << "inventory()" << endl; }
+    Inventory(int size){ _size = size; }
+    ~Inventory(){ cout << "~Inventory()" << endl; }
+public:
+    int _size = 10;
+};
+
+class Player
+{
+public:
+    Player(){}
+    Player(int id){}
+};
+
+class Knight : public Player
+{
+public:
+    Knight() : Player(1), _hp(100), _inventory(20), _hpRef(_hp), _hpConst(100)
+    // 선처리 영역 // 
+    // inventory() // 
+    {
+        _hpRef = _hp; // 안됨
+        _hpConst = 100; // 안됨
+    }
+
+public:
+    int _hp;
+    Inventory _inventory;
+    int& _hpRef;
+    const _hpConst;
+};
+```
 
 ### Operation Overloading
+
 
 ### Resource
 - [Inflearn: UnrealEngine Game Dev](https://www.inflearn.com/course/%EC%96%B8%EB%A6%AC%EC%96%BC-3d-mmorpg-1)

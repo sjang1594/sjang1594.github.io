@@ -6,6 +6,7 @@ tags: [c++]
 ---
 
 ### Obejcted Oriented Programming
+
 Objected Oriented Programming 이란 객체지향 프로그래밍을 의미하며, 기존에 있던 절차지향 프로그래밍 같은경우에는 코드가 분산되서, readability 도 떨어지면서, 사용자에게 배려하는 느낌이 전혀 없어진다. 근데 객체지향에서의 귀찮은 점도 존재한다. 예를들어서 "참, 두세줄이면 끝날 코드인데, 꼭 이렇게 까지 내가 해야할까?" 라는 생각도 들수도 있다. 하지만 객체 지향을 통해서 사용자의 편의성을 극대화 하며, 사용자의 실수를 최대한 제작자가 차단을 해야한다라는 가정하에 객체지향적 프로그래밍을 해야한다.
 
 일단 바로 코드로 넘어가자. 일 단 아래와 같이 Knight 에 대한 간단한 class 를 생성했다. class 생성할떄 Modify 할수 있는 조건이있는데 그게 바로 `public` 과 `private` 이있다. 그 이외에건 지금은 생략하고, Inheritance 에서 더 자세하게 설명을 할건데. 지금은 `public` 은 공공으로 사용할수 있는 변수나 함수(method) 라고 하자. `public` 으로 기본으로 지정된 Member Variable 과 Methods 가 존재한다.
@@ -65,6 +66,7 @@ int main()
 ```
 
 ### Constructor & Destructor
+
 앞에서 말했듯이, 클래스에 '소속'된 함수들을 Member Functions 또는 Methods 라고 한다. 이중에 특별한 친구들이 있다. 바로 `[시작]` 과 `[끝]` 을 알리는 함수들이 있다. 즉 탄생과 소멸을 칭하는 `생성자` 가 있고 `소멸자` 가있다. 생성자 같은 경우 여러가지로 존재할수 있고, 소멸자는 단 1개만 가능하다. 생성자같은 경우 그냥 틀이기 때문에 return 값이 없다.
 
 바로 코드를 봐보자. 기본적으로 생성자를 만들때에는 `Knight()` 라는 생성자를 만들면서, 주로 Member Variable 을 초기화 시켜주는 역활을 한다. 방금 전 생성자는 여러개의 생성자가 존재할수 있다고 했다. 초기에 parameter 를 받을수 있는 생성자가 있을수도 있고(기타 생성자), 그리고 다른 객체를 Copy 할수 있는 생성자가 될수도 있고, 그리고 타입 변환 생성자인 경우도 있다.
@@ -174,7 +176,9 @@ int main()
 ```
 
 ### Inheritance
+
 객체 지향 프로그래밍에서 중요한 속성들이 있는데 아래와 같다.
+
 1. 상속성
 2. 은닉성
 3. 다형성
@@ -334,6 +338,7 @@ protected:
     void ConnectCircuit() {}
 };
 ```
+
 위의 코드 같이, `MoveHandle`,`PushPedal`,`OpenDoor`,`TurnKey` 같은 경우는 유저가 자동차의 겉표면? 쉽게 사용할수 있는 기능들이다. 하지만 `DisassembleCar`, `RunEngine`, `ConnectCircuit` 같은 경우는 `private` 으로 class 내부에서만 사용할수 있지만, 상속을 받을수 있기 때문에 protected 로 보호할수있다. 또 `TurnKey()` 내부 함수에서 `protected` 로 지정된 함수를 call 할수 있게 해놓았다.
 
 ```c++
@@ -406,12 +411,10 @@ public:
 };
 ```
 
-
 이유중에 2번째: `다른 경로로 접근` 이라는게 있다. 이거에 대한 예를 들어보자. 아래의 코드를 보면, main 함수에서
-버서커를 instantiate 한다음에, _hp를 바꾸는데, 버서커모드의 출력창이 안나온다. 그 이유는 일단 _hp 를 접근해서 바꾸는건 위험하고
+버서커를 instantiate 한다음에, hp를 바꾸는데, 버서커모드의 출력창이 안나온다. 그 이유는 일단 _hp 를 접근해서 바꾸는건 위험하고
 또 다른건 클래스는 그냥 틀에 불과 하기 때문에 설계를 잘못했다고 말을 할수 있다. 그래서 이 부분에서 `encapsulation` 에 대한 이야기를
 할까 싶다. 캡슐화는 한마디로 `연관된 데이터와 함수를 논리적으로 묶어 놓은것`이라고 볼수 있다.
-
 
 ```c++
 class Berserker
@@ -459,6 +462,7 @@ int main()
 ```
 
 ### Polymorphism
+
 Polymorphism 이라는건 결국 다양한 형태로 존재 한다 라고 생각하면 된다. 즉 쉽게 말해서 겉은 똑같은데, 기능이 다르게 동작한다고 말할수 있다. 두가지로
 대표적으로 2 가지를 말을 할수 있다.
 
@@ -602,7 +606,6 @@ int main()
 가상함수를 사용하려면 어떻게 사용해야할까는 method 앞에 `keyword` 를 사용하면 된다. 그렇다면 위의 코드를 조금 정리해서 봐보자.
 일단 동적바인딩을 사용해서, `VMove()` 그리고 `VAttack()` 을 만들었다. 상속관계에서 virtual function 을 사용하면, virtual 함수인거다.
 
-
 ```c++
 class Player
 {
@@ -652,6 +655,7 @@ signature 만 가지고 있는 가상함수를 순수 가상함수라고 하는�
 이렇게 순수가상함수가 표현되면, 거의 무조건 상속받는 친구들은 무조건 재정의가 필요해 이렇게 말을하는거다.
 
 ### Initializing the List
+
 초기화를 하는 이유는 여러가지가 있다. 일단 초기화를 통해서 디버깅도 쉬어지고, 또한 초기화를 함에 따라서 어떤 값이 들어갔는지 확인이 가능하다. 즉 버그를 예방을 할수 있고, 포인트나 주소값이 연루 되어있다고 한다면 더더욱 중요시 생각해야한다. 아래의 코드를 한번 봐보자. 일단 `k._hp` 를 출력 한다고 가정하면, 엉뚱한 메모리값을 가지고 있다는걸 확인 할수 있다. 이렇게 초기화를 안한 상태에서, if statement 로 넘어간다면, 이제 Knight 가 죽었다는 사실을 들고 있다. 이런 실수를 방지 하고자 Initializing 을 할 필요가 있다.
 
 ```c++
@@ -675,7 +679,7 @@ int main()
 }
 ```
 
-초기화 방법은 여러가지가 있지만, Object Oriented Programming 관점에서의 초기화는 일단 생성자 안에서 초기화를 하는 방법이 있고, 그리고 초기화 리스트가 있으며, c++11 에서 추가된 문법이 있다. 이거에 대해서 더 상세 하게 이야기를 할려고 한다. 일단 아래의 코드를 보자. `Knight` 클래스는 `Player` 클래스로 부터 상속을 받았고, 생성자에서 부모 클래스의 초기화를 했고, 또한 Knight 클래스의 member 변수인 `_hp` 를 100 으로 초기화 한걸 볼수있다. 또한 `Knight` 생성자 내에서 멤버 변수인 `_hp` 도 `_hp = 100` 이런식으로 초기화가 가능하다. 
+초기화 방법은 여러가지가 있지만, Object Oriented Programming 관점에서의 초기화는 일단 생성자 안에서 초기화를 하는 방법이 있고, 그리고 초기화 리스트가 있으며, c++11 에서 추가된 문법이 있다. 이거에 대해서 더 상세 하게 이야기를 할려고 한다. 일단 아래의 코드를 보자. `Knight` 클래스는 `Player` 클래스로 부터 상속을 받았고, 생성자에서 부모 클래스의 초기화를 했고, 또한 Knight 클래스의 member 변수인 `_hp` 를 100 으로 초기화 한걸 볼수있다. 또한 `Knight` 생성자 내에서 멤버 변수인 `_hp` 도 `_hp = 100` 이런식으로 초기화가 가능하다.
 
 C++11 에서는 바로 class 내부에서 `int _hp = 100` 으로 설정이 가능하다.
 
@@ -782,9 +786,152 @@ public:
 
 ### Operation Overloading
 
+Operation Overloading 이란 큰틀로 보면 객체와 객체끼리의 연산을 할수 있게 만들어주는 역활을 말한다. 아래의 코드로 예를 들어보자. 우리는 두 가지의 객체를 만들어서 더했을때, `pos2` 로 저장하려고 했을때 각각의 객체들의 멤버 variable 이 더해졌으면 좋겠다는 바램에 실행을 해보면, 빌드에 실패하게 되어있다. 이럴때 필요한게 Operation Overloading 이라고 한다.
+
+```c++
+class Position
+{
+public:
+    int _x;
+    int _y;
+};
+
+int main()
+{
+    Position pos;
+    pos._x = 3;
+    pos._y = 4;
+
+    Position pos1;
+    pos1._x = 7;
+    pos1._y = 3;
+
+    Position pos2 = pos + pos1;
+    return 0;
+}
+```
+
+그렇다면 어떻게 만들까? 그리고 어떤 문법이 있을까를 알아보자. 어떻게 보면 일단 오버로딩 같은경우 한개의 같은 Naming 에 각 각 다른 signature 을 들고 있었다. 연산자도 똑깥이 사용하면 돼고, 그리고 그렇게 생각하다보면 그냥 보통 함수와 연산자 와는 무슨 차이가 있을까? 일단 연산자 같은경우는 피연산자의 개수/타입이 고정되어있다.
+
+그렇다면 바로 넘어가서 연산자 오버로딩에 대해서 더 설명 하려고 한다. 일단 연산자 함수를 정의를 해야하는데, 그 함수를 정의하는것도 멤버함수와 전역함수로 일반함수와 비슷하게 할수 있다. 일반 함수의 signature 을 생각을 해보자. 처음에는 Return type 이 존재 하고 그 다음 함수 이름에 argument 가 따라왔었다. 연산자 오버로딩도 똑같다. `RET operator+(ARG_LIST)` 이런식으로 하면 된다. 그래서 위의 코드를 서포트 하긴 아래의 코드를 한번봐보자. 아래와 같이 reference 의 값을 받아서 Position 을 `+` 연산을 한 이후에 Position 을 return 하는거로 보인다. 즉 a op b 이런 형태일때, 왼쪽으로 기준으로 실행이 된걸 확인 할수 있다. 즉 a 를 피연산자라고 생각 하면된다.
+근데 만약 a 가 클래스가 아니면, 연산이 안된다. 즉 `1 + pos` 가 된다면 안된다. 이걸 해결 할수 있는 방법은 전역 연산자 함수로 만들면 된다. 즉 a op b 라고 한다면, a, b 모두를 연산자 함수의 피연산자로 만들면 된다는 뜻이다.
+
+```c++
+class Position
+{
+public:
+    Position operator+(const Position& arg)
+    {
+        Position pos;
+        pos._x = _x + arg._x;
+        pos._y = _y + arg._y;
+        return pos;
+    }
+
+public:
+    int _x;
+    int _y;
+}
+
+Position operator+(int a, const Position& b)
+{
+    Position ret;
+    ret._x = b._x + a;
+    ret._y = b._y + a;
+}
+
+int main()
+{
+    Position pos;
+    pos._x = 3;
+    pos._y = 4;
+
+    Position pos1;
+    pos1._x = 7;
+    pos1._y = 3;
+
+    Position pos2 = pos + pos1;
+    return 0;
+}
+```
+
+그렇다면 어떤 연산자가 있을까? 그리고 전역 연산자 함수와 멤버 연산자의 함수 둘중에 어떤게 좋은걸까? 분명 전역으로 만들면 좋다는걸 말을 했었다. 하지만 둘다 사실 알아야 할 필요가 있다. 주로 대입 연산자 같은 경우(a=b)는 전역 연산자 함수로 만들어주는게 맞다.
+조금은 Tricky 하지만 대입연산자같은 경우는 자기 자신의 참조값을 return 하는 경우가 많기 때문에 `Position& operator=(int arg)` 이런식으로 된다. 그래서 자기 자신의 포인터를 표현하기 위해서 `*this` return 하면 된다.
+
+```c++
+class Position
+{
+public:
+    Position operator+(const Position& arg)
+    {
+        Position pos;
+        pos._x = _x + arg._x;
+        pos._y = _y + arg._y;
+        return pos;
+    }
+    Position operator+(int arg)
+    {
+        Position pos;
+        pos._x = _x + arg;
+        pos._y = _y + arg;
+    }
+
+    bool operator==(const Position &arg)
+    {
+        return _x == arg._x && _y == arg._y;
+    }
+
+    Position& operator=(int arg)
+    {
+        _x = arg;
+        _y = arg;
+        return *this;
+    }
+
+    Position& operator=(const Position& arg)
+    {
+        _x = arg._x;
+        _y = arg._y;
+        return *this;
+    }
+
+    Position& operator++()
+    {
+        _x++;
+        _y++;
+        return *this;
+    }
+
+    Position operator++(int)
+    {
+        Position ret = *this;
+        _x++;
+        _y++;
+        return ret;
+    }
+
+public:
+    int _x;
+    int _y;
+};
+
+Position operator+(int a, Position &b)
+{
+    Position ret;
+    ret._x = b._x + a;
+    ret._y = b._y + a;
+    return ret;
+}
+```
+
+위의 코드를 보면 복사 대입연산자의 signature 들이 보인다. 일단 말부터 어렵다 복사하긴 하는데 대입? 이라고 하는데, 이걸 잘풀어 보면 대입 연산자는 연산자인데, 자기 자신의 참조 타입을 인자로 받는것을 복사 대입 연산자라고 한다. 위의 코드를 봤을때, `Position& operator=(int arg)` 이 member function 인데, arguments 를 Position& arg 로 받는것이다. 그래서 표현을 하면 `Position& operator=(const Position& arg)` 이런 signature 로 된다는 것이다. 앞에서 봤듯이 복사 생성자와 복사 대입연산자 같은 경우는 Deep Copy 와 Shallow Copy 에서 다룰거지만 Memory 를 그대로 복사한다는거에대해서 되게 큰 의미가 있는 작업이다.
+
+위에서 봤듯이 모든 연산자를 오버로딩을 할수 있는건 아니다. (::, . .*) 등 안된다. 그리고 단항 연산자도 가능하다. 그렇다면 증감 연산자도 되기 때문에 위의 코드를 참고 하면 된다. 전위형 같은경우는 `operator++()` 이런 형태와, 후위형은 `operator++(int)` 이런식으로 되어있다는걸 확인할수 있다.
 
 ### Resource
+
 - [Inflearn: UnrealEngine Game Dev](https://www.inflearn.com/course/%EC%96%B8%EB%A6%AC%EC%96%BC-3d-mmorpg-1)
 
 ### Source Code
+
 - [Objected Oriented Programming in C++](https://github.com/sjang1594/self-study/tree/master/game_dev/cpp/opp)

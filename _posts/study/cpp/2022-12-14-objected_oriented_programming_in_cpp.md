@@ -928,6 +928,77 @@ Position operator+(int a, Position &b)
 
 위에서 봤듯이 모든 연산자를 오버로딩을 할수 있는건 아니다. (::, . .*) 등 안된다. 그리고 단항 연산자도 가능하다. 그렇다면 증감 연산자도 되기 때문에 위의 코드를 참고 하면 된다. 전위형 같은경우는 `operator++()` 이런 형태와, 후위형은 `operator++(int)` 이런식으로 되어있다는걸 확인할수 있다.
 
+
+
+### Etc
+
+조금 디테일한거에 대해서 포커스를 해보자 한다. 일단 C 에서 사용하는 struct 와 class 에 대한 차이를 알아보자 하는데, 결론은 종이 한 장 차이이다. 주로 struct 를 사용할때는 Data 의 묶음? 이라고 했던 점이 있었는데, 클래스에도 똑같이 사용할 수 있다. 그리고 Operator 나 function 을 넣을수 있다. 근데 다른점 이라고 한다면, 접근을 할 수 있느냐 없느냐의 차이이다. 아래의 코드를 실행시켜보면 알 수 있다. 즉 클래스에서 접근 지정자를 선언하지 않으면, `private` 으로 default 로 생성이 되기 때문에 미묘한 차이로 접근 할 수 없게 된다. 그리고 Struct 같은 경우는 기본 접근 지정자가 `public` 이다. 
+
+
+
+이렇게 설계한 느낌은 결국은 C 의 호환성이라고 한다.
+
+```c++
+struct TestStruct
+{
+    int _a;
+    int _b;
+};
+
+class TestClass
+{
+    int _a;
+    int _b;
+};
+
+int main()
+{
+    TestStruct ts;
+    ts._a = 1;
+    TestStruct tc;
+    tc._a = 3;
+    return 0;
+}
+```
+
+
+
+결국은 Struct 는 그냥 구조체 (데이터 묶음)을 표현하는 용도로 사용하면 되고, class 같은 경우는 객체 지향 프로그래밍을 나타내는 정도의 용도로 사용하면 될 것 같다.
+
+
+
+그 다음에 static 변수와 static 함수에 대해서 설명하고자 한다. static 은 정적이라는 의미를 가지고 있다. 아래의 코드 상태에서 스타크래프트의 아카데미 역활을 함수로 표현 하고자 할때 생각을 해보면, 모든 마린은 `attack` 이라는 변수를 가지고 있는데, 설계할때 클래스의 멤버 변수로 가지고 있기 때문에, 모든 마린의 공격력을 증가 시킬때, Instatiate 한 모든 마린의 공격력을 무식하게 다 바꿔줘야 해야 해서 불편할 수 있다. 그래서 `static` 을 사용해서 하면 해결 할 수 있다.
+
+즉 이렇게 하는 이유는 Marine class 의 설계도에 종속적으로 가져갈 수 있기 때문이다. (그 의미는 Marine 을 instatiate 할 때 마다 각 각 다른 객체이지만, 공통적으로 가지고 있는 것을 만들고 싶을 때 이렇게 사용된다.) 
+
+```c++
+class Marine
+{
+  public:
+    int _hp;
+    static int _attack;
+};
+
+int Marine::s_attack = 0;
+
+int main()
+{
+    Marine m1;
+    m1._hp = 40;
+    m1._attack = 6;
+    
+    Marine m2;
+    m2._hp = 40;
+    m2._attack = 6;
+    
+    // Academy
+    m1._attack = 7;
+    m2._attack = 7;
+}
+```
+
+
+
 ### Resource
 
 - [Inflearn: UnrealEngine Game Dev](https://www.inflearn.com/course/%EC%96%B8%EB%A6%AC%EC%96%BC-3d-mmorpg-1)

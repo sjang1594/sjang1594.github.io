@@ -28,7 +28,7 @@ public:
     int _x;
     int _y;
     int _z;
-}
+};
 
 int main()
 {
@@ -49,7 +49,7 @@ public:
     int _x;
     int _y;
     int _z;
-}
+};
 
 int main()
 {
@@ -77,7 +77,7 @@ public:
     int _x;
     int _y;
     int _z;
-}
+};
 
 int main()
 {
@@ -98,9 +98,382 @@ int main()
 }
 ```
 
+사실 `malloc`, `calloc`, `realoc` 은 C 에서 사용되는 부분이였다. 그래서, C++ 에서 자주 사용되는 `new` 와 `delete` 를 알아보자. 일단 넘어가기전에 `malloc`, `calloc`, `realoc` 이들은 함수였다. 하지만 C++ 에서 동적할당을하는 `new` 와 `delete` 연산자(operator)이다.
+
+아래의 코드를 봐보자. new 를 했을때 타입을 넣어준다. 이때 타입의 크기만큼을 동적할당을 해준다. 앞에서 `malloc` 과 `free` 가 같이 있듯이, `new` 와 `delete` 같이 묶여 다니는걸 볼수 있다. 버그의 케이스도 위의 `malloc` 과 같다. 그러면 우리가 Monster 를 여러마리를 만들고 싶을때는 아래의 코드를 보면 `new Monster[5]` 를 사용해서 5 마리의 몬스터를 만든것을 볼수 있다.
+
+```c++
+class Monster
+{
+public:
+    int _hp;
+    int _x;
+    int _y;
+    int _z;
+};
+
+int main()
+{
+    Monster* m1 = new Monster;
+    m1._hp = 100;
+    m1._x = 0;
+    m1._y = 0;
+    m1._z = 0;
+    delete m1;
+
+    Monster* m2 = new Monster[5];
+    delete[] m2;
+    return 0;
+}
+```
+
+그렇다면 `malloc / free` 그리고 `new / delete` 의 Use-Case 같은경우는 사용 편의성에서는 확실이 `new / delete` 이게 좋지만, 타입에 상관없이 특정한 크기의 메모리 영역을 할당받으려면 `malloc / free` 이 좋다. `정말 가장 중요한 근본적인 차이는 또 new / delete 는 생성타입이 클래스일 경우, 생성자 / 소멸자를 호출해준다.` 즉 위의 코드에서 Monster 를 여러개 만들때 생성자와 소멸자가 5번 호출을 해주고, 만약에 `delete` 를 한번 했었을때, 에러를 뱉어내는걸 확인할수 있다.
+
+```c++
+class Monster
+{
+public:
+    Monster(){ cout << "Monster()" << endl;}
+    ~Monster(){ cout << "~Monster()" << endl;}
+    int _hp;
+    int _x;
+    int _y;
+    int _z;
+};
+
+int main()
+{
+    Monster m1 = new Monster;
+    delete m1;
+    return 0;
+}
+
+```
+
+마지막 예를 보자. 아래의 코드를 봐보면, 실제 stack 에서 Item 을 instantiate 했을때는, 생성자가 호출이 되는걸 확인 할수 있는데 pointer 로 Item 이라는걸 생성할때는 생성자가 호출이 될수도 있고 안될수도 있다. 아래의 같이 pointer 로 배열을 만들경우 타입만 선언을 했기때문에 그리고 초기에는 아무것도 없기 때문에 생성자가 없을 수 도 있다. 그래서 아래와 같이 객체생성을 하기위해서 loop 을 돌면서 생성을 하고 그 다음에 소멸자도 마찬가지로 소멸을 시키면 소멸자가 호출이된다.
+
+```c++
+class Item
+{
+public:
+	Item(){cout << "Item()" << endl;}
+	Item(const Item& item){cout << "Item(const: item&" << endl;}
+	~Item(){ cout << "~Item()" << endl;}
+public:
+	int _itemType = 0;
+	int _itemObid = 0;
+
+	char _dummy[4096] = {};
+};
+
+void TestItem(Item item){ /* 복사생성자 호출 */ }
+
+void TestItemPtr(Item* item){ /*원본을 건드리기때문에 원격*/}
+
+int main()
+{
+    Item item;
+    Item* item2 = new Item();
+
+    TestItem(item);
+    TestItem(*item2);
+
+    TestItemPtr(&item);
+    TestItemPtr(item2);
+
+    Item item3[100] = {};
+
+    // 실질적으로 아무것도 없을수 있음
+    Item* item4[100] = {};
+
+    for(int i=0; i<100; i++)
+        Item4[i] = new Item();
+
+    for(int i=0; i<100; i++)
+        delete Item4[i];
+    delete item2;
+    return 0;
+}
+```
+
 ### Type Conversion
 
+위에서 보았듯이 `malloc / free` 를 사용했을때 void 값으로 설정을 해준 이후 타입을 변환한걸 확인 할수 있었다.
+
+일단 타입 변환에도 유형(비트열 재구성 여부)이 있다.
+1. 값 타입 변환
+   1. 의미를 유지하기 위해서, 원본 객체의 다른 비트열 재구성.
+2. 참조 타입 변환
+   1. 비트열을 재구성하지 않고 관점만 바꾸는 것
+
+```c++
+int main()
+{
+    {
+        // 값 타입 변환
+        int a = 123456789;
+        float b = (float)a;
+    }
+    {
+        // 참조 타입 변환
+        int a = 123456789;
+        float b = (float&)a;
+    }
+    return 0;
+}
+```
+
+타입 변환에서는 변환이 안전하게 변하게 되는 경향과 불안전하게 변환되는게 있다. 예를 들어서 Upcasting 즉 작은 메모리를 타입을 가지고 있는걸, 큰거에다가 변환시켰을때에 안전하게 변환되는걸 확인할수 있다. 그렇다면 불완전하게 되는 경향은 이거에 반대되는 상황일다. 이럴 경우 데이터의 손실을 불러 일으킨다.
+
+또 프로그래머의 암시적변환과 명시적 변환이존재한다. 암시적 변환 같은 경우는 컴파일러에게 알아서 변환 인거고, 명시적인거는 프로그래머가 따로 괜찮으니까 타입캐스팅을 해줘라는 느낌이다.
+
+그렇다면 객체 클래스가 나온다고 했을때는 어떻게 타입변환을 어떻게 해야할까? 라는 질문을 할 수 있다.
+일반적으로는당연히 타입변환이 되지 않는다. 하지만 예외적인 케이스는 있다. 타입 변환생성자를 만들어주게 되면, 타입변환이 가능하다. 그리고 타입 변환 연산자로 타입변환이 가능하다. 아래의 코드를 참고하자.
+
+```c++
+class Knight
+{
+public:
+	int _hp = 10;
+};
+
+class Dog
+{
+public:
+	Dog(){}
+    // 타입 변환 생성자
+	Dog(const Knight& knight){ _age = knight._hp;}
+
+	// 타입 변환 연산자 (return type 이 없음)
+	operator Knight()
+	{
+		return (Knight)(*this);
+	}
+public:
+    int _age = 1;
+    int _cuteness = 2;
+};
+
+int main()
+{
+    Knight knight;
+    Dog = dog (Dog)knight; 
+}
+```
+
+그리고 또 연관없는 클래스 사이의 참조 타입변환을 알아보자. 아래의 코드를 봐보면 `(Dog&)` 이게 knight 앞에 없으면 에러를 내뱉는다. 이건 일단 기본적으로 서로 타입이 안맞기 때문이다. 그리고 문법적으로 봤을때는 일단 참조기 때문에 주소값을 타고 가면 Dog 가 있을꺼야라고하는게 사실을 문법적으로 맞다. 하지만 사실적으로는 Knight 이 있는거다. 즉 문법적으로 통과할지라도, 사실의 값이 다르다는건 명시적으로는 괜찮다.
+
+```c++
+class Knight
+{
+public:
+	int _hp = 10;
+};
+
+class Dog
+{
+public:
+	Dog(){}
+    // 타입 변환 생성자
+	Dog(const Knight& knight){ _age = knight._hp;}
+
+	// 타입 변환 연산자 (return type 이 없음)
+	operator Knight()
+	{
+		return (Knight)(*this);
+	}
+public:
+    int _age = 1;
+    int _cuteness = 2;
+};
+
+int main()
+{
+    Knight knight;
+    Dog& dog = (Dog&)knight; 
+}
+```
+
+그렇다면 마지막으로 볼수 있는게 클래스에서 중요했던 상속관계에 있는 클래스 사이의 변환은 어떻게 될까? 첫번째는 상속 관계 클래스의 값타입변환이 있다. 아래의 코드를 보면 bulldog 은 dog 를 상속 받고 있기때문에, 말에 일리가 있다. 즉 자식의 타입변환을 해서 부모님에게 저장하는건 가능하다 라는 말이다.
+
+```c++
+class Dog
+{
+public:
+	Dog(){}
+    // 타입 변환 생성자
+	Dog(const Knight& knight){ _age = knight._hp;}
+
+	// 타입 변환 연산자 (return type 이 없음)
+	operator Knight()
+	{
+		return (Knight)(*this);
+	}
+public:
+    int _age = 1;
+    int _cuteness = 2;
+};
+
+class BullDog : public Dog
+{
+public:
+    bool IsFrench;
+};
+
+int main()
+{
+    BullDog bulldog;
+    Dog dog = bulldog;
+}
+```
+
+마지막으로는 상속관계 클래스의 참조 타입 변환이다. 아래의 코드를 확인했을때 자식에서 부모의 타입변환은 Ok 지만, 부모에서 자식으로 할때 암시적으로는 안돼지만, 명시적으로는 Ok 한다.
+```c++
+class Dog
+{
+public:
+	Dog(){}
+    // 타입 변환 생성자
+	Dog(const Knight& knight){ _age = knight._hp;}
+
+	// 타입 변환 연산자 (return type 이 없음)
+	operator Knight()
+	{
+		return (Knight)(*this);
+	}
+public:
+    int _age = 1;
+    int _cuteness = 2;
+};
+
+class BullDog : public Dog
+{
+public:
+    bool IsFrench;
+};
+
+int main()
+{
+    Dog dog;
+    BullDog& bulldog = (BullDog&)dog; 
+}
+```
+
+### Pointer Type Conversion
+
+위와같이 Type Conversion 을 연이어 해보자. 일단 연관성이 없는 클래스 사이의 포인터 변환을 해보자.
+아래의 코드에서 보면 명시적으로는 Ok 지만 암시적인것은 컴파일러에서 에러를 내뱉는걸 확인할수있다. 이걸 해석해보자면 item 의 주소를 타고 가면 Item 이 있다라는걸 명시해주는데, 사실상 틀린거라고 확인할수있다. 그런데 여기서 문제점은 실제 Knight() 안에 _hp 가 4 byte 일텐데 item->_ItemType 을 했을때까지는 괜찮다. 왜냐하면 같은 4 byte 일테니까. 하지만 두번째 _ItemDbId 를 넣을경우 엉뚱한곳에다가 메모리의 값을 수정하다보니 메모리오염이 있을수가 있다. 또 이건 에러로 내뱉지도 않으니, 그냥 지나칠수 있는 치명적인 메모리의 오염의 주범이 될거다.
+
+```c++
+class Knight
+{
+public:
+    int _hp;
+};
+
+int main()
+{
+    Knight* knight = new Knight();
+    // Item* item = knight; 암시적 NO
+    // 명시적 OK
+    Item* item = (Item*)knight;
+    item->_ItemType = 2;
+    item->_ItemDbId = 1;
+    delete knight;
+    return 0;
+}
+```
+
+그렇다면 상속관계에서의 포인터 타입 변환관계를 알아보자. 여기에서도 명시적으로 하면 Ok 지만, 사실 엉뚱한 메모리를 바꿀수 있는 위험이 있다. 하지만, 논리적으로 생각했을때 자식에서 부모 변환테스트는 암시적으로는 된다. 당연히 Weapon 은 Item 이 맞기 때문이다. 즉 명시적으로 타입변환을 할때는 항상 조심해야한다.
+
+그렇다면 항상모든게 명시적으로 하는게 좋지 않느냐라는 질문을 할수 있지만 아래의 코드를 보면, 자식에서 부모로 가는건 설계적인 면에서 많은 이득을 볼수 있기때문에, Inventory 라는 pointer array 를 사용해서 추가할수 있다.
+
+```c++
+class Item
+{
+public:
+	Item(){cout << "Item()" << endl;}
+	Item(int itemType) : _itemType(_itemType) {};
+	Item(const Item& item){cout << "Item(const: item&" << endl;}
+	~Item(){ cout << "~Item()" << endl;}
+	virtual void Test(){cout << "Test Item " << endl;}
+public:
+	int _itemType = 0;
+	int _itemdbid = 0;
+
+	char _dummy[4096] = {};
+};
+
+class Weapon : public Item
+{
+public:
+	Weapon() : Item(IT_WEAPON){ cout << " Weapon() " << endl; _damage = rand() % 100 + 1;} 
+	~Weapon(){ cout << "~Weapon()" << endl; }
+public:
+	int _damage = 0;
+};
+
+class Armor : public Item
+{
+public:
+	Armor() : Item(IT_ARMOR){ cout << " Armor() " << endl;}
+	~Armor(){ cout << " ~Armor() " << endl;}
+public:
+	int _defence = 0;
+};
+
+int main()
+{
+    // Parent -> child
+    Item* item = new Item();
+    // item 은 무기냐? --> 아니다. 다른거일수도 있잖아!
+    Weapon* weapon = item;
+
+    Weapon* weapon1 = new Weapon();
+    Item* item = weapon;
+
+    delete item;
+    delete weapon;
+    
+
+    Item* inventory[20] = {};
+	srand((unsigned int) time(nullptr));
+	for (int i=0; i < 20; i++)
+	{
+		int randValue = rand() % 2; 
+
+		switch(randValue)
+		{
+			case 0:
+			inventory[i] = new Weapon(); 
+			break;
+
+			case 1:
+			inventory[i] = new Armor();
+			break;
+		}
+	}
+    return 0;
+}
+
+for (int i =0; i < 20; i++)
+	{
+		Item* item = inventory[i];
+		if (item == nullptr)
+			continue;
+
+		if (item->_itemType == IT_WEAPON)
+		{
+			Weapon* weapon = (Weapon*)item;
+			cout << "Weapon Damage: " << weapon->_damage <<endl;
+		}
+
+	}
+```
+
 ### Shallow Copy vs Deep Copy
+
+### Casting
 
 ### Resource
 - [Inflearn: UnrealEngine Game Dev](https://www.inflearn.com/course/%EC%96%B8%EB%A6%AC%EC%96%BC-3d-mmorpg-1)

@@ -550,16 +550,15 @@ int main()
 
 ### Shallow Copy vs Deep Copy
 
+가끔식은 객체를 우리가 복사해서 사용을 할수 있다. 원본 데이터는 그대로 내두고, 복사를 통해서 복사한 값으로 이리 저리 사용한다음에 테스팅만 할수 도 있다. 그렇면 복사에 대해서 잠깐 알아보자.
+
+아래의 코드를 봐보자. 아래의 `main()` 쪽을 봐보자. 일단 복사 생성자와 복사 대입연산자가 없어도 컴파일러가 암시적으로 만들어주는걸 확인 할수 있다. 컴파일러가 기본적으로 만들어주는건, 물론 편하지만, 가끔씩은 커스텀을 해야할 필요가 있다. 즉 그런 케이스는 참조와 포인트를 사용할 경우가 있다.
+
 ```c++
-class Knight : Player
+class Knight
 {
 public:
     Knight(){};
-    Knight(const Knight& knight) : Player(knight), _pet(knight._pet)
-    {
-        _hp = knight._hp;
-        _pet = new Pet(*(knight._pet));
-    }
     ~Knight(){};
 
 public:
@@ -571,11 +570,496 @@ int main()
     Knight knight;
     knight._hp = 200;
 
-    Knight knight2 = knight;
+    Knight knight2 = knight; // 복사 생성자
+    Knight knight3(knight);
+
+    Knight knight4; // 기본생성자
+    knight4 = knight; // 복사 대입 연산자
+}
+```
+
+위의 코드에서는 Knight 의 기본 class 가 있었다. 하지만 기사들이 만약에 pet 이라는 것을 들고 다닌다고 생각해보자. 근데 아래 처럼 Knight 에 Pet 이 속해 있게끔 Knight 클래스 안에 Pet 을 넣었다고 생각을 해보자. 근데 여기 설계에서 안좋은 점은 Pet 의 객체의 생명주기를 tracking 하기 힘들다는 것이다. 그리고 Pet class 안에 정말 큰 이상한 데이터가 들어간다고 생각해보면, Knight 를 instantiate 할때마다 엄청난 큰 데이터를 들고 있는건 메모리 측면에서도 비효율 적이다. 그리고 만약 지금은 괜찮겠지만 Pet 을 상속을 받는 클래스가 있다고 하면 Knight 에서는 상속받는 클래스를 지정해주기가 어렵다. 그래서 `Pet* _pet;` 이런식 으로 만들면 된다.
+
+다시 복사에대해서 생각을 해보자. 아래와 같이 기본 복사 대입 연산자나 복사 생성자를 통해서 만든다고 했을때, `knight` 가 들고 있는 Pet 을 그대로 들고 있다는 걸 확인 할 수 있다. 즉 한 펫을 공유하고 있다. 이런 공유의 개념은 사실 `얕은 복사(Shallow Copy)`라고 생각을 하면 된다. 어떤 하나의 객체를 복사를 하려고 했을떄, 그 복사되는 객체가 다른 객체의 주소값을 그대로 가지고 있어서, 공유가 되는 현상이다. 
+
+```c++
+class Pet
+{
+public:
+    Pet(){ cout << "Pet()" << endl; }
+    Pet(const Pet& pet){ cout << "Pet(const&)" << endl; } // 복사 생성자
+    ~Pet(){ cout << "~Pet()" << endl; }
+};
+
+class Knight
+{
+public:
+    Knight(){};
+    ~Knight(){};
+
+public:
+    int _hp = 100; // c++11
+    //Pet _pet;
+    Pet* _pet;    
+};
+
+int main()
+{
+    Pet* pet = new Pet();
+    Knight knight;
+    knight._hp = 200;
+    knight._pet = pet;
+
+    Knight k2 = knight;
+    Knight k3;
+    k3 = knight;
+    return 0;
+}
+```
+
+이거만 봤을때 얕은 복사의 역활은 알겠지만 문제가 되는점이 뭘까?라고 생각을 해보자. 얕은 복사가 문제가 될경우는 이거다. 만약 Pet 의 생명주기가 knight 의 생명주기가 같다고 아래의 코드와 같이 생각 해보자. 세개의 Knight 의 객체가 하나의 Pet 을 바라보기 때문에, 소멸자를 날려줄때, 한번삭제는 가능하지만, 나머지는 아예 삭제된 객체를 보기 떄문에 문제가 생긴다. 즉 double free 문제가 생긴다.
+
+```c++
+class Pet
+{
+public:
+    Pet(){ cout << "Pet()" << endl; }
+    Pet(const Pet& pet){ cout << "Pet(const&)" << endl; } // 복사 생성자
+    ~Pet(){ cout << "~Pet()" << endl; }
+};
+
+class Knight
+{
+public:
+    Knight()
+    {
+        _pet = new Pet;
+    };
+    ~Knight()
+    {
+        delete _pet;
+    };
+
+public:
+    int _hp = 100; // c++11
+    Pet* _pet;    
+};
+
+int main()
+{
+    Knight knight;
+    knight._hp = 200;
+ 
+    Knight k2 = knight;
+    Knight k3;
+    k3 = knight;
+    return 0;
+}
+```
+
+그래서 이 Shallow Copy 를 안하기 위해서, Deep Copy(깊은 복사)를 하면 된다. 즉 위의 예제와 같이 Knight 들은 각자 자기들만의 Pet 의 객체를 들고 싶어한다. 포인터는 주소값이 있다면, 주소를 그대로 복사하는게 아니라 새로운 객체를 생성하고 상이한 객체를 가르키는 상태가 되게 할 수 있다.
+
+다시 말해서 깊은 복사를 하려면, Compiler 에서 제공되는 기본 복사 생성자나 복사 대입 연산자를 사용하면 안되고, 명시적인 표현이 필요하다. 아래의 코드를 봐보자. 아래의 코드를 보면 복사 대입연산자와 복사 생성자를 명시적으로 표현한게 보인다. 일단 Pet 을 새롭게 만들어야하는것도 맞지만 Pet 의 복사 생성자를 이용해서 `knight._pet` 을 인자로 준게 보인다. 이건 Knight 에 해당되는 _pet 에 속한다라고도 생각하면 된다. 이것이 깊은 복사라고 한다.
+
+```c++
+class Pet
+{
+public:
+    Pet(){ cout << "Pet()" << endl; }
+    Pet(const Pet& pet){ cout << "Pet(const&)" << endl; } // 복사 생성자
+    ~Pet(){ cout << "~Pet()" << endl; }
+};
+
+class Knight
+{
+public:
+    Knight()
+    {
+        _pet = new Pet;
+    };
+    Knight(const Knight& knight) // 복사 생성자
+    {
+        _hp = knight._hp;
+        _pet = new Pet(*(knight._pet));
+    }
+    Knight& operator=(const Knight& knight) // 복사 대입 연산자
+    {
+        _hp = knight._hp;
+        _pet = new Pet(*(knight._pet));
+        return *this;
+    }
+    ~Knight()
+    {
+        delete _pet;
+    };
+
+public:
+    int _hp = 100; // c++11
+    Pet* _pet;    
+};
+
+int main()
+{
+    Knight knight;
+    knight._hp = 200;
+ 
+    Knight k2 = knight;
+    Knight k3;
+    k3 = knight;
+    return 0;
+}
+```
+
+암시적으로 생성되는 복사 생성자와 복사 대입 연산자를 알아보자, 그리고 그 스텝과 명시적과의 차이를 알아보자. 일단 결론적으로 말하자면, 암시적 복사 생성자의 step 은 이렇다.
+
+1. 암시적 복사 생성자 Steps
+    1. 부모 클래스의 복사 생성자 호출
+    2. 멤버 클래스(pointer x)의 복사 생성자 호출
+    3. 멤버가 기본 타입일 경우 메모리 복사 (shallow copy)
+
+2. 명시적 복사 생성자 Steps
+    1. 부모클래스의 기본 생성자 호출
+    2. 멤버 클래스의 기본 생성자 호출
+
+아래의 코드를 한번 봐보자. 아래의 코드는 암시적으로 복사 생성자와 복사 대입생성자의 흐름을 알수 있다.
+
+```c++
+class Pet
+{
+public:
+    Pet(){ cout << "Pet()" << endl; }
+    Pet(const Pet& pet){ cout << "Pet(const&)" << endl; } // 복사 생성자
+    ~Pet(){ cout << "~Pet()" << endl; }
+};
+
+class Player
+{
+public:
+    Player(){ cout << "Player()" << endl;}
+    Player(const Player& player) 
+    { 
+        cout << "Player(const Player&)" << endl; 
+        _lvl = player._lvl; 
+    }
+    Player& operator=(const Player& player)
+    { 
+        cout << "Player operator=()" << endl; 
+        _lvl = player._lvl;
+        return *this; 
+    }
+    ~Player(){cout << "~Player()" << endl; }
+public:
+    int _lvl = 0;
+};
+
+class Knight : public Player
+{
+public:
+    Knight()
+    {
+    };
+    ~Knight()
+    {
+    };
+
+public:
+    int _hp = 100; // c++11
+    Pet _pet;    
+};
+
+int main()
+{
+    Knight knight;
+    knight._hp = 200;
+ 
+    Knight k2 = knight; // 복사 생성자
+    Knight k3;
+    k3 = knight; // 복사 대입 연산자
+    return 0;
+}
+```
+
+명시적인걸 한번 봐보자. Inherit 에서 명시적으로 복사 생성자를 했을 경우 주의점은 부모의 복사생성자가 call 이 됬는지, 기본 생성자가 생성이 되어있는지를 확인해보아야 한다.  
+
+```c++
+class Pet
+{
+public:
+    Pet(){ cout << "Pet()" << endl; }
+    Pet(const Pet& pet){ cout << "Pet(const&)" << endl; } // 복사 생성자
+    ~Pet(){ cout << "~Pet()" << endl; }
+};
+
+class Player
+{
+public:
+    Player(){ cout << "Player()" << endl;}
+    Player(const Player& player) 
+    { 
+        cout << "Player(const Player&)" << endl; 
+        _lvl = player._lvl; 
+    }
+    Player& operator=(const Player& player)
+    { 
+        cout << "Player operator=()" << endl; 
+        _lvl = player._lvl;
+        return *this; 
+    }
+    ~Player(){cout << "~Player()" << endl; }
+public:
+    int _lvl = 0;
+};
+
+class Knight : public Player
+{
+public:
+    Knight()
+    {
+    };
+    Knight(const Knight& knight) : Player(knight), _pet(knight._pet)
+    {
+        _hp = knight._hp;
+    }
+    ~Knight()
+    {
+    };
+
+public:
+    int _hp = 100; // c++11
+    Pet _pet;    
+};
+
+int main()
+{
+    Knight knight;
+    knight._hp = 200;
+ 
+    Knight k2 = knight;
+    Knight k3;
+    k3 = knight;
+    return 0;
+}
+```
+
+그 다음에는 암시적 복사 대입연산자의 step 을 알아보자.
+
+1. 암시적 복사 대입 연산자 step
+    1. 부모 클래스의 복사 대입 연산자 호출
+    2. 멤버 클래스의 복사 대입 연산자 호출
+    3. 멤버가 기본 타입일 경우 메모리 복사 (얕은 복사 shallow copy)
+
+2. 명시적 복사 대입 연산자 step
+    1. 알아서 잘해라!
+
+암시적인 복사 대입연산자도 암시적 복사 생성자와 같다.
+```c++
+class Pet
+{
+public:
+    Pet(){ cout << "Pet()" << endl; }
+    Pet(const Pet& pet){ cout << "Pet(const&)" << endl; } // 복사 생성자
+    ~Pet(){ cout << "~Pet()" << endl; }
+    Pet& operator=(const Pet& pet){ cout << "Pet& operator()="<< endl; return *this; }
+};
+
+class Player
+{
+public:
+    Player(){ cout << "Player()" << endl;}
+    Player(const Player& player) 
+    { 
+        cout << "Player(const Player&)" << endl; 
+        _lvl = player._lvl; 
+    }
+    Player& operator=(const Player& player)
+    { 
+        cout << "Player operator=()" << endl; 
+        _lvl = player._lvl;
+        return *this; 
+    }
+    ~Player(){cout << "~Player()" << endl; }
+public:
+    int _lvl = 0;
+};
+
+class Knight : public Player
+{
+public:
+    Knight()
+    {
+    };
+    Knight(const Knight& knight) : Player(knight), _pet(knight._pet)
+    {
+        _hp = knight._hp;
+    }
+    Knight& operator=(const Knight& knight)
+    {
+        cout << "Knight operator=()" << endl;
+        _hp = knight._hp;
+        return *this;
+    }
+    ~Knight()
+    {
+    };
+
+public:
+    int _hp = 100; // c++11
+    Pet _pet;    
+};
+
+int main()
+{
+    Knight knight;
+    knight._hp = 200;
+ 
+    Knight k2 = knight;
+    Knight k3;
+    k3 = knight;
+    return 0;
+}
+```
+
+하지만, 명시적인것은 얕은복사를 피하기 위해서 Knight 의 복사 대입연산자를 호출 했을경우 Pet 과 Player 에 대한 정보가 없으므로 초기 세팅이 필요하다.
+
+```c++
+class Pet
+{
+public:
+    Pet(){ cout << "Pet()" << endl; }
+    Pet(const Pet& pet){ cout << "Pet(const&)" << endl; } // 복사 생성자
+    ~Pet(){ cout << "~Pet()" << endl; }
+    Pet& operator=(const Pet& pet){ cout << "Pet& operator()="<< endl; return *this; }
+};
+
+class Player
+{
+public:
+    Player(){ cout << "Player()" << endl;}
+    Player(const Player& player) 
+    { 
+        cout << "Player(const Player&)" << endl; 
+        _lvl = player._lvl; 
+    }
+    Player& operator=(const Player& player)
+    { 
+        cout << "Player operator=()" << endl; 
+        _lvl = player._lvl;
+        return *this; 
+    }
+    ~Player(){cout << "~Player()" << endl; }
+public:
+    int _lvl = 0;
+};
+
+class Knight : public Player
+{
+public:
+    Knight()
+    {
+    };
+    Knight(const Knight& knight) : Player(knight), _pet(knight._pet)
+    {
+        _hp = knight._hp;
+    }
+    Knight& operator=(const Knight& knight)
+    {
+        cout << "Knight operator=()" << endl;
+        Player::operator=(knight);
+        _hp = knight._hp;
+        _pet = knight._pet;
+        return *this;
+    }
+    ~Knight()
+    {
+    };
+
+public:
+    int _hp = 100; // c++11
+    Pet _pet;    
+};
+
+int main()
+{
+    Knight knight;
+    knight._hp = 200;
+ 
+    Knight k2 = knight;
+    Knight k3;
+    k3 = knight;
+    return 0;
 }
 ```
 
 ### Casting
+
+또 C++ 에서 casting 에 관련된 함수들이 존재한다. 한번 알아보자.
+
+1. static_cast
+2. dynamic_cast
+3. const_cast
+4. reinterpret_cast
+
+`static_cast` 같은경우, 타입 원칙에 비춰서 볼때, 상식적인 캐스팅만 허용해준다. (예 int <-> float). 그리고 다운 캐스팅도 허락이된다 (예 Player* -> Knight*). 이것도 마찬가지로 뭔가 타입 캐스팅을 할때 프로그래머가 객체의 구조를 확인하고, 명시적으로 할수 있는지 없는지에 따라서 결정을 해야한다. 아래의 코드를 확인해보자.
+
+```c++
+int hp = 100;
+int maxHP = 200;
+float ratio = static_cast<float>(hp) / maxHP;
+```
+
+```c++
+class Player
+{
+
+};
+
+class Knight : public Player
+{
+
+};
+
+class Archer : public Player
+{
+
+};
+
+int main()
+{
+    Player* player = new Player(); // 예외의 케이스
+    Knight* k1 = static_cast<Knight*> player;
+
+    Knight* k2 = new Knight();
+    Player* p2 = static_cast<Player*>(k2);
+    return 0;
+}
+```
+
+그 다음에는 `dynamic_cast` 를 확인해보자. 결국 `dynamic_cast` 같은 경우 `static_cast` 의 단점을 살짝 보완해주는 느낌이다. 이게 어떻게 작동하는지는 RTTI(RunTime Time Information) 라는 거에 결정이 되는데, 이 개념은 사실 `virtual` 과 비슷하다. .vftable 에서 run time 에서 타입을 확인 할수 있다. 즉 virtual keyword 가 있어야 dynamic_cast 를 사용할수 있다라는 것이다. 그리고 만약에 잘못된 타입으로 캐스팅을 했으면, `nullptr` 로 반환을 한다. 근데 이렇게 .vftable 를 확인해서, 그 타입이 한번 맞는지 더 체크하는게 performance 에서는 않좋을수 있으니 static 과 같이 사용하는게 좋다. 아래의 코드를 보면 정의하는 방법이있다.
+
+```c++
+Knight* k4 = dynamic_cast<Knight*>(player)
+```
+
+`const_cast` 의 경우는 `const` 를 떄고 붙이고 하는 역활을 한다. 아래와 같이 `"Nick"` 같은 경우는 const char pointer 이기 때문에 안될수 밖에 없다. 그래서 const_cast 를 사용해서 const 를 빼고 넘겨주기 떄문에 `PrintName` 의 signature 에 맞아서 작동 하게 된다.
+
+```c++
+PrintName(char *str)
+{
+
+}
+
+int main()
+{
+    PrintName(const_cast<char*>("Nick"));
+}
+```
+
+그리고 마지막 `reinterpret_cast` 를 알아보자. 이 친구는 강력한 형태의 캐스팅이다. 예를 들어서 포인터와 전혀 관계업는 다른타입 변환이 있다.
+
+```c++
+Knight* k2;
+__int64 address = reinterpret_cast<__int64> k2;
+```
 
 ### Resource
 

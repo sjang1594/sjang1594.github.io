@@ -156,14 +156,14 @@ int main()
 class Item
 {
 public:
-	Item(){cout << "Item()" << endl;}
-	Item(const Item& item){cout << "Item(const: item&" << endl;}
-	~Item(){ cout << "~Item()" << endl;}
+    Item(){cout << "Item()" << endl;}
+    Item(const Item& item){cout << "Item(const: item&" << endl;}
+    ~Item(){ cout << "~Item()" << endl;}
 public:
-	int _itemType = 0;
-	int _itemObid = 0;
+    int _itemType = 0;
+    int _itemObid = 0;
 
-	char _dummy[4096] = {};
+    char _dummy[4096] = {};
 };
 
 void TestItem(Item item){ /* 복사생성자 호출 */ }
@@ -201,6 +201,7 @@ int main()
 위에서 보았듯이 `malloc / free` 를 사용했을때 void 값으로 설정을 해준 이후 타입을 변환한걸 확인 할수 있었다.
 
 일단 타입 변환에도 유형(비트열 재구성 여부)이 있다.
+
 1. 값 타입 변환
    1. 의미를 유지하기 위해서, 원본 객체의 다른 비트열 재구성.
 2. 참조 타입 변환
@@ -234,21 +235,21 @@ int main()
 class Knight
 {
 public:
-	int _hp = 10;
+    int _hp = 10;
 };
 
 class Dog
 {
 public:
-	Dog(){}
+    Dog(){}
     // 타입 변환 생성자
-	Dog(const Knight& knight){ _age = knight._hp;}
+    Dog(const Knight& knight){ _age = knight._hp;}
 
-	// 타입 변환 연산자 (return type 이 없음)
-	operator Knight()
-	{
-		return (Knight)(*this);
-	}
+    // 타입 변환 연산자 (return type 이 없음)
+    operator Knight()
+    {
+        return (Knight)(*this);
+    }
 public:
     int _age = 1;
     int _cuteness = 2;
@@ -267,21 +268,21 @@ int main()
 class Knight
 {
 public:
-	int _hp = 10;
+    int _hp = 10;
 };
 
 class Dog
 {
 public:
-	Dog(){}
+    Dog(){}
     // 타입 변환 생성자
-	Dog(const Knight& knight){ _age = knight._hp;}
+    Dog(const Knight& knight){ _age = knight._hp;}
 
-	// 타입 변환 연산자 (return type 이 없음)
-	operator Knight()
-	{
-		return (Knight)(*this);
-	}
+    // 타입 변환 연산자 (return type 이 없음)
+    operator Knight()
+    {
+        return (Knight)(*this);
+    }
 public:
     int _age = 1;
     int _cuteness = 2;
@@ -300,15 +301,15 @@ int main()
 class Dog
 {
 public:
-	Dog(){}
+    Dog(){}
     // 타입 변환 생성자
-	Dog(const Knight& knight){ _age = knight._hp;}
+    Dog(const Knight& knight){ _age = knight._hp;}
 
-	// 타입 변환 연산자 (return type 이 없음)
-	operator Knight()
-	{
-		return (Knight)(*this);
-	}
+    // 타입 변환 연산자 (return type 이 없음)
+    operator Knight()
+    {
+        return (Knight)(*this);
+    }
 public:
     int _age = 1;
     int _cuteness = 2;
@@ -332,15 +333,15 @@ int main()
 class Dog
 {
 public:
-	Dog(){}
+    Dog(){}
     // 타입 변환 생성자
-	Dog(const Knight& knight){ _age = knight._hp;}
+    Dog(const Knight& knight){ _age = knight._hp;}
 
-	// 타입 변환 연산자 (return type 이 없음)
-	operator Knight()
-	{
-		return (Knight)(*this);
-	}
+    // 타입 변환 연산자 (return type 이 없음)
+    operator Knight()
+    {
+        return (Knight)(*this);
+    }
 public:
     int _age = 1;
     int _cuteness = 2;
@@ -386,40 +387,39 @@ int main()
 
 그렇다면 상속관계에서의 포인터 타입 변환관계를 알아보자. 여기에서도 명시적으로 하면 Ok 지만, 사실 엉뚱한 메모리를 바꿀수 있는 위험이 있다. 하지만, 논리적으로 생각했을때 자식에서 부모 변환테스트는 암시적으로는 된다. 당연히 Weapon 은 Item 이 맞기 때문이다. 즉 명시적으로 타입변환을 할때는 항상 조심해야한다.
 
-그렇다면 항상모든게 명시적으로 하는게 좋지 않느냐라는 질문을 할수 있지만 아래의 코드를 보면, 자식에서 부모로 가는건 설계적인 면에서 많은 이득을 볼수 있기때문에, Inventory 라는 pointer array 를 사용해서 추가할수 있다.
+그렇다면 항상모든게 명시적으로 하는게 좋지 않느냐라는 질문을 할수 있지만 아래의 코드를 보면, 자식에서 부모로 가는건 설계적인 면에서 많은 이득을 볼수 있기때문에, Inventory 라는 pointer array 를 사용해서 추가할수 있다. 이 코드에서 사실 제일 중요한 부분은 Okay. 분명 포인터 타입변환을해서 새로운 객체 생성도 했어. 하지만 제일 중요한건 메모리를 빌렸으면 깔끔하게 반납하는게 사실 제일 중요하다. 생성할때는 Item 으로 관리를해서, loop 을 돌면서 item 을 지운다고 하면 어떻게 될까? 일단 Item 만 삭제 하려고 하면 안되고, weapon 이나 armor 의 소멸자를 호출해야 제일 깔끔하게 지워준다.
 
 ```c++
 class Item
 {
 public:
-	Item(){cout << "Item()" << endl;}
-	Item(int itemType) : _itemType(_itemType) {};
-	Item(const Item& item){cout << "Item(const: item&" << endl;}
-	~Item(){ cout << "~Item()" << endl;}
-	virtual void Test(){cout << "Test Item " << endl;}
+    Item(){cout << "Item()" << endl;}
+    Item(int itemType) : _itemType(_itemType) {};
+    Item(const Item& item){cout << "Item(const: item&)" << endl;}
+    ~Item(){ cout << "~Item()" << endl;}
 public:
-	int _itemType = 0;
-	int _itemdbid = 0;
+    int _itemType = 0;
+    int _itemdbid = 0;
 
-	char _dummy[4096] = {};
+    char _dummy[4096] = {};
 };
 
 class Weapon : public Item
 {
 public:
-	Weapon() : Item(IT_WEAPON){ cout << " Weapon() " << endl; _damage = rand() % 100 + 1;} 
-	~Weapon(){ cout << "~Weapon()" << endl; }
+    Weapon() : Item(IT_WEAPON){ cout << " Weapon() " << endl; _damage = rand() % 100 + 1;} 
+    ~Weapon(){ cout << "~Weapon()" << endl; }
 public:
-	int _damage = 0;
+    int _damage = 0;
 };
 
 class Armor : public Item
 {
 public:
-	Armor() : Item(IT_ARMOR){ cout << " Armor() " << endl;}
-	~Armor(){ cout << " ~Armor() " << endl;}
+    Armor() : Item(IT_ARMOR){ cout << " Armor() " << endl;}
+    ~Armor(){ cout << " ~Armor() " << endl;}
 public:
-	int _defence = 0;
+    int _defence = 0;
 };
 
 int main()
@@ -437,46 +437,150 @@ int main()
     
 
     Item* inventory[20] = {};
-	srand((unsigned int) time(nullptr));
-	for (int i=0; i < 20; i++)
-	{
-		int randValue = rand() % 2; 
+    srand((unsigned int) time(nullptr));
+    for (int i=0; i < 20; i++)
+    {
+        int randValue = rand() % 2; 
 
-		switch(randValue)
-		{
-			case 0:
-			inventory[i] = new Weapon(); 
-			break;
+        switch(randValue)
+        {
+            case 0:
+                inventory[i] = new Weapon(); 
+                break;
 
-			case 1:
-			inventory[i] = new Armor();
-			break;
-		}
-	}
+            case 1:
+                inventory[i] = new Armor();
+                break;
+        }
+    }
+
+
+    for (int i =0; i < 20; i++)
+    {
+        Item* item = inventory[i];
+        if (item == nullptr)
+            continue;
+
+        if (item->_itemType == IT_WEAPON)
+        {
+            Weapon* weapon = (Weapon*)item;
+            cout << "Weapon Damage: " << weapon->_damage << endl;
+        }
+
+        if (item->_itemType == IT_ARMOR)
+        {
+            Armor* armor = (Armor*)item;
+            cout << "Armor " << armor->_defence << endl; 
+        }
+    }
+
+    for (int i =0; i < 20; i++)
+    {
+        Item* item = inventory[i];
+        if (item == nullptr)
+            continue;
+
+        if (item->_itemType == IT_WEAPON)
+        {
+            Weapon* weapon = (Weapon*)item;
+            delete weapon;
+        }
+
+        if (item->_itemType == IT_ARMOR)
+        {
+            Armor* armor = (Armor*)item;
+            delete armor;
+        }
+    }
+
     return 0;
 }
-
-for (int i =0; i < 20; i++)
-	{
-		Item* item = inventory[i];
-		if (item == nullptr)
-			continue;
-
-		if (item->_itemType == IT_WEAPON)
-		{
-			Weapon* weapon = (Weapon*)item;
-			cout << "Weapon Damage: " << weapon->_damage <<endl;
-		}
-
-	}
 ```
 
+오케이 여기까지 해봤는데, 뭔가 쉬운 방법이 없을까? 라는 생각이든다. 즉 위의 코드 처럼 타입별로 지우는 방법도 있지만, `virtual` 이라는 keyword 를 사용해서 자식이 어떤 타입이든 상관하지 않고 지울수 있는 방법이 있다. 아래의 코드를 보면 확실히 코드가 깔끔해지는걸 볼수 있다. 가상함수의 개념을 사용해서, `virtual` keyword 소멸자
+
+```c++
+class Item
+{
+public:
+    Item(){cout << "Item()" << endl;}
+    Item(int itemType) : _itemType(_itemType) {};
+    Item(const Item& item){cout << "Item(const: item&)" << endl;}
+    virtual ~Item(){ cout << "~Item()" << endl;}
+public:
+    int _itemType = 0;
+    int _itemdbid = 0;
+
+    char _dummy[4096] = {};
+};
+
+class Weapon : public Item
+{
+public:
+    Weapon() : Item(IT_WEAPON){ cout << " Weapon() " << endl; _damage = rand() % 100 + 1;} 
+    virtual ~Weapon(){ cout << "~Weapon()" << endl; }
+public:
+    int _damage = 0;
+};
+
+class Armor : public Item
+{
+public:
+    Armor() : Item(IT_ARMOR){ cout << " Armor() " << endl;}
+    virtual ~Armor(){ cout << " ~Armor() " << endl;}
+public:
+    int _defence = 0;
+};
+
+int main()
+{
+    for (int i =0; i < 20; i++)
+    {
+        Item* item = inventory[i];
+        if (item == nullptr)
+            continue;
+
+        delete item;
+    }
+    return 0;
+}
+```
+
+결론적으로 포인터나 일반적인 타입의 생성자 호출이 중요했으며, 포인터 사이의 타입변환(캐스팅)을 할 떄는 매우 매우 조심해야한다. 부모-자식 관계에서 부모 클래스의 소멸자에는 까먹지 말고 virtual 을 붙이는게 굉장히 중요하다라는걸 알아보았다.
+
 ### Shallow Copy vs Deep Copy
+
+```c++
+class Knight : Player
+{
+public:
+    Knight(){};
+    Knight(const Knight& knight) : Player(knight), _pet(knight._pet)
+    {
+        _hp = knight._hp;
+        _pet = new Pet(*(knight._pet));
+    }
+    ~Knight(){};
+
+public:
+    int _hp = 100; // c++11
+};
+
+int main()
+{
+    Knight knight;
+    knight._hp = 200;
+
+    Knight knight2 = knight;
+}
+```
 
 ### Casting
 
 ### Resource
+
 - [Inflearn: UnrealEngine Game Dev](https://www.inflearn.com/course/%EC%96%B8%EB%A6%AC%EC%96%BC-3d-mmorpg-1)
 
-### Source Code 
+### Source Code
+
 - [Dynamic_Allocation](https://github.com/sjang1594/self-study/tree/master/game_dev/cpp/dynamic_allocation)

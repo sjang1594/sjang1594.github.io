@@ -6,7 +6,7 @@ basics:
   phone: "(+1) 314-332-9498 / (+82) 10-5610-6541"
   website: "https://sjang1594.github.io/"
   summary: >
-    Hello, I'm Seungho Jang, I love to open - Saint Louis.<br>
+    Hello, I'm Seungho Jang.<br>
   # location:
   #   address: "2712 Broadway St"
   #   postalCode: "CA 94115"
@@ -67,7 +67,7 @@ teaching:
       - Advanced C++ (CS2250) in SP2020 & Summer 2021
       - Computer Architecture (CS2700) in Fall 2020 & Spring 2021
 projects:
-  - title: ""
+  - title: "Map Editor Desktop Application"
     startDate: ""
     endDate: ""
     summary: ""
@@ -76,7 +76,7 @@ projects:
       - ""
       - ""
       - ""
-  - title: ""
+  - title: "Scenario Runner Desktop Application"
     startDate: ""
     endDate: "--"
     summary: "  "
@@ -105,27 +105,36 @@ projects:
       - ""
       - ""
       - ""
+Patent:
+  - title: "Scenario Runner Software"
 skills:
-  - name: "Python Desktop Development"
+  - name: "Python Desktop Application Dev."
+    level: "Advanced"
+    keywords:
+      - "Concurrent Programming - asyncio"
+      - "gRPC Interface"
+      - "PyQT"
+      - "OpenGl"
+  - name: "Unity Application Dev."
     level: "Intermediate"
     keywords:
-      - "Concurrent Programming"
-      - "Operating System"
-      - "C/C++"
-      - "C#"
+      - Unity
+      - C# Programming
   - name: "Algorithm"
     level: "Intermediate"
 languages:
   - language: "Korean"
-    fluency: "Native speaker"
+    fluency: "Native Speaker"
   - language: "English"
-    fluency: "Very Fluent"
+    fluency: "Almost Native Speaker"
 interests:
   - name: "Activity"
     keywords:
       - "Soccer"
+      - "Swimming"
   - name: "Gaming"
     keywords:
       - "Starcraft"
       - "Overwatch2"
       - "FIFA Online"
+  - name : "Segmentation"

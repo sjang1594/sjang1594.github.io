@@ -188,9 +188,143 @@ int main()
 }
 ```
 
-### Callback Function
+사실은 블로그를 커버하다가, 한번도 typedef 에 대해 설명을 하지 않았다. typedef 그냥 형태 만 봤을때 `typedef [] []` 이런식으로 생겼다. 하지만 봤을때 오른쪽이 커스텀 타입을 정의를 했었다. 근데 이걸 더 정확하게 보면, 선언 문법에서 typedef 를 앞에다 붙이는쪽으로 왔었다. 아래와 같이 선언을 하면, 바로 앞에 `typedef` 를 붙여지는거다. 그래서 Code Segment 를 봤을때 아래를 보면 함수의 Signature 은 `(int, int)`의 인자를 받고 `int` 로 받고, 그다음에 함수의 포인터이기때문에 `(*PFUNC)` 라는걸 선언을 한거다. 그다음에 `typedef` 를 넣으면 된다.
 
-### Functional Object
+```c++
+int INTEGER;
+int *POINTER;
+int FUNC();
+
+int (*PFUNC)(int, int);
+```
+
+근데 또 단점이 있다. 위와같이 사용할때는 전역함수 / 정적함수만 담을 수 있다. 즉 호출 규약이 정해져있다는 소리이다. 아래처럼 Member Function 에서는 에러가 나온다는걸 확인할수있다.
+
+```c++
+typedef int(*PFUNC)(int, int);
+
+class Knight
+{
+public:
+    // Static Function
+    static void HelloWorld(){}
+    
+    // Member Function
+    int GetHP(){ return _hp; }
+
+    int _hp = 100;
+}
+
+int main()
+{
+    PFUNC fn;
+    // fn = GetHP; // 에러
+    // fn = &Knight::GetHp;
+    return 0;
+}
+```
+
+그래서 이걸 멤버함수에 속한다라는걸 보여주어야기 때문에 아래의 코드 처럼 하면된다. 아래에 보면, 주소값을 달라는 표시도 해주어야한다. 이건 C 언어의 호환성 때문에 한다.
+
+```c++
+
+class Knight
+{
+public:
+    // Static Function
+    static void HelloWorld(){}
+    
+    // Member Function
+    int GetHP(){ return _hp; }
+
+    int _hp = 100;
+}
+
+typedef int(Knight::*MEMBERPFUNC)(int, int);
+
+int main()
+{
+    PMEMFUNC mfn;
+    mfn = &Knight::GetHp;
+
+    Knight k1;
+    (k1.*mfn)(1, 1);
+
+    Knight* k2 = new Knight();
+    (k2->*mfn)(1,1);
+    delete k2;
+
+    return 0;
+}
+```
+
+일반적으로 자신과 다른 클래스가 있고 멤버함수가 동일하다고 하더라도, 이미 지정해주었기 때문에, 객체를 바꾸더라도 실행이 안된다는거에 주의하자.
+
+### Functor
+
+함수 객체는 함수처럼 동작하는 객체를 뜻하는데, 위와 같이 함수 포인터의 단점이 너무 잘보였었다. 일단 함수의 signature 가 동일한 친구들 만 사용됬었고 다르다고 하다면, 인자를 늘려가야하는 큰단점, 즉 generic 하게 사용하지 못한다는 점이 큰 단점이 였다. 또 다른 큰 단점은 자세하게 debug 하지 않으면 객체의 상태의 유지성을 모른다는거다. 예를 들어서 `Knight` 의 객체 안에 `_hp` 라는 field 가 있는데, 함수 포인터 같은 경우는 인자만 넘기지, 그 field 가 뭘하는지, 유지 됬는지 잘모른다는 뜻이다.
+
+함수처럼 동작하는 객체라는게 뭘까라는 걸 알아보자. 일단 함수 처럼 작동하려면 힌트는 `()` 이런 연산자가 필요하다. `()` 연산자 오버로딩이 필요하다는거다.
+
+```c++
+class Functor
+{
+public:
+    void operator() ()
+    {
+        cout << "Functor Test1" << endl;
+    }
+    bool operator() (int num)
+    {
+        cout << "Functor Test2" << endl;
+        _value += num;
+        cout << _value << endl;
+    }
+private:
+    int _ value = 0;
+}
+
+int main()
+{
+    Functor functor;
+    functor();
+
+    bool ret = functor(3);
+    return 0;
+}
+```
+
+예시로 보여준건 MMO 에서 함수 객체를 사용하는 예시가 있다. 게임은 클라와 서버가 있는데, 서버같은 경우는 클라가 보내준 네트워크 패킷을 받아서 처리하는데 만약에, 클라가 (5,0) 으로 좌표로 이동 시켜줘! 라고 서버한테 요청을 했다고 하자. 실시간 MMO 라고 하면 클라가 정말 많을텐데, 이때 처리할때 사용할수 있다. 이때, Functor 만들어준 시점과 그리고 실제 실행할 시점을 분리 시키는걸 볼수 있다. 아래가 바로 Command Pattern 을 비슷하게 사용해서 Tracking 이 가능할거다.
+
+```c++
+class MoveTask
+{
+public:
+    void operator()()
+    {
+        // TODO
+        cout << "Move" << endl;
+    }
+public:
+    int _playerId;
+    int _posX;
+    int _posY;
+}
+
+int main()
+{
+    MoveTask task;
+    task._playerId = 100;
+    task._posX = 5;
+    task._posY = 3;
+
+    // 나중에 여유될때 일감을 실행
+    task();
+    return 0;
+}
+```
+
+### Callback Function
 
 ### Template Basics
 

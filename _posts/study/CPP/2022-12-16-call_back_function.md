@@ -323,10 +323,29 @@ int main()
     return 0;
 }
 ```
+### Template Basics
+
+Template 이란 함수나 클래스를 찍어내는 툴이라고 생각하면 된다. 템플릿의 종류는 Function Template 과 Class Template 이 존재한다.
+일단 예시같은 경우는 이런거다 여러 다른 타입들을 받는 똑같은 함수가 존재한다고 하자. 다 똑같은 기능을 가지고 있지만 인자값으로 다르게 존재 하는걸 볼수 있다. 이거를 한번에 묶을수 있는 존재가 있을까? 라는 생각이든다. 그게 바로 형식을 틀로 잡을수 있는 template 이 있다. 즉 조커 카드이다.
+
+```c++
+#include <iostream>
+using namespace std;
+void Print(int a){ cout << a << endl;}
+
+void Print(float a){ cout << a << endl; }
+
+void Print(double a){ cout << a << endl; }
+```
+
+Template 에 대해서 한번 봐보자.
+
+```c++
+
+```
 
 ### Callback Function
 
-### Template Basics
 
 ### Resource
 

@@ -323,6 +323,7 @@ int main()
     return 0;
 }
 ```
+
 ### Template Basics
 
 Template 이란 함수나 클래스를 찍어내는 툴이라고 생각하면 된다. 템플릿의 종류는 Function Template 과 Class Template 이 존재한다.
@@ -338,14 +339,307 @@ void Print(float a){ cout << a << endl; }
 void Print(double a){ cout << a << endl; }
 ```
 
-Template 에 대해서 한번 봐보자.
+Template 에 대해서 한번 봐보자. 일단 아래의 코드처럼 `typename T` 라고 지정해준걸 볼수 있다. 그리고 그 인자의 type 을 `Print()` 함수에 넣어진걸 확인 할 수 있다. 즉 어떤 타입이 들어오든지 T 로 들어와서 컴파일러가 각각 type 을 정해주는걸로 볼수 있다. 아래 처럼 코드를 실행 해보았을때, 잘 빌드가 성공된걸 볼수 있다. 그리고 맨 아래에 보면 Print 뒤에 `<double>` 이란게 나와있다. 이거 같은 경우는 컴파일러에 맡기는것보다 내가 이런 형식을 원한다라는걸 강제적으로 줄수도 있다. 이말은 즉슨 컴파일러에게 힌트를 주는거다. 그리고 아래의 `Add` 함수를 봐보자. 여기에서는 인자가 같을때 즉 (int, int), (double, double), 이런식으로 타입이 같은 인자가 들어왔을때도 줄일수도 있고, return 값으로도 `T` 를 줄수도 있다. 이 말은 또 각기 다른 타입의 인자를 넣어줄수도 있다. `PrintMultiple()` 을 참고하자. 그리고 객체의 있는걸 Type 으로 넘겨준다고 하면 실행 되지 않는다. 그 이유는 `Knight` 라는 클래스는 프로그래머가 만든 커스텀 한 타입이기때문에 지원되지 않아서 `ofstream` 에 있는걸 가져다가 오버로딩을 해줘야한다.
 
 ```c++
+template<typename T>
+void Print(T a)
+{
+    cout << a << endl;
+}
 
+template<typename T>
+T Add(T a, T b)
+{
+    return a + b;
+}
+
+template<typename T1, typename T2>
+void PrintMultiple(T1 a, T2 b)
+{
+    cout << a << " " << b << endl;
+}
+
+class Knight
+{
+public:
+    // ...
+public:
+    int _hp = 100;
+};
+
+// 연산자 오버로딩 (전역함수)
+ofstream& operator<<(ofstream& os, const Knight& k)
+{
+    os << k._hp << endl;
+    return os;
+}
+
+int main()
+{
+    Print(50);
+    Print(50.0f);
+    Print<double>(50.0);
+
+    ret = Add(2, 3);
+
+    PrintMultiple("Hello", 3);
+
+    Knight k1;
+    Print(k1); // 연산자 오버로딩이 없으면 안됨
+    return 0;
+}
+```
+
+위와 같이 template 은 조커카드였다. 하지만 어떤객체에 대해서 특수 조커 카드를 만들려고 했을때, 어떻게 해야될까? 라는 질문을 할수 있다. 즉 어떤 규칙을 따르는 template 을 template 특수화라고 한다.아래의 코드를 봐보자. 아래와 같이 어떤 특정한걸 주고 싶을때는 객체를 인자로 넘겨주고 temmplate 안에 있는거는 비어있게 해줘야 template 의 특수화가 된다.
+
+```c++
+tempalte<>
+void Print(Knight a)
+{
+    cout << "Knight" << endl; 
+    cout << a._hp << endl;
+}
+
+int main()
+{
+    Knight k1;
+    Print(k1);
+    return 0;
+}
+```
+
+이제 class template 을 보기위해 아래 코드를 봐보자. 일단 `RandomBox` 라는 클래스가 있고, 만약에 GetRandomData() 가 만약에 Float 로 내뱉는 return 이 필요하다고 하면 float 데이터를 담을수 있는 바구니가 필요하면서, float 을 return 하는 GetRandomData() version 을 만들어야할것이다. 그래서 이 다음 코드를 봐보면 template 이 적용된걸 볼 수 있다.
+
+```c++
+class RandomBox
+{
+public:
+    int GetRandomData()
+    {
+        int idx = rand() % 10;
+        return _data[idx];
+    }
+public:
+    int _data[10];
+}
+
+int main()
+{
+    srand(static_cast<unsigned int>(time(nullptr)));
+    RandomBox rb1;
+    for (int i = 0; i < 10; i++)
+    {
+        rb1._data[i] = i;
+    }
+    int value1 = rb1.GetRandomData();
+    cout << value1 << endl;
+    
+    RandomBox rb2;
+    for (int i =0; i< 10; i++)
+    {
+        rb2._data[i] = i;
+    }
+    int value2 = rb2.GetRandomData();
+    cout << value2 << endl;
+    return 0;
+}
+```
+
+```c++
+template<typename T>
+class RandomBox
+{
+public:
+    T GetRandomData()
+    {
+        int idx = rand() % 10;
+        return _data[idx];
+    }
+public:
+    T _data[10];
+}
+
+int main()
+{
+    srand(static_cast<unsigned int>(time(nullptr)));
+    RandomBox<int>rb1;
+    for (int i = 0; i < 10; i++)
+    {
+        rb1._data[i] = i;
+    }
+    int value1 = rb1.GetRandomData();
+    cout << value1 << endl;
+    
+    RandomBox<float> rb2;
+    for (int i =0; i< 10; i++)
+    {
+        rb2._data[i] = i + 0.5f;
+    }
+    float value2 = rb2.GetRandomData();
+    cout << value2 << endl;
+    return 0;
+}
+```
+
+그런데 `typename` 을 무조건 붙여야되는건 아니다. 즉 다시 말해서 template 안에 들어가는건 골라줘야하는 목록 이라고 볼수 있다. 예를들어서 아래의 코드를 봐보자. `SIZE` 에다가 인자를 아무거나 주되 `int` type 인자를 받아야하는 어떤 설정을 따로 해줄수 있다. 하지만, `rb1`, `rb2` 가 같이 instantiate 했지만, 서로 다른 객체라는걸 알수 있어서 함수의 인자의 signature 이 같다고 하더라도, 객체는 다르게 이루어졌다고 볼수 있다. 위와 같이 함수에서 템플릿 특수화를 썻던것처럼, 클래스에서도 template 특수화를 사용할수 있다.
+
+```c++
+template<typename T, int SIZE>
+class RandomBox
+{
+public:
+    T GetRandomData()
+    {
+        int idx = rand() % SIZE;
+        return _data[idx];
+    }
+public:
+    T _data[SIZE];
+}
+
+int main()
+{
+    srand(static_cast<unsigned int>(time(nullptr)));
+    RandomBox<int, 10>rb1;
+    for (int i = 0; i < 10; i++)
+    {
+        rb1._data[i] = i;
+    }
+    int value1 = rb1.GetRandomData();
+    cout << value1 << endl;
+    
+    RandomBox<int, 20> rb2;
+    for (int i =0; i< 20; i++)
+    {
+        rb2._data[i] = i;
+    }
+    int value2 = rb2.GetRandomData();
+    cout << value2 << endl;
+
+    //rb1 = rb2; // 서로 다른 객체
+    return 0;
+}
+```
+
+템플릿 특수화를 한번 보자. 위의 코드에서 무조건 double 로 return 하는 값들로만 모아보자. 아래와 같이 보면 double 로 뭔가 규약을주고, 사이즈와 관련된것들은 int 로 아무인자나 받게 보여진다. 만약 double 로 호출을 한다고 하면 `RandomBox<double, int SIZE>` 가 호출이 되고, 그 외의 것들은 `RandomBox` 가 호출이 될거다.
+
+```c++
+template<int SIZE>
+template<typename T, int SIZE>
+class RandomBox
+{
+public:
+    T GetRandomData()
+    {
+        int idx = rand() % SIZE;
+        return _data[idx];
+    }
+public:
+    T _data[SIZE];
+}
+
+class RandomBox<double, int SIZE>
+{
+public:
+    double GetRandomData()
+    {
+        int idx = rand() % SIZE;
+        return _data[idx];
+    }
+public:
+    double _data[SIZE];
+}
+
+int main()
+{
+    srand(static_cast<unsigned int>(time(nullptr)));
+    RandomBox<int, 10>rb1;
+    for (int i = 0; i < 10; i++)
+    {
+        rb1._data[i] = i;
+    }
+    int value1 = rb1.GetRandomData();
+    cout << value1 << endl;
+    
+    RandomBox<double, 20> rb2;
+    for (int i =0; i< 20; i++)
+    {
+        rb2._data[i] = i + 0.5;
+    }
+    double value2 = rb2.GetRandomData();
+    cout << value2 << endl;
+
+    //rb1 = rb2; // 서로 다른 객체
+    return 0;
+}
 ```
 
 ### Callback Function
 
+Callback 함수 같은 경우는 결국 다시 호출하다. 약간 Call me back 과 같다. 또는 다시 역으로 호출하다라는 느낌이다. Functor 와 마찬가지로 어떤 상황이 일어나면 이 기능을 호출해줘 라는 느낌으로 사용하면 된다.
+
+```c++
+class Item
+{
+public:
+    int _itemId = 0;
+    int _rarity = 0;
+    int _ownderId = 0;
+}
+
+class FindByOwnderId
+{
+public:
+    bool operator()(const Item* item) // 수정이 필요없음
+    {
+        return (item->_ownerId == _ownderId);
+    }
+public:
+    int _ownerId;
+}
+
+class FindByRarity
+{
+public:
+    bool operator()(const Item* item) // 수정이 필요없음
+    {
+        return (item->_rarity == _rarity);
+    }
+public:
+    int _rairty;
+}
+
+template<typename T>
+Item* FindItem(item items[], int itemCount, T selector)
+{
+    for (int i = 0; i < itemCount; i++)
+    {
+        Item* item = &items[i];
+        // TODO Condition
+        if (selector(item))
+            return item;
+    }
+    return nullptr;
+}
+
+int main()
+{
+    Item Items[10];
+    items[3]._ownerId = 100;
+    items[5]._rarity = 1;
+    FindByOwnderId functor1;
+    functor1._ownerId = 100;
+
+    FindByRarity functor2;
+    functor2._rarity = 1;
+
+    Item* item1 = FindItem(items, 10, functor1);
+    Item* item2 = FindItem(items, 10, functor2);
+    
+    return 0;
+}
+```
 
 ### Resource
 

@@ -6,6 +6,7 @@ tags: [Vulkan, Computer Graphics]
 ---
 
 ### Vulkan Introduction
+
 The Vulkan is the graphical API made by `Khronos` providing the better abstraction on newer graphic cards. This API outperform? the Direct3D and OpenGL by explaining what it perform. The idea of the Vulkan is similar to the Direct3D12 and Metal, but Vulkan is cross-platform, and it can be used and developed in Linux or Window Environment.
 
 However, the drawback of this could be is there will be many detailed procedure while using the Vulkan API, such as creating the buffer frame, managing the memory for buffer and texture image objects. That means we would have to set up properly on application. I realized that the Vulkan is not for everyone, it is only for people who's passionate on Computer Graphics Area. The current trends for computer graphics in Game Dev, they are switching the DirectX or OpenGL to Vulkan : [Lists of Game made by Vulkan](https://www.vulkan.org/made-with-vulkan). One of the easier approach could be is to learn and play the computer graphics inside of Unreal Engine and Unity.

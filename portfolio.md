@@ -64,7 +64,11 @@ Seungho Jang (장승호)
 > Oct.2021 ~ Current : MORAI Inc.
 > Software Engineer - Scenario Team
 > 1. Currently Developing Scenario Runner based on OpenScenario (ASAM)
-> 2. Implemented the Undo / Redo using the Momento Design Pattern
+>    - using gRPC to communicate the scenario data and status through Simulator
+>    - porting scenario runner to Unreal Engine
+> 3. Implemented the Undo / Redo using the Momento Design Pattern
+> 4. Sensor Development
+>    - using the ray tracing method to lidar module development
 
 ## Research Interests
 ---
@@ -72,14 +76,14 @@ Seungho Jang (장승호)
 * Computer Vision
     + Image Object Detection
     + Depth Prediction
-    + Pose Estimation
-    + Video Object Segmentation
-    + Remote PPG
+
+* Computer Grpahics
+    + DirectX12
+    + Vulkan
 
 * Machine Learning / Deep Learning
     + Neural Style Transfer
-    + RCNN
-    + Robotic Perception
+    + vSLAM
 
 ## Projects
 
@@ -177,6 +181,11 @@ Build the software system and algorithm to detect the root system from the given
     -  University of Missouri in Saint Louis / NSA/DHS National Center of Academic Excellence in Cyber Defense Education
 - Robotic Software Engineering - Udacity
 - Computer Vision - Udacity
+
+## Patents
+---
+-Patents
+- Scenario Runner Desktop Application
 
 ## Classmate Comments & Endorsements
 ---

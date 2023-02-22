@@ -2,10 +2,10 @@
 title: DirectX Initialization
 layout: post
 category: study
-tags: [DirectX11, DirectX12, Computer Graphics]
+tags: [directx, computer graphics]
 ---
 
-### Background
+### DirectX12 Background
 
 일단 장치 초기화 하기 이전에, Hardware 를 알아보자. 컴퓨터를 뜯어봤으면 알수 있는건 바로 CPU 와 GPU 를 한번쯤은 봤을것이다. 아래의 구조를 한번 보자.
 
@@ -70,7 +70,7 @@ Root signautre 를 사용할때, constant buffer 를 사용하는데 CPU 와 연
 아래의 Graphic Pipeline 을 한번 봐보자. 아래의 그림을 보면 Input Assember Stages 에서는 멋대로 data 값을 넘겨줄수 없다.(다른 stage 와 달리)
 
 <figure>
-  <img src = "../../../assets/img/study/DIRECTX12_PIPELINE.PNG">
+  <img src = "../../../assets/img/study/DirectX12_PIPELINE.PNG">
 </figure>
 
 ### Resource

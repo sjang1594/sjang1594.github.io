@@ -56,7 +56,11 @@ DescriptorHeap 같은 경우 DX12 에서 생겨난건데, 이 descriptor Heap �
 그 다음 `Root Signature` 이다.
 이건 약간 결재 또는 계약서이다. 즉 무엇을 대상으로 데이터를 가공하는지를 GPU 가 알고 있어야한다. 즉 CPU 에서 GPU 로 일감을 넘길때 어떤 data 나 resource 를 주는데 가공방법이나 이런걸주는데 서명을 해야 된다. 이것이 `root signature` 이다. 더나아가서 어떤 버퍼에서는 이런걸을 하기로 계약을하고 다른 버퍼에서는 이걸 계약하겠다라는 승인이 필요하다.
 
-Root Signatuer 을 이해하려면 CPU 와 GPU 의 메모리구조의 이해가 필요하다. Cache 나 Register 안은 메모리의 양도 적지만 빠르다. 하지만 물리적인 관점에서 봤을때 우리가 사용하는 하드메모리는 평민같아서 되게 멀기도하고 딱히 외주를 넘겨줄때 승인이 필요하지 않다. 하지만 Register 나 Cache 같은 친구들은 비싼친구들이기 때문에 조금 승인받는것도 빡세다. 그래서 `root signature` 같은 경우 option 이 필요하다. 즉 성명 Type 이 필요하다. 처음에는 API 의 칸을 설정을 해주고, 중간에는 어떠한 용도로 사용 될지가 들어가고, 마지막은 shader programming 에서 register 의 bind 할 slot 이라고 생각하면 된다.
+Root Signatuer 을 이해하려면 CPU 와 GPU 의 메모리구조의 이해가 필요하다. Cache 나 Register 안은 메모리의 양도 적지만 빠르다. 하지만 물리적인 관점에서 봤을때 우리가 사용하는 하드메모리는 평민같아서 되게 멀기도하고 딱히 외주를 넘겨줄때 승인이 필요하지 않다. 하지만 Register 나 Cache 같은 친구들은 비싼친구들이기 때문에 조금 승인받는것도 빡세다. 그래서 `root signature` 같은 경우 option 이 필요하다. 즉 성명 Type 이 필요하다. 처음에는 API 의 칸을 설정을 해주고, 중간에는 어떠한 용도로 사용 될지가 들어가고, 마지막은 shader programming 에서 register 의 bind 할 slot 이라고 생각하면 된다. 여기에서 중요한게 data 를 실제로 넣으려고 하는게 아니라, 계약서에 이러한 이러한 정보를 담겠다가 맞다. 즉 Resource 를 어떻게 어디서 붙힌다라는걸 설명해주는 문서 라고 생각하면 된다. 그리고 Register 를 선택한 이후에, `Option 이 들어가는게 Pipeline 안에 stage 들을 보여줄수있는 옵션도 있다.` 
+
+Root signautre 를 사용할때, constant buffer 를 사용하는데 CPU 와 연결되어있는 메모리를 GPU 에 있는 메모리에 옮겨준다음에, register 에 buffer 의 주소값만 던져주고, 나중에 CommandQueue 에서 처리할때, GPU가 일을 할수 있게 된다.
+
+ 더 자세한 정보는 여기서 보면 된다 [Constant Buffer View](https://learn.microsoft.com/en-us/windows/win32/direct3d12/example-root-signatures).
 
 그 다음 `Mesh` 와 `shader` 이다.
 `Mesh` 같은 경우 즉 정점의 정보들을 가지고 있어야한다. resource 를 바로 보내는게 아니라 descriptorHeap 처럼 bufferview 라는걸 보여줘야한다. 여기에서 중요한건 뭐냐, 일단 vertex 의 정보를 buffer 에 넣어서 CPU 에서 만들어준 다음, 그 buffer 를 GPU 메모리에 할당을 해준다. 그렇다면 Mesh 가 Render 되는 부분은 CommmandQueue 안에 RenderBegin 과 RenderEnd 에 나머지부분을 그려주는 형태이다. 그리고 그리는 방식 또는 Topology 형태를 Parameter 로 지정이 가능하고, vertex buffer view 를 slot 에 끼워넣어서 vertex 를 그릴수 있다.

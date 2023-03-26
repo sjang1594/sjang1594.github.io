@@ -6,7 +6,7 @@ slug: study
 sidebar: true
 order: 4
 description: >
-  I am interested in a lot of things
+  I love exploring a lot of things
 ---
 
 # Study
@@ -18,7 +18,6 @@ description: >
 * Pytorch
 * Python
 * Robotic Operating System [ROS]
-* C/C++/C#
-* Autonomous Robot & Vehicle
-* Game Development
+* C/C++/C# [CTree]
+* Game Development 
 * Mathematics

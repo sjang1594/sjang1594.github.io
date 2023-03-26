@@ -6,5 +6,5 @@ slug: Game Dev
 category: study
 sidebar: false
 description: >
-   Game Development
+   Game and Game Engine Development
 ---

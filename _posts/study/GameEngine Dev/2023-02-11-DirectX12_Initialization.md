@@ -66,7 +66,7 @@ Root signautre 를 사용할때, constant buffer 를 사용하는데 CPU 와 연
 `Mesh` 같은 경우 즉 정점의 정보들을 가지고 있어야한다. resource 를 바로 보내는게 아니라 descriptorHeap 처럼 bufferview 라는걸 보여줘야한다. 여기에서 중요한건 뭐냐, 일단 vertex 의 정보를 buffer 에 넣어서 CPU 에서 만들어준 다음, 그 buffer 를 GPU 메모리에 할당을 해준다. 그렇다면 Mesh 가 Render 되는 부분은 CommmandQueue 안에 RenderBegin 과 RenderEnd 에 나머지부분을 그려주는 형태이다. 그리고 그리는 방식 또는 Topology 형태를 Parameter 로 지정이 가능하고, vertex buffer view 를 slot 에 끼워넣어서 vertex 를 그릴수 있다.
 
 `Shader` 는 무엇이냐? 라고 묻는다면, 바로 외주인력들이 무엇을 해야하는지 말해주는거다. 뭔가 거대한 거물들이 계약서도 받고 도장도 찍었으면, 이제 그 거물급들이 각각의 인력들에게 오케이 이제 오늘부터 이거 해야되라고 말하는것이다. 즉 일감 기술서 이다. shader 프로그램을 읽고 로딩해서 실행한다. shader 에는 pixel shader (part of fragment shader) 와 vertex shader 가 존재한다.
-잠깐 shader program? shader program 이 다행히 c++ 와 비슷한 syntax 를 가지고 있어서, 짜기도 쉬운데 문제는 Main 에서 Parameter 를 한정적으로 받을수 있다는게 문제이다. 
+잠깐 shader program? shader program 이 다행히 c++ 와 비슷한 syntax 를 가지고 있어서, 짜기도 쉬운데 문제는 Main 에서 Parameter 를 한정적으로 받을수 있다는게 문제이다.
 아래의 Graphic Pipeline 을 한번 봐보자. 아래의 그림을 보면 Input Assember Stages 에서는 멋대로 data 값을 넘겨줄수 없다.(다른 stage 와 달리)
 
 <figure>

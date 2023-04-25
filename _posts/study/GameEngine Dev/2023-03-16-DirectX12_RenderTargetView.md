@@ -1,7 +1,8 @@
 ---
-title: How to draw the triangle with Vulkan
+title: Render Target View
 layout: post
 category: study
 tags: [DirectX, Computer Graphics]
 ---
 
+### Render Target View

@@ -170,10 +170,17 @@ Build the software system and algorithm to detect the root system from the given
 2. [Image Captioning](https://github.com/sjang1594/cvnn-udacity/tree/master/P2-Image_Captioning) 
 3. [Landmark Detection Tracking(SLAM)](https://github.com/sjang1594/cvnn-udacity/tree/master/P3-Landmark%20Detection_Tracking(SLAM))
 
+* **Desktop Application - Scenario Runner in MORAI
+
+1. Undo / Redo Implementation using the Command Pattern in MGeo Editor.
+2. Using the PyQT to create UI Editor for Scenario Runner.
+3. Developing the gRPC Interface to communicate simulator and Scenario Runner.
+4. Porting the Scenario Runner into Unreal Engine.
+5. Developing a physical lidar sensor in Unreal Engine.
+
 ## Skills and Certification
 ---
 -Language : Python, C/C++/C#, Java
-
 -FrameWork: Pytorch, Tensorflow(Keras), OpenCV, ROS - Melodic & Foxy
 
 -Certification : 
@@ -185,7 +192,7 @@ Build the software system and algorithm to detect the root system from the given
 ## Patents
 ---
 -Patents
-- Scenario Runner Desktop Application
+- Scenario Runner Desktop Application by Test Automation Team
 
 ## Classmate Comments & Endorsements
 ---

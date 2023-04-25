@@ -36,12 +36,12 @@ Seungho Jang (장승호)
 >
 > B.Bm.E. in Biomedical Engineering
 
-> Jan.2016 ~ Dec.2018 : University of Missouri/Washington University Joint Engineering
+> Jan.2016 ~ Dec.2018 : Washington University - Joint Engineering
 >
 > B.S.EE in Electrical Engineering (Emphasis on Signal Processing & Radar System)
 > Minor in Computer Science and Mathematics
 
-> Jan.2020 ~ May.2021 : University of Missouri - Saint Louis 
+> Jan.2020 ~ May.2021 : University of Missouri - Saint Louis
 >
 > M.S in Computer Science (Emphasis on Deep Learning & Computer Vision)
 
@@ -65,10 +65,10 @@ Seungho Jang (장승호)
 > Software Engineer - Scenario Team
 > 1. Currently Developing Scenario Runner based on OpenScenario (ASAM)
 >    - using gRPC to communicate the scenario data and status through Simulator
->    - porting scenario runner to Unreal Engine
+>    - porting scenario runner into Unreal Engine
 > 3. Implemented the Undo / Redo using the Momento Design Pattern
 > 4. Sensor Development
->    - using the ray tracing method to lidar module development
+>    - using the ray tracing technique to lidar module development
 
 ## Research Interests
 ---

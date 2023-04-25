@@ -2,7 +2,7 @@
 title: DirectX Initialization
 layout: post
 category: study
-tags: [DirectX11, computer graphics]
+tags: [DirectX, computer graphics]
 ---
 
 ### DirectX12 Background

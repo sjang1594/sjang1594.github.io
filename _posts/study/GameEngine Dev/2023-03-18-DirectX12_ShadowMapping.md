@@ -2,7 +2,7 @@
 title: Shadow Mapping
 layout: post
 category: study
-tags: [DirectX12, Computer Graphics]
+tags: [DirectX, Computer Graphics]
 ---
 
 ### Shadow Mapping

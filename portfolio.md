@@ -20,11 +20,11 @@ Seungho Jang (장승호)
 
 <center>University of Missouri - Saint Louis</center>
 
-<center>4364 Normandy Trace Dr, Saint Louis, MO, 63121</center>
+<center>32-14, Samseong-ro 75-gil, Gangnam-gu, Seoul</center>
 
 ## Personal Data
 ---
-> 1994.10.12  Republic of Korea, Jella-namdo, Suncheon-Si (대한민국, 전라남도, 순천시 출생)
+> 1994.10.12  Republic of Korea, Seoul (대한민국)
 
 > Contact(연락처): sjang1594@gmail.com
 

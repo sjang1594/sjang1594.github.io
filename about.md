@@ -47,7 +47,7 @@ Please feel free to contact me, if you have any good feedback!
 * 딥러닝과 컴퓨터 비전 애플리케이션에 관심을 가지구 있구요
 * 컴퓨터 비젼에 있는, `3D Reconstruction`, `Depth Estimation`, `Visual-SLAM`, `Point Cloud` 관해서 배우고 있는 중입니다.
 
-언제나 피드백은 감사드리며.. 언제든지 댓글 남겨주세요. 
+언제나 피드백은 감사드리며.. 언제든지 댓글 남겨주세요.
 
 ***
 

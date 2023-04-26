@@ -83,7 +83,7 @@ Seungho Jang (장승호)
 
 * Machine Learning / Deep Learning
     + Neural Style Transfer
-    + vSLAM
+    + Visual SLAM
 
 ## Projects
 

@@ -2,7 +2,7 @@
 title: Rendering Target & Deferred Renderings
 layout: post
 category: study
-tags: [DirectX, Computer Graphics]
+tags: [directx, computer graphics]
 ---
 
 ## Render Target

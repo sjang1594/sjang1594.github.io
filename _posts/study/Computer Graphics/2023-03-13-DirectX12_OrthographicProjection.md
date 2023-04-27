@@ -2,7 +2,7 @@
 title: Projection
 layout: post
 category: study
-tags: [DirectX, Computer Graphics]
+tags: [directx, computer graphics]
 ---
 
 ### DirectX Projection

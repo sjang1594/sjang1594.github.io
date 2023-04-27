@@ -2,7 +2,7 @@
 title: Tesselation & Terrain & Picking
 layout: post
 category: study
-tags: [DirectX, Computer Graphics]
+tags: [directx, computer graphics]
 ---
 
 ### Tessellation

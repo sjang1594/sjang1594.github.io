@@ -2,7 +2,7 @@
 title: Backface Culling
 layout: post
 category: study
-tags: [Computer Graphics]
+tags: [computer graphics]
 ---
 
 ### Backface Culling (Ray Tracing / Rasterization)

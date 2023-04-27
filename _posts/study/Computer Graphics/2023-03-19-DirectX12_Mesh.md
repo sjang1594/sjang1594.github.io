@@ -2,7 +2,7 @@
 title: Mesh & Animation
 layout: post
 category: study
-tags: [DirectX, Computer Graphics]
+tags: [directx, computer graphics]
 ---
 
 ### Mesh & Animation

@@ -2,5 +2,5 @@
 title: Projection
 layout: post
 category: study
-tags: [Computer Graphics]
+tags: [computer graphics]
 ---

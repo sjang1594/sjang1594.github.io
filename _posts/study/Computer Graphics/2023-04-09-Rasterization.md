@@ -2,7 +2,7 @@
 title: Rasterization
 layout: post
 category: study
-tags: [Computer Graphics]
+tags: [computer graphics]
 ---
 
 World -> NDC -> 좌표계 변환

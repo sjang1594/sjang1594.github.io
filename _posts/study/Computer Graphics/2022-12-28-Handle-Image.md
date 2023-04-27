@@ -51,7 +51,7 @@ void Update()
 }
 ```
 
-제일 Image 를 해석하려면, 제일 좋은게 뭐일까라고 물어본다면 바로 이미지를 읽고 저장하는게 제일 중요하다. OpenCV 를 사용해서 Image 를 읽는것도 있지만, 제일 쉬운건 Python 에서 pip 관리 하는것처럼 [vcpkg](https://vcpkg.io/en/packages.html) 를 사용해서 [stb](https://github.com/nothings/stb) 를 사용하는게 제일 좋다.
+제일 Image 를 해석하려면, 제일 좋은게 뭐일까라고 물어본다면 바로 이미지를 읽고 저장하는게 제일 중요하다. OpenCV 를 사용해서 Image 를 읽는것도 있지만, 제일 쉬운건 Python 에서 pip 관리 하는것처럼 [vcpkg](https://vcpkg.io/en/packages.html) 를 사용해서 [stb](https://github.com/nothings/stb) 를 사용하는게 제일 좋다. (*단 image 가 너무 커질때는 조심해야한다.*)
 
 ```c++
 #define STB_IMAGE_IMPLEMENTATION

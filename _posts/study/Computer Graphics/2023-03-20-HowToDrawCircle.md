@@ -55,5 +55,178 @@ public:
 ### How to draw the Circle for Transformation (2D)
 
 ### How to draw the Sphere
+Rendering 기술이나 Brute force 를 사용한 Ray-tracing 을 보면 주로 Sphere 을 찾아 보기가 쉽다. 그 이유는 Sphere 을 그리기가 쉽기 때문이다. 그렇다면 RayTracing 을 한번 봐보자.
+
+1. 일단 사람의 눈을 기준으로 잡고 Screen, 즉 한 Pixel 에서 광선을 여러개 쏜다.
+2. 그 다음 각 Pixel 에 있는 Ray 중에, 하나가 구에 부딫친다.
+3. 구에 부딫힌 Ray 는, 구의 색깔의 Pixel 을 가져와서 Screen 에 보여진다 (다음 그림)
+<figure>
+  <img src = "../../../assets/img/photo/RayTracing.PNG">
+</figure>
+<figure>
+  <img src = "../../../assets/img/photo/RayTracing2.PNG">
+</figure>
+
+이런식으로 Simple 한 Ray Tracing 구조를 가져 올수 있다. 그러면 바로 코드로 표현 해보자. 일단, 구체적인 DirectX 에 관련된 부분은 주제와 조금 알맞지 않으므로 작성하지 않았다.
+
+```c++
+struct Vertex
+{
+    glm::vec4 pos;
+    glm::vec2 uv;
+};
+
+class Hit
+{
+
+}
+
+class Sphere
+{
+public:
+    // Property
+    glm::vec3 center;
+    float radius;
+    glm::vec3 color;
+
+    // Constructor
+    Sphere(const glm::vec3 &center, const float radius, const glm::vec3 &color) 
+        : center(center), color(color), radius(radius)
+    {}
+
+    Hit IntersectRayCollision(Ray &ray)
+    {
+        Hit hit = Hit(-1.0f, vec3(0.0f), vec3(0.0f));
+        return hit;
+    } 
+};
+
+class RayTracer
+{
+public:
+    int width, height;
+    shared_ptr<Sphere> sphere;
+
+    RayTracer(const int &width, const int &height)
+        : width(width), height(height)
+    {
+        sphere = make_shared<Sphere>(vec3(0.0f, 0.0f, 0.0f), 0.4f, vec3(1.0f, 1.0f, 1.0f));
+    }
+
+};
+
+class RayTracingModule
+{
+public:
+    int width, height;
+    Raytracer rayteracer;
+
+    // DirectX11 setups..
+    ID3D11Device *device;
+	ID3D11DeviceContext *deviceContext;
+	IDXGISwapChain *swapChain;
+	D3D11_VIEWPORT viewport;
+	ID3D11RenderTargetView *renderTargetView;
+	ID3D11VertexShader *vertexShader;
+	ID3D11PixelShader *pixelShader;
+	ID3D11InputLayout *layout;
+
+	ID3D11Buffer *vertexBuffer = nullptr;
+	ID3D11Buffer *indexBuffer = nullptr;
+	ID3D11Texture2D *canvasTexture = nullptr;
+	ID3D11ShaderResourceView *canvasTextureView = nullptr;
+	ID3D11RenderTargetView *canvasRenderTargetView = nullptr;
+	ID3D11SamplerState *colorSampler;
+	UINT indexCount;
+
+public:
+    RayTracingModule(HWND window, int width, int height)
+        : raytracer(width, height)
+    {
+        Initialize(window, width, height);
+    }
+
+    void Update()
+    {
+        // set pixels as 1D array with color info
+        std::vector<glm::vec4> pixels(width * height, glm::vec4(0.8f, 0.8f, 0.8f, 1.0f));
+
+        // Raytracer Render
+        raytracer.Render(pixels);
+
+        // Copy CPU Mem -> GPU mem
+        // 렌더링 결과를 GPU 메모리로 복사
+		D3D11_MAPPED_SUBRESOURCE ms;
+		deviceContext->Map(canvasTexture, NULL, D3D11_MAP_WRITE_DISCARD, NULL, &ms);
+		memcpy(ms.pData, pixels.data(), pixels.size() * sizeof(glm::vec4));
+		deviceContext->Unmap(canvasTexture, NULL); 
+    }
+
+    void Initialize(HWND window, int width, int height)
+    {
+        this->width = width;
+        this->height = height;
+
+        // Swapchain... Set
+
+        // Create Render Target
+
+        // Set the view port
+
+        // Create texture and rendertarget
+
+        // Create the sample state
+
+        // vertex buffer
+    }
+
+    void Render()
+    {
+        // ...
+    }
+
+    void Clean()
+    {
+        // ....
+    }
+};
+
+int main()
+{
+    const int width = 1280, height = 720;
+    // Imgui setup & winAPI setup
+
+    // HWND hwnd...
+     
+    auto rayTracingModule = std::make_unique<RayTracingModule>(hmwd, width, height);
+    
+    MSG msg = {};
+    while(WM_QUIT != msg.message)
+    {
+        if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+        {
+            // ... do Something
+        }
+        else
+        {
+            // ... Imgui start setup
+            rayTracingModule->Update();
+            rayTracingModule->Render()
+
+            // swap the back buffer and the front buffer
+            rayTracingModule->swapChain->Present(1, 0)
+        }
+
+    }
+
+    // clean up
+}
+```
+
+
+
+
+
 
 ### Resource
+[Introduction to Raytracing](https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-ray-tracing/implementing-the-raytracing-algorithm.html)

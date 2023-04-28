@@ -170,7 +170,7 @@ Build the software system and algorithm to detect the root system from the given
 2. [Image Captioning](https://github.com/sjang1594/cvnn-udacity/tree/master/P2-Image_Captioning) 
 3. [Landmark Detection Tracking(SLAM)](https://github.com/sjang1594/cvnn-udacity/tree/master/P3-Landmark%20Detection_Tracking(SLAM))
 
-* **Desktop Application - Scenario Runner in MORAI
+* **Desktop Application - Scenario Runner in MORAI**
 
 1. Undo / Redo Implementation using the Command Pattern in MGeo Editor.
 2. Using the PyQT to create UI Editor for Scenario Runner.

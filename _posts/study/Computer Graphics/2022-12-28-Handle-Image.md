@@ -121,7 +121,7 @@ Vec4& Image::GetPixel(int i, int j)
 위의 함수를 적절히 이용해서, 아래와 같은 Image Data 를 읽고 저장할수 있다. 사진의 해상도가 높다면 깨질수도 있으니 확인이 필요하다.
 
 <figure>
-  <img src = "../../../assets/img/photo/coffee.jpg">
+  <img src = "../../../assets/img/photo/4-23-2023/coffee.jpg">
 </figure>
 
 ### Convolution
@@ -129,7 +129,7 @@ Vec4& Image::GetPixel(int i, int j)
 Deep Learning 에서 Image Object Detection 을 해봤더라면 `Convolution Layer` 라는 걸 사용해 본적이 있을것이다. 그리고 OpenCV 에서 Kernel size 아니면 Masking 을 사용하거나 적용해서 Edge 를 더 나타내거나, 여러 Blur 종류 들을 볼수 있을것이다. Convolution 의 내용은 아래 `6 Basic Things to Know about Convolution` 과 `A Basic Introduction to Convolutions` 를 참고하기 바른다.
 
 <figure>
-  <img src = "../../../assets/img/photo/coffee.jpg">
+  <img src = "../../../assets/img/photo/4-23-2023/coffee.jpg">
 </figure>
 
 Computer Graphics 측면에서 Convolution Filter 를 사용하게되면 연산량이 많아진다. 그래서 `Separable Convolution` 을 사용한다. Separable Convolution 같은 5 x 5 의 Kernel 이 있다고 하면 Middle point 에서 row 값을 평균을 내고, column 값에서 평균을 낸다. 즉 중앙을 기준으로 row 를 평균, column 을 평균을 내는 방식이다.
@@ -177,7 +177,7 @@ for (int j = 0; j < this->height; j++)
 사용을 하면, 아래와 같은 그림이 결과로 저장이되어 나온다.
 
 <figure>
-  <img src = "../../../assets/img/photo/coffee_boxblur_result.png">
+  <img src = "../../../assets/img/photo/4-23-2023/coffee_boxblur_result.png">
 </figure>
 
 ### Gaussian Blur
@@ -257,17 +257,17 @@ for (int i = 0; i < pixelsBackup.size(); i++)
 
 relative luminance 를 통한 어두운 pixels 를 검은 pixel 로 바꿨을때
 <figure>
-  <img src = "../../../assets/img/photo/coffee_relative_luminance.png">
+  <img src = "../../../assets/img/photo/4-23-2023/coffee_relative_luminance.png">
 </figure>
 
 그 이후 Gaussian Blur 했을때
 <figure>
-  <img src = "../../../assets/img/photo/after_blur.png">
+  <img src = "../../../assets/img/photo/4-23-2023/after_blur.png">
 </figure>
 
 마지막으로 원본 데이터를 aggregate 했을때
 <figure>
-  <img src = "../../../assets/img/photo/final_result.png">
+  <img src = "../../../assets/img/photo/4-23-2023/final_result.png">
 </figure>
 
 

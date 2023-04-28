@@ -52,7 +52,36 @@ public:
 }
 ```
 
+아래 처럼 결과를 볼수 있다.
+
+<figure>
+  <img src = "../../../assets/img/photo/4-26-2023/example.JPG">
+</figure>
+
 ### How to draw the Circle for Transformation (2D)
+
+가끔씩은 In Game 내부 안에서는 좌표계 변환을 할 필요가 있다. 예를 들어서 Unity 나 Unreal 같은 경우, 내부 안에 따른 카메라 모듈이 있다고 가정하면, Player 가 보는 관점과 그 카메라가 담고 있는 시점이 다르다. 즉 상대적으로 보고 있는게 다르기 때문에 좌표계 변환이 필요하다. 일단 좌표계 변환에 앞서서 `aspect ratio` 라는 개념이 필요하다. Screen 에서 aspect ratio 를 구할려면, 뿌려질 화면(Screen) 에 width 와 height 로 나눠줘야 한다.
+
+그렇다면 이런식으로 나타낼수 있을거다.
+
+```c++
+const float aspectRatio = (float)width / height;
+```
+
+그리고 가정이 또 필요한데 Screen 좌표계에서 직접 World Coordinate System 으로 지정해야한다. Custom 하게 제작을 한다면 Screen 좌표계는 `[0 x with - 1] x [0 x height -1]` 이고, 정의하고자 하는 좌표계를 `[-aspectRatio, +aspectRatio] x [1 + -1]` 이라고 지정을 하자. 다시말하면 far left corner on the top 의 위치는 [0, 0] 이였던게 [-aspectRatio, 1] 이되고, [width - 1, height - 1] 이 였던게 [+aspectRatio, -1] 이 되는거다.
+
+그렇다면 변환을 하는식을 코드로 표현 해보자. 설명을 해보자면 일단 도형을 그린다고 했을때 좌표계변환은 원하는 도형이 안나올수 있기때문에 여기서 Scaling 을 구하려면 aspectRatio 에 곱해주어야만 원하는 도형이 나올 수 있다(예: 원이라고 하면 타원이 나올수도 있다.) 그리고 positionScreen 값에 scale 을 곱해서 해당의 한칸당 움직임을 알수 있고 이 좌표계를 -aspectRatio 가 제일 맨윗점이 되어야하므로 -aspectRatio 를 하고, y 같은 경우도 마찬가지로 위의 방향이 -1 부터 시작해야하므로 -1 을 빼준다. 하지만 이게 다가 아니다. 이때 y 의 부호값도 뒤집어줘야 위로 갈땐 양수 아래로 갈땐 음수 이렇게 표현하기위해선 전체 부호를 뒤집어 줘야한다.
+
+```c++
+glm::vec2 TransformScreenToWorld(glm::vec2 positionScreen)
+{
+    const float aspectRatio = float(width) / height;
+    const float xScale = 2 * aspectRatio / (width - 1);
+    const float yScale = 2 / (height - 1)
+
+    return glm::vec2(positionScreen.x * xScale - aspectRatio, -(positionScreen.y * yScale -1));
+}
+```
 
 ### How to draw the Sphere
 

@@ -70,7 +70,11 @@ Hit FindClosestCollision(Ray& ray)
 	
 	return closestHit;
 }
-`
+```
+
 <figure>
   <img src = "../../../assets/img/photo/4-27-2023/three_sphere_3.JPG">
 </figure>
+
+
+### Resource

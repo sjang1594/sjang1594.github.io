@@ -96,7 +96,9 @@ Rendering 기술이나 Brute force 를 사용한 Ray-tracing 을 보면 주로 S
   <img src = "../../../assets/img/photo/RayTracing2.PNG">
 </figure>
 
-이런식으로 Simple 한 Ray Tracing 구조를 가져 올수 있다. 그러면 바로 코드로 표현 해보자. 일단, 구체적인 DirectX 에 관련된 부분은 주제와 조금 알맞지 않으므로 작성하지 않았다.
+이런식으로 Simple 한 Ray Tracing 구조를 가져 올수 있다. 그러면 바로 코드로 표현 해보자. 일단, 구체적인 DirectX 에 관련된 부분은 주제와 조금 알맞지 않으므로 작성하지 않았다. 아래에서 중요한 부분은 Ray, Hit, Sphere 안에 있는 `IntersectRayCollision` 함수 이부분이다. 일단 Ray 같은 경우는 어떤 시작점에서 어떤방향으로 출발한다는 벡타와 그 Point 를 가지고 있어야하고, Hit 같은 경우 distance 정보와 Hit 을 했을때의 point 좌표와 그거에 해당되는 Normal vector 등 필요할것이다. 그리고 현재 위에서 했던것과 달리 World Coordinate 이 [-1, 1] x [1, -1] 로 바뀌었다는 점을 찾을수 있다. 그래서 여기서 중요한 알고리즘은 Rendering 이 Update 이 될때, RayTracing 에서 Render 라는 함수를 호출하고, Render 에서, 각각의 screen 좌표계에 있는걸 좌표계 변환으로 통해서, 바꾼 다음에 Ray 를 쏠 준비를 하는 것이다. 
+
+그런다음에 Ray 를 trace 하면서 물체의 거리를 비교하면서, Sphere 에 Hit 이 됬으면, 그 color 값을 가지고 오는것이다.
 
 ```c++
 struct Vertex
@@ -105,9 +107,19 @@ struct Vertex
     glm::vec2 uv;
 };
 
+class Ray
+{
+public:
+    glm::vec3 start;    // start position of the ray
+    glm::vec3 dir;      // direction
+}
+
 class Hit
 {
-
+public:
+    float d;            // distance from the start to hit point
+    glm::vec3 point;    // point where ray hits
+    glm::vec3 normal;   // normal vector that are perpendicular to the surface of sphere 
 }
 
 class Sphere
@@ -142,6 +154,48 @@ public:
         sphere = make_shared<Sphere>(vec3(0.0f, 0.0f, 0.0f), 0.4f, vec3(1.0f, 1.0f, 1.0f));
     }
 
+    glm::vec3 TransformScreenToWorld(glm::vec2 posScreen)
+    {
+        const float xScale = 2.0f / (this->width - 1);
+        const float yScale = 2.0f / (this->height - 1);
+        const float aspect = float(this->width) / this->height;
+
+        return glm::vec3((posScreen.x * xScale -1.0f) * aspect, -posScreen.y * yScale + 1.0f, 0.0f);
+    }
+
+    vec3 traceRay(Ray &ray)
+    {
+        const Hit hit = sphere->IntersectRayCollision(ray);
+
+        if(hit.d < 0.0f)
+        {
+            return vec3(0.0f);
+        }
+        else
+        {
+            return sphere->color * hit.d;
+        }
+    }
+
+    void Render(std::vector<glm::vec4> &pixels)
+		{
+            // init all black as background color
+			std::fill(pixels.begin(), pixels.end(), vec4{0.0f, 0.0f, 0.0f, 1.0f});
+
+// multi-threading
+#pragma omp parallel for
+			for (int j = 0; j < height; j++)
+				for (int i = 0; i < width; i++)
+				{
+					const vec3 pixelPosWorld = TransformScreenToWorld(vec2(i, j));
+
+					const auto rayDir = vec3(0.0f, 0.0f, 1.0f);
+
+					Ray pixelRay{pixelPosWorld, rayDir};
+
+					pixels[size_t(i + width * j)] = vec4(traceRay(pixelRay), 1.0f);
+				}
+		}
 };
 
 class RayTracingModule
@@ -259,3 +313,4 @@ int main()
 
 ### Resource
 [Introduction to Raytracing](https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-ray-tracing/implementing-the-raytracing-algorithm.html)
+[Line-sphere Intersection](https://en.wikipedia.org/wiki/Line%E2%80%93sphere_intersection)

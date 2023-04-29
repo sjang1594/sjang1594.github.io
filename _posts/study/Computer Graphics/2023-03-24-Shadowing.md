@@ -41,3 +41,5 @@ return color;
 <figure>
   <img src = "../../../assets/img/photo/4-27-2023/shadow.JPG">
 </figure>
+
+### Resource

@@ -98,7 +98,7 @@ Rendering 기술이나 Brute force 를 사용한 Ray-tracing 을 보면 주로 S
 
 이런식으로 Simple 한 Ray Tracing 구조를 가져 올수 있다. 그러면 바로 코드로 표현 해보자. 일단, 구체적인 DirectX 에 관련된 부분은 주제와 조금 알맞지 않으므로 작성하지 않았다. 아래에서 중요한 부분은 Ray, Hit, Sphere 안에 있는 `IntersectRayCollision` 함수 이부분이다. 일단 Ray 같은 경우는 어떤 시작점에서 어떤방향으로 출발한다는 벡타와 그 Point 를 가지고 있어야하고, Hit 같은 경우 distance 정보와 Hit 을 했을때의 point 좌표와 그거에 해당되는 Normal vector 등 필요할것이다. 그리고 현재 위에서 했던것과 달리 World Coordinate 이 [-1, 1] x [1, -1] 로 바뀌었다는 점을 찾을수 있다. 그래서 여기서 중요한 알고리즘은 Rendering 이 Update 이 될때, RayTracing 에서 Render 라는 함수를 호출하고, Render 에서, 각각의 screen 좌표계에 있는걸 좌표계 변환으로 통해서, 바꾼 다음에 Ray 를 쏠 준비를 하는 것이다. 
 
-그런다음에 Ray 를 trace 하면서 물체의 거리를 비교하면서, Sphere 에 Hit 이 됬으면, 그 color 값을 가지고 오는것이다.
+그런다음에 Ray 를 trace 하면서 물체의 거리를 비교하면서, Sphere 에 Hit 이 됬으면, 그 color 값을 가지고 오는것이다. 여기서 중요한점은 d1 과 d2 값이 존재 한다면, 제일 작은값이 첫충돌이라는 거고, Hit 의 구조체에 구해주고, normal 값은 Point 에서, 구의 원점을 뺀 벡터를 Normalized 를 해야되는 점이다.
 
 ```c++
 struct Vertex
@@ -138,6 +138,17 @@ public:
     Hit IntersectRayCollision(Ray &ray)
     {
         Hit hit = Hit(-1.0f, vec3(0.0f), vec3(0.0f));
+        const float b = 2.0f * glm::dot(ray.dir, ray.start - this->center);
+        const float c = dot(ray.start - this->center, ray.start - this->center) - this->radius * this->radius;
+
+        const float det = b * b - 4.0f * c;
+        if (det >= 0.0f) {
+            const float d1 = (-b - sqrt(det)) / 2.0f;
+            const float d2 = (-b + sqrt(det)) / 2.0f;
+            hit.d = glm::min(d1, d2);
+            hit.point = ray.start + ray.dir * hit.d;
+            hit.normal = glm::normalize(hit.point - this->center);
+        }
         return hit;
     } 
 };
@@ -305,11 +316,6 @@ int main()
     // clean up
 }
 ```
-
-
-
-
-
 
 ### Resource
 [Introduction to Raytracing](https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-ray-tracing/implementing-the-raytracing-algorithm.html)

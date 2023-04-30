@@ -7,10 +7,54 @@ tags: [computer graphics]
 
 ### Texturing
 
-쉽게 말해서, 우리가 일일히 도형의 Pixel 에다가 색깔을 넣어서 그림을 넣어주기는 너무 번거롭다. 그렇다면 2D 이미지를 가지고 와서 그 도형에다가 덮어버리는 기술을 `Texture Mapping` 이라고 한다. 관련된건 Resource 를 참고 하자.
+쉽게 말해서, 우리가 일일히 도형의 Pixel 에다가 색깔을 넣어서 그림을 넣어주기는 너무 번거롭다. 그렇다면 2D 이미지를 가지고 와서 그 도형에다가 덮어버리는 기술을 `Texture Mapping` 이라고 한다. 관련된건 Resource 를 참고 하자. 일단 브레인 스토밍을 해보자, 어떤 Texture 이미지를 Screen 안에 있는 또는 가상 공간안에 있는 도형에 맞춰서 그릴려고 한다. 다시 말해서, Texture 위치에 어느 색깔값을 가지고 와서, 도형에 그릴까? 라는것이 되어야한다. 그럴려면 좌표계 변환이 필요하다. 아래의 그림을 한번 참고 해보자.
+
+<figure>
+  <img src = "../../../assets/img/photo/4-27-2023/note_2.JPG">
+</figure>
+
+위의 그림과 같이 Texture Coordinates 를 uv 좌표계라고 한다. 왼손좌표계를 DirectX 에서 사용하므로(OpenGL 은 반대), 맨윗 오른쪽이 (0, 0) 을가지고 width 가 1 이고, height 가 1 좌표계를 만들수 있다. 그래서 본론으로 돌아와서, 이 Texture 을 어떻게 도형에다가 매칭 시켜줄지, 즉 임의의 UV 좌표에 있는 색깔값을 도형에 넣는 방법을 `Sampling` 이라고 한다. 여기서 Sampling 방법은 두가지가 있다. 하나는 Mapping 을 할때, 임의의 UV 좌표를 이미지 좌표에 매핑이 되었을때 가장 가까운 Pixel 값만 가져오는게, Point Sampling 이라고 하고, Interpolation 을 해서 Linear 하게 부드럽게 표현하기위해서 Sampling 하는 기법을 Linear Sampling 이라고 한다.
+
+일단 uv 좌표계에서, 이미지의 좌표계로 변환하는과정을 살펴보자. 텍스춰링의 좌표 범위는 앞서 말한것 처럼 [0.0, 1.0] x [0.0, 1.0] 여기에서 이미지 좌표를 변경하려면, [-0.5, width - 1 + 0.5] x [-0.5, height - 1 + 0.5] 의 좌표에 Mapping 을 해야한다. 여기에서 0.5 가 Padding 처럼 붙여있는이유는, 실제 array 또는 메모리가 저장되는 측면에서는 [0, width-1] x [0, height - 1] 인덱싱을 할수 있지만, 그 Mapping 을 할때 임의의 점은 screen 좌표계에 딱 맞춰져있는게 아니라, 도형의 Vertex 의 정보만 들고 있기 때문이다.
+
+```c++
+vec2 xy = uv * vec2(float(width), float(height)) - vec2(0.5f);
+```
 
 ### Sampling (Point & Linear)
 
+여기에서 Sampling 을 하는 것을 설명을 하려고한다.
+
+Point Sampling Code 는 아래와 같다.
+```c++
+class Texture
+{
+public:
+    int width, height, channels;
+    std::vector<uint8_t> image;
+    Texture(const std::string &fileName);
+    Texture(const int& width, const int &height, const std::vector<vec3> &pixels);
+
+    vec3 GetClamped(int i, int j)
+	{
+		i = glm::clamp(i, 0, width - 1);
+		j = glm::clamp(j, 0, height - 1);
+		const float r = image[(i + width * j) * channels + 0] / 255.0f;
+		const float g = image[(i + width * j) * channels + 1] / 255.0f;
+		const float b = image[(i + width * j) * channels + 2] / 255.0f;
+		return vec3(r, g, b);
+	}
+
+    vec3 SamplePoint(const vec2 &uv) // Nearest sampling이라고 부르기도 함
+	{
+		vec2 xy = uv * vec2(float(width), float(height)) - vec2(0.5f);
+		int i = glm::round(xy.x);
+		int j = glm::round(xy.y);
+		// return GetClamped(i, j);
+		return GetClamped(i, j);
+	}
+}
+```
 
 ### Resource
 - [Texture Mapping WiKi](https://en.wikipedia.org/wiki/Texture_mapping)

@@ -63,6 +63,27 @@ public:
   <img src = "../../../assets/img/photo/4-27-2023/samplePoint.JPG">
 </figure>
 
+또 다른건 바로 Linear Sampling 이다. Linear Sampling 같은 경우 Pixel 을 가지고 오지만, 그 Point 와 Point 사이의 Pixel 값을 자연스럽게 추가해줘야되기 때문에 Linear Interpolation 을 사용해야 한다. 또한 가로축 Sampling 을 할뿐만아니라, 세로축도 Sampling 을 해야 한다. 즉 Linear Interpolation 을 두번하는걸 Bilinear Interpolation 이라고 한다.
+
+구현은 비슷하지만, GetWrapped 와 GetClamp 에 따라서 결과값이 달라진다. 그리고 Bilinear Interpolation 가로축에 해당되는 부분을 a 라고 지정했으며, 세로축에 해당되는 부분을 b 로 저장해서 사용되었다.
+
+```c++
+
+```
+
+결과는 아래와같다.
+
+<figure>
+  <img src = "../../../assets/img/photo/4-27-2023/linearSample.JPG">
+</figure>
+
+### Texturing
+
+위와같이 사용을했을때 GetWrapped 와 GetClamped 를 사용해서 원하는 Domain 에 따라 사용되는게 다를수도있고, 그리고 현재 Texture 에 빛의 효과를 따로 줄수도 있다.
+
+<figure>
+  <img src = "../../../assets/img/photo/4-27-2023/sampling.JPG">
+</figure>
 
 ### Resource
 - [Texture Mapping WiKi](https://en.wikipedia.org/wiki/Texture_mapping)

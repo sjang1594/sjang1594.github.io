@@ -103,6 +103,10 @@ vec3 SampleLinear(const vec2 &uv)
   <img src = "../../../assets/img/photo/4-27-2023/sampling.JPG">
 </figure>
 
+### SuperSampling
+
+### Cube Mapping
+
 ### Resource
 - [Texture Mapping WiKi](https://en.wikipedia.org/wiki/Texture_mapping)
 - [Image Textures](https://math.hws.edu/graphicsbook/c4/s3.html)

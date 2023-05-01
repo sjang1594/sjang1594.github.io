@@ -2,7 +2,7 @@
 title: Texturing
 layout: post
 category: study
-tags: [computer graphics]
+tags: [computer graphics, computer vision]
 ---
 
 ### Texturing
@@ -105,9 +105,54 @@ vec3 SampleLinear(const vec2 &uv)
 
 ### SuperSampling
 
-### Cube Mapping
+Super Smapling 기법 같은 경우 `Alisaing` 을 지우기 위해서 사용이 된다. Alias 는 이미지나 물체가 Sample 될때, distortion 이 되는 효과를 말을 한다. 아래의 이미지를 참고 하기 바란다.
+
+<figure>
+  <img src = "../../../assets/img/photo/4-27-2023/alias.JPG">
+</figure>
+
+이런 상황일때 사용할수 있는게 `Supersampling` 기법이다. 요즘엔 Deep Learning 을 사용한 Super Sampling 이 있다. 일단 [Super Sampling](https://en.wikipedia.org/wiki/Supersampling) Sampling 을 하는 방법은 여러가지가 있다. 구현하고자 하고 싶은건 Grid algorithm in uniform distribution 으로 Sampling 을 할거다.
+
+일단 Recursive 방식으로 할거고, 4 개의 점을 이용해서 Sampling 을 하려고 하니까 2x2 filter 처럼 구현된걸 볼수 있다. Recursive Level 이 높을수록 Sampling 하는게 다르다.
+
+```c++
+vec3 traceRay2x2(vec3 eyePos, vec3 pixelPos, const float dx, const int recursiveLevel)
+{
+	if (recursiveLevel == 0)
+	{
+		Ray myRay{pixelPos, glm::normalize(pixelPos - eyePos)};
+		return traceRay(myRay);
+	
+	const float subdx = 0.5f * dx
+	vec3 pixelColor(0.0f);
+	pixelPos = vec3(pixelPos.x - subdx * 0.5f, pixelPos.y - subdx * 0.5f, pixelPos.z)
+	for (int j = 0; j < 2; j++)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			vec3 subPos(pixelPos.x + float(i) * subdx, pixelPos.y + float(j) * subdx, pixelPos.z);
+			Ray subRay{ subPos, glm::normalize(subPos - eyePos) };
+			pixelColor += traceRay2x2(eyePos, subPos, subdx, recursiveLevel - 1);
+		}
+	
+	return pixelColor * 0.25f;
+}
+```
+
+결과는 아래와 같다.
+
+Sample = 2
+<figure>
+  <img src = "../../../assets/img/photo/4-27-2023/alias_1.JPG">
+</figure>
+
+Sample = 4
+<figure>
+  <img src = "../../../assets/img/photo/4-27-2023/alias_2.JPG">
+</figure>
 
 ### Resource
 - [Texture Mapping WiKi](https://en.wikipedia.org/wiki/Texture_mapping)
 - [Image Textures](https://math.hws.edu/graphicsbook/c4/s3.html)
 - [2D Graphics Algorithms](https://www.youtube.com/watch?v=IDFB5CDpLDE&ab_channel=BrianWill)
+- [Super Sampling](https://en.wikipedia.org/wiki/Supersampling)

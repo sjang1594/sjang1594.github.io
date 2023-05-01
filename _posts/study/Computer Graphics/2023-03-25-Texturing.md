@@ -69,6 +69,24 @@ public:
 
 ```c++
 
+vec3 InterpolateBilinear(const float &dx, const float &dy,
+    const vec3 &c00, const vec3 &c10,
+	const vec3 &c01, const vec3 &c11)
+{
+	vec3 a = c00 * (1.0f - dx) + c10 * dx;
+	vec3 b = c01 * (1.0f - dx) + c11 * dx
+	return a * (1.0f - dy) + b * dy;
+}
+
+vec3 SampleLinear(const vec2 &uv)
+{
+	const vec2 xy = uv * vec2(float(width), float(height)) - vec2(0.5f);
+	const int i = int(glm::floor(xy.x));
+	const int j = int(glm::floor(xy.y));
+	const float dx = xy.x - float(i);
+	const float dy = xy.y - float(j)
+	return InterpolateBilinear(dx, dy, GetClamped(i, j), GetClamped(i + 1, j), GetClamped(i, j + 1), GetClamped(i + 1, j + 1));
+}
 ```
 
 결과는 아래와같다.

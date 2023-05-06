@@ -17,4 +17,4 @@ Local -> World -> View -> Projection -> Screen
 Unity 같은 경우 32 Layer 이 있다.
 
 
-Perspective Projection (원근 투영 )
+Perspective Projection (원근 투영)

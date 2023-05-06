@@ -36,5 +36,3 @@ keyword : drawcall / instancing 이 필요한 상황 -> 많은 부하.
 vertex buffer 를 여러개(1 - 15) 사용 가능. 예: 첫번째 Buffer 에서는 물체의 정점 정보를 나타내고, 두번째 buffer 는 각 물체의 Position 정보 등. 
 
 버퍼의 종류 (Structure Buffer, Constant Buffer, Instancing Buffer) 
-
-PIX

@@ -6,7 +6,7 @@ tags: [logs, book]
 published: true
 ---
 
-### The Greenhouse at the end of the earth (지구 끝의 온실)
+## The Greenhouse at the end of the earth (지구 끝의 온실)
 
 이 책을 읽었던 동기는 사실 잘 기억이 나지 않는다. 뭔가, 전에 소설 책을 읽으면 재밌겠지. 소설이라는 책에도 감정이 충분이 녹아들을수 있겠다? 라는 기대감에 리디북스에서 전자책을 사서 읽게 시작됬다.
 

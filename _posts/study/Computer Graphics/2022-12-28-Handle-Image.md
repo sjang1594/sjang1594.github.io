@@ -5,7 +5,10 @@ category: study
 tags: [computer vision, computer graphics]
 ---
 
-### Handling Array
+* this unordered seed list will be replaced by the toc
+{:toc}
+
+## Handling Array
 
 Image 를 처음으로 Screen 으로 봤을때, 2D 로 보일거다. OpenCV 를 사용했었더라면, `Image Watch` 로 봤을때, 각 pixel 값이 2D image 에 잘 저장이되어 보인다고 볼수 있다. 
 
@@ -16,7 +19,7 @@ Image 를 처음으로 Screen 으로 봤을때, 2D 로 보일거다. OpenCV 를 
 
 그렇다면 다시 거꾸로 해서, 2D image 에서 (2, 3) 이라는 데이터가 있다고 가정하자. 그리고 (2,3) 에 가서 data 를 변경 한다고 가정하면, 우리에게 주어진건 1D data 이기 때문에, 17 번째의 Index 를 찾아야한다. 어떤 인덱스 (i, j) 에서 1차원 index 를 가지고 올수 있는 방법은 `i + width * j` 이다.
 
-### Handling Screen(Image)
+## Handling Screen(Image)
 
 일단 Graphics 관점에서 뭔가 screen 에다가 표현을 하고 싶다고 한다면, DirectX11 을 사용해서 Pixel 값들을 움직일 수 있다. 여기서 Vec4 라는 구조체를 넣어서, screen 좌표에 있는 모든 pixel 값들을 하얀색으로 지정해준다. 그런 다음에 Update 에서 while 문에서 호출 했었을때, screen 좌표에있는 Pixel 을 빨간색을 칠해주고 그다음 pixel 을 가서 또 칠해준다. 즉 빨간색 pixel 이 움직이는것 처럼 보이게 할수 있다.
 
@@ -124,7 +127,7 @@ Vec4& Image::GetPixel(int i, int j)
   <img src = "../../../assets/img/photo/4-23-2023/coffee.jpg">
 </figure>
 
-### Convolution
+## Convolution
 
 Deep Learning 에서 Image Object Detection 을 해봤더라면 `Convolution Layer` 라는 걸 사용해 본적이 있을것이다. 그리고 OpenCV 에서 Kernel size 아니면 Masking 을 사용하거나 적용해서 Edge 를 더 나타내거나, 여러 Blur 종류 들을 볼수 있을것이다. Convolution 의 내용은 아래 `6 Basic Things to Know about Convolution` 과 `A Basic Introduction to Convolutions` 를 참고하기 바른다.
 
@@ -180,7 +183,7 @@ for (int j = 0; j < this->height; j++)
   <img src = "../../../assets/img/photo/4-23-2023/coffee_boxblur_result.png">
 </figure>
 
-### Gaussian Blur
+## Gaussian Blur
 가우시안 Blur 를 사용하려면, weight 값을 줘야 된다. `const float weights[5] = { 0.0545f, 0.2442f, 0.4026f, 0.2442f, 0.0545f };`
 
 위에서 Box Blur 와 마찬가지로 해결해보면, 아래와 같은 코드가 나온다.
@@ -223,7 +226,7 @@ for (int j = 0; j < this->height; j++)
 
 ```
 
-### Bloom Effect
+## Bloom Effect
 Bloom 효과 같은경우는 밝은 Pixel 은 가만히두고, 어두운 Pixel 을 전부다 검은색으로 둔다음에 Gaussian Blur 를 사용한다. 그런다음에 원본이미지와 Blur 된 이미지를 더하면, Bloom Effect 가 일어난다. 일단 어두운 Pixel 을 전부다 검은색으로 바꾸는게 중요하다. 아래의 Resource 에서 `Relative Luminance` 를 참고하길 바란다. 그래서 이 식으로 하면 된다. `Relative Luminance Y = 0.2126*R + 0.7152*G + 0.0722*B`.
 
 구현 방법은 아래와 같다. 즉 Pixel 을 가지고 와서 Relaitve Luminance 를 곱한 이후에, 어떤 threshold 에 넘는다고 하면 0 으로 바꿔치기하는 기술이다.
@@ -270,8 +273,7 @@ relative luminance 를 통한 어두운 pixels 를 검은 pixel 로 바꿨을때
   <img src = "../../../assets/img/photo/4-23-2023/final_result.png">
 </figure>
 
-
-### Resource
+## Resource
 - [Convolution](https://en.wikipedia.org/wiki/Convolution)
 - [Separable Filter](https://en.wikipedia.org/wiki/Separable_filter)
 - [A Basic Introduction to Convolutions](https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728)

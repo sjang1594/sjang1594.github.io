@@ -5,7 +5,10 @@ category: study
 tags: [computer graphics, computer vision]
 ---
 
-### Texturing
+* this unordered seed list will be replaced by the toc
+{:toc}
+
+## Texturing
 
 쉽게 말해서, 우리가 일일히 도형의 Pixel 에다가 색깔을 넣어서 그림을 넣어주기는 너무 번거롭다. 그렇다면 2D 이미지를 가지고 와서 그 도형에다가 덮어버리는 기술을 `Texture Mapping` 이라고 한다. 관련된건 Resource 를 참고 하자. 일단 브레인 스토밍을 해보자, 어떤 Texture 이미지를 Screen 안에 있는 또는 가상 공간안에 있는 도형에 맞춰서 그릴려고 한다. 다시 말해서, Texture 위치에 어느 색깔값을 가지고 와서, 도형에 그릴까? 라는것이 되어야한다. 그럴려면 좌표계 변환이 필요하다. 아래의 그림을 한번 참고 해보자.
 
@@ -21,7 +24,7 @@ tags: [computer graphics, computer vision]
 vec2 xy = uv * vec2(float(width), float(height)) - vec2(0.5f);
 ```
 
-### Sampling (Point & Linear)
+## Sampling (Point & Linear)
 
 여기에서 Sampling 을 하는 것을 설명을 하려고한다.
 
@@ -103,7 +106,7 @@ vec3 SampleLinear(const vec2 &uv)
   <img src = "../../../assets/img/photo/4-27-2023/sampling.JPG">
 </figure>
 
-### SuperSampling
+## SuperSampling
 
 Super Smapling 기법 같은 경우 `Alisaing` 을 지우기 위해서 사용이 된다. Alias 는 이미지나 물체가 Sample 될때, distortion 이 되는 효과를 말을 한다. 아래의 이미지를 참고 하기 바란다.
 

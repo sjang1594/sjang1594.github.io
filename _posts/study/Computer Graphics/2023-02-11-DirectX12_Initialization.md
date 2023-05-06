@@ -5,7 +5,10 @@ category: study
 tags: [directx, computer graphics]
 ---
 
-### DirectX12 Background
+* this unordered seed list will be replaced by the toc
+{:toc}
+
+## DirectX12 Background
 
 일단 장치 초기화 하기 이전에, Hardware 를 알아보자. 컴퓨터를 뜯어봤으면 알수 있는건 바로 CPU 와 GPU 를 한번쯤은 봤을것이다. 아래의 구조를 한번 보자.
 
@@ -15,7 +18,7 @@ tags: [directx, computer graphics]
 
 CPU 는 마치 고급인력 처럼 보인다. CPU 는 뭔가 큰작업을 빠르게 처리할수 있는 ALU 4 개가 있고, 반대로 GPU 같은 경우는 수많은 ALU 가 존재하는데 약간 인력집단처럼 정말 많다. 바로 여기서 힌트를 얻을수 있는게, 단순 또는 값싼 인력을이 많아서, 독립적인 일을 병렬로 처리할수 있게 보인다. 만약 독립적인일을 CPU 로 하기엔 뭔가 고급 인력들을 잡일로 시키는것 같다. 그래서 주로 CPU 같은 경우, 뭔가 데이터나 연산들이 서로가 서로 연관관계일때 주로 사용되는게 좋다. 다시 정리해서 말하면 CPU 는 고급인력이고, GPU 는 약간 외주(outsourcing) 을 하는 느낌이다. GPU 에게 외주를 맡길거면, 어떤 일을 해야 하는지, 사인을 어느 부분에서 해야하는지, 등 알려주는게 좋아서, 바로 `Rendering Pipeline` 이라는게 정의가 되었다.
 
-### Rendering Pipeline in DirectX
+## Rendering Pipeline in DirectX
 
 아래의 그림이 DirectX3D 11 의 Rendering Pipeline 이다. 각각이 뭐를 하는지 briefly 하게 넘어가보자.
 
@@ -29,7 +32,7 @@ CPU 는 마치 고급인력 처럼 보인다. CPU 는 뭔가 큰작업을 빠르
 
 이런 PipeLine 을 더 이해하고, 더 나아가서, GPU 에 다가 어떻게 일감을 던져주는지를 알려면 `Device Initialization` 이 필요하다. 이 아래에 설명이 있으니 한번 정리 해볼려고 한다.
 
-### Device Initialization (Component Descriptions)
+## Device Initialization (Component Descriptions)
 
 일단 설계구조는 이렇다. Engine 안에 `CommandQueue`, `DescriptorHeap`, `Device`, `SwapChain`, `RootSignautre` 등이 들어간다. 그리고 Engine 내부에서는 초기화(Init) 이 들어가고, Rendering 을 할수 있는 Render 가 들어갈것이다.
 
@@ -73,5 +76,5 @@ Root signautre 를 사용할때, constant buffer 를 사용하는데 CPU 와 연
   <img src = "../../../assets/img/study/DirectX12_PIPELINE.PNG">
 </figure>
 
-### Resource
+## Resource
  

@@ -5,7 +5,10 @@ category: study
 tags: [computer graphics]
 ---
 
-### Orthographic Projection
+* this unordered seed list will be replaced by the toc
+{:toc}
+
+## Orthographic Projection
 
 Orthographics Projection 은 정투영, 즉 물체를 원근감없이 그리는거다. 어렸을때 집을 그릴때 원근감을 표현하기 위해서 노력했지만 그럴싸하게 안나오는 이유는 바로 원근감을 생각하지 않고 그리기때문이다. 이럴 경우 집의 표면만 그대로 그리는 건데 이게 바로 정투영이다.
 
@@ -17,7 +20,7 @@ Orthographics Projection 은 정투영, 즉 물체를 원근감없이 그리는�
   <img src = "../../../assets/img/photo/4-27-2023/three_sphere.JPG">
 </figure>
 
-### Perspective Projection
+## Perspective Projection
 
 어찌됬든 정투영 보다는 더 realistic 한 거는 Perspective Projection (원근 투영) 이다. 앞에 정투영 같은 경우, 각 Screen 에 있는 pixel 들이 똑같은 위치에 시작해서 Ray 를 쏘는 반면, Perspective Projection 같은 경우 각 Pixel 들의 Ray 들이 방향이 다다르게 설정된다, 바로 눈의 시점의 Pointer 를 이용해서. **이럴때 주의점은 그 Ray 들을 전부다 Normalize 를 해줘야한다.** 그렇다면 쉽게 코드를 작성해보자. 테스트는 위의 사진을 가지고 첫번째로 그릴거다. 여기서 보면, 일단 Render 만 하기때문에 아직은 어떤 물체가 Ray 에 부딫히는 걸 무시하고, 결과를 써봤다.
 

@@ -5,7 +5,10 @@ category: study
 tags: [computer graphics]
 ---
 
-### Shadow
+* this unordered seed list will be replaced by the toc
+{:toc}
+
+## Shadowing
 
 빛이 있는곳에 우리가 걷거나 어떤 행동을 하게 된다면, 우리의 모습과 똑같게 그림자가 있는걸 확인 할수 있다. 그림자는 결국 물체에 빛이 부딛혔을때, 그 뒷부분에다가 광원과 비슷한 방향으로 그림자를 그려주면 된다. 즉 조명의 위치나 물체의 위치에따라서 그림자가 결정된다.
 
@@ -46,4 +49,4 @@ return color;
   <img src = "../../../assets/img/photo/4-27-2023/shadow.JPG">
 </figure>
 
-### Resource
+## Resource

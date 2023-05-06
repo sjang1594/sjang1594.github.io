@@ -48,11 +48,32 @@ PixelShaderInput main(VertexShaderInput input)
 
     return output;
 }
+
+// pixel shader
+float4 main(PixelShaderInput input) : SV_TARGET
+{
+    return float4(input.color, 1.0);
+}
 ```
 
 위의 코드 같은 경우 `float3 pos : POSITION` 이라고 나와있는데 colon(:) 다음에 나오는건 Sematics 인데, 어떤 Parameter 종류다라는것을 명시한다. 자세한건 [Shader Semantics](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-semantics) 참고하자.
 
 그렇다면 Vertex Shade.r 와 Pixel Shader 를 조금 더 알아보자. 위의 코드에서 `__ShaderInput` 이라는 구조체가 보인다. 그렇다면 Pipeline 에서 Output 도 존재할수 있는데, 여기서 Vertex Shader 의 Output 이 Interpolation 을 거쳐서 Pixel Shader 의 Input 이 되기때문에 따로 명시하진 않았다.
+
+그리고 위의 PixelShaderInput 구조체에서 Vertex Shader 와 비슷하게 생겼지만 `SV` (System-value semantics)라는게 들어가 있는데, 이 이유는 Shader의 Input 으로 들어온다 라는걸 표시한다.
+
+Pixel Shader 에서는 Graphics Pipeline 안에서 제일 마지막에 위치해있기때문에 Semantics 가 SV_TARGET 즉 Render 를 할 Target 이라는 semantics 를 넣어주어야한다.
+
+Shader 에서 Constant Buffer 도 거쳐서 계산하게끔 도와줘야한다. 그러기 때문에 이것에 필요한 문법도 따로 명시해줘야한다. 아래와 같이 표현 할수 있는데 여기서 register 안에 b0 이라는 인자가 들어간게 보인다. 이건 Register Type 인데 b 일 경우는 Constant Buffer, t 일때는 Texture buffer, c 일 경우 Buffer offset 등 여러가지 타입이 존재한다.
+
+```hlsl
+cbuffer ModelViewProjectionConstantBuffer : register(b0)
+{
+    matrix model;
+    matrix view;
+    matrix projection;
+}
+```
 
 ## Resource
 

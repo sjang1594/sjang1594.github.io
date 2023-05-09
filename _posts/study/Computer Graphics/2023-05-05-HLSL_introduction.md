@@ -2,7 +2,7 @@
 title: HLSL Introduction
 layout: post
 category: study
-tags: [directx, computer graphics]
+tags: [directx, computer graphics, shader]
 ---
 
 * this unordered seed list will be replaced by the toc
@@ -20,7 +20,7 @@ DirectX 에서는, HLSL(High Level Shader Language) 를 사용한다. [HLSL](htt
 
 일단 기본적으로 아래와 같이 Shader Programming 을 할수 있다. C 나 C++ 처럼, 제일 처음에 시작되는 부분이 바로 main 부분이다. Shader 에도 main 이 따로 있다. 일단 Shader 의 종류가 여러가지가 있다. 예를들어서 Vertex Shader 가 있고, Pixel Shader 등등 있는데, 서로 연관성은 없으며, 하나의 독립적인 Module 이라고 생각하면 편하다, 독립적인 Module 이기 때문에, Compile 도 따로한다. 하지만 data 는 Share 할수 있다.
 
-예를 들어서 아래의 HLSL Programming 을 봐보자. 
+예를 들어서 아래의 HLSL Programming 을 봐보자.
 
 ```hlsl
 struct VertexShaderInput
@@ -76,7 +76,6 @@ cbuffer ModelViewProjectionConstantBuffer : register(b0)
 ```
 
 ## Resource
-
 - [Graphics Pipeline](https://learn.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-graphics-pipeline)
 - [High-level Shalder Language](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl)
 - [Shader Semantics](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-semantics)

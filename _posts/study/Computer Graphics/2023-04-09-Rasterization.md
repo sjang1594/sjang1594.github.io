@@ -24,7 +24,8 @@ Ray Tracing 으로 Rendering 을 하게 되면, 여러 Bottleneck 이 존재한�
 
 Rasterization 의 알고리즘의 Step 은 Ray Tracing 과 비슷하면서도 다르다. 예를 들어서 Ray Tracing 같은 경우, 모든 Pixel 에 대해서 Loop 을 돌면서 모든 물체에 Hit 을 하는지 안하는지를 체크 한이후에, 물체에 부딫히면 물체의 색을 결정했었다. `Rasterization` 같은 경우, 기준이 scene 에있는 모든 물체에서 Loop 을 돌고, 그 이후에 모든 물체의 Vertex 들을 투영을 시킨다음에, 그다음에 Pixel 을 돌면서, 그 Pixel 이 물체안에 들어가있는지 없는지를 체크를 한이후에 들어가 있다면, color 값을 가지고 오면 된다. 여기서 중요한건 Rasterization Algorithm 은 `object-centric` 이라는 점이다. 즉 도형의 Geometry 를 image 좌표계로 바꿔서, 그 Image 를 Loop 을 돌기 때문이다.
 
-실제 Implementation 같은 경우 그 정점들을 이어주려면 그 공간에 위치해있다 라는걸 알기 위해서 Bounding Box 를 그린다.
+
+즉, 가상공간에 있는 삼각형을 가지고, Screen 좌표계로 투영을 시킨 이후에, pixel 마다 체크 하면서, 삼각형 밖에 있는 Pixel 인가, 안에 있는 Pixel 인가 체크 하면서, 들어있을때는 Screen 에다가 색깔을 칠해주고, 아니면 색깔을 안칠하면 되는 식이다. 근데 모든 Pixel 을 돌게 되면 되게 비효율적이다. 그래서 가장 작은 Bounding Box 를 그려서 효율성을 높인다.
 
 ## Rasterization Prep
 - **Baycentric Coordinates**
@@ -76,9 +77,94 @@ public:
   int height;
   Triangle triangle;
 };
+
+void Rasterization::Rasterization(const int &width, const int &height)
+  : width(width), height(height)
+{
+  triangle.v0.pos = {0.0, 0.5, 1.0f};
+  triangle.v1.pos = {1.0, -0.5, 1.0f};
+  triangle.v2.pos = {-1.0, -0.5, 1.0f};
+  triangle.v0.color = {1.0f, 0.0f, 0.0f}; // Red
+  triangle.v1.color = {0.0f, 1.0f, 0.0f}; // Green
+  triangle.v2.color = {0.0f, 0.0f, 1.0f}; // Blue
+}
+
+void Rasterization::Render(vector<vec4> &pixels)
+{
+  // Compute World Coordinates to Screen Coordinates
+  const auto v0 = ProjectWorldToRaster(triangle.v0.pos);
+  const auto v1 = ProjectWorldToRaster(triangle.v1.pos);
+  const auto v2 = ProjectWorldToRaster(triangle.v2.pos);
+
+  // Find the bounding box
+  const auto xMin = size_t(glm::clamp(glm::floor(std::min({v0.x, v1.x, v2.x})), 0.0f, float(width - 1)));
+  const auto yMin = size_t(glm::clamp(glm::floor(std::min({v0.y, v1.y, v2.y})), 0.0f, float(height - 1)));
+  const auto xMax = size_t(glm::clamp(glm::ceil(std::max({v0.x, v1.x, v2.x})), 0.0f, float(width - 1)));
+  const auto yMax = size_t(glm::clamp(glm::ceil(std::max({v0.y, v1.y, v2.y})), 0.0f, float(height - 1)));
+
+  for(size_t j = yMin; j<= yMax; j++){
+    for(size_t i = xMin; i <= xMax; i++){
+      // Check if the pixel is inside of triangle
+      // Get the pixel info
+      // A Parallel Algorithm for Polygon Rasterization
+      const vec2 point = vec2(float(i), float(j));
+
+      const float alpha0 = EdgeFunction(v1, v2, point);
+      const float alpha1 = EdgeFunction(v2, v0, point);
+      const float alpha2 = EdgeFunction(v0, v1, point);
+
+      if (alpha0 >= 0.0f && alpha1 >= 0.0f && alpha2 >= 0.0f) {
+          const float area = alpha0 + alpha1 + alpha2;
+
+          const float w0 = alpha0 / area;
+          const float w1 = alpha1 / area;
+          const float w2 = alpha2 / area;
+
+          const vec3 color = (w0 * triangle.v0.color + w1 * triangle.v1.color + w2 * triangle.v2.color);
+
+          pixels[i + width * j] = vec4(color, 1.0f);
+      }
+    }
+  }
+}
+
+vec2 Rasterization::ProjectWorldToRaster(vec3 point)
+{
+  // ** Orthographics Projection ** //
+  // Convert to NDC(Normalized Device Coordinates)
+  // NDC Range [-1, 1] x [-1, 1]
+
+  const float aspect = float(width) / height;
+  const vec2 pointNDC = vec2(point.x / aspect, point.y)
+
+  // Rasterization Coordinates Range: [-0.5, width -1 + 0.5] x [-0.5, height - 1 + 0.5]
+  const float xScale = 2.0f / width;
+  const float yScale = 2.0f / height;
+
+  // NDC -> Rasterization
+  return vec2((pointNDC.x + 1.0f) / xScale - 0.5f, (1.0f - pointNDC.y) / yScale - 0.5f);
+}
+
+float Rasterization::EdgeFunction(const vec2 &v0, const vec2 &v1, const vec2 &point)
+{
+  const vec2 a = v1 - v0;
+  const vec2 b = point - v0;
+  return (a.x * b.y - a.y * b.x) * 0.5;
+}
 ```
 
-위의 코드에서 Edge Function 같은 경우
+여기서 중요한건 위와 같이 Render 를 할때, 각 정점을 Orthographics Projection 해주는 함수 `ProjectWorldToRaster` 를 통해서, Screen 좌표계로 옮겨주고, Bounding Box 를 찾을수 있게 해준다음에, Bounding Box 안에서 Edge Function 알 사용해서, Pixel 이 삼각형 안에 들어가져있는지 없는지 확인을 한 이후에, Barycentric Coordinates 을 사용해서 Pixel 값을 정해주면 된다.
+참고: Edge Function 같은 경우, Pixel 이 삼각형안에 들어왔는지 없는지를 확인 하는 함수이다. 아래의 그림을 참고하자.
+
+<figure>
+  <img src = "../../../assets/img/photo/4-28-2023/bary_centeric_implementation.png">
+</figure>
+
+그래서 삼각형의 결과는 이러하다.
+
+<figure>
+  <img src = "../../../assets/img/photo/4-28-2023/triangle.JPG">
+</figure>
 
 ### Resource
 - [Rasterization: a Practical Implementation

@@ -13,7 +13,7 @@ tags: [computer vision]
 1. DownSampling / Outlier Removal / Noise Filtering 
     - Find the data that are close to the ground level. To accomplish this, you would be ablel to find which lidar beam index points to the ground level
     - Remove the intensity value depending on the problems (mean filter / adaptive threshold)
-    -    
+     - 
 
 
 ## Segment the Point Cloud Data

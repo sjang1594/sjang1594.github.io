@@ -10,11 +10,10 @@ tags: [computer vision]
 
 ## Lidar Preprocessing Technique
 
-1. Filter out points with low intensity values to remove non-lane points. You define a threshold value to determine which points to keep
-(Requires some domain knowledge on this)
-2. DownSampling / Outlier Removal / Noise Filtering 
+1. DownSampling / Outlier Removal / Noise Filtering 
     - Find the data that are close to the ground level. To accomplish this, you would be ablel to find which lidar beam index points to the ground level
-    - High Intensity Value
+    - Remove the intensity value depending on the problems (mean filter / adaptive threshold)
+    -    
 
 
 ## Segment the Point Cloud Data

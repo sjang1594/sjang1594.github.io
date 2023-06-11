@@ -51,7 +51,11 @@ Computational requirements : LiDAR and radar require little back-end processing.
 
 물론 high-quality 의 Point-Cloud data 를 얻을 수 있는 반면, 이거에 따른 단점도 존재한다. 일단 High Power Consumption, Physical 한 충격에 대한 민감한 정도, 그리고 마지막으로 bulky 하기 때문에 high price 라는 단점을 가지고 있다. 
 
-다른 한종류로는 `Non-Scanning Flash Lidar` 가 있다. 일단 Non-Scanning 에서 알아볼수 있듯이, sequential reconstruction 을 할수 있는게 아니라, camera 처럼 flash 를 data 수집하는 원리이다. 어떤 Array 에서 광선이 나와서, 각 Element 들이 tof receive 를 하는 방식이다. 즉 이때에 각 Pixel 값들이 하나 나온다. 이 부분 같은경우는 2D 를 Rasterization 하는 기법과 비슷핟.  
+다른 한종류로는 `Non-Scanning Flash Lidar` 가 있다. 일단 Non-Scanning 에서 알아볼수 있듯이, sequential reconstruction 을 할수 있는게 아니라, camera 처럼 flash 를 data 수집하는 원리이다. 어떤 Array 에서 광선이 나와서, 각 Element 들이 tof receive 를 하는 방식이다. 즉 이때에 각 Pixel 값들이 하나 나온다. 이 부분 같은경우는 2D 를 Rasterization 하는 기법과 비슷하다.
+
+일단 vibration 에 robust 하지만 단점이라고 하면, 한번 Flash 했을때, 전체의 Scene 이 들어와야하므로 Beam 을 쏠때의 큰 Energy 지가 필요하다. 하지만, 이러한 Energy 를 줄이려고 한다면, Receive 할때의 SNR 도 고려해야한다.
+
+그 이외에 Optical Phase Array (OPA) 및 MEMS Mirror-based Quasi Solid-State LiDAR 가 존재한다.
 
 ## LiDAR
 
@@ -71,8 +75,6 @@ Laser source 로 부터 burst 할수 있게끔 Amplifier 르 ㄹ 해준다. 이�
   <img src = "../../../assets/img/photo/5-12-2023/lidar_threashold.JPG">
 </figure>
 
-여기에서, 중점적으로 봐야되는게 `range resolution` 과 `maximum range`
-
 ## Lidar Equation
 
 <figure>
@@ -81,6 +83,21 @@ Laser source 로 부터 burst 할수 있게끔 Amplifier 르 ㄹ 해준다. 이�
 
 ### Lidar Range Map
 
+아래의 그림을 보면 Lidar 데이터가 왼쪽에서는 앞 차량의 뒷부분이 보이고, 전혀 차선(Lane) 또는 Road Surface 들이 보이지 않는다.
+
+<figure>
+  <img src = "../../../assets/img/photo/5-12-2023/lidar_and_camera.JPG">
+</figure>
+
+이런 Lidar scan 을 보는 방법중에 하나가 봐로 Range Image 이다. 이 Range Image 의 Data Structure 은 image 처럼 이지만 Lidar sensor 에서 한번 돌린 이미지라고 볼수 있다. 아래의 그림을 한번 보자.
+
+<figure>
+  <img src = "../../../assets/img/photo/5-12-2023/range_map.JPG">
+</figure>
+
+일단 row 의 정보는 elevation angle, pitch 에 대한 정보가 있고, column 정보에는 azimuth angle, yaw 의 정보를 담고 있다. 즉 감아져있는 원통을 한번 쭉 펼치는것과 마찬가지이다. 그리고 각 Element 에는 intensity 들을 가지고 있다.
+
+Waymo Data Set 의 range image structure 는 range, intensity, elogation, and vehicle position 을 가지고 있다. 그리고 Waymo dataset 에 elogation 값이 높고, intensity 가 낮은걸 날씨를 나타낼테 나타난다고 제시한다.
 
 ### Lidar based Object Detection
 

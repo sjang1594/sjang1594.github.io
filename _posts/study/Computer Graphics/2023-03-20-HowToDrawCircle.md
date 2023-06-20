@@ -92,11 +92,12 @@ Rendering 기술이나 Brute force 를 사용한 Ray-tracing 을 보면 주로 S
 1. 일단 사람의 눈을 기준으로 잡고 Screen, 즉 한 Pixel 에서 광선을 여러개 쏜다.
 2. 그 다음 각 Pixel 에 있는 Ray 중에, 하나가 구에 부딫친다.
 3. 구에 부딫힌 Ray 는, 구의 색깔의 Pixel 을 가져와서 Screen 에 보여진다 (다음 그림)
+4. 
 <figure>
-  <img src = "../../../assets/img/photo/RayTracing.PNG">
+  <img src = "../../../assets/img/photo/4-26-2023/RayTracing.PNG">
 </figure>
 <figure>
-  <img src = "../../../assets/img/photo/RayTracing2.PNG">
+  <img src = "../../../assets/img/photo/4-26-2023/RayTracing2.PNG">
 </figure>
 
 이런식으로 Simple 한 Ray Tracing 구조를 가져 올수 있다. 그러면 바로 코드로 표현 해보자. 일단, 구체적인 DirectX 에 관련된 부분은 주제와 조금 알맞지 않으므로 작성하지 않았다. 아래에서 중요한 부분은 Ray, Hit, Sphere 안에 있는 `IntersectRayCollision` 함수 이부분이다. 일단 Ray 같은 경우는 어떤 시작점에서 어떤방향으로 출발한다는 벡타와 그 Point 를 가지고 있어야하고, Hit 같은 경우 distance 정보와 Hit 을 했을때의 point 좌표와 그거에 해당되는 Normal vector 등 필요할것이다. 그리고 현재 위에서 했던것과 달리 World Coordinate 이 [-1, 1] x [1, -1] 로 바뀌었다는 점을 찾을수 있다. 그래서 여기서 중요한 알고리즘은 Rendering 이 Update 이 될때, RayTracing 에서 Render 라는 함수를 호출하고, Render 에서, 각각의 screen 좌표계에 있는걸 좌표계 변환으로 통해서, 바꾼 다음에 Ray 를 쏠 준비를 하는 것이다. 

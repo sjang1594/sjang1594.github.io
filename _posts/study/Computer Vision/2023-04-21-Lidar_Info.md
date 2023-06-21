@@ -81,7 +81,7 @@ Laser source 로 부터 burst 할수 있게끔 Amplifier 르 ㄹ 해준다. 이�
   <img src = "../../../assets/img/photo/5-12-2023/lidar_equation.JPG">
 </figure>
 
-### Lidar Range Map
+## Lidar Range Map
 
 아래의 그림을 보면 Lidar 데이터가 왼쪽에서는 앞 차량의 뒷부분이 보이고, 전혀 차선(Lane) 또는 Road Surface 들이 보이지 않는다.
 
@@ -95,15 +95,50 @@ Laser source 로 부터 burst 할수 있게끔 Amplifier 르 ㄹ 해준다. 이�
   <img src = "../../../assets/img/photo/5-12-2023/range_map.JPG">
 </figure>
 
-일단 row 의 정보는 elevation angle, pitch 에 대한 정보가 있고, column 정보에는 azimuth angle, yaw 의 정보를 담고 있다. 즉 감아져있는 원통을 한번 쭉 펼치는것과 마찬가지이다. 그리고 각 Element 에는 intensity 들을 가지고 있다.
+일단 row 의 정보는 elevation angle, pitch 에 대한 정보가 있고, column 정보에는 azimuth angle, yaw 의 정보를 담고 있다. 즉 감아져있는 원통을 한번 쭉 펼치는것과 마찬가지이다. 그리고 각 Element 에는 intensity 들을 가지고 있다. 여기에서 alpha p 는 yaw 라고 하며, beta p 는 pitch 라고 한다.
 
-Waymo Data Set 의 range image structure 는 range, intensity, elogation, and vehicle position 을 가지고 있다. 그리고 Waymo dataset 에 elogation 값이 높고, intensity 가 낮은걸 날씨를 나타낼테 나타난다고 제시한다.
+## Waymo Dataset
 
-### Lidar based Object Detection
+Waymo Dataset 같은 경우, 고해상도의 다양한 센서(Lidar / Radar / Lidar) 들로 Dataset 을가지고 있다. 주로 밀집된 도시중심이나 풍경, 그리고 날씨의 변화에 따른 다양한 환경에서 센서데이터를 가지고 있다. 내가 실제로 받은 데이터의 version 은 1.2 이다. 그리고 이 dataset 을 사용하려면, WaymoDataFileReader tool 를 사용해서, waymo dataset 을 읽은 이후에 객체의 형태로 들고 올 수 있다.
 
-- Deep Learning Approach
+일단 간락한 설명을 하기위해서, training 만 봐보도록 하자. training 안에 여러개의 Camera Label Segment 가 존재하고, 그 하위에 Lidar / Radar / Camera 의 정보들을 가지고 있다. 예를 들어서 Top Lidar 를 가지고 오려면, 아래의 Python Code 를 사용하면 된다.
 
-- Machine Learning
+```python
+lidar_name = dataset_pb2.LaserName.Top
+lidar = [obj for obj in frame.lasers if obj.name == lidar_name][0]
+```
+
+결국엔 이 Dataset 을 하기 위해선, Point Cloud Data 로 가지고 와야하지만, 여기에서 Point Cloud Data 이외에 표현하고 Visualize 를 하기 위해서는, 위의 Range Map 을 사용하면 된다. 여기에 Waymo Dataset 에서 한 Frame 당 구하기 위해선, 하나의 Frame 을 Matrix 로 변환이후에 reshape 을 해주면 shape `(64, 2650, 4)` 가 나온다. 아래의 코드는 Top Lidar 를 가지고 와서 Dimension 을 확인할수 있다.
+
+```python
+lidar_name = dataset_pb2.LaserName.Top
+lidar = [obj for obj in frame.lasers if obj.name == lidar_name][0] 
+if len(lidar.ri_return1.range_image_compressed) > 0:
+  ri = dataset_pb2.MatrixFloat()
+  ri.ParseFromString(zlib.decompress(lidar.ri_return1.range_image_compressed))
+  ri = np.array(ri.data).reshape(ri.shape.dims)
+  print(ri.shape)
+```
+
+Waymo Dataset 의 Range Image Structure 는 range, intensity, elogation, and vehicle position 을 가지고 있다. 그리고 Waymo dataset 에 elogation 값이 높고, intensity 가 낮은걸 날씨를 나타낼때 나타난다고 제시한다. 이 Range Image Structure 에서 내가 궁금한건 range 와 intensity 가 사용할것이다. 아래와 같이 Range Image 를 한번 확인 해보자.
+
+//TODO: Attach Range Image
+
+Waymo Dataset 에서 사용된 Top Lidar 같은 경우 Scanning Lidar 이므로 Horizontal Field of View 는 360 degree 를 가지고 있다. 즉 360 / 2650 을 나눠보면 약 0.1358 만큼 degree 만큼 움직였으며, 이걸 [Angular Resolution (min)](https://en.wikipedia.org/wiki/Angular_resolution) 변환하면, 8.8 정도를 가지고 있다. 하지만 Vertical Field of View 에서의 Vertical Resolution 도 구하는게 필요하다. 즉 Minimum 부터 maximum inclination 을 확인해야므로, pitch 를 구해야한다.
+
+Python 으로 구해보자면 아래와 같다. 여기서 max 와 min 을 빼줘서, 64 의 채널로 나눠준 각도를 구해주는 것이다.
+
+```python
+lidar_calibration = [obj for obj in frame.context.laser_calibrations if obj.name == lidar_name][0]
+
+min_pitch = lidar_calib.beam_inclination_min
+max_pitch = lidar_calib.beam_inclination_max
+
+vfov = max_pitch - min_pitch
+
+pitch_res_rad = vfov / ri.shape[0]
+pitch_res_deg = pitch_res_rad * 180 / np.pi
+```
 
 ## Resource
 - [Udacity](https://www.udacity.com/online-learning-for-individuals?irclickid=SJV3CfS2GxyNWLhU3iwjR3CZUkAXh83J4zdQxw0&irgwc=1&utm_source=affiliate&utm_medium=&aff=2381957&utm_term=&utm_campaign=161_%7Bsubid%7D_645e6b6a5c7730035175fc3b_161_%7Bsubid%7D&utm_content=161_%7Bsubid%7D&adid=786224)

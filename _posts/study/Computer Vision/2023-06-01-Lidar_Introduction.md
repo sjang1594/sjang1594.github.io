@@ -1,5 +1,5 @@
 ---
-title: Lidar Sensor
+title: Lidar Sensor 
 layout: post
 category: study
 tags: [computer vision]
@@ -99,6 +99,8 @@ Laser source 로 부터 burst 할수 있게끔 Amplifier 르 ㄹ 해준다. 이�
 
 ## Waymo Dataset
 
+### Range Image
+
 Waymo Dataset 같은 경우, 고해상도의 다양한 센서(Lidar / Radar / Lidar) 들로 Dataset 을가지고 있다. 주로 밀집된 도시중심이나 풍경, 그리고 날씨의 변화에 따른 다양한 환경에서 센서데이터를 가지고 있다. 내가 실제로 받은 데이터의 version 은 1.2 이다. 그리고 이 dataset 을 사용하려면, WaymoDataFileReader tool 를 사용해서, waymo dataset 을 읽은 이후에 객체의 형태로 들고 올 수 있다.
 
 일단 간락한 설명을 하기위해서, training 만 봐보도록 하자. training 안에 여러개의 Camera Label Segment 가 존재하고, 그 하위에 Lidar / Radar / Camera 의 정보들을 가지고 있다. 예를 들어서 Top Lidar 를 가지고 오려면, 아래의 Python Code 를 사용하면 된다.
@@ -122,8 +124,6 @@ if len(lidar.ri_return1.range_image_compressed) > 0:
 
 Waymo Dataset 의 Range Image Structure 는 range, intensity, elogation, and vehicle position 을 가지고 있다. 그리고 Waymo dataset 에 elogation 값이 높고, intensity 가 낮은걸 날씨를 나타낼때 나타난다고 제시한다. 이 Range Image Structure 에서 내가 궁금한건 range 와 intensity 가 사용할것이다. 아래와 같이 Range Image 를 한번 확인 해보자.
 
-//TODO: Attach Range Image
-
 Waymo Dataset 에서 사용된 Top Lidar 같은 경우 Scanning Lidar 이므로 Horizontal Field of View 는 360 degree 를 가지고 있다. 즉 360 / 2650 을 나눠보면 약 0.1358 만큼 degree 만큼 움직였으며, 이걸 [Angular Resolution (min)](https://en.wikipedia.org/wiki/Angular_resolution) 변환하면, 8.8 정도를 가지고 있다. 하지만 Vertical Field of View 에서의 Vertical Resolution 도 구하는게 필요하다. 즉 Minimum 부터 maximum inclination 을 확인해야므로, pitch 를 구해야한다.
 
 Python 으로 구해보자면 아래와 같다. 여기서 max 와 min 을 빼줘서, 64 의 채널로 나눠준 각도를 구해주는 것이다.
@@ -140,5 +140,143 @@ pitch_res_rad = vfov / ri.shape[0]
 pitch_res_deg = pitch_res_rad * 180 / np.pi
 ```
 
+Range Image 이의 Range 의 Value 값들은, 환경속의 특정 포인트까지의 거리를 2D 이미지로 담아냈기때문에, 센서부터 거리(distance) 를 말한다. 근데 여기에서 min = -1 일때가 있는데 geometrically 하게 make sense 하지 않는다. 그래서 Filter 를 한번 해줘야한다. 자세한 내용은 [Waymo Dataset Paper](https://arxiv.org/pdf/1912.04838.pdf) 을 참고하자. 일단 이부분을 구현한 부분은 아래와 같다.
+
+```python
+def load_range_image(frame, lidar_name):
+  lidar = [obj for obj in frame.lasers if obj.name == lidar_name][0]
+  ri = []
+  if len(lidar.ri_return1.range_image_compressed) > 0: # use first response
+      ri = dataset_pb2.MatrixFloat()
+      ri.ParseFromString(zlib.decompress(lidar.ri_return1.range_image_compressed))
+      ri = np.array(ri.data).reshape(ri.shape.dims)
+  return ri
+
+def get_max_min_ranage(frame, lidar_name):
+  ri = load_range_image(frame, lidar_name)
+  # ri[:, :, 0] -> range
+  # ri[:, :, 1] -> intensity
+  ri[ri<0]=0.0
+  print('max. range = ' + str(round(np.amax(ri[:,:,0]),2)) + 'm')
+  print('min. range = ' + str(round(np.amin(ri[:,:,0]),2)) + 'm')
+```
+
+그 이후에 Range Image 를 Visualize 하기 위해서는 Range 의 Channel 을 살펴보아야한다. Range Image Structure 의 Shape 은 (64, 2650, 4) 이였다. 여기에서 할수 있는 방법은 Normalize 를 한이후에 8 bit grayscale image 로 다루어야한다. 그 이후에 OpenCV 를 사용해서 `image_range` 를 볼수 있다. 하지만 Range Image 는 Lidar 의 Full Scan 이미지를 가지고 있으므로, 차가 바라보는 방향만, ROI 를 정해줄수 있는게 필요하다. 여기에 [Waymo Dataset Paper](https://arxiv.org/pdf/1912.04838.pdf), 명시된것 처럼 -45 ~ +45 도 만큼을 잘라낼 필요가 있다.
+
+아래의 코드는 위의 내용을 기반으로 -45 도와 45 도의 Range 를 가지고 Crop 한 Image 를 구하는 방식이다. range_image 의 결과의 이미지가 이싿.
+
+```python
+def visualize_range_image_channel(frame, lidar_name):
+  ri = load_range_image(frame, lidar_name)
+  ri[ri < 0] = 0.0
+
+  ri_range = ri[:, ;, 0]
+  ri_range = ri_range / (np.amax(ri_range) - np.amin(ri_range))
+  image_range = ri_range.astype(np.uint8)
+
+  ri_center = int(image_range.shape[1] / 2)
+  image_range = image_range[: , ri_center - int(image_range.shape[1] / 8): ri_center + int(image_range.shape[1] / 8)]
+
+  cv2.imshow('range_image', image_range)
+  cv2.waitKey(0)
+```
+
+<figure>
+  <img src = "../../../assets/img/photo/5-12-2023/range_image_crop.png">
+</figure>
+
+### Intensity
+
+Range Image 이외에 살펴봐야하는 부분이 바로 Intensity 부분이다. 결국 Lidar 는 64개의 Channel 을 쏘았을때, 물체에 부딫쳐서 돌아왔을때의 색깔을 결정하기 위한 Intensity 들을 Return 한다. 그리고 이러한 Range Intensity 를 가지고, 우리가 Detection Algorithm 을 사용할수 있게끔 Point Cloud 가 나오게 된다.
+
+일단 min-max normalization 으로 그렸을때, 아래와 같이 나올수 있다. 이렇게 나온 이유는 reflective material 을 가지고 있는건 그대로 Intesnity 를 Return 할 경우가 있는데, 이때 intensity 가 엄청 밝은것과 어두운것은 확죽이는데 적당하게 밝은 애들은 Noise 들을 더키우기 때문이다. 그래서 heuristic 방법을 사용하면, 아래처럼 scaling 을 할수 있다. 이때 사용한 scaling 방법은 Contrast adjustment 이라고 한다.
+
+<figure>
+  <img src = "../../../assets/img/photo/5-12-2023/intensity.png">
+</figure>
+
+```python
+ri_intensity = np.amax(ri_intensity)/2  *ri_intensity*  255 / (np.amax(ri_intensity) - np.amin(ri_intensity))
+```
+
+그래서 위의 내용을 적용하면 아래와 같이 사진이나오는데, 차량의 licence plate 가 reflective 하기 때문에 차량의 뒷편에 intensity 가 높은걸 확인할수있다.
+
+<figure>
+  <img src = "../../../assets/img/photo/5-12-2023/properly_adjusted.png">
+</figure>
+
+```python
+def visualize_intensity_channel(frame, lidar_name):
+  ri = load_range_image(frame, lidar_name)
+  ri[ri < 0] = 0.0
+
+  # map value range to 8 bit
+  ri_intensity = ri[:, :, 1]  # get intensity
+  ri_intensity = ri_intensity * 255 / (np.amax(ri_intensity) - np.amin(ri_intensity))
+  img_intesnity = ri_intensity.astype(np.uint8)
+
+  deg45 = int(img_intensity.shape[1] / 8)
+  ri_center = int(img_intensity.shape[1]/2)
+  img_intensity = img_intensity[:,ri_center-deg45:ri_center+deg45]
+
+  cv2.imshow("img", img_intensity)
+  cv2.waitKey(0)
+```
+
+다시 말해서, 우리가 결국 range_image 로 부터 구하고 싶은건 Point cloud 를 return 하는 거다. range image 에서 point cloud 로 변경하려면, range image 에서 어떠한 point 를 spherical coordinate 에서 world coordinate 로 변경해야한다.
+
+![Spherical Coordinates](../../../assets/img/photo/5-12-2023/spherical_coordinates.png)
+
+일단 Range Image 로 부터 Point Cloud Data 를 가지고오려면, 위에 했던 내용을 결국은 사용해야하며, Calibration Data 를 Waymo Dataset 에서 가져와야한다. 그리고 결국엔 vehicle 이 x axis 로 보게끔 range image 를 correction 을 거쳐야한다. 이때, [extrinsic calibration matrix](https://en.wikipedia.org/wiki/Camera_resectioning) 를 가지고 와야한다. 
+
+```python
+def range_image_to_point_cloud(frame, lidar_name):
+  ri = load_range_image(frame, lidar_name)
+  ri[ri < 0] = 0.0
+  ri_range = ri[:, :, 0]
+
+  # load calibration data
+  calibration = [obj for obj in frame.context.laser_calibrations if obj.name = lidar_name][0]
+
+  # compute vertical beam inclination
+  height = ri_range.shape[0]
+  inclination_min = calibration.beam_inclination_min
+  inclination_max = calibration.beam_inclination_max
+  inclination = np.linspace(inclination_min, inclination_max, height)
+  inclination = np.flip(inclinations)
+
+  width = ri_range.shape[1]
+  extrinsic = np.array(calibration.extrinsic.transofrm).reshape(4,4)
+  azimuth_corrected = math.atan2(extrinsic[1,0]. extrinsic[0, 0])
+  azimuth = np.linspace(np.pi, -np.pi, width) - azimuth_corrected
+
+  azimuth_tiled = np.broadcast_to(azimuth[np.newaxis,:], (height,width))
+  inclination_tiled = np.broadcast_to(inclinations[:,np.newaxis],(height,width))
+
+  x = np.cos(azimuth_tiled) * np.cos(inclination_tiled) * ri_range
+  y = np.sin(azimuth_tiled) * np.cos(incliation_tiled) * ri_range
+  z = np.sin(inclination_tiled) * ri_range 
+  # transform 3d points into vehicle coordinate system
+  xyz_sensor = np.stack([x,y,z,np.ones_like(z)])
+  xyz_vehicle = np.einsum('ij,jkl->ikl', extrinsic, xyz_sensor)
+  xyz_vehicle = xyz_vehicle.transpose(1,2,0)
+
+  idx_range = ri_range > 0
+  pcl = xyz_vehicle[idx_range,:3]
+
+  pcd = o3d.geometry.PointCloud()
+  pcd.points = o3d.utility.Vector3dVector(pcl)
+  o3d.visualization.draw_geometries([pcd])
+
+  pcl_full = np.column_stack((pcl, ri[idx_range, 1]))    
+
+  return pcl_full    
+
+```
+
 ## Resource
+
 - [Udacity](https://www.udacity.com/online-learning-for-individuals?irclickid=SJV3CfS2GxyNWLhU3iwjR3CZUkAXh83J4zdQxw0&irgwc=1&utm_source=affiliate&utm_medium=&aff=2381957&utm_term=&utm_campaign=161_%7Bsubid%7D_645e6b6a5c7730035175fc3b_161_%7Bsubid%7D&utm_content=161_%7Bsubid%7D&adid=786224)
+
+- [Camera Extrinsics](https://xoft.tistory.com/12)
+- [Homogenous Coordinates](https://darkpgmr.tistory.com/78)

@@ -229,6 +229,16 @@ def visualize_intensity_channel(frame, lidar_name):
 
 일단 Range Image 로 부터 Point Cloud Data 를 가지고오려면, 위에 했던 내용을 결국은 사용해야하며, Calibration Data 를 Waymo Dataset 에서 가져와야한다. 그리고 결국엔 vehicle 이 x axis 로 보게끔 range image 를 correction 을 거쳐야한다. 이때, [extrinsic calibration matrix](https://en.wikipedia.org/wiki/Camera_resectioning) 를 가지고 와야한다. 
 
+아래는 Python range_image 를 Point Cloud 변경하는 코드이다. 
+
+1. calibration 을 하기 위해서, calibration data 를 가지고 온다.
+2. 그 data 에서 extrinsic matrix 를 가지고 와서, azimuth 를 구해준다. 이때 값을 구할때, [1, 0] 과 xetrinsic[0, 0], spherical coordinates 에서 world coordinate 으로 변경한 Y 와 X 의 값이다.
+3. 실제 고쳐야되는 azimuth 가 있었다면 -180 부터의 180 까지에서 corrected 된걸 연산해준다.
+4. Corrected 된걸 가지고, World Coordinates X, Y, Z 를 연산해줘서, 센서의 위치를 파악한다.
+5. Sensor 위치가 나오면, extrinxisc 과 xyz_sensor 를 matrix multiplication 을 통해서 ego coordinate system 으로 변경한다.
+6. Point Cloud Data 를 (64, 2560, 4) 변경시켜서, 일단 거리가 0 보다 작은것들은 row 로 masking 을 시켜서, filtering 을 한이후 0:3 까지의 값들은 가지고 온다.(3 의값은 1 --> Homogeneous Coordinates)
+7. Point Cloud Data 를 그린다. 
+
 ```python
 def range_image_to_point_cloud(frame, lidar_name):
   ri = load_range_image(frame, lidar_name)
@@ -247,7 +257,7 @@ def range_image_to_point_cloud(frame, lidar_name):
 
   width = ri_range.shape[1]
   extrinsic = np.array(calibration.extrinsic.transofrm).reshape(4,4)
-  azimuth_corrected = math.atan2(extrinsic[1,0]. extrinsic[0, 0])
+  azimuth_corrected = math.atan2(extrinsic[1,0], extrinsic[0, 0])
   azimuth = np.linspace(np.pi, -np.pi, width) - azimuth_corrected
 
   azimuth_tiled = np.broadcast_to(azimuth[np.newaxis,:], (height,width))
@@ -277,6 +287,5 @@ def range_image_to_point_cloud(frame, lidar_name):
 ## Resource
 
 - [Udacity](https://www.udacity.com/online-learning-for-individuals?irclickid=SJV3CfS2GxyNWLhU3iwjR3CZUkAXh83J4zdQxw0&irgwc=1&utm_source=affiliate&utm_medium=&aff=2381957&utm_term=&utm_campaign=161_%7Bsubid%7D_645e6b6a5c7730035175fc3b_161_%7Bsubid%7D&utm_content=161_%7Bsubid%7D&adid=786224)
-
 - [Camera Extrinsics](https://xoft.tistory.com/12)
 - [Homogenous Coordinates](https://darkpgmr.tistory.com/78)

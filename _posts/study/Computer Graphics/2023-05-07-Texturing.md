@@ -43,4 +43,3 @@ ComPtr<ID3D11SamplerState> m_samplerState;
 ## Resource
 - [Create Textures](https://opengameart.org/content/3-crate-textures-w-bump-normal)
 - [Texutre in OpenGL](https://learnopengl.com/Getting-started/Textures)
-  

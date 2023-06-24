@@ -11,4 +11,3 @@ Culling 이라는 단어는 "select from a large quantity; obtain from a variety
 
 즉 우리 눈에 보이는 위치에서 물체를 뒷면을 고려하지 않고 그리는거다. 일단, 그렇다면 여기서 중요한거는 바로 수학이다. 어떻게 뒷면이고 앞면인지를 알수 있을까? 일단 Screen 좌표계가 있다고 가정하면, 세점의 vertex 의 normal 의 방향을 계산 하는 cross product 를 하는 방식에 따라서 앞면과 뒷면으로 나누어진다.
 
-TODO: Explain the coordinate system in virtual / screen.

@@ -1,5 +1,5 @@
 ---
-title: Lidar Sensor 
+title: Lidar Sensor
 layout: post
 category: study
 tags: [computer vision]
@@ -49,7 +49,7 @@ Computational requirements : LiDAR and radar require little back-end processing.
 2. Wide Horizontal FOV
 3. Fast Scanning Speed
 
-물론 high-quality 의 Point-Cloud data 를 얻을 수 있는 반면, 이거에 따른 단점도 존재한다. 일단 High Power Consumption, Physical 한 충격에 대한 민감한 정도, 그리고 마지막으로 bulky 하기 때문에 high price 라는 단점을 가지고 있다. 
+물론 high-quality 의 Point-Cloud data 를 얻을 수 있는 반면, 이거에 따른 단점도 존재한다. 일단 High Power Consumption, Physical 한 충격에 대한 민감한 정도, 그리고 마지막으로 bulky 하기 때문에 high price 라는 단점을 가지고 있다.
 
 다른 한종류로는 `Non-Scanning Flash Lidar` 가 있다. 일단 Non-Scanning 에서 알아볼수 있듯이, sequential reconstruction 을 할수 있는게 아니라, camera 처럼 flash 를 data 수집하는 원리이다. 어떤 Array 에서 광선이 나와서, 각 Element 들이 tof receive 를 하는 방식이다. 즉 이때에 각 Pixel 값들이 하나 나온다. 이 부분 같은경우는 2D 를 Rasterization 하는 기법과 비슷하다.
 
@@ -114,7 +114,7 @@ lidar = [obj for obj in frame.lasers if obj.name == lidar_name][0]
 
 ```python
 lidar_name = dataset_pb2.LaserName.Top
-lidar = [obj for obj in frame.lasers if obj.name == lidar_name][0] 
+lidar = [obj for obj in frame.lasers if obj.name == lidar_name][0]
 if len(lidar.ri_return1.range_image_compressed) > 0:
   ri = dataset_pb2.MatrixFloat()
   ri.ParseFromString(zlib.decompress(lidar.ri_return1.range_image_compressed))
@@ -227,9 +227,9 @@ def visualize_intensity_channel(frame, lidar_name):
 
 ![Spherical Coordinates](../../../assets/img/photo/5-12-2023/spherical_coordinates.png)
 
-일단 Range Image 로 부터 Point Cloud Data 를 가지고오려면, 위에 했던 내용을 결국은 사용해야하며, Calibration Data 를 Waymo Dataset 에서 가져와야한다. 그리고 결국엔 vehicle 이 x axis 로 보게끔 range image 를 correction 을 거쳐야한다. 이때, [extrinsic calibration matrix](https://en.wikipedia.org/wiki/Camera_resectioning) 를 가지고 와야한다. 
+일단 Range Image 로 부터 Point Cloud Data 를 가지고오려면, 위에 했던 내용을 결국은 사용해야하며, Calibration Data 를 Waymo Dataset 에서 가져와야한다. 그리고 결국엔 vehicle 이 x axis 로 보게끔 range image 를 correction 을 거쳐야한다. 이때, [extrinsic calibration matrix](https://en.wikipedia.org/wiki/Camera_resectioning) 를 가지고 와야한다.
 
-아래는 Python range_image 를 Point Cloud 변경하는 코드이다. 
+아래는 Python range_image 를 Point Cloud 변경하는 코드이다.
 
 1. calibration 을 하기 위해서, calibration data 를 가지고 온다.
 2. 그 data 에서 extrinsic matrix 를 가지고 와서, azimuth 를 구해준다. 이때 값을 구할때, [1, 0] 과 xetrinsic[0, 0], spherical coordinates 에서 world coordinate 으로 변경한 Y 와 X 의 값이다.
@@ -237,7 +237,7 @@ def visualize_intensity_channel(frame, lidar_name):
 4. Corrected 된걸 가지고, World Coordinates X, Y, Z 를 연산해줘서, 센서의 위치를 파악한다.
 5. Sensor 위치가 나오면, extrinxisc 과 xyz_sensor 를 matrix multiplication 을 통해서 ego coordinate system 으로 변경한다.
 6. Point Cloud Data 를 (64, 2560, 4) 변경시켜서, 일단 거리가 0 보다 작은것들은 row 로 masking 을 시켜서, filtering 을 한이후 0:3 까지의 값들은 가지고 온다.(3 의값은 1 --> Homogeneous Coordinates)
-7. Point Cloud Data 를 그린다. 
+7. Point Cloud Data 를 그린다.
 
 ```python
 def range_image_to_point_cloud(frame, lidar_name):
@@ -265,7 +265,7 @@ def range_image_to_point_cloud(frame, lidar_name):
 
   x = np.cos(azimuth_tiled) * np.cos(inclination_tiled) * ri_range
   y = np.sin(azimuth_tiled) * np.cos(incliation_tiled) * ri_range
-  z = np.sin(inclination_tiled) * ri_range 
+  z = np.sin(inclination_tiled) * ri_range
   # transform 3d points into vehicle coordinate system
   xyz_sensor = np.stack([x,y,z,np.ones_like(z)])
   xyz_vehicle = np.einsum('ij,jkl->ikl', extrinsic, xyz_sensor)
@@ -278,9 +278,14 @@ def range_image_to_point_cloud(frame, lidar_name):
   pcd.points = o3d.utility.Vector3dVector(pcl)
   o3d.visualization.draw_geometries([pcd])
 
-  pcl_full = np.column_stack((pcl, ri[idx_range, 1]))    
+  pcl_full = np.column_stack((pcl, ri[idx_range, 1]))
 
+<<<<<<< HEAD
   return pcl_full    
+=======
+  return pcl_full
+
+>>>>>>> 60883b4aa194c4bfad1d86a6bbc40316f573140f
 ```
 
 아래는 한 Frame 의 Point Cloud 를 관찰한 결과이다.

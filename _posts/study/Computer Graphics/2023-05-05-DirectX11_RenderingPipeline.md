@@ -14,3 +14,5 @@ DirectX 의 공부에 앞서서, c++ 에서 자주 사용하는 shared_ptr 이�
 Microsoft::WRL::ComPtr<ID3D11Device> device; // COM Interface
 Microsoft::WRL::ComPtr<ID3D11DeviceContext> context;
 ```
+
+### Implement Initialization in Direct3D

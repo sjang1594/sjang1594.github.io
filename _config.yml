@@ -30,10 +30,10 @@ timezone:              Asia/Seoul
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           > 
-    "Software Developer plays  and break the code."
+    "Can we make what we see more prettier?"
 
 # A shorter description for the sidebar.
-tagline:               "Software Developer plays drum and break the code."
+tagline:               "How do we make pixels prettier?, How do we engage with them more? - Pixar"
   
 
 # A list of keywords for your blog

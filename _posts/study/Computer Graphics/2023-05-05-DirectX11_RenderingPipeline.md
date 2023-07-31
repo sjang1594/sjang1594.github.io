@@ -16,3 +16,7 @@ Microsoft::WRL::ComPtr<ID3D11DeviceContext> context;
 ```
 
 ### Implement Initialization in Direct3D
+```c++
+const D3D_DRIVER_TYPE driverType = D3D_DRIVER_TYPE_HARDWARE;
+
+```

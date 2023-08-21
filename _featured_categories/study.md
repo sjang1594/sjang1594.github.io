@@ -21,3 +21,4 @@ description: >
 * C/C++/C# [CTree]
 * Game Development 
 * Mathematics
+* Differential Geometry

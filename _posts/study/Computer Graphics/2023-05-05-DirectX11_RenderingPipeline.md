@@ -72,3 +72,9 @@ Device 가 생성된다고 해서, Render 를 한다는 말은 아니다. Direct
 - [Device and Device Context](https://www.milty.nl/grad_guide/basic_implementation/d3d11/device.html)
 - [DirectX Tutorial](http://www.directxtutorial.com/Lesson.aspx?lessonid=111-4-1)
 - [Projective Projection](https://en.wikipedia.org/wiki/Transformation_matrix#Perspective_projection)
+
+### Implement Initialization in Direct3D
+```c++
+const D3D_DRIVER_TYPE driverType = D3D_DRIVER_TYPE_HARDWARE;
+
+```

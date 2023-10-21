@@ -62,33 +62,27 @@ Seungho Jang (장승호)
 > 2. Researching Computer Vision Area(Image Segmentation)
 
 > Oct.2021 ~ Current : MORAI Inc.
-> Software Engineer - Scenario Team
+> Software Engineer - Test Automation Team
 > 1. Currently Developing Scenario Runner based on OpenScenario (ASAM)
->    - using gRPC to communicate the scenario data and status through Simulator
->    - porting scenario runner into Unreal Engine
+>    - Using the gRPC to communicate the scenario data and status through Simulator
+>    - Porting scenario runner into Unreal Engine
 > 3. Implemented the Undo / Redo using the Momento Design Pattern
-> 4. Sensor Development
->    - using the ray tracing technique to lidar module development
+>
+> Software & Graphics Engineer - Virtual Data Team
+> 1. Sensor Development
+>    - Using the ray tracing techniques to simulate the virtual sensor(Lidar, Radar)
 
 ## Research Interests
 ---
-
-* Computer Vision
-    + Image Object Detection
-    + Depth Prediction
-
+* 3D Computer Vision
 * Computer Grpahics
     + DirectX12
     + Vulkan
-
 * Machine Learning / Deep Learning
-    + Neural Style Transfer
     + Visual SLAM
 
 ## Projects
-
 ---
-
 * **RFID Door Lock - JEC2000**  
 
 [RFID Presentation](https://docs.google.com/presentation/d/1wkD3lbgjXfVELOVWqM9DJZEWWYUbUHfj-QLO51gSbvI/edit#slide=id.g47eb0409b1_1_0)
@@ -171,19 +165,22 @@ Build the software system and algorithm to detect the root system from the given
 3. [Landmark Detection Tracking(SLAM)](https://github.com/sjang1594/cvnn-udacity/tree/master/P3-Landmark%20Detection_Tracking(SLAM))
 
 * **Desktop Application - Scenario Runner in MORAI**
-
 1. Undo / Redo Implementation using the Command Pattern in MGeo Editor.
 2. Using the PyQT to create UI Editor for Scenario Runner.
 3. Developing the gRPC Interface to communicate simulator and Scenario Runner.
-4. Porting the Scenario Runner into Unreal Engine.
-5. Developing a physical lidar sensor in Unreal Engine.
+
+* **Game Engine Develop - Scenario Runner & Virutal Sensor**
+1. Porting the Scenario Runner into Unreal Engine.
+2. Developing a physical sensor(lidar) in Unreal Engine.
+3. Handling the post-processing
+    * Lidar's Motion Distortion (Undistorted -> Distored)
 
 ## Skills and Certification
 ---
--Language : Python, C/C++/C#, Java
--FrameWork: Pytorch, Tensorflow(Keras), OpenCV, ROS - Melodic & Foxy
+- Language : Python, C/C++/C#, Java
+- FrameWork: Pytorch, Tensorflow(Keras), OpenCV, ROS - Melodic & Foxy
 
--Certification : 
+- Certification : 
 - Graduate Certificate in Artificial Intelligence 
     -  University of Missouri in Saint Louis / NSA/DHS National Center of Academic Excellence in Cyber Defense Education
 - Robotic Software Engineering - Udacity
@@ -192,7 +189,7 @@ Build the software system and algorithm to detect the root system from the given
 ## Patents
 ---
 -Patents
-- Scenario Runner Desktop Application by Test Automation Team
+- Scenario Runner Desktop Application by Test Automation Team (Eungback Kim, Sungho Jang, Seongyeon Park, Hoseup Lee, Hein Jo)
 
 ## Classmate Comments & Endorsements
 ---

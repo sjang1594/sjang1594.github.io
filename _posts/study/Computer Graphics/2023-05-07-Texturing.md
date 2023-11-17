@@ -5,6 +5,9 @@ category: study
 tags: [directx, computer graphics, shader]
 ---
 
+* this unordered seed list will be replaced by the toc
+{:toc}
+
 ### DirectX11 - Texturing
 
 일단, Texturing 을 하기 위해서, Shader Programming 해야된다. 일단 Texturing 을 하려면 Vertex Shader 에서 해야되는지, Pixel Shader 에서 해야되는지가 고민이 되는데, 일단 Microsoft 공식문서에서는 Pixel Shader 에서 하라고 명시가 되어있다.

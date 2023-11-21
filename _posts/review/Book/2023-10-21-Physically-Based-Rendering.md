@@ -1,5 +1,5 @@
 ---
-title: Follow your Heart
+title: Physically Based Rendering From Theory to Implementation
 layout: post
 category: etc
 tags: [logs, book]

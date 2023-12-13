@@ -280,12 +280,7 @@ def range_image_to_point_cloud(frame, lidar_name):
 
   pcl_full = np.column_stack((pcl, ri[idx_range, 1]))
 
-<<<<<<< HEAD
   return pcl_full    
-=======
-  return pcl_full
-
->>>>>>> 60883b4aa194c4bfad1d86a6bbc40316f573140f
 ```
 
 아래는 한 Frame 의 Point Cloud 를 관찰한 결과이다.

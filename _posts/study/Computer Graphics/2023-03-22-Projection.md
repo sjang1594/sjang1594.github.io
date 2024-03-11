@@ -70,7 +70,7 @@ Hit FindClosestCollision(Ray& ray)
 				closestHit.obj = objects[l];
 			}
 		}
-	
+	}	
 	return closestHit;
 }
 ```

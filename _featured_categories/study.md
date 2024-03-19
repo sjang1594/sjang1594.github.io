@@ -14,11 +14,10 @@ description: >
 ## Categories
 * Computer Vision Computer Vision & Image Processing
 * Deep Learning & Machine Learning
-* Reinforcment Learning
 * Pytorch
 * Python
 * Robotic Operating System [ROS]
 * C/C++/C# [CTree]
-* Game Development 
+* Game Development [Unreal Engine]
 * Mathematics
 * Differential Geometry

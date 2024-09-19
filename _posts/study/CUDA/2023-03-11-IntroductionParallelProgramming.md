@@ -72,9 +72,8 @@ Computer Graphics 은 결국 현실과 똑같은 걸 Computer 를 사용해서 �
   * GPU 기능을 직접 제어 가능 -> 최고 효율 획득
 ![GPU Computing Applications](../../../assets/img/photo/3-24-2024/image3.png)
 
-### Lecture Reveiw
-
 ### Develop Environment
+
 * CUDA SDK+ C++ compiler
 * NVIDA Graphics Hardware
 * C++11

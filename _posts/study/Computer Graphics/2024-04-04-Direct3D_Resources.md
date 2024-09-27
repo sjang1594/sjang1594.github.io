@@ -3,7 +3,7 @@ title: DirectX3D Resources
 layout: post
 category: study
 tags: [directx, computer graphics, Unreal Engine]
-published: true
+published: false
 ---
 
 * this unordered seed list will be replaced by the toc

@@ -28,3 +28,15 @@ void main(int3 gID: SV_GroupID, uint3 : SV_DispatchThreadID)
 ```hlsl
 
 - 여러개의 Pixel 들을 어떻게 나눠서 사용하는지 관건
+- SIMT (Single Instruction, Multiple Thread) 
+- WARP 개념 -> Thread 의 묶음 (하드웨어 마다 다름) NVIDA 32 개의 Thread 
+- Dispatch 할때, Group 개수와, 그 한 그룹에 Thread 개수를 지정
+- Block 끼리는 Synchronization 을 못한다. (의사소통)을 못한다. 
+- Grid of Thread Block -> 독립적인 Processor 들이 Thread Block 을 담당하게 되고, 각각의 Processor 들은 Memory 를 Share 할수 없다. 그 다음에 끝나고, ComputeShaderBarrier() -> 기다린다.
+
+## Gaussian Blur
+
+### Group Cache
+
+### GPU 시간 계산 
+

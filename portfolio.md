@@ -32,11 +32,11 @@ Seungho Jang (장승호)
 
 ## Education
 ---
-> May.2014 ~ May.2015 : University of Minnesota - Twin City
+> May.2013 ~ May.2015 : University of Minnesota - Twin City
 >
 > B.Bm.E. in Biomedical Engineering
 
-> Jan.2016 ~ Dec.2018 : Washington University - Joint Engineering
+> Jan.2016 ~ Dec.2018 : Washington University in St. Louis.
 >
 > B.S.EE in Electrical Engineering (Emphasis on Signal Processing & Radar System)
 > Minor in Computer Science and Mathematics
@@ -45,6 +45,7 @@ Seungho Jang (장승호)
 >
 > M.S in Computer Science (Emphasis on Deep Learning & Computer Vision)
 
+// [TODO: Update]
 ## Work Experience
 ---
 > Aug.2017 ~ Aug.2019 : Washington University in St. Louis

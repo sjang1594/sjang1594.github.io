@@ -3,6 +3,7 @@ title: Camera Intrinsic & Extrinsic
 layout: post
 category: study
 tags: [computer vision]
+published: false
 ---
 
 ## Camera Extrinsic

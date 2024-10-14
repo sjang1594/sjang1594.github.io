@@ -22,7 +22,6 @@ Unreal 또는 Unity 를 다루다 보면, 어떤거는 Vertex Shader / Pixel Sha
 
 
 ```
-// Dispatch
 
 
 // hlsl

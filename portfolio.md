@@ -71,7 +71,11 @@ Seungho Jang (장승호)
 >
 > Software & Graphics Engineer - Virtual Data Team
 > 1. Sensor Development
->    - Using the ray tracing techniques to simulate the virtual sensor(Lidar, Radar)
+>    - Bounding Box
+>       - Drawing AABB to OBB Conversion (Skeletal & Static Mesh Vertices Selection & Optimization)
+>    - Project (Hyundai - UAM)
+>       - Point Level Output RADAR Visualization
+> 
 
 ## Research Interests
 ---
@@ -79,8 +83,8 @@ Seungho Jang (장승호)
 * Computer Grpahics
     + DirectX12
     + Vulkan
-* Machine Learning / Deep Learning
-    + Visual SLAM
+    + Visual Effect
+* Radar Simulation
 
 ## Projects
 ---

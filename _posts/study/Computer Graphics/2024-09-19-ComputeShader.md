@@ -19,6 +19,7 @@ Unreal 또는 Unity 를 다루다 보면, 어떤거는 Vertex Shader / Pixel Sha
 
 ## Compute Shader
 
+<<<<<<< HEAD
 - `UnorderedAccessView` 는 Input 도 되고 출력도 된다.
 - ** `Dispatch` **: Argument 로 `ThreadGroupCountX`, `ThreadGroupCountY`, `ThreadGroupCountZ` 로 나누어져 있음. (ex: 만약 Argument 로 `UINT(ceil(screenWidth / 256)), screenHeight, 1)`. 이런식으로 되어있고, `ScreenWidth` 가 1280 이라고 한다면, 5 개를 세로로 나눠서 계산 하고 `ScreenHeight` 로는 전부 계산하고, 마지막 인자 1 은 2 차원 배열이기 때문에, z 값이 1이다는 소리이다, 즉 가로 방향으로는 5 개를 Group 을 나눠서 계산하고, 세로 방향으로는 전체 height 만큼 계산한다는 이야기이다.) 
 
@@ -50,9 +51,27 @@ GPGPU Programming 에서 기본적으로 Grid 의 형태를 아래의 그림처�
 
 - 다시말하자면, Compute Shader 안에서는 Unordered Acess View 를 사용한다는 점, 그리고 RWStructureBuffer 사용한거
 - PSO 가 있다 (GraphicsPSO)
+=======
+- `UnorderedAccessView` 는 Input(입력) 도 되고 Output(출력)도 된다.
 
-### Group Cache
+- **** `Dispatch` ****: Argument 로 `ThreadGroupCountX`, `ThreadGroupCountY`, `ThreadGroupCountZ` 로 나누어져 있음. (ex: 만약 Argument 로 `UINT(ceil(screenWidth / 256)), screenHeight, 1)`. 이런식으로 되어있고, `ScreenWidth` 가 1280 이라고 한다면, 5 개를 세로로 나눠서 계산 하고 `ScreenHeight` 로는 전부 계산하고, 마지막 인자 1 은 2 차원 배열이기 때문에, z 값이 1이다는 소리이다, 즉 가로 방향으로는 5 개를 Group 을 나눠서 계산하고, 세로 방향으로는 전체 height 만큼 계산한다는 이야기이다.) 
 
+
+```
+
+
+// hlsl
+RWTexture2D<float4> gOutput : register(u0) // Readable & Writable Texture 2D, pixel format => float4
+
+[numthreads(256, 1, 1)] // Thread group 안에서 1 개의 Thread Group 안에서, thread 의 개수 
+void main(int3 gID: SV_GroupID, uint3 : SV_DispatchThreadID) // SV_DispatchThreadID -> Thread ID 여기서는 Pixel 의 Index | SV_GroupID => ThreadGroup ID.
+{
+>>>>>>> 0d277df9a8b66128c604f08cb958b9261dce48f0
+
+}
+```
+
+<<<<<<< HEAD
 ### GPU 시간 계산
 
 ### Structured Buffer
@@ -90,5 +109,8 @@ ComPtr<ID3D11Buffer> m_argsGPU;
 const UINT offset = sizeof(IndirectArgs) * 0;
 m_context->DrawInstancedIndirect(m_argsGPU.Get(), offset)
 ```
+=======
+- 여러개의 Pixel 들을 어떻게 나눠서 사용하는지 관건
+>>>>>>> 0d277df9a8b66128c604f08cb958b9261dce48f0
 
 ### Bitonic Sort

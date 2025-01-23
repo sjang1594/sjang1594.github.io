@@ -225,7 +225,7 @@ Build the software system and algorithm to detect the root system from the given
 - Sweeney Memorial Scholarship, Issued by Washington University in St. Louis, Engineering Department. (June 2018)
 - Robert Hedier Engineering Scholarship, Issued by Washington University in St. Louis, Engineering Department. (Jan 2018)
 
-## Classmate Comments & Endorsements
+## Comments & Endorsements
 ---
 
 * **Vibhav Chemarla (Classmate) - [LinkedIn](https://www.linkedin.com/in/vibhav-chemarla/)**

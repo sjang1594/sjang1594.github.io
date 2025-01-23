@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: React Native
-slug: react native
+title: Mobile Dev.
+slug: mobile dev
 category: study
 sidebar: true
 description: >
-   book Reviews
+   Mobile Development
 ---

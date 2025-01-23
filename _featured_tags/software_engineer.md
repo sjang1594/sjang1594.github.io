@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: React Native
-slug: react native
+title: Software Engineering
+slug: software engineering
 category: study
 sidebar: true
 description: >
-   book Reviews
+   Software Engineering
 ---

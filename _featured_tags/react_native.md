@@ -4,7 +4,7 @@ type: tag
 title: React Native
 slug: react native
 category: study
-sidebar: true
+sidebar: false
 description: >
-   book Reviews
+   React Native
 ---

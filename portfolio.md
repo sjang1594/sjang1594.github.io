@@ -45,13 +45,11 @@ Seungho Jang (장승호)
 >
 > M.S in Computer Science (Emphasis on Deep Learning & Computer Vision)
 
-// [TODO: Update]
 ## Work Experience
 ---
 > Aug.2017 ~ Aug.2019 : Washington University in St. Louis
 > Teaching Assistant in EE(Electrical Engineering)
-> 1. Give a specific lecture on Laplace Transform & Convolution Theory to students.
-> 2. Have a session for test reviews on the midterms and finals.
+> 1. Provided supplemental educational services for undergraduate students studying Signal & System / Engineering Mathematics Course.
 
 > Aug.2018 ~ Dec.2018 : University of Missouri - Saint Louis
 > Math & Engineer Tutor
@@ -59,31 +57,52 @@ Seungho Jang (장승호)
 
 > Dec.2019 ~ Aug.2021 : University of Missouri - Saint Louis
 > Graduate Teaching & Researching Assistant
-> 1. Teaching CS 1250 and CS2250 for a year.
-> 2. Researching Computer Vision Area(Image Segmentation)
+> 1. Teaching CS 1250 and CS2250 for a year. Developed and delivered hands-on C++ programming labs covering OOP, memory management, STL, and graph algorithms.
+> 2. Research the Root Detection []() for Computer Vision Application.
 
-> Oct.2021 ~ Current : MORAI Inc.
-> Software Engineer - Test Automation Team
-> 1. Currently Developing Scenario Runner based on OpenScenario (ASAM)
->    - Using the gRPC to communicate the scenario data and status through Simulator
->    - Porting scenario runner into Unreal Engine
-> 3. Implemented the Undo / Redo using the Momento Design Pattern
->
+> Oct.2021 ~ Dec.2024 : MORAI Inc.
+> Software Engineer - Map Team
+> 1. implemented the multi-instancing capability to load and edit multiple HDMaps (MGeo) sumultaneously.
+> 2. developed the undo/redo functionality using the command pattern for HDMaps editing operation (e.g., road/traffic Sign/Signals creation/deletion, junction modification)
+> 3. created pre-computation algorithm for road intersection in static maps.
+> 4. created unit tests by using PyTest to validate intersection accuracy (automated counting and position), and integrated tests into Jenkins CI/CD pipeline to ensure maps integrity checks.
+
+> Software Engineer - Test Automation Team.
+> 1. Developed a comprehensive Scenario Runner Application from scratch, implementing the ASAM OpenSCENARIO standards:
+> - created functionality to load, edit, and save OpenSCNEARIO files, adhering to the standard's defined elements and attributes, and implemented a user interface for scenario editing for each elements and attributes, and batch simulation management.
+> - implemented various OpenSCNEARIO actions, including TrafficSpawnAction and custom PedestrianSpawnAction.
+> - integrated gRPC protocol for communication with the simulator; developed an adaptor class to handle responses/requests, with the Scenario Runner client performing all conditions and action evaluations for improved maintainability.
+> - optimize collision detection using an Oriented Bounding Box (OBB) and Separating Axis Theorem.
+> - [offline]
+> - architected scalable batch simulation functionality with Python API's for simulation controls (start, skip, stop, load map, simulation time, etc.)
+> - provide ongoing support and education to key clients (A2Z, ROKA, ETRI, SureSoft, Hyundai), including bug fixes, feature development based on client feedback , and comprehensive documentation.
+> - ported existing features of Scenario Runner to Unreal Editor 5; migrate core features and system from previous Python scripts to Unreal Engine 5.
+
 > Software & Graphics Engineer - Virtual Data Team
-> 1. Sensor Development
->    - Bounding Box
->       - Drawing AABB to OBB Conversion (Skeletal & Static Mesh Vertices Selection & Optimization)
->    - Project (Hyundai - UAM)
->       - Point Level Output RADAR Visualization
-> 
+> 1. Led a major code refactoring, considering disparate codebases across projects and improving system performance.
+> 2. Implemented static analysis in GitLab CI/CD pipeline with Unreal Engine 5 Plugin based on Google C++ and Unreal Engine Coding Standards, enhancing overall code quality and maintenance.
+> 3. Developed a shader-based radar simulation using shader programming (.usf / HLSL) in Unreal Engine.
+> - utilized low-level radar parameters; the number of chirps, samples, receive antenna, and antenna pattern to simulate radar returns based on those parameters. 
+> - created Python scripts to process radar data; received low-level output data(2D samples/chirps) from ROS, and generate range-doppler maps.
+> 4. Created the Bounding Box Labeler with the following features in Unreal Engine 5 with advanced features:
+> - implemented JSON file output for all object types; vehicles, vehicle parts, pedestrians with animation, and obstacles.
+> - supported multiple coordinate system for use cases (Camera, LiDAR, vehicle, and ENU).
+> - developed flexible object's bounding box representations; 8-corner point-based and center point-based representation with rotation model (quternion & euler angles).
+> - provided user-selectable options for output representation by using Unreal Slate, allwoing customization of coordinate systems and boundign box format.
+> 5. Developed Coordinate Converter Plugin for Unreal Engine 5.
+> - implemented bidirectional transformation between Unreal Engine's left-handed and right-handed system (NED, ENU, AER, Spherical) with unit tests, enabling cross-team compatibility and project integration.
 
 ## Research Interests
 ---
 * 3D Computer Vision
+    + XR / VR
 * Computer Grpahics
-    + DirectX12
+    + DirectX11/12
     + Vulkan
     + Visual Effect
+    + Shader Programming 
+* Parallel Processing 
+    + CUDA
 * Radar Simulation
 
 ## Projects

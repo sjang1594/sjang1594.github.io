@@ -73,7 +73,6 @@ Seungho Jang (장승호)
 > - implemented various OpenSCNEARIO actions, including TrafficSpawnAction and custom PedestrianSpawnAction.
 > - integrated gRPC protocol for communication with the simulator; developed an adaptor class to handle responses/requests, with the Scenario Runner client performing all conditions and action evaluations for improved maintainability.
 > - optimize collision detection using an Oriented Bounding Box (OBB) and Separating Axis Theorem.
-> - [offline]
 > - architected scalable batch simulation functionality with Python API's for simulation controls (start, skip, stop, load map, simulation time, etc.)
 > - provide ongoing support and education to key clients (A2Z, ROKA, ETRI, SureSoft, Hyundai), including bug fixes, feature development based on client feedback , and comprehensive documentation.
 > - ported existing features of Scenario Runner to Unreal Editor 5; migrate core features and system from previous Python scripts to Unreal Engine 5.
@@ -106,6 +105,19 @@ Seungho Jang (장승호)
 * Radar Simulation
 
 ## Projects
+---
+* HYUNDAI UAM: Radar Point Cloud Visualization in Unreal Engine 5.
+- applied Gaussian Random Distribution to generate realistic returns and utilizing the raycasting method to exclusively capture aerial objects, improving point cloud fidelity and target isolation.
+- collaborated with Graphics Team to validate and refine object-specific collision models focusing on aircraft. 
+
+* Samsung DataGen:
+2. Enhanced LiDAR Simulation with Motion Distortion.
+- developed a post-processing technique to apply motion distortion to MORAI Simulator's LiDAR output, implementing coordinate transformation and spherical linear interpolation(SLERP) for rotation modeling, and integrated distortion effects into the pipeline.
+
+* ROKA (Republic of Korea Army):
+- Implemented a flexible architecture for Scenario Runner, incorporating a default mapping system for offline loading of vehicles, pedestrians, and miscellaneous objects, while maintaining compatibility with existing RestAPI-based retrieval, ensuring operation across security environments.
+
+## Personal Projects
 ---
 * **RFID Door Lock - JEC2000**  
 
@@ -188,32 +200,30 @@ Build the software system and algorithm to detect the root system from the given
 2. [Image Captioning](https://github.com/sjang1594/cvnn-udacity/tree/master/P2-Image_Captioning) 
 3. [Landmark Detection Tracking(SLAM)](https://github.com/sjang1594/cvnn-udacity/tree/master/P3-Landmark%20Detection_Tracking(SLAM))
 
-* **Desktop Application - Scenario Runner in MORAI**
-1. Undo / Redo Implementation using the Command Pattern in MGeo Editor.
-2. Using the PyQT to create UI Editor for Scenario Runner.
-3. Developing the gRPC Interface to communicate simulator and Scenario Runner.
-
-* **Game Engine Develop - Scenario Runner & Virutal Sensor**
-1. Porting the Scenario Runner into Unreal Engine.
-2. Developing a physical sensor(lidar) in Unreal Engine.
-3. Handling the post-processing
-    * Lidar's Motion Distortion (Undistorted -> Distored)
-
 ## Skills and Certification
 ---
-- Language : Python, C/C++/C#, Java
-- FrameWork: Pytorch, Tensorflow(Keras), OpenCV, ROS - Melodic & Foxy
-
+- Language : C / C++ / C#, Java, Python, JavaScript
+- Technologies: Git, OpenCV, Open3D, CUDA, DirectX11, DirectX12, Vulkan, HLSL, Unreal Engine, Unity, PyTorch, TensorFlow, TensorBoard, PyQt, PyTest, Jenkins, GitLab CI/CD
+- Other: Data Structure and Algorithm, Computer Vision, Deep Learning, Computer Graphics, ROS
 - Certification : 
 - Graduate Certificate in Artificial Intelligence 
     -  University of Missouri in Saint Louis / NSA/DHS National Center of Academic Excellence in Cyber Defense Education
 - Robotic Software Engineering - Udacity
 - Computer Vision - Udacity
+- Introduction to Computer Graphics with DirectX11 - Part2. Realtime Pipeline.
+- AWS Machine Learning - Udacity
+- Python for Computer Vision with OpenCV and Deep Learning
 
 ## Patents
 ---
--Patents
-- Scenario Runner Desktop Application by Test Automation Team (Eungback Kim, Sungho Jang, Seongyeon Park, Hoseup Lee, Hein Jo)
+- Eungback Kim, Seungho Jang, Seongyeon Park, Hoseup Lee, Hein Jo, 2024. SCENARIO-BASED AUTONOMOUS DRIVING VEHICLE SIMULATION METHOD AND SYSTEM. WIPO Patent WO2024/117564, filed November 1, 2023, and published June 6, 2024 Patent Approved.
+
+- Heecheol Yoo, Seungho Jang, Hojun Lim, 2024. ELECTRONIC DEVICE AND METHOD FOR PROCESSING POINT CLOUD DATA. KR 10-2024-0076717, filed June 24, 2024.
+
+## Awards
+---
+- Sweeney Memorial Scholarship, Issued by Washington University in St. Louis, Engineering Department. (June 2018)
+- Robert Hedier Engineering Scholarship, Issued by Washington University in St. Louis, Engineering Department. (Jan 2018)
 
 ## Classmate Comments & Endorsements
 ---

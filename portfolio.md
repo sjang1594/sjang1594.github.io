@@ -107,15 +107,15 @@ Seungho Jang (장승호)
 ## Projects
 ---
 * HYUNDAI UAM: Radar Point Cloud Visualization in Unreal Engine 5.
-- applied Gaussian Random Distribution to generate realistic returns and utilizing the raycasting method to exclusively capture aerial objects, improving point cloud fidelity and target isolation.
-- collaborated with Graphics Team to validate and refine object-specific collision models focusing on aircraft. 
+    + applied Gaussian Random Distribution to generate realistic returns and utilizing the raycasting method to exclusively capture aerial objects, improving point cloud fidelity and target isolation.
+    + collaborated with Graphics Team to validate and refine object-specific collision models focusing on aircraft. 
 
 * Samsung DataGen:
 2. Enhanced LiDAR Simulation with Motion Distortion.
-- developed a post-processing technique to apply motion distortion to MORAI Simulator's LiDAR output, implementing coordinate transformation and spherical linear interpolation(SLERP) for rotation modeling, and integrated distortion effects into the pipeline.
+    + developed a post-processing technique to apply motion distortion to MORAI Simulator's LiDAR output, implementing coordinate transformation and spherical linear interpolation(SLERP) for rotation modeling, and integrated distortion effects into the pipeline.
 
 * ROKA (Republic of Korea Army):
-- Implemented a flexible architecture for Scenario Runner, incorporating a default mapping system for offline loading of vehicles, pedestrians, and miscellaneous objects, while maintaining compatibility with existing RestAPI-based retrieval, ensuring operation across security environments.
+  + Implemented a flexible architecture for Scenario Runner, incorporating a default mapping system for offline loading of vehicles, pedestrians, and miscellaneous objects, while maintaining compatibility with existing RestAPI-based retrieval, ensuring operation across security environments.
 
 ## Personal Projects
 ---

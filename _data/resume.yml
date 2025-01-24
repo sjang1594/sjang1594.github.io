@@ -108,13 +108,14 @@ Patent:
   - author: "Heecheol Yoo, Seungho Jang, Hojun Lim"
   - published date: "June, 24, 2024"
 skills:
-  - name: "Python Desktop Application Dev."
-    level: "Advanced"
+  - name: "Python"
+    level: "Master"
     keywords:
       - "PyQT"
       - "OpenGl"
       - "Python"
       - "PyTest"
+      - "Numpy"
       - "gRPC Protocol"
   - name: "C++"
     level: "Master"
@@ -129,7 +130,7 @@ skills:
   - name: "Algorithm"
     level: "Intermediate"
   - name: "Unreal Engine"
-    level: "Advanced"
+    level: "Master"
     keywords:
       - Unreal Engine 4 and 5
       - C++ Programming
@@ -140,7 +141,7 @@ languages:
     fluency: "Native Speaker"
   - language: "English"
     fluency: "Almost Native Speaker"
-interests:
+interest:
   - name: "Activity"
     keywords:
       - "Soccer"

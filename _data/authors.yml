@@ -8,7 +8,7 @@ author1:
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
-    Software Engineer at [MORAI](https://www.morai.ai/?gclid=Cj0KCQiAoNWOBhCwARIsAAiHnEhnb-1OXlxWp3FMsc1Z8dxSEt58XLlK9Fn9NbRzAZVAbQ1WQs_3Ip4aAgulEALw_wcB).<br>
+    Software Engineer
     Please check my [Resume][resume] to find out more about me!<br>
 
     [resume]: /resume/

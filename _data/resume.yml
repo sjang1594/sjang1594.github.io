@@ -1,12 +1,11 @@
 basics:
-  name: "Seungho Jang"
+  name:
   label: "Software Engineer"
   picture: /assets/img/bio-photo.jpg
   email: "sjang1594@gmail.com"
   phone: "(+1) 314-332-9498 / (+82) 10-5610-6541"
   website: "https://sjang1594.github.io/"
-  summary: >
-    Hello, I'm Seungho Jang.<br>
+  summary:
   # location:
   #   address: "2712 Broadway St"
   #   postalCode: "CA 94115"
@@ -33,22 +32,20 @@ work:
     position: "Software Engineer"
     website: "https://www.morai.ai/"
     startDate: "20-10-05"
-    endDate: ""
-    summary: > 
-      Building the Scenario Generation Software as well as Scenario Runner based on OpenScenario Standsards by [ASAM](https://www.asam.net/standards/detail/openscenario/)
+    endDate: "24-12-31"
+    summary: >
+    I was a passionate Junior Software Engineer with a strong foundation in game engine development and simulation systems. I've cultivated my expertise in Unreal Engine and Unity creating systems are necessary for simulation industry, while embracing CI/CD practices to enhance code quality and system reliability. All the details can be found in project section or my resume.
 education:
   - institution: "Washington University in Saint Louis / UMSL"
     area: "Electrical & Electronic Engineering"
     studyType: "Bachelor"
     startDate: "2016-08-12"
     endDate: "2018-12-21"
-    gpa: "3.7 (major 3.8) / 4.0"
+    gpa: "3.8 / 4.0"
     courses:
-      - "Operating System"
-      - "System Programming & Computer Architecture"
-      - "Computer System"
-  - certificate: "Robotic Software Engineering (Udacity)"
-    date: "2019-11-22"
+      - "Engineering Mathematics"
+      - "Signals & System"
+      - "Radar Systems"
   - institution: "University of Missouri - Saint Louis"
     area: "Computer Vision & Deep Learning"
     studyType: "Master"
@@ -56,10 +53,19 @@ education:
     endDate: "2021-05-12"
     gpa: "3.9 / 4.0"
     courses:
+      - "Operating System"
+      - "Computer System"
       - "Deep Learning & Machine Learning"
       - "Image Processing & Computer Vision"
       - Artificial Intelligence (CS4130/5130) in Spring 2021
-      - Advanced Algorithm 
+      - Advanced Algorithm
+  - certificate: "Robotic Software Engineering - Udacity"
+    date: "2019-11-22" 
+  - certificate: "Computer Vision - Udacity"
+    date: "2020-12-22"
+  - certificate: "Graduate Certificate in Artificial Intelligence - University of Missouri in St. Louis & NSA/DHS National Center
+    date: "2021-06-06"
+  - certificate: "Introduction to Computer Graphics with DirectX 11 - Part 2. Realtime Pipeline"
 teaching:
   - institution: "University of Missouri - Saint Louis"
     course: 
@@ -68,60 +74,63 @@ teaching:
       - Computer Architecture (CS2700) in Fall 2020 & Spring 2021
 projects:
   - title: "Map Editor Desktop Application"
-    startDate: ""
-    endDate: ""
-    summary: ""
-    url: ""
+    startDate: "10-12-2021"
+    endDate: "01-01-2022"
+    summary: "I've enhanced the Map Editor with advanced features, implementing multi-instancing for simultaneous HDMap editing, undo/redo functionality using the command pattern, and a pre-computation algorithm for road intersection detection. This work included creating unit tests for intersection accuracy and integrating them into the Jenkins CI/CD pipeline, ensuring map integrity and improving overall editor functionality."
     highlights:
-      - ""
-      - ""
-      - ""
+      - "Command Pattern"
+      - "HDMaps (MGeo)"
+      - "MGeo Editor Tools"
   - title: "Scenario Runner Desktop Application"
-    startDate: ""
-    endDate: "--"
-    summary: "  "
-    url: ""
+    startDate: "01-01-2022"
+    endDate: "09-01-2023"
+    summary: "I've developed a comprehensive Scenario Runner Application from scratch, implementing ASAM OpenSCENARIO standards. This involved creating functionality to manage OpenSCENARIO files, implementing various actions, integrating gRPC for simulator communication, and optimizing collision detection. I architected scalable batch simulation with Python APIs, provided ongoing client support, and successfully ported the application to Unreal Engine 5, demonstrating my ability to create complex, industry-standard software solutions while maintaining client relationships."
     highlights:
-      - "'"
-      - ""
-      - ""
-  - title: ""
-    startDate: ""
-    endDate: ""
-    summary: ""
-    url: ""
+      - "ASAM OpenSCENARIO Standard"
+      - "Scenario Runner & Editor"
+      - "Simulation & Test Automation"
+  - title: "Virtual Sensor Plugin in Unreal Engine"
+    startDate: "09-01-2023"
+    endDate: "12-31-2024"
+    summary: "I've led significant improvements in the Virtual Sensor Team, focusing on Camera and Radar sensor development. My key contributions include:
+Spearheading a major code refactoring effort, consolidating codebases and enhancing system performance, while implementing static analysis in the CI/CD pipeline to improve code quality.
+Developing a sophisticated shader-based radar simulation in Unreal Engine, utilizing low-level radar parameters and integrating with ROS for data processing and range-doppler map generation.
+Creating a versatile Bounding Box Labeler supporting multiple object types and coordinate systems, adhering to the OpenLabel standard with custom attributes, and developing a Coordinate Converter Plugin for Unreal Engine 5 to ensure cross-team compatibility."
     highlights:
-      - ""
-      - ""
-      - ""
-  - title: ""
-    awarder: ""
-    highlights:
-      - ""
-      - ""
-  - title: ""
-    awarder: ""
-    highlights:
-      - ""
-      - ""
-      - ""
+      - "Sensors in Automotive Industry"
+      - "Radar Sensor"
+      - "Labeler"
+      - "Shader Programming in HLSL"
 Patent:
-  - title: "Scenario Runner Software"
+  - title: "SCENARIO-BASED AUTONOMOUS DRIVING VEHICLE SIMULATION METHOD AND SYSTEM."
+  - author: "Eungback Kim, Seungho Jang, Seongyeon Park, Hoseup Lee, Hein Jo"
+  - published date: "June, 6, 2024"
+  - title: "ELECTRONIC DEVICE AND METHOD FOR PROCESSING POINT CLOUD DATA"
+  - author: "Heecheol Yoo, Seungho Jang, Hojun Lim"
+  - published date: "June, 24, 2024"
 skills:
   - name: "Python Desktop Application Dev."
     level: "Advanced"
     keywords:
-      - "Concurrent Programming - asyncio"
-      - "gRPC Interface"
       - "PyQT"
       - "OpenGl"
-  - name: "Unity Application Dev."
+      - "Python"
+      - "PyTest"
+      - "gRPC Protocol"
+  - name: "Unity"
     level: "Intermediate"
     keywords:
       - Unity
       - C# Programming
   - name: "Algorithm"
     level: "Intermediate"
+  - name: "Unreal Engine"
+    level: "Advanced"
+    keywords:
+      - Unreal Engine 4 and 5
+      - C++ Programming
+      - Shader Programming (.usf)
+      - Radar / LiDAR
 languages:
   - language: "Korean"
     fluency: "Native Speaker"
@@ -137,4 +146,4 @@ interests:
       - "Starcraft"
       - "Overwatch2"
       - "FIFA Online"
-  - name : "Segmentation"
+  - name : "Computer Graphics & XR/VR & Mobile Dev."

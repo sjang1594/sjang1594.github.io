@@ -3,7 +3,7 @@ layout: resume
 title: Resume
 permalink: /resume/
 description: >
-  Hi, I'm Seungho Jang. I work as software engineer.
+  Hi, I'm Seungho Jang. I work as software engineer. I love lightings and ambience!
 hide_description: false
 sidebar: false
 order: 5

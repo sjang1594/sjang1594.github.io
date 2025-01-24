@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: React Native
-slug: react native
+title: Books
+slug: books
 category: study
-sidebar: true
+sidebar: false
 description: >
    book Reviews
 ---

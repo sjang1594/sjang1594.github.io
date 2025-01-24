@@ -73,24 +73,24 @@ teaching:
       - Computer Architecture (CS2700) in Fall 2020 & Spring 2021
 projects:
   - title: "Map Editor Desktop Application"
-    startDate: "10-12-2021"
-    endDate: "01-01-2022"
+    startDate: "2021-10-12"
+    endDate: "2022-01-01"
     summary: "I've enhanced the Map Editor with advanced features, implementing multi-instancing for simultaneous HDMap editing, undo/redo functionality using the command pattern, and a pre-computation algorithm for road intersection detection. This work included creating unit tests for intersection accuracy and integrating them into the Jenkins CI/CD pipeline, ensuring map integrity and improving overall editor functionality."
     highlights:
       - "Command Pattern"
       - "HDMaps (MGeo)"
       - "MGeo Editor Tools"
   - title: "Scenario Runner Desktop Application"
-    startDate: "01-01-2022"
-    endDate: "09-01-2023"
+    startDate: "2022-01-01"
+    endDate: "2023-09-01"
     summary: "I've developed a comprehensive Scenario Runner Application from scratch, implementing ASAM OpenSCENARIO standards. This involved creating functionality to manage OpenSCENARIO files, implementing various actions, integrating gRPC for simulator communication, and optimizing collision detection. I architected scalable batch simulation with Python APIs, provided ongoing client support, and successfully ported the application to Unreal Engine 5, demonstrating my ability to create complex, industry-standard software solutions while maintaining client relationships."
     highlights:
       - "ASAM OpenSCENARIO Standard"
       - "Scenario Runner & Editor"
       - "Simulation & Test Automation"
   - title: "Virtual Sensor Plugin in Unreal Engine"
-    startDate: "09-01-2023"
-    endDate: "12-31-2024"
+    startDate: "2023-09-01"
+    endDate: "2024-12-31"
     summary: "I've led significant improvements in the Virtual Sensor Team, focusing on Camera and Radar sensor development. My key contributions include:
 Spearheading a major code refactoring effort, consolidating codebases and enhancing system performance, while implementing static analysis in the CI/CD pipeline to improve code quality.
 Developing a sophisticated shader-based radar simulation in Unreal Engine, utilizing low-level radar parameters and integrating with ROS for data processing and range-doppler map generation.
@@ -116,6 +116,11 @@ skills:
       - "Python"
       - "PyTest"
       - "gRPC Protocol"
+  - name: "C++"
+    level: "Master"
+    keywords:
+      - "Modern C++ (17/20)"
+      - "System Conconcurrent Programming"
   - name: "Unity"
     level: "Intermediate"
     keywords:

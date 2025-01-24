@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: SENSOR
+title: Sensor
 slug: sensor
 category: study
-sidebar: true
+sidebar: false
 description: >
    Sensor: General Information
 ---

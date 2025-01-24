@@ -3,7 +3,7 @@ layout: resume
 title: Resume
 permalink: /resume/
 description: >
-  Hi, I'm Seungho Jang. I work as software engineer at MORAI. 
+  Hi, I'm Seungho Jang. I work as software engineer.
 hide_description: false
 sidebar: false
 order: 5

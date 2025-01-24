@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: RADAR
+title: Radar
 slug: radar
 category: study
-sidebar: true
+sidebar: false
 description: >
-   Sensor Type: RADAR
+   Sensor Type
 ---

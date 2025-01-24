@@ -33,7 +33,7 @@ work:
     startDate: "20-10-05"
     endDate: "24-12-31"
     summary: >
-    I was a passionate Junior Software Engineer with a strong foundation in game engine development and simulation systems. I've cultivated my expertise in Unreal Engine and Unity creating systems are necessary for simulation industry, while embracing CI/CD practices to enhance code quality and system reliability. All the details can be found in project section or my resume.
+      I was a passionate Junior Software Engineer with a strong foundation in game engine development and simulation systems. I've cultivated my expertise in Unreal Engine and Unity creating systems are necessary for simulation industry, while embracing CI/CD practices to enhance code quality and system reliability. All the details can be found in project section or my resume. <br>
 education:
   - institution: "Washington University in Saint Louis / UMSL"
     area: "Electrical & Electronic Engineering"

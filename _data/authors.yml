@@ -8,7 +8,8 @@ author1:
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
-    Software Engineer
+    Software Engineer, 
+    
     Please check my [Resume][resume] to find out more about me!<br>
 
     [resume]: /resume/

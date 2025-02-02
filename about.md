@@ -12,8 +12,6 @@ order: 2
 
 I graduated with my master's degree in Computer Science. I enjoyed all my classes while pursuing the degree, but I always wanted to share the posts, my thoughts, and reviews on books because I will definitely forget about those later on.
 
-// TODO: Update what I do now 
-
 **Who am I ?**
 
 * I have played the drums since 6<sup>th</sup> grade and played guitar for 2 years. 

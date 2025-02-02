@@ -44,4 +44,8 @@ Expose: 카메라의 어떤 현상, 렌즈를 오래 열어 놓으면, 빛을 �
 Gamma Correction : 어떤 영역에 색을 더 넓게 보여줄지를 의미
 OPENGL Gamma correction:
 
-CRT 값은 2.2 낮춰지는 곡선이였는데, 1/2.2 를 곱하게 되면 직선으로 표혆라수 있다.
+CRT 값은 2.2 낮춰지는 곡선이였는데, 1/2.2 를 곱하게 되면 직선으로 표현할 수 있다. 
+
+## HDRI Pipeline
+
+결국 PBR 에 가까워지려면, 환경맵이 필요하고, 그 환경맵을 HDRI (High Dynamic Range Image) 를 이용할 수 있다. 

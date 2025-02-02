@@ -110,12 +110,12 @@ Seungho Jang (장승호)
   + applied Gaussian Random Distribution to generate realistic returns and utilizing the raycasting method to exclusively capture aerial objects, improving point cloud fidelity and target isolation.
   + collaborated with Graphics Team to validate and refine object-specific collision models focusing on aircraft. 
 
-### Samsung DataGen:
-* Scenario Data Acquisition
-  + utilized internal data acquisition tool to build complex scenario datasets, ensuring 15+ objects per batch and detailed descriptions of dynamic situations. Managed video acquisition and detail modifications to enhance data quality and alignment with project requirements.
+* Samsung DataGen:
+  * Scenario Data Acquisition
+    * utilized internal data acquisition tool to build complex scenario datasets, ensuring 15+ objects per batch and detailed descriptions of dynamic situations. Managed video acquisition and detail modifications to enhance data quality and alignment with project requirements.
   
-* Enhanced LiDAR Simulation with Motion Distortion.
-  + developed a post-processing technique to apply motion distortion to MORAI Simulator's LiDAR output, implementing coordinate transformation and spherical linear interpolation(SLERP) for rotation modeling, and integrated distortion effects into the pipeline.
+  * Enhanced LiDAR Simulation with Motion Distortion.
+    * developed a post-processing technique to apply motion distortion to MORAI Simulator's LiDAR output, implementing coordinate transformation and spherical linear interpolation(SLERP) for rotation modeling, and integrated distortion effects into the pipeline.
 
 * Project NIA:
   + developed, modified, and tested 1200 Edge Case Scenarios across 6 Korean maps in `.xosc` format, ensuring dataset accuracy and alignment with project requirements.

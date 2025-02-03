@@ -62,6 +62,6 @@ published: true
 
 이 책 정말 주옥같은 말들이 많이 있다, 그리고 엔지니어 또는 개발자로 살아가면서 꼭 누군가가 말로 정리한게 아닌, 글로 정리가 되어있어서 더더욱 공감을 할수 있었던것같다.
 
-## Resource
+## Reference
 
 * [육각형 개발자](https://www.yes24.com/Product/Goods/120215040)

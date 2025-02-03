@@ -99,8 +99,8 @@ Seungho Jang (장승호)
     + DirectX11/12
     + Vulkan
     + Visual Effect
-    + Shader Programming 
-* Parallel Processing 
+    + Shader Programming
+* Parallel Processing
     + CUDA
 * Radar Simulation
 

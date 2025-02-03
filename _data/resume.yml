@@ -128,6 +128,7 @@ skills:
     keywords:
       - Unity
       - C# Programming
+      - Job System
   - name: "Algorithm"
     level: "Intermediate"
   - name: "Unreal Engine"
@@ -137,11 +138,12 @@ skills:
       - C++ Programming
       - Shader Programming (.usf)
       - Radar / LiDAR
+      - RenderDoc
 languages:
   - language: "Korean"
     fluency: "Native Speaker"
   - language: "English"
-    fluency: "Almost Native Speaker"
+    fluency: "Native Speaker"
 interest:
   - name: "Activity"
     keywords:

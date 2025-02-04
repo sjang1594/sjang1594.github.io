@@ -1,5 +1,5 @@
 ---
-title: Drone Softeware Developement
+title: Struct & Class
 layout: post
 category: study
 tags: [swift, mobile dev]

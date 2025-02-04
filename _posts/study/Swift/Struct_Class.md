@@ -2,7 +2,7 @@
 title: Drone Softeware Developement
 layout: post
 category: study
-tags: [Swift]
+tags: [swift, mobile dev]
 published: true
 ---
 

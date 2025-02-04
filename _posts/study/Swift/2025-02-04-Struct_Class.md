@@ -34,9 +34,9 @@ published: true
 ## Intro to protocol
 
 Swift 공식 홈페이지에서의 프로토콜의 정의는 아래와 같다.
-```
-A protocol defines a blueprint of methods, properties, and other requirements  that suit a particular task or piece of functionality. The protocol can then be adopted by a class, structure, or enumeration to provide an actual implementation of those requirements. Any type that satisfies the requirements of a protocol is said to conform to that protocol.
-```
+`
+A protocol defines a blueprint of methods, properties, and other requirements that suit a particular task or piece of functionality. The protocol can then be adopted by a class, structure, or enumeration to provide an actual implementation of those requirements. Any type that satisfies the requirements of a protocol is said to conform to that protocol.
+`
 
 즉 결국엔 Protocol 이라는건 Enum, Struct, Class 의 어떤 Blueprint 에 해당되며, 이 Protocol 을 사용하기위해서는 어떠한 어떠한것들이 필요하다는걸 정의하는 것이다. 즉 요구사항 정리서 (Descriptor) 라고 볼수 있다. 그리고 구현은 Struct 나 Class 에서 직접하면 된다.
 

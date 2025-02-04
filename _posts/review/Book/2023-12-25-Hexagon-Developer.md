@@ -1,7 +1,7 @@
 ---
 title: The Hexagon Developer
 layout: post
-category: etc
+category: book
 tags: [logs, book]
 published: true
 ---

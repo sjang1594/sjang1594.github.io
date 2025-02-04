@@ -4,7 +4,7 @@ type: tag
 title: Pytorch
 slug: pytorch
 category: study
-sidebar: true
+sidebar: false
 description: >
    Pytorch - DL / ML
 ---

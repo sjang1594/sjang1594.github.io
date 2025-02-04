@@ -4,7 +4,7 @@ type: tag
 title: C#
 slug: c#
 category: study
-sidebar: true
+sidebar: false
 description: >
    C# 
 ---

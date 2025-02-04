@@ -4,7 +4,7 @@ type: tag
 title: Mobile Dev.
 slug: mobile dev
 category: study
-sidebar: false
+sidebar: true
 description: >
    Mobile Development
 ---

@@ -6,9 +6,6 @@ tags: [logs, book]
 published: true
 ---
 
-* this unordered seed list will be replaced by the toc
-{:toc}
-
 ## The Engineer's Guide Book
 
 ![!\[Alt text\](image.png)](../../../assets/img/photo/2-03-2025/book_cover.png)

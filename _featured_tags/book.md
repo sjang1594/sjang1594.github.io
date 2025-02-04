@@ -4,7 +4,7 @@ type: tag
 title: Books
 slug: books
 category: study
-sidebar: false
+sidebar: true
 description: >
    book Reviews
 ---

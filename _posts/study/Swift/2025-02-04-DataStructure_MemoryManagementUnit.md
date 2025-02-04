@@ -6,7 +6,7 @@ tags: [swift, mobile dev]
 published: true
 ---
 
-## Data Structure
+## Data Structure & Memory Management in Swift
 
 일단 Swift 안에서는, Array, Queue, Stack 이 Data Structure 이 있다. 뭔가 c++ 처럼 Library 를 지원 queue 나 stack 을 지원하나 싶었는데? 없다고 한다 [ref](https://medium.com/geekculture/week-5-how-can-you-still-not-know-stack-and-queue-in-swift-b583946ebd53) 그래서 직접 구현하란다. 하지만 `Deque<Element>, OrderedSet<Element>, OrderedDictionary<key, value>, Heap` 은 [Collection Package](https://github.com/apple/swift-collections) 에 있다고 한다. 흠 왜? Array 하고 Sets 는 주면서? 조금 찾아 보니, `Array`, `Set` 의 최소한의 자료구조만 표준으로 제공하고, 다른건 Pacakaging 해서 쓰란다. 그리고 생각보다 Generic 도 잘되어있지만, 역시 CPP 하고 비교했을때는 불편한점이 있긴한것같다.
 

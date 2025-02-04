@@ -8,9 +8,8 @@ published: true
 
 ## Intro to Struct vs Class in Swift
 
-OPP 에서 중요한건 Class 사용 및 Struct 사용이다. Swift 에서 Struct 와 Class Type 들을 봐보겠다.
-
-CPP 와는 비슷한면도 있고, 다른점도 있다. Swift 에서의 Struct 와 Class 는 아래의 특징을 가지고 있다.
+* OPP 에서 중요한건 Class 사용 및 Struct 사용이다. Swift 에서 Struct 와 Class Type 들을 봐보겠다.
+* CPP 와는 비슷한면도 있고, 다른점도 있다. Swift 에서의 Struct 와 Class 는 아래의 특징을 가지고 있다.
 
 **Struct**
 * Stack 에 저장 

@@ -1,7 +1,7 @@
 ---
 title: Mangwon-Brothers
 layout: post
-category: etc
+category: review
 tags: [logs, book]
 published: true
 ---

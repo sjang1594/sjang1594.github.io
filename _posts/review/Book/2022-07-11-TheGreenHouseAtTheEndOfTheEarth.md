@@ -1,12 +1,10 @@
 ---
 title: The Greenhouse At The End of The Earth
 layout: post
-category: etc
+category: review
 tags: [logs, book]
 published: true
 ---
-
-
 
 ## The Greenhouse at the end of the earth (지구 끝의 온실)
 

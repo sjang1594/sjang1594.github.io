@@ -3,10 +3,8 @@ title: Follow your Heart
 layout: post
 category: etc
 tags: [logs, book]
-published: true
+published: false
 ---
-
-
 
 ## Follow Your Heart
 

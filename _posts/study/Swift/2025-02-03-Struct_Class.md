@@ -29,7 +29,6 @@ published: true
 
 **Overall**
 * 위와 같은 특징으로 인해서? Class 가 느릴수도 있지만, 관리 측면에서는 역시 Class 가 좋고, 그리고 Struct User Data Type 으로 사용하면 될것 같다.
----
 
 ## Intro to protocol
 

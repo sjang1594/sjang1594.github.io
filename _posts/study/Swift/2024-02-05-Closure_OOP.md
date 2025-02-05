@@ -6,6 +6,8 @@ tags: [swift, mobile dev]
 published: true
 ---
 
+## Closure & OOP
+
 ### Closure 을 알기 이전에...
 
 C++ 에 있는 Function Type 을 이해하면 편하다. Swift 에서도 Function Type 이 존재한다. 아래의 코드를 보면 Function Type Declaration 이 존재한다. `(Int, Int) -> Int` 하고 addTwoInts 라는 함수를 참조한다. (여기에서 **참조**). 즉 swift 가 할당을 허락한다. 라는 뜻. 저 불편한 var 로 할당된걸, 함수로 표현하게 되면, `(Int, Int) -> Int` 자체를 함수의 Parameter 로 넘겨줄수도 있다.

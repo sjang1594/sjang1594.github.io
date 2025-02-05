@@ -151,9 +151,7 @@ class Animal {
         self.name = name
     }
 
-    func makeSound(){
-        print("--")
-    }
+    func makeSound(){}
 }
 
 class Dog : Animal {

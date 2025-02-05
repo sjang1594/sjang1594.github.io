@@ -1,8 +1,8 @@
 ---
 layout: tag-list
 type: tag
-title: Books
-slug: books
+title: Book
+slug: book
 category: review
 sidebar: true
 description: >

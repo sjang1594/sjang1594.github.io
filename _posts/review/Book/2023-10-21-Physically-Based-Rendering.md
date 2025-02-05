@@ -6,8 +6,7 @@ tags: [logs, book]
 published: true
 ---
 
-* this unordered seed list will be replaced by the toc
-{:toc}
+
 
 ## Physically Based Rendering From Theory to Implementation
 

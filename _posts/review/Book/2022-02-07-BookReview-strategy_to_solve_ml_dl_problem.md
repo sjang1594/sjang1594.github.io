@@ -5,8 +5,7 @@ category: review
 tags: [book]
 ---
 
-* this unordered seed list will be replaced by the toc
-{:toc}
+
 
 ## The strategy to solve the Machine Learning & Deep Learning problems
 

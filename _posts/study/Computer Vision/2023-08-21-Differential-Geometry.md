@@ -5,8 +5,7 @@ category: study
 tags: [computer vision, differential geometry]
 ---
 
-* this unordered seed list will be replaced by the toc
-{:toc}
+
 
 ## What is Geometry like Fundamentally
 1. The study of shapes, sizes, patterns, and positions.

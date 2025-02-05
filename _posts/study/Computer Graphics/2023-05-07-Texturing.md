@@ -5,8 +5,7 @@ category: study
 tags: [directx, computer graphics, shader]
 ---
 
-* this unordered seed list will be replaced by the toc
-{:toc}
+
 
 ### DirectX11 - Texturing
 

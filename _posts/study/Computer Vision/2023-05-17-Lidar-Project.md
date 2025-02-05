@@ -6,8 +6,7 @@ tags: [computer vision, sensor]
 published: false
 ---
 
-* this unordered seed list will be replaced by the toc
-{:toc}
+
 
 ## Lidar Preprocessing Technique
 

@@ -5,8 +5,7 @@ category: study
 tags: [computer graphics, computer vision]
 ---
 
-* this unordered seed list will be replaced by the toc
-{:toc}
+
 
 ## Texturing
 

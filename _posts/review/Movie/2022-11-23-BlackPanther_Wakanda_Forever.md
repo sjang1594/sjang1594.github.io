@@ -5,8 +5,7 @@ category: review
 tags: [movie]
 ---
 
-* this unordered seed list will be replaced by the toc
-{:toc}
+
 
 ## Black Panther : Wakanda Forever
 

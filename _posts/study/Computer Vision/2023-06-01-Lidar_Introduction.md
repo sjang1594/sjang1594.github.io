@@ -5,8 +5,7 @@ category: study
 tags: [computer vision, sensor]
 ---
 
-* this unordered seed list will be replaced by the toc
-{:toc}
+
 
 ## Introduction
 

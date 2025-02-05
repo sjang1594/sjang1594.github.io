@@ -6,8 +6,7 @@ tags: [directx, computer graphics, Unreal Engine]
 published: false
 ---
 
-* this unordered seed list will be replaced by the toc
-{:toc}
+
 
 ## Goal & Motivation
 

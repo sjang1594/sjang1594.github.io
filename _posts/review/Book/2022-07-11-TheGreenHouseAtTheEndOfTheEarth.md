@@ -6,8 +6,7 @@ tags: [logs, book]
 published: true
 ---
 
-* this unordered seed list will be replaced by the toc
-{:toc}
+
 
 ## The Greenhouse at the end of the earth (지구 끝의 온실)
 

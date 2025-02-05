@@ -3,7 +3,7 @@ layout: tag-list
 type: tag
 title: Books
 slug: books
-category: study
+category: review
 sidebar: true
 description: >
    book Reviews

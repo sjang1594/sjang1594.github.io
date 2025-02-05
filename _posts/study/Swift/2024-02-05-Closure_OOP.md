@@ -176,3 +176,4 @@ dog.makeSound()
 ### Reference
 * [swift](https://bbiguduk.gitbook.io/swift/language-guide-1/functions)
 * [Blogs](https://babbab2.tistory.com/81)
+* [cpp-closure](https://leimao.github.io/blog/CPP-Closure/)

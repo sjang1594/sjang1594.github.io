@@ -6,5 +6,5 @@ slug: book
 category: review
 sidebar: true
 description: >
-   book Reviews
+   Book Reviews
 ---

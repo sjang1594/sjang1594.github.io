@@ -98,6 +98,7 @@ UI Update
 ```
 
 **Another Example**
+
 ```swift
 import Foundation
 
@@ -116,6 +117,7 @@ loadData { msg in print(msg, Thread.current)}
 ```
 
 ### Application 구현
+
 예를 들어서 어떤 Data 를 다운로드 받아서 display 를 한다고 하자. 물론 어떤 Loader 로 부터 다운로드 받아서 fetch 하기는 하는데, 여기에서는 간단하게, 한군데에서 하고, downloadData method 자체를 private 으로 구분해주자. 각 class 역활은 `BackgroundThreadViewModel` class 는  `fetch`, `download` 를 하고 async 로 Data 를 Download 받고 fetch 로 UI 에 다가 download 된 데이터를 뿌려준다라고 보면될것 같다. 일단 `.background` thread 에서 돌리는거 하나 `main 에서 UI update 해주는걸 생각하면 될것 같다.
 
 ```swift
@@ -179,7 +181,7 @@ struct BackgroundThreadBootcamp: View {
 
 ![Profiling](../../../assets/img/photo/2-06-2025/thread.png)
 
-실제 Image Loader 를 만들어본다고 하자. 총 3 가지의 방법이 있다고 한다. `escaping`, `async`, `combine` 형태로 아래의 코드를 봐보자. 배경설명은 이러하다. URL 로 부터, 서버에서 Image 를 가져와서 화면에 뿌려주는 그런 앱을 작성한다고 하자. 일단 URL 과 UImage 를 받았을때의 Handler 를 작성한걸 볼수 있다. Data 를 못받으면 nil 로 return 을 하고, 아니면 Data 를 받아서 UIImage 로 변경해주는 코드이고, response error handling 도 안에 있다. 
+실제 Image Loader 를 만들어본다고 하자. 총 3 가지의 방법이 있다고 한다. `escaping`, `async`, `combine` 형태로 아래의 코드를 봐보자. 배경설명은 이러하다. URL 로 부터, 서버에서 Image 를 가져와서 화면에 뿌려주는 그런 앱을 작성한다고 하자. 일단 URL 과 UImage 를 받았을때의 Handler 를 작성한걸 볼수 있다. Data 를 못받으면 nil 로 return 을 하고, 아니면 Data 를 받아서 UIImage 로 변경해주는 코드이고, response error handling 도 안에 있다.
 
 일단 기본적으로 escape 를 사용한걸 보면, URLSession.shared.dataTask 자체가 closure 형태로 전달로 받고, **.resume() method** 를 반드시 작성해줘야하며, 하나의 background thread 로 동작한다. 그리고 `completionHandler` 를 통해서 image 를 받을시에 UIImage 와 함께 error 코드를 넘겨준다. (void return). 그 이후 image 를 fetch 한 이후에 main thread 를 update 해야 UI 에서 보여지기 시작한다.
 
@@ -295,12 +297,62 @@ struct DownloadImagesAsync: View {
 }
 ```
 
-### Generic 
+### Generic
+
 사실 cpp 에서는 Meta programming 이라고도 한다. swift 에서도 generic 을 일단 지원한다. 어떤 타입에 의존하지 않고, 범용적인 코드를 작성하기 위해서 사용된다.
 
 이런건 코드로 보면 빠르다.
 
+```swift
+func swapValues<T>(_ a: inout T, _ b: inout T) {
+    let temp = a
+    a = b
+    b = temp
+}
 
+var a = 10
+var b = 20
+swapValues(&a, &b)
+print(a, b)
+
+struct Stack<T>{
+    // Generic Type(T) Array
+    private var elements : [T] = []
+
+    mutating func push(_ value: T) {
+        elements.append(value)
+    }
+
+    // std::optional T (null)  | swift (nil)
+    mutating func pop() -> T? {
+        // exception
+        guard !elements.isEmpty else {
+            return nil
+        }
+        return elements.popLast()
+    }
+    
+    var top: T?{
+        return elements.last
+    }
+    
+    func printStack(){
+        if elements.isEmpty{
+            print("Stack is Empty")
+        } else {
+            print("Stack: \(elements)")
+        }
+    }
+}
+var intStack = Stack<Int>()
+intStack.push(1)
+intStack.push(2)
+
+if let item = intStack.pop() {
+    print("Pooped Item : \(item)")
+}
+```
 
 ### Reference
 * [Simplifying Grand Central Dispatch (GCD) in Swift](https://medium.com/@ayshindhe/simplifying-grand-central-dispatch-gcd-in-swift-cc3d4f681c43)
+* [Images with Async/Wait](https://www.youtube.com/watch?v=9fXI6o39jLQ&list=PLwvDm4Vfkdphr2Dl4sY4rS9PLzPdyi8PM&index=3&ab_channel=SwiftfulThinking)

@@ -97,6 +97,11 @@ UI Update
 */
 ```
 
+**Another Example**
+```swift
+
+```
+
 ### Application 구현
 예를 들어서 어떤 Data 를 다운로드 받아서 display 를 한다고 하자. 물론 어떤 Loader 로 부터 다운로드 받아서 fetch 하기는 하는데, 여기에서는 간단하게, 한군데에서 하고, downloadData method 자체를 private 으로 구분해주자. 각 class 역활은 `BackgroundThreadViewModel` class 는  `fetch`, `download` 를 하고 async 로 Data 를 Download 받고 fetch 로 UI 에 다가 download 된 데이터를 뿌려준다라고 보면될것 같다. 일단 `.background` thread 에서 돌리는거 하나 `main 에서 UI update 해주는걸 생각하면 될것 같다.
 
@@ -163,7 +168,11 @@ struct BackgroundThreadBootcamp: View {
 
 실제 Image Loader 를 만들어본다고 하자. 총 3 가지의 방법이 있다고 한다. `escaping`, `async`, `combine` 형태로 아래의 코드를 봐보자. 배경설명은 이러하다. URL 로 부터, 서버에서 Image 를 가져와서 화면에 뿌려주는 그런 앱을 작성한다고 하자. 일단 URL 과 UImage 를 받았을때의 Handler 를 작성한걸 볼수 있다. Data 를 못받으면 nil 로 return 을 하고, 아니면 Data 를 받아서 UIImage 로 변경해주는 코드이고, response error handling 도 안에 있다. 
 
-일단 기본적으로 escape 를 사용한걸 보면, URLSession.shared.dataTask 자체가 closure 형태로 전달로 받고, .resume() method 를 반드시 작성해줘야하며, 하나의 background thread 로 동작하는 상태이다. 결국에는 image 를 fetch 한 이후에 main thread 를 update 해야 UI 에서 보여지기 시작한다. 그리고 여기에서는 `completionHandler`
+일단 기본적으로 escape 를 사용한걸 보면, URLSession.shared.dataTask 자체가 closure 형태로 전달로 받고, **.resume() method** 를 반드시 작성해줘야하며, 하나의 background thread 로 동작한다. 그리고 `completionHandler` 를 통해서 image 를 받을시에 UIImage 와 함께 error 코드를 넘겨준다. (void return). 그 이후 image 를 fetch 한 이후에 main thread 를 update 해야 UI 에서 보여지기 시작한다.
+
+이것만 봤을때는 코드가 잘작동은 되겠지만, 별로 깔끔하지못하다. 그 아래 코드는 combine 이다. 위의 Escaping 코드를 본다고 하면, combine 도 not so bad 이다. 정확한건 combine 이라는 개념만 이해하면 잘작성할수 있을것 같다.
+
+마지막으로는 `async` 를 사용한 데이터 처리이다. `URLSession.shared.data(from: url, delegate: nil)` 여기 함수 signature 을 보면 `data(from: URL) async throw -> (Data, URLResponse` Description `...to load data using a URL, creates and resume a URLSessionDataTask internally...` 라고 나와있다. 즉 이 함수를 호출하게 되면 바로, URLSession.shared.data(from: url, delegate: nil) 호출하고 tuple() return 을 받지만, response 가 바로 안올수도 있기 때문에 `await` 이라는 keyword 가 필요하다. 그래서 `await` 을 사용하게 되면, 결국엔 response 가 올때까지 기다리겠다라는 뜻이다. 그 이후에 `downloadWithAync()` 를 호출할때, concurrency 를 만족하기위해서 여기에서도 `async` keyword 가 필요하다. 그렇다면 마지막으로 main thread 에서 어떻게 UI Update 를 할까? 라고 물어본다면, 답변으로 올수 있는 방법은 `DispatchQueue.main.async { self?.image = image }` 하지만 아니다. main thread 에서 이걸 처리를 하려면, `.appear` 부분에서 `Task` 로 받아서 `await` 으로 처리해주면 된다. 빌드 이후에 Warning 이 뜰수도 있는데 이부분은 `Actor` 라는걸로 처리를 하면된다. 물론 `Actor` 라는건 이 post 에서 벗어난 내용이지만 따로 정리를 해보려고 한다.
 
 ```swift
 import SwiftUI
@@ -276,7 +285,7 @@ struct DownloadImagesAsync: View {
 ### Generic 
 사실 cpp 에서는 Meta programming 이라고도 한다. swift 에서도 generic 을 일단 지원한다. 어떤 타입에 의존하지 않고, 범용적인 코드를 작성하기 위해서 사용된다.
 
-이런건 코드로 보면 빠르다. 
+이런건 코드로 보면 빠르다.
 
 
 

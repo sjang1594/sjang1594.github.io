@@ -99,7 +99,20 @@ UI Update
 
 **Another Example**
 ```swift
+import Foundation
 
+func loadData(completionHandler: @escaping (_ msg: String) -> ()){
+    DispatchQueue.global().async {
+        print("Start Loading Data", Thread.current)
+        sleep(3)
+        
+        DispatchQueue.main.async {
+            completionHandler("Finished Loading")
+        }
+    }
+}
+
+loadData { msg in print(msg, Thread.current)}
 ```
 
 ### Application 구현

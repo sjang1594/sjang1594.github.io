@@ -163,7 +163,7 @@ struct BackgroundThreadBootcamp: View {
 
 실제 Image Loader 를 만들어본다고 하자. 총 3 가지의 방법이 있다고 한다. `escaping`, `async`, `combine` 형태로 아래의 코드를 봐보자. 배경설명은 이러하다. URL 로 부터, 서버에서 Image 를 가져와서 화면에 뿌려주는 그런 앱을 작성한다고 하자. 일단 URL 과 UImage 를 받았을때의 Handler 를 작성한걸 볼수 있다. Data 를 못받으면 nil 로 return 을 하고, 아니면 Data 를 받아서 UIImage 로 변경해주는 코드이고, response error handling 도 안에 있다. 
 
-일단 기본적으로 escape 를 사용한걸 보면, URLSession.shared.dataTask 자체가 closure 형태로 전달로 받고, .resume() method 를 반드시 작성해줘야하며, 하나의 background thread 로 동작하는 상태이다. 결국에는 image 를 fetch 한 이후에 main thread 를 update 해야 UI 에서 보여지기 시작한다.
+일단 기본적으로 escape 를 사용한걸 보면, URLSession.shared.dataTask 자체가 closure 형태로 전달로 받고, .resume() method 를 반드시 작성해줘야하며, 하나의 background thread 로 동작하는 상태이다. 결국에는 image 를 fetch 한 이후에 main thread 를 update 해야 UI 에서 보여지기 시작한다. 그리고 여기에서는 `completionHandler`
 
 ```swift
 import SwiftUI
@@ -180,12 +180,12 @@ class DownloadImagesAsyncImageLoader {
             // res code
             res.statusCode >= 200 && res.statusCode < 300 else {
             return nil
-        }
+        } 
         return image
     }
     
     // escaping
-    func downloadWithEscaping(completionHandler: @escaping (_ image: UIImage?, _ error: Error?) -> ()) {
+    func downloadWithEscaping(completionHandler: @escaping (_  image: UIImage?, _ error: Error?) -> ()) {
         // async code
         URLSession.shared.dataTask(with: url) { [weak self] data, res, err in
             let image = self?.handleResponse(data: data, res: res)

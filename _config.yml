@@ -20,39 +20,37 @@
 lang:                  ko-KR, en-US
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title:                 Lazy Ren
+title:                 SJ.Home
 
 timezone:              Asia/Seoul
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
-  Work Hard to be Lazy.
-  SW Engineer at Samsung Research.
+  "Can we make what we see more prettier?"
 
 # A shorter description for the sidebar.
 tagline:               >
-  Work Hard to be Lazy.
+  "How do we make pixels prettier?"
 
 # A list of keywords for your blog
-keywords:              ["Development", "C++", "Rust", "Jekyll"]
+keywords:              ["Development", "Engineering"]
 
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
 # It also used by the `jekyll-seo-tag` plugin.
-logo:                  /assets/img/seattle.png
+logo:                  /assets/img/bio-photo.jpg
 
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
   # Used by `jekyll-feed`:
-  name:                DaeIn Lee
-  email:               daein0lee@gmail.com
-  picture:             /assets/img/seattle.png
+  name:                Seungho Jang
+  email:               sjang1594@gmail.com
+  picture:             /assets/img/bio-photo.jpg
   social:
-    linkedin:          daein-lee-3b6ba9139
-    github:            lazyren
-    stackoverflow:     4294737
-    email:             daein0lee@gmail.com
+    linkedin:        seungho-jang-41b3b9145
+    github:          sjang1594
+    email:           sjang1594@gmail.com
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
@@ -140,16 +138,16 @@ defaults:
       sitemap:         false
 
   # Don't include site verification file(for google) in the sitemap
-  - scope:
-      path:            google93abcae935f31b7d.html
-    values:
-      sitemap:         false
+  # - scope:
+  #     path:            google93abcae935f31b7d.html
+  #   values:
+  #     sitemap:         false
 
   # Don't include site verification file(for naver) in the sitemap
-  - scope:
-      path:            navera03014a241218f942080c56d67e79469.html
-    values:
-      sitemap:         false
+  # - scope:
+  #     path:            navera03014a241218f942080c56d67e79469.html
+  #   values:
+  #     sitemap:         false
 
   # You can use the following to enable comments on all posts.
   - scope:
@@ -189,7 +187,7 @@ kramdown:
 
 # Set your Google Analytics id to receive `pageview` events.
 # To remove Google Analytics from your page, remove the line below.
-google_analytics:      UA-68290006-3
+google_analytics:      google93abcae935f31b7d.html
 
 # Set which comment system to use
 comments:
@@ -203,26 +201,26 @@ comments:
 # You must install utterances github app before use.(https://github.com/apps/utterances)
 # Make sure all variables are set properly. Check below link for detail.
 # https://utteranc.es/
-# utterances:
-#   repo:                "LazyRen/LazyRen.github.io"
-#   issue-term:          "pathname"
-#   label:               "Comments"
-#   theme:               "photon-dark"
+utterances:
+  repo:                "sjang1594/sjang1594.github.io"
+  issue-term:          "pathname"
+  label:               "Comments"
+  theme:               "photon-dark"
 
 # You must install giscus github app before use.(https://github.com/apps/giscus)
 # Make sure all variables are set properly. Check below link for detail.
 # https://giscus.vercel.app/
-giscus:
-  repo:                "LazyRen/LazyRen.github.io"
-  repo-id:             "MDEwOlJlcG9zaXRvcnkyNzU4Mjk1NTc="
-  category:            "Comments"
-  category-id:         "DIC_kwDOEHDTNc4B-MIg"
-  mapping:             "pathname"
-  reaction-enabled:    "1"
-  data-emit-metadata:  "0"
-  theme:               "dark_dimmed"
-  data-lang:           "en"
-  crossorigin:         "anonymous"
+#giscus:
+  # repo:                "/sjang1594.github.io"
+  # repo-id:             "MDEwOlJlcG9zaXRvcnkyNzU4Mjk1NTc="
+  # category:            "Comments"
+  # category-id:         "DIC_kwDOEHDTNc4B-MIg"
+  # mapping:             "pathname"
+  # reaction-enabled:    "1"
+  # data-emit-metadata:  "0"
+  # theme:               "dark_dimmed"
+  # data-lang:           "en"
+  # crossorigin:         "anonymous"
 
 lightbox:              true
 

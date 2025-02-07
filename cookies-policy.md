@@ -12,7 +12,7 @@ By some laws I must annouce that I am(or more precisely Google Analytics is) usi
 
 ## Cookies Policy
 
-This Cookies Policy describes how [my blog](lazyren.github.io)("Site") uses cookies and similar technologies to assist you when visiting the Site. If you have any comments or questions about this Cookies Policy, feel free to [contact me](lazy0ren@gmail.com).
+This Cookies Policy describes how [my blog](sjang1594.github.io)("Site") uses cookies and similar technologies to assist you when visiting the Site. If you have any comments or questions about this Cookies Policy, feel free to [contact me](sjang1594@gmail.com).
 
 ## What are cookies?
 

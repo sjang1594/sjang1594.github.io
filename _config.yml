@@ -3,7 +3,7 @@
 
 # Uncomment and set the URL of your site (with protocol, e.g. `https://`)
 # NOTE: You don't need to provide this property when hosting on GitHub Pages or Netlify.
-# url:                   https://lazyren.github.io
+# url:                   https://sjang1594.github.io
 
 # Uncomment and set the "base URL" of your site.
 # When your site is in a subdirectory, set to `/<name of directory>`,
@@ -80,7 +80,7 @@ excerpt_separator:     <!--more-->
 # Theme
 # ---------------------------------------------------------------------------------------
 
-# theme: jekyll-theme-hydejack
+# theme: jekyll-theme-hydejackF
 # remote_theme: hydecorp/hydejack@v9
 
 
@@ -196,7 +196,7 @@ comments:
 
 # Setting a disqus shortname will enable the comment section on
 # pages with `comments: true` in the front matter.
-# disqus:                lazyrengithub
+# disqus:                sjang1594Githbu
 
 # You must install utterances github app before use.(https://github.com/apps/utterances)
 # Make sure all variables are set properly. Check below link for detail.

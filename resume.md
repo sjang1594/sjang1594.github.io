@@ -3,10 +3,9 @@ layout: resume
 title: Resume
 permalink: /resume/
 description: >
-  Hi, I'm DaeIn Lee.
+  Hi, I'm Seungho Jang.
 hide_description: true
 sidebar: true
-order: 5
 left_column:
  - work
  - education
@@ -24,5 +23,4 @@ no_skill_icons: false
 buttons:
   print: false
   pdf: /assets/Resume.pdf
-  json: /assets/resume.json
 ---

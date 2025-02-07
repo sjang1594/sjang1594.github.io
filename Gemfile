@@ -8,7 +8,7 @@ source 'https://rubygems.org'
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "~> 3.9"
+# gem "jekyll", "~> 3.9"
 
 group :jekyll_plugins do
   gem 'github-pages'
@@ -20,4 +20,3 @@ gem 'wdm' if Gem.win_platform?
 gem 'tzinfo-data' if Gem.win_platform?
 
 gem "webrick", "~> 1.7"
-gem 'jekyll-admin', group: :jekyll_plugins

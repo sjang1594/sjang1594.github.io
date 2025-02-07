@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: C/C++
-slug: c++
-category: study
+title: Book
+slug: book
+category: review
 sidebar: true
 description: >
-   C / C++ 
+   Book Reviews
 ---

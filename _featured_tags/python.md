@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: Algorithm
-slug: algorithm
+title: Python
+slug: python
 category: study
 sidebar: true
 description: >
-   Algorithm study / Problem Solving
+   To be a Pythonian
 ---

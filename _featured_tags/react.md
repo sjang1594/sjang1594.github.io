@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: C/C++
-slug: c++
+title: React
+slug: react
 category: study
-sidebar: true
+sidebar: false
 description: >
-   C / C++ 
+   React
 ---

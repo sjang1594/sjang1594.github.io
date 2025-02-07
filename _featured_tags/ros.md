@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: Algorithm
-slug: algorithm
+title: ROS
+slug: ros
 category: study
 sidebar: true
 description: >
-   Algorithm study / Problem Solving
+   Robotic Operating System
 ---

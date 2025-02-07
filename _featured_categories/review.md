@@ -4,7 +4,15 @@ type: category
 title: Review
 slug: review
 sidebar: true
-order: 4
+order: 3
 description: >
-  Reviews on hardware/software
+  Reviews on Movies, Class, Paper, and Book
 ---
+
+# Reviews
+
+## Categories
+* Movies
+* Book
+* Class
+* Paper

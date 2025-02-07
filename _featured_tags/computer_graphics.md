@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: Algorithm
-slug: algorithm
+title: Computer Graphics
+slug: computer graphics
 category: study
 sidebar: true
 description: >
-   Algorithm study / Problem Solving
+   Computer Graphics
 ---

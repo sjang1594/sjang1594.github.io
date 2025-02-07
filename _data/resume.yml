@@ -123,6 +123,9 @@ skills:
     keywords:
       - "Modern C++ (17/20)"
       - "System Conconcurrent Programming"
+  - name: "DirectX11/12"
+    level: "Intermediate"
+    keywords:
   - name: "Unity"
     level: "Intermediate"
     keywords:

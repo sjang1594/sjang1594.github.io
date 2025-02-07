@@ -4,7 +4,7 @@ type: category
 title: Etcs
 slug: etc
 sidebar: true
-order: 5
+order: 4
 description: >
   Interviews, Instruments, Memes, and Etcs
 ---

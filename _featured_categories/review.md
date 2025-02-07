@@ -4,7 +4,7 @@ type: category
 title: Review
 slug: review
 sidebar: true
-order: 3
+order: 2
 description: >
   Reviews on Movies, Class, Paper, and Book
 ---

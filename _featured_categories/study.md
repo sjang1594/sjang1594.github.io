@@ -4,7 +4,7 @@ type: category
 title: Study
 slug: study
 sidebar: true
-order: 4
+order: 3
 description: >
   I love exploring a lot of things
 ---

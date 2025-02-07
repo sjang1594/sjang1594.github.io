@@ -5,7 +5,7 @@ permalink: /resume/
 description: >
   Hi, I'm Seungho Jang.
 hide_description: true
-sidebar: true
+sidebar: false
 left_column:
  - work
  - education

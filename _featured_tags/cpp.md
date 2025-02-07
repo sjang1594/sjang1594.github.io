@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: C/C++
-slug: c++
-category: study
+title: C++
+slug: cpp
+category: studylog
 sidebar: true
 description: >
-   C / C++ 
+   C++ related posts
 ---

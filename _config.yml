@@ -17,52 +17,42 @@
 
 # Language of your content in 2-letter code, e.g.: en, de.
 # You may also provide a location, e.g.: en-us, de_AT.
-# lang:                  ko-KR, en-US
+lang:                  ko-KR, en-US
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title:                 SJ.Home
+title:                 Lazy Ren
 
 timezone:              Asia/Seoul
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
-description:           > 
-    "Can we make what we see more prettier?"
+description:           >
+  Work Hard to be Lazy.
+  SW Engineer at Samsung Research.
 
 # A shorter description for the sidebar.
-tagline:               > 
-    "How do we make pixels prettier?"
-  
+tagline:               >
+  Work Hard to be Lazy.
 
 # A list of keywords for your blog
-keywords:              ["Development", "Engineering"]
+keywords:              ["Development", "C++", "Rust", "Jekyll"]
 
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
 # It also used by the `jekyll-seo-tag` plugin.
-logo:                  /assets/img/bio-photo.jpg
+logo:                  /assets/img/seattle.png
 
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
   # Used by `jekyll-feed`:
-  name:                Seungho Jang
-  email:               sjang1594@gmail.com
-  picture:             /assets/img/bio-photo.jpg
+  name:                DaeIn Lee
+  email:               daein0lee@gmail.com
+  picture:             /assets/img/seattle.png
   social:
-    linkedin:        seungho-jang-41b3b9145
-    github:          sjang1594
-    email:           sjang1594@gmail.com
-
-# Add links to the sidebar.
-# menu:
-#   - title:             Blog
-#     url:               /blog/
-#   - title:             Projects
-#     url:               /projects/
-#   - title:             Résumé*
-#     url:               /resume/
-#   - title:             Documentation
-#     url:               /docs/
+    linkedin:          daein-lee-3b6ba9139
+    github:            lazyren
+    stackoverflow:     4294737
+    email:             daein0lee@gmail.com
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
@@ -71,12 +61,13 @@ legal:
     url:               /licenses/
   - title:             COOKIES POLICY
     url:               /cookies-policy/
+#   - title:             NOTICE
 #     url:               /NOTICE/
 #   - title:             CHANGELOG
 #     url:               /CHANGELOG/
 
 # This text will appear in a `<small>` tag in the footer of every page.
-copyright:             © 2021. All rights reserved.
+copyright:             © 2022. All rights reserved.
 
 # Format of the permalinks
 # permalink:             /blog/:categories/:year-:month-:day-:title/
@@ -95,34 +86,34 @@ excerpt_separator:     <!--more-->
 # remote_theme: hydecorp/hydejack@v9
 
 
-# Customizaton
+# Customization
 # ----------------------------------------------------------------------------------------
 
 # Sidebar image and theme color of the site.
 accent_image:
-  background:          center / cover url(/assets/img/sidebar-bg.jpg)
+  background:          center / cover url(/assets/img/doguri.jpg)
   overlay:             false
-accent_color:          rgb(79,177,186)
+accent_color:          rgb(0,174,239)
 
 # This is used for the `theme-color` meta tag,
 # which changes the background color of the browser UI in certain browsers.
 # Defaults to `accent_color`.
-theme_color:           rgb(25,55,71)
+theme_color:           rgb(31,55,75)
 
 # The string encoding which fonts to fetch from Google Fonts.
 # See: <https://hydejack.com/docs/config/#changing-fonts>
-google_fonts:          Fira+Code|Noto+Sans:400,400i,700,700i
+google_fonts:          Noto+Sans+KR|JetBrains+Mono|Nanum+Gothic+Coding
 
 # The text font. Expects a string that is a valid CSS font-family value.
 # To change font-weight, see _sass/variables.scss
-font:                  Noto Sans, Helvetica, Arial, sans-serif
+font:                  Noto Sans KR, Helvetica, Arial, sans-serif
 
 # The font used for headings. Expects a string that is a valid CSS font-family value.
 # To change font-weight, see _sass/variables.scss
-font_heading:          Helvetica, Arial, sans-serif
+font_heading:          Noto Sans KR, Helvetica, Arial, sans-serif
 
 # The font used for code blocks. Expects a string that is a valid CSS font-family value.
-font_code:             Fira Code, Menlo, Monaco, Consolas, monospace;
+font_code:             JetBrains Mono, Nanum Gothic Coding, Menlo, Monaco, Consolas, monospace;
 
 defaults:
   # You can use this to provide a default accent color and background for
@@ -190,45 +181,48 @@ kramdown:
   math_engine:         mathjax
   math_engine_opts:    {}
   footnote_backlink:   '&#x21a9;&#xfe0e;'
+  # hard_wrap:           true  # Setting it to `true` will interprets line breaks literally from the markdown file.
 
 
 # 3rd Party Integrations
 # ----------------------------------------------------------------------------------------
 
 # Set your Google Analytics id to receive `pageview` events.
-# To remove Google Anaylics from your page, remove the line below.
-google_analytics:      G-GFFWR46MWQ
+# To remove Google Analytics from your page, remove the line below.
+google_analytics:      UA-68290006-3
 
 # Set which comment system to use
 comments:
-  # 'disqus' or 'utterances' are available
+  # 'disqus' / 'giscus' / 'utterances' are available
   provider:            giscus
 
 # Setting a disqus shortname will enable the comment section on
 # pages with `comments: true` in the front matter.
-disqus:                sjang1594
+# disqus:                lazyrengithub
 
 # You must install utterances github app before use.(https://github.com/apps/utterances)
 # Make sure all variables are set properly. Check below link for detail.
 # https://utteranc.es/
-utterances:
-  repo:                "sjang1594/sjang1594.github.io"
-  issue-term:          "pathname"
-  label:               "Comments"
-  theme:               "photon-dark"
+# utterances:
+#   repo:                "LazyRen/LazyRen.github.io"
+#   issue-term:          "pathname"
+#   label:               "Comments"
+#   theme:               "photon-dark"
 
 # You must install giscus github app before use.(https://github.com/apps/giscus)
 # Make sure all variables are set properly. Check below link for detail.
 # https://giscus.vercel.app/
-#giscus:
- repo:                "/sjang1594.github.io"
- repo-id:             "MDEwOlJlcG9zaXRvcnkyNzU4Mjk1NTc="
- category:            "Comments"
- category-id:         "DIC_kwDOEHDTNc4B-MIg"
- mapping:             "pathname"
- reaction-enabled:    "1"
- theme:               "dark_dimmed"
- crossorigin:         "anonymous"
+giscus:
+  repo:                "LazyRen/LazyRen.github.io"
+  repo-id:             "MDEwOlJlcG9zaXRvcnkyNzU4Mjk1NTc="
+  category:            "Comments"
+  category-id:         "DIC_kwDOEHDTNc4B-MIg"
+  mapping:             "pathname"
+  reaction-enabled:    "1"
+  data-emit-metadata:  "0"
+  theme:               "dark_dimmed"
+  data-lang:           "en"
+  crossorigin:         "anonymous"
 
 lightbox:              true
 
@@ -316,9 +310,6 @@ hydejack:
   # Note that this setting has no effect when using the free version.
   advertise:           false
 
-  # Hide the clap button preview, even in development
-  clap_button:         false
-
   # Buyers of the PRO version can opt to hide all dates from the theme.
   # Frequent consumers of online content will know that nothing devalues a post like
   # seeing an old date.
@@ -403,7 +394,7 @@ plugins:
 # ---------------------------------------------------------------------------------------
 
 # Where you proof that you own this site (used by jekyll-seo-tag)
-#google_site_verification: "zIn7l_GwuOi4WnyRQsdhI9Jpn6IAs0SLR_4HG8OZzsM"
+google_site_verification: "zIn7l_GwuOi4WnyRQsdhI9Jpn6IAs0SLR_4HG8OZzsM"
 # -- or --
 # webmaster_verifications:
 #   google:              <verification-id>
@@ -490,6 +481,6 @@ jekyll_compose:
 # jekyll-feed settings
 feed:
   categories:
-    - study
+    - devlog
     - review
-    - etc
+    - studylog

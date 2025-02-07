@@ -5,6 +5,7 @@ category: study
 tags: [swift, mobile dev]
 published: true
 ---
+{:toc .large-only}
 
 ## MultiThreading & Generic in Swift
 

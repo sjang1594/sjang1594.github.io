@@ -19,7 +19,7 @@
 
 <link rel="preload" href="{{ '/assets/img/swipe.svg' | relative_url }}" as="image" id="_hrefSwipeSVG">
 
-<link rel="dns-prefetch" href="{{ '/assets/js/search-worker-9.1.4.js' | relative_url }}" as="worker" id="_hrefSearch">
+  <link rel="dns-prefetch" href="{{ '/assets/js/search-worker-9.1.6.js' | relative_url }}" as="worker" id="_hrefSearch">
 {% if site.kramdown.math_engine == 'katex' %}
   {% capture katex_url %}{{ 'assets/bower_components/katex/dist/katex.min.css' | relative_url }}{% endcapture %}
   <link rel="dns-prefetch" href="{{ katex_url }}" id="_katexPreload">
@@ -33,4 +33,11 @@
 {% if page.applause_button %}
   <link rel="stylesheet" href="https://unpkg.com/applause-button/dist/applause-button.css">
   <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+{% endif %}
+
+<!-- For sidebar folder -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+{% if site.lightbox %}
+  <link rel="stylesheet" href="/assets/css/lightbox.css">
 {% endif %}

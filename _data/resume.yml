@@ -1,14 +1,10 @@
 basics:
-  name: "Lee, DaeIn"
+  name: "Seungho Jang"
   label: "Software Engineer"
-  picture: /assets/img/profile.jpg
-  email: "daein0lee@gmail.com"
-  phone: "(+82) 10-6273-3127"
-  website: "https://lazyren.github.io/"
-  summary: >
-    Hello, I'm Lee, DaeIn from SAP Labs Korea.<br>
-    I'm familiar with C++, Python and a bit of Rust.<br>
-    I'd like to describe myself as a fast-learner & early-adopter.<br>
+  picture: /assets/img/bio-photo.jpg
+  email: "sjang1594@gmail.com"
+  phone: "(+1) 314-332-9498 / (+82) 10-5610-6541"
+  website: "https://sjang1594.github.io/"
   # location:
   #   address: "2712 Broadway St"
   #   postalCode: "CA 94115"
@@ -17,211 +13,145 @@ basics:
   #   region: "California"
   profiles:
     - network: "Github"
-      username: "LazyRen"
-      url: "https://github.com/LazyRen"
+      username: "sjang1594"
+      url: "https://github.com/sjang1594"
     - network: "LinkedIn"
-      username: "Lee, DaeIn"
-      url: "https://www.linkedin.com/in/daein-lee-3b6ba9139/"
+      username: "Seungho Jang"
+      url: "https://www.linkedin.com/in/seungho-jang-41b3b9145/"
 work:
-  - company: "SAP Labs Korea"
-    position: "HANA Core Developer"
-    website: https://www.sap.com/korea/about/labs-korea.html"
-    startDate: "2021-01-11"
-    endDate: ""
+  - company: "University of Missouri - Saint Louis"
+    position: "Graduate Teaching Assistant"
+    website: "https://www.umsl.edu/"
+    startDate: "20-01-11"
+    endDate: "20-08-31"
     summary: >
-      SAP Labs Korea, a cornerstone of SAP HANA, now aims to bring the in-memory technology to the cloud where it acts as a single gateway to data of any size to harness the power of data wherever it resides and ensure the platform for intelligent enterprise.
+      Teaching the C, C++, and Artificial Intelligence to undergraduate students
     highlights:
-      - SQL on Files team developer (2023/06/01~)<br>
-        - Develop Delta table replication feature in HANA<br>
-          - Remote Subscription / FVT(Fabric Virtual Table) of Delta table<br>
-      - Transaction team developer (~2023/11/30)<br>
-        - Develop EBR(Epoch Based Reclamation) Skip List data structure used in HANA<br>
-        - Develop EBR SWMR(Single Writer Multiple Reader) Skip List data structure in Rust lang.<br>
-        - Fix Transaction concurrency issues/bugs in HANA<br>
-  - company: "Samsung Research"
-    position: "SW Engineer"
-    website: "https://research.samsung.com/"
-    startDate: "2020-02-03"
-    endDate: "2020-12-31"
+  - company: "MORAI Inc"
+    position: "Software Engineer"
+    website: "https://www.morai.ai/"
+    startDate: "20-10-05"
+    endDate: "24-12-31"
     summary: >
-      Samsung Research is the advanced research and development (R&D) hub of Samsung Electronics.
-    highlights:
-      - Software Capacity Building T/F<br>
-        - Educate Software newcomers to understand the software development process and tools.<br>
-        - Lecture on Algorithm/Problem solving skills<br>
-  - company: "Samsung Research"
-    position: "Intern"
-    website: "https://research.samsung.com/"
-    startDate: "2019-06-24"
-    endDate: "2019-08-30"
-    summary:
-    highlights:
-      - "Software engineering internship at Smart Device team."
-      - "8 week internship to develop smart switch circuit PMU firmware with the purpose of increasing power efficiency."
-  - company: "LG CNS"
-    position: "Intern"
-    website: "https://www.lgcns.co.kr/"
-    startDate: "2019-01-03"
-    endDate: "2019-02-28"
-    summary:
-    highlights:
-      - "Software Engineering Internship at Development Platform team."
-      - "6 week internship to develop new Enterprise Application Platform pages."
-      - "Gained better understanding of overall web development."
-  - company: "Fortify Inc."
-    position: "Intern"
-    website: "https://fortify.pro/"
-    startDate: "2018-07-08"
-    endDate: "2018-08-24"
-    summary:
-    highlights:
-      - "Building responsive homepage for 'fortify.pro'."
-      - "Backend/frontend development and service usage analysis using mongoDB for Gaia Landscape Inc."
-volunteer:
-  - organization: "Hanyang Mentoring Program"
-    position: "Mentor"
-    website: ""
-    startDate: "2018-03-02"
-    endDate: "2018-12-21"
-    summary: "Mentoring for the major courses of CSE with juniors"
-    highlights:
-      - "Data Structure; Teaching & helping sophomores on the data structure course."
-      - "Database Systems; Teaching & helping sophomores on the database system course."
-      - "Awarded 'Hanyang Best Mentor' for mentoring Database Systems course."
-  - organization: "Hanmille, Foreigner Mentoring Program"
-    position: "Mentor"
-    website: ""
-    startDate: "2014-03-02"
-    endDate: "2014-12-18"
-    summary: "Mentoring & helping foreign students to easily adjust to Korea."
-    highlights:
+      I was a passionate Junior Software Engineer with a strong foundation in game engine development and simulation systems. I've cultivated my expertise in Unreal Engine and Unity creating systems are necessary for simulation industry, while embracing CI/CD practices to enhance code quality and system reliability. All the details can be found in project section or my resume. <br>
 education:
-  - institution: "Hanyang University, Seoul"
-    area: "Computer Science & Engineering"
+  - institution: "Washington University in Saint Louis / UMSL"
+    area: "Electrical & Electronic Engineering"
     studyType: "Bachelor"
-    startDate: "2014-03-02"
-    endDate: "2020-02-21"
-    gpa: "4.0 (major 4.28) / 4.5"
+    startDate: "2016-08-12"
+    endDate: "2018-12-21"
+    gpa: "3.8 / 4.0"
     courses:
-      - "Concurrent Programming"
-      - "Data Science"
-      - "Operating Systems"
-      - "Computer Architecture"
-      - "Database Systems"
-      - "System Programming"
-  - certificate: "Engineer Information Processing (정보처리기사)"
-    date: "2019-11-22"
+      - "Engineering Mathematics"
+      - "Signals & System"
+      - "Radar Systems"
+  - institution: "University of Missouri - Saint Louis"
+    area: "Computer Vision & Deep Learning"
+    studyType: "Master"
+    startDate: "2020-01-22"
+    endDate: "2021-05-12"
+    gpa: "3.9 / 4.0"
+    courses:
+      - "Operating System"
+      - "Computer System"
+      - "Deep Learning & Machine Learning"
+      - "Image Processing & Computer Vision"
+      - Artificial Intelligence (CS4130/5130) in Spring 2021
+      - Advanced Algorithm
+  - certificate: "Robotic Software Engineering - Udacity"
+    date: "2019-11-22" 
+  - certificate: "Computer Vision - Udacity"
+    date: "2020-12-22"
+  - certificate: "Graduate Certificate in Artificial Intelligence - University of Missouri in St. Louis & NSA/DHS National Center"
+    date: "2021-06-06"
+  - certificate: "Introduction to Computer Graphics with DirectX 11 - Part 2. Realtime Pipeline"
+    date: "2023-10-05"
+teaching:
+  - institution: "University of Missouri - Saint Louis"
+    course: 
+      - Introduction to Computing (C++) (CS1250) in Fall 2020 & Spring 2021 & Summer 2021
+      - Advanced C++ (CS2250) in SP2020 & Summer 2021
+      - Computer Architecture (CS2700) in Fall 2020 & Spring 2021
 projects:
-  - title: "Bw-Tree Performance Boosting"
-    startDate: "2018-08-01"
-    endDate: "2019-10-31"
-    summary: "Evaluating cache / multi thread Performance of <a href='https://github.com/wangziqi2013/BwTree'>Open Bw-Tree</a> to find bottleneck and improvement performance."
-    url: "https://lazyren.github.io/tag-bwtree/"
+  - title: "Map Editor Desktop Application"
+    startDate: "2021-10-12"
+    endDate: "2022-01-01"
+    summary: "I've enhanced the Map Editor with advanced features, implementing multi-instancing for simultaneous HDMap editing, undo/redo functionality using the command pattern, and a pre-computation algorithm for road intersection detection. This work included creating unit tests for intersection accuracy and integrating them into the Jenkins CI/CD pipeline, ensuring map integrity and improving overall editor functionality."
     highlights:
-      - "Implementing update function based on the <a href='https://hyeontaek.com/papers/openbwtree-sigmod2018.pdf'>page</a>."
-      - "Make update function atomic & reduce call of traverse function."
-      - "Design TaS implemented Bw-Tree instead of CaS to reduce the overhead of failed CaS operations."
-  - title: "Wait-free Snapshot with Epoch Based Garbage Collection"
-    startDate: "2019-10-01"
-    endDate: "2019-10-31"
-    summary: "Concurrent Programming Course"
-    url: "https://github.com/LazyRen/2019-Concurrent-Programming/tree/master/project3"
+      - "Command Pattern"
+      - "HDMaps (MGeo)"
+      - "MGeo Editor Tools"
+  - title: "Scenario Runner Desktop Application"
+    startDate: "2022-01-01"
+    endDate: "2023-09-01"
+    summary: "I've developed a comprehensive Scenario Runner Application from scratch, implementing ASAM OpenSCENARIO standards. This involved creating functionality to manage OpenSCENARIO files, implementing various actions, integrating gRPC for simulator communication, and optimizing collision detection. I architected scalable batch simulation with Python APIs, provided ongoing client support, and successfully ported the application to Unreal Engine 5, demonstrating my ability to create complex, industry-standard software solutions while maintaining client relationships."
     highlights:
-      - "Implementing Wait-free Snapshot based on the textbook 'The Art of Multiprocessor Programming'"
-      - "Concurrent update & scan function implemented"
-      - "Implement epoch based garbage collection to prevent memory leak & concurrent GC."
-  - title: "Enhanced xv6"
-    startDate: "2018-03-02"
-    endDate: "2018-06-22"
-    summary: "Operating System Course"
-    url: "https://github.com/LazyRen/2018-Operating-Systems"
+      - "ASAM OpenSCENARIO Standard"
+      - "Scenario Runner & Editor"
+      - "Simulation & Test Automation"
+  - title: "Virtual Sensor Plugin in Unreal Engine"
+    startDate: "2023-09-01"
+    endDate: "2024-12-31"
+    summary: "I've led significant improvements in the Virtual Sensor Team, focusing on Camera and Radar sensor development. My key contributions include:
+Spearheading a major code refactoring effort, consolidating codebases and enhancing system performance, while implementing static analysis in the CI/CD pipeline to improve code quality.
+Developing a sophisticated shader-based radar simulation in Unreal Engine, utilizing low-level radar parameters and integrating with ROS for data processing and range-doppler map generation.
+Creating a versatile Bounding Box Labeler supporting multiple object types and coordinate systems, adhering to the OpenLabel standard with custom attributes, and developing a Coordinate Converter Plugin for Unreal Engine 5 to ensure cross-team compatibility."
     highlights:
-      - "Implement MLFQ & Stride scheduling instead of round robin scheduling."
-      - "Implement Light Weight Process that can be used with most of POSIX-thread functions."
-      - "Implement 'triple indirect block addressing' to support large file upto 1030 MB original limitation was 70 KB."
-awards:
-  - title: "Hanyang Academic Achievement Award"
-    awarder: "Hanyang Univ."
-    highlights:
-      - "2018, 2nd semester"
-      - "2017, 2nd semester(Highest Honor)"
-  - title: "Hanyang Brain Scholarship"
-    awarder: "Hanyang Univ."
-    highlights:
-      - "2019, 1st semester"
-      - "2018, 1st/2nd semester"
-      - "2017, 2nd semester"
-  - title: "Win 2nd place in advanced group"
-    date: "2018-11-17"
-    awarder: "Hanyang Collegiate Programming Contest 2018"
-    summary: ""
-  - title: "Win 4th place in advanced group"
-    date: "2017-12-09"
-    awarder: "Hanyang Collegiate Programming Contest 2017"
-    summary: ""
-  - title: "Advanced to final competition"
-    date: "2017-09-09"
-    awarder: "Kakao Code Festival 2017"
-    summary: ""
-# publications:
-#   - name: "Video compression for 3d media"
-#     publisher: "Hooli"
-#     releaseDate: "2014-10-01"
-#     website: "https://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)"
-#     summary: "Innovative middle-out compression algorithm that changes the way we store data."
+      - "Sensors in Automotive Industry"
+      - "Radar Sensor"
+      - "Labeler"
+      - "Shader Programming in HLSL"
+Patent:
+  - title: "SCENARIO-BASED AUTONOMOUS DRIVING VEHICLE SIMULATION METHOD AND SYSTEM."
+  - author: "Eungback Kim, Seungho Jang, Seongyeon Park, Hoseup Lee, Hein Jo"
+  - published date: "June, 6, 2024"
+  - title: "ELECTRONIC DEVICE AND METHOD FOR PROCESSING POINT CLOUD DATA"
+  - author: "Heecheol Yoo, Seungho Jang, Hojun Lim"
+  - published date: "June, 24, 2024"
 skills:
-  - name: "Database Development"
+  - name: "Python"
     level: "Master"
     keywords:
-      - "HANA"
-      - "Concurrent Programming"
-      - "SQL on Files"
+      - "PyQT"
+      - "OpenGl"
+      - "Python"
+      - "PyTest"
+      - "Numpy"
+      - "gRPC Protocol"
   - name: "C++"
     level: "Master"
     keywords:
-      - "Modern C++(17/20)"
-      - "System Programming"
-  - name: "Rust"
+      - "Modern C++ (17/20)"
+      - "System Conconcurrent Programming"
+  - name: "Unity"
     level: "Intermediate"
     keywords:
-      - "Concurrent Programming"
-      - "System Programming"
-  - name: "Python"
-    level: "Intermediate"
-    keywords:
-      - "PyUnit Testing"
+      - Unity
+      - C# Programming
+      - Job System
   - name: "Algorithm"
     level: "Intermediate"
-  - name: "Web Development"
-    level: "Junior"
-    keywords:
-      - "HTML"
-      - "CSS"
-      - "Javascript"
-  - name: "Sociability"
+  - name: "Unreal Engine"
     level: "Master"
     keywords:
-      - "Leadership"
-      - "Affable"
+      - Unreal Engine 4 and 5
+      - C++ Programming
+      - Shader Programming (.usf)
+      - Radar / LiDAR
+      - RenderDoc
 languages:
   - language: "Korean"
-    fluency: "Native speaker"
+    fluency: "Native Speaker"
   - language: "English"
-    fluency: "Fluent"
-interests:
+    fluency: "Native Speaker"
+interest:
   - name: "Activity"
     keywords:
-      - "Tennis"
-      - "Snowboarding"
-      - "Cycling"
+      - "Soccer"
+      - "Swimming"
   - name: "Gaming"
     keywords:
-      - "Board Games"
-      - "<a href='https://steamcommunity.com/id/lazyren'>Steam</a>"
-# references:
-#   - name: "Erlich Bachman"
-#     reference: >
-#       It is my pleasure to recommend Richard, his performance working as a consultant for Main St.
-#       Company proved that he will be a valuable addition to any company.
-
-# <https://jsonresume.org/>
+      - "Starcraft"
+      - "Overwatch2"
+      - "FIFA Online"
+  - name : "Computer Graphics & XR/VR & Mobile Dev."

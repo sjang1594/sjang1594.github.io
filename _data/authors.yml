@@ -2,20 +2,18 @@
 # Must be the same as `author` in `_config.yml`.
 # Change `author1` to your shortname.
 author1:
-  name:              DaeIn Lee
-  email:             daein0lee@gmail.com
-
+  name:              Seungho Jang
+  email:             sjang1594@gmail.com
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
-    HANA Core Developer at [SAP Labs Korea](https://www.sap.com/korea/about/labs-korea.html).<br>
-    Please check my [Resume][resume] to find out more about me!<br>
-
+    Software Engineer, Please check my [Resume][resume] to find out more about me!<br>
+    
     [resume]: /resume/
 
   # This photo will be used in the about section
   picture:
-    path:            /assets/img/seattle.png
+    path:            /assets/img/bio-photo.jpg
     # srcset is optional, but can be used to provide higher res versions for retina displays
     # srcset:
     #   1x:
@@ -25,10 +23,10 @@ author1:
   # Comment/uncommet to show/hide
   # Rearrange to change the order in which they appear
   social:
-    linkedin:        daein-lee-3b6ba9139
-    github:          lazyren
-    stackoverflow:   4294737
-    email:           lazy0ren@gmail.com
+    linkedin:        https://www.linkedin.com/in/seungho-jang-41b3b9145/
+    github:          sjang1594
+    email:           sjang1594@gmail.com
+    twitter:         SeunghoJang10
     # rss:             https://lazyren.github.io/feed.xml
     # facebook:        <username>
     # google:          <number>

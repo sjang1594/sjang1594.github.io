@@ -30,7 +30,8 @@ description:           >
     "Can we make what we see more prettier?"
 
 # A shorter description for the sidebar.
-tagline:               "How do we make pixels prettier?"
+tagline:               > 
+    "How do we make pixels prettier?"
   
 
 # A list of keywords for your blog

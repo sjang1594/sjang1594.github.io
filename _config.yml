@@ -68,10 +68,11 @@ author:
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
-# legal:
-#   - title:             LICENSE
-#     url:               /LICENSE/
-#   - title:             NOTICE
+legal:
+  - title:             LICENSES
+    url:               /licenses/
+  - title:             COOKIES POLICY
+    url:               /cookies-policy/
 #     url:               /NOTICE/
 #   - title:             CHANGELOG
 #     url:               /CHANGELOG/
@@ -100,7 +101,9 @@ excerpt_separator:     <!--more-->
 # ----------------------------------------------------------------------------------------
 
 # Sidebar image and theme color of the site.
-accent_image:          /assets/img/sidebar-bg.jpg
+accent_image:
+  background:          center / cover url(/assets/img/sidebar-bg.jpg)
+  overlay:             false
 accent_color:          rgb(79,177,186)
 
 # This is used for the `theme-color` meta tag,
@@ -220,14 +223,18 @@ utterances:
 # Make sure all variables are set properly. Check below link for detail.
 # https://giscus.vercel.app/
 #giscus:
-#  repo:                "/sjang1594.github.io"
-#  repo-id:             "MDEwOlJlcG9zaXRvcnkyNzU4Mjk1NTc="
-#  category:            "Comments"
-#  category-id:         "DIC_kwDOEHDTNc4B-MIg"
-#  mapping:             "pathname"
-#  reaction-enabled:    "1"
-#  theme:               "dark_dimmed"
-#  crossorigin:         "anonymous"
+ repo:                "/sjang1594.github.io"
+ repo-id:             "MDEwOlJlcG9zaXRvcnkyNzU4Mjk1NTc="
+ category:            "Comments"
+ category-id:         "DIC_kwDOEHDTNc4B-MIg"
+ mapping:             "pathname"
+ reaction-enabled:    "1"
+ theme:               "dark_dimmed"
+ crossorigin:         "anonymous"
+
+lightbox:              true
+
+mermaid:               true
 
 # Setting a tinyletter username will enable the newsletter subscription box.
 # PRO version only!
@@ -450,11 +457,6 @@ compress_html:
 
 sass:
   style:               compressed
-
-
-# Ideal image slider
-# ---------------------------------------------------------------------------------------
-iis_slider_array: []
 
 
 # Jekyll Compose Defaults

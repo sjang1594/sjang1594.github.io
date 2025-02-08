@@ -100,18 +100,18 @@ theme_color:           rgb(31,55,75)
 
 # The string encoding which fonts to fetch from Google Fonts.
 # See: <https://hydejack.com/docs/config/#changing-fonts>
-google_fonts:          Noto+Sans+KR|JetBrains+Mono|Nanum+Gothic+Coding
+google_fonts:          Fira+Code
 
 # The text font. Expects a string that is a valid CSS font-family value.
 # To change font-weight, see _sass/variables.scss
-font:                  Noto Sans KR, Helvetica, Arial, sans-serif
+font:                  Fira Code, serif
 
 # The font used for headings. Expects a string that is a valid CSS font-family value.
 # To change font-weight, see _sass/variables.scss
-font_heading:          Noto Sans KR, Helvetica, Arial, sans-serif
+font_heading:          Fira Code, serif
 
 # The font used for code blocks. Expects a string that is a valid CSS font-family value.
-font_code:             JetBrains Mono, Nanum Gothic Coding, Menlo, Monaco, Consolas, monospace;
+font_code:             Fira Code, Menlo, Monaco, Consolas, monospace;
 
 defaults:
   # You can use this to provide a default accent color and background for

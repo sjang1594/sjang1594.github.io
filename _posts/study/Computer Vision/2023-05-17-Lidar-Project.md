@@ -6,8 +6,6 @@ tags: [computer vision, sensor]
 published: false
 ---
 
-
-
 ## Lidar Preprocessing Technique
 
 1. DownSampling / Outlier Removal / Noise Filtering 

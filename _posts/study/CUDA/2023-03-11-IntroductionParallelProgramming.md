@@ -5,9 +5,9 @@ category: study
 tags: [CUDA, c++, c]
 ---
 
-## Motivation
-###
-가끔씩 현업에서 Unreal Engine 이나, 대학원때 공부했었던 Parallel Computing System 을 공부했었을때, 뭔가 부족한 점도 많았고, Wording 이 친숙하지 않아서 인지 아쉬움이 많았다. 그래서 GPU 를 다뤄보는 내용으로 블로그를 쓰려고 한다.
+## Introduction to Parallel Programming in CUDA
+### Motivation
+가끔씩 현업에서 Unreal Engine 이나, 대학원때 공부했었던 Parallel Computing System 을 공부했었을때, 뭔가 부족한 점도 많았고, Wording 이 친숙하지 않아서 인지 아쉬움이 많았다. 그래서 GPU 를 다뤄보는 내용으로 블로그를 쓰려고 한다. GPU 구조 자체가 Parallel Computing 을 지원하기 위해서 Architecture 로 되어있다는걸 일단 명심하자.
 
 ---
 ## Index
@@ -78,7 +78,6 @@ Computer Graphics 은 결국 현실과 똑같은 걸 Computer 를 사용해서 �
 * NVIDA Graphics Hardware
 * C++11
 
-## Resource
-
+### Resource
 * https://www.inflearn.com/course/cuda-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%86%8C%EA%B0%9C/dashboard
 * https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html

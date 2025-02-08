@@ -5,8 +5,6 @@ category: study
 tags: [computer vision, differential geometry]
 ---
 
-
-
 ## What is Geometry like Fundamentally
 1. The study of shapes, sizes, patterns, and positions.
 2. The study of spaces where soem quantity (lengths, angles, etc.) can be measured.

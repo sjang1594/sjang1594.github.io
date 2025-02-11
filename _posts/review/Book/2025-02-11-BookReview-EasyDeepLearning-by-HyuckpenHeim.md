@@ -1,5 +1,5 @@
 ---
-title: 혁편하임의 Easy! Deep Learning
+title: Hykepnhim's Easy! Deep Learning
 layout: post
 category: review
 tags: [logs, book, review]

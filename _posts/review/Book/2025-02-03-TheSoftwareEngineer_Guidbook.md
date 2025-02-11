@@ -2,7 +2,7 @@
 title: The Engineer's Guidebook
 layout: post
 category: book
-tags: [logs, book]
+tags: [logs, book, review]
 published: true
 ---
 

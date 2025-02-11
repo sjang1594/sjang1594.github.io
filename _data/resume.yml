@@ -93,7 +93,7 @@ projects:
     startDate: "2023-09-01"
     endDate: "2024-12-31"
     summary: "I've led significant improvements in the Virtual Sensor Team, focusing on Camera and Radar sensor development. My key contributions include:
-Spearheading a major code refactoring effort, consolidating codebases and enhancing system performance, while implementing static analysis in the CI/CD pipeline to improve code quality.
+Sperating a major code refactoring effort, consolidating codebases and enhancing system performance, while implementing static analysis in the CI/CD pipeline to improve code quality.
 Developing a sophisticated shader-based radar simulation in Unreal Engine, utilizing low-level radar parameters and integrating with ROS for data processing and range-doppler map generation.
 Creating a versatile Bounding Box Labeler supporting multiple object types and coordinate systems, adhering to the OpenLabel standard with custom attributes, and developing a Coordinate Converter Plugin for Unreal Engine 5 to ensure cross-team compatibility."
     highlights:

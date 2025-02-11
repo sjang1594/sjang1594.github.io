@@ -1,9 +1,9 @@
 ---
-title: Hykepnhim's Easy! Deep Learning
+title: 혁펜하임의 Easy! Deep Learning
 layout: post
 category: review
 tags: [logs, book, review]
-published: false
+published: true
 ---
 
 ## Hykepnhime's Easy Deep Learning

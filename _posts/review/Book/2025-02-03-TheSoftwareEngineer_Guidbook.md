@@ -1,7 +1,7 @@
 ---
 title: The Engineer's Guidebook
 layout: post
-category: book
+category: review
 tags: [logs, book, review]
 published: true
 ---

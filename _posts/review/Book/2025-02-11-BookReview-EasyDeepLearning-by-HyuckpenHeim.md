@@ -1,7 +1,7 @@
 ---
 title: 혁편하임의 Easy! Deep Learning
 layout: post
-category: book
+category: review
 tags: [logs, book, review]
 published: false
 ---

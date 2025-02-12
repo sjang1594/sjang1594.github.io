@@ -68,3 +68,6 @@ add this into setting.json (user) can be right below "explorer.confirmDelete":fa
 then you can run it with rust-analyzer via Command Pallet->`rust-analyzer:Run`
 
 find `everywhere` keyword in `setting.json`. Click `Debug:Allow Breakpoints Everywhere`. Then, you can enable the debug point on source code via vscode.
+
+### Reference 
+[Rust-Env Setting](https://oozy.kr/blog/rust-environment/)

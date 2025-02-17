@@ -6,7 +6,7 @@ tags: [logs, book, review]
 published: true
 ---
 
-## Hykepnhime's Easy Deep Learning
+## Hyukppenheim's Easy Deep Learning
 
 ![Book Cover](../../../assets/img/photo/02-11-2025/book_cover.png)
 
@@ -49,3 +49,4 @@ Test 환경과 Train 했을때의 문제점을 Case 별로 잘 설명해준다. 
 
 ### Reference 
 * [헥편하임 공식 홈페이지](https://hyukppen.modoo.at/?link=8ex77q4p)
+* [책구매 사이트](https://product.kyobobook.co.kr/detail/S000214848175)

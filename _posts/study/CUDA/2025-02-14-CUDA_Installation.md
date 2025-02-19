@@ -26,3 +26,13 @@ tags: [CUDA, c++, c]
 ./vcpkg install glfw3:x64-windows
 ./vcpkg install glm:x64-windows
 ```
+
+## CUDA: Hello World
+위의 내용을 설치하지 않아도, `cuda tool kit` 이 설치가 완료 되었다고 한다고 하면, 굳이 할 필요 없다. Visual Studio 만으로도 충분히 사용할 수 있다. 일단 C 에 Program Files 안에 CUDA Toolkit 안에 있는 예제 `.exe` 파일을 돌려보거나, 설치가 되어있다고 하면, Project 를  생성할때 아래와 같이 사용할수 있다.
+
+![Alt text](../../../assets/img/photo/02-14-2025/image.png)
+
+```c++
+
+```
+

@@ -2,10 +2,8 @@
 title: Texturing
 layout: post
 category: study
-tags: [computer graphics, computer vision]
+tags: [computer graphics, directx]
 ---
-
-
 
 ## Texturing
 

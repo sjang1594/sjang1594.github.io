@@ -6,5 +6,5 @@ slug: algorithm
 category: study
 sidebar: true
 description: >
-   Algorithm study / Problem Solving
+   Algorithm study / Problem Solving / Review Algorithm / Leet Code
 ---

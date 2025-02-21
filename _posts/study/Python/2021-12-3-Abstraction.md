@@ -2,7 +2,7 @@
 title: Abstraction
 layout: post
 category: study
-tags: [Python]
+tags: [python]
 ---
 ## What is the "Abstraction" ?
 

@@ -3,10 +3,10 @@ title: Leet Code - Two Sum
 layout: post
 category: study
 tags: [c++, algorithm]
-published: false
+published: true
 ---
 
-### Two Sum 
+### Two Sum [Easy]
 
 The Brute force way is to traverse array for, i and j. and if `nums[i] + nums[j] == target`, then return the index of two.
 

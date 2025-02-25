@@ -31,9 +31,10 @@ tags: [c++]
 * CPU 와 GPU 메모리는 공간이 분리되어있다 
 * **메인메모리 할당/복사 C++ 함수 사용**
 >> void* malloc(size_t nBytes);
-void free(void* ptr);
-void* memset(void*ptr, int value, size_t count);
-void* memcpy(void* dst, const void*src, size_t num);
+>> void free(void* ptr);
+>> void* memset(void*ptr, int value, size_t count);
+>> void* memcpy(void* dst, const void*src, size_t num);
+
 ```c++
 int nbytes = 1024 * sizeof(int);
 int *ptr = nullptr;
@@ -41,11 +42,14 @@ ptr = malloc(nbytes);
 memset(ptr, 0, nbytes);
 free(ptr);
 ```
+
 * **비디오 메모리 할당/복사: 별도의 CUDA 함수 이용**
+
 >> cudaError_t cudaMalloc(void** dev_ptr, size_t nbytes);
-cudaError_t cudaMemset(void* dev_ptr, int value, size_t count);
-cudaError_t cudaFree(void* dev_ptr);
-cudaError_t cudaMemcpy(void* dst, void* src, size_t nbytes, enum cudaMemcpyKind direction);
+>> cudaError_t cudaMemset(void* dev_ptr, int value, size_t count);
+>> cudaError_t cudaFree(void* dev_ptr);
+>> cudaError_t cudaMemcpy(void* dst, void* src, size_t nbytes, enum cudaMemcpyKind direction);
+
 ```c++
 int nbytes = 1024 * sizeof(int);
 int* dev_ptr = nullptr;

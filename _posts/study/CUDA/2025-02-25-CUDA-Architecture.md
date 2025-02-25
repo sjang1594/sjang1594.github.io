@@ -87,5 +87,34 @@ cudaFree(dev_ptr);
 
 예제를 한번 보자. 자세하게 보면, 메모리를 할당할때, 간접적으로, dev_a 와 dev_b 를 받아주는걸 볼수 있다. 그리고, Host 에서 GPU 로 a 라는 걸 `SIZE * sizeof(float)` 만큼 할당해서, device 에 있는 dev_a 를 가르키게끔 되어있다. 그다음 dev_b 에서 dev_a 를 copy 한 이후에, dev_b 에 있는걸 b 로 Copy 하는 걸 볼 수 있다.
 
+```c++
+
+int main()
+{
+    const int SIZE = 8;
+    const float a[SIZE] = { 1., 2., 3., 4., 5., 6., 7., 8. }; //src
+    float b[SIZE] = { 0., 0., 0., 0., 0., 0., 0., 0. }; //dst
+
+    printf("a = {%f,%f,%f,%f,%f,%f,%f,%f}\n", a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7]);
+    fflush(stdout);
+
+    float* dev_a = nullptr;
+    float* dev_b = nullptr;
+    cudaMalloc((void**)&dev_a, SIZE * sizeof(float));
+    cudaMalloc((void**)&dev_b, SIZE * sizeof(float));
+
+    cudaMemcpy(dev_a, a, SIZE * sizeof(float), cudaMemcpyHostToDevice);
+    cudaMemcpy(dev_b, dev_a, SIZE * sizeof(float), cudaMemcpyDeviceToDevice);
+    cudaMemcpy(b, dev_b, SIZE * sizeof(float), cudaMemcpyDeviceToHost);
+
+    cudaFree(dev_a);
+    cudaFree(dev_b);
+
+    printf("b = {%f,%f,%f,%f,%f,%f,%f,%f}\n", b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7]);
+    fflush(stdout);
+    return 0;
+}
+```
+
 ### Resource
 [Courses](https://developer.nvidia.com/educators/existing-courses#1)

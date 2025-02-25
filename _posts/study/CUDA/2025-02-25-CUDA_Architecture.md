@@ -2,7 +2,7 @@
 title: CUDA Architecture on Window
 layout: post
 category: study
-tags: [c++]
+tags: [c++, CUDA]
 published: true
 ---
 

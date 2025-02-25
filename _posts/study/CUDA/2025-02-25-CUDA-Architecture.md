@@ -9,7 +9,7 @@ tags: [c++]
 
 바로 아래의 Diagram 을 살펴보자.
 
-![Alt text](../../../assets/img/photo/2-25-2025/nvcc_architecture.png)
+![Architecture](../../../assets/img/photo/2-25-2025/nvcc_architecture.png)
 
 위의 그림을 보자면, Source Code 에서 nvcc (nvidia) CUDA Compiler 가 CUDA 관련된 코드만 쏙 빼가서, 그부분만 컴파일을 하게 된다. Compile 을 한 이후에, executable code 만 GPU 에게 넘겨준다. 즉 전에 Post 에서 사용했던 `__global__` 코드만 nvcc 가 가로채서 GPU 에서 실행을 했다고 생각을 하면된다. 그리고 남은거는, MSVC 또는 GNU 가 pure C++ Code 만 가져가서, CPU 에 실행한다고 볼수 있다.
 

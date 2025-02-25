@@ -2,8 +2,7 @@
 title: CUDA Architecture on Window
 layout: post
 category: study
-tags: [c++, CUDA]
-published: true
+tags: [c++]
 ---
 
 ## CUDA Architecture & Memory Handling

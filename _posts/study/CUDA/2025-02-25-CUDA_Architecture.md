@@ -14,7 +14,8 @@ tags: [c++]
 위의 그림을 보자면, Source Code 에서 nvcc (nvidia) CUDA Compiler 가 CUDA 관련된 코드만 쏙 빼가서, 그부분만 컴파일을 하게 된다. Compile 을 한 이후에, executable code 만 GPU 에게 넘겨준다. 즉 전에 Post 에서 사용했던 `__global__` 코드만 nvcc 가 가로채서 GPU 에서 실행을 했다고 생각을 하면된다. 그리고 남은거는, MSVC 또는 GNU 가 pure C++ Code 만 가져가서, CPU 에 실행한다고 볼수 있다.
 
 여기에서 용어를 한번 정리를 한다면, 
-* CUDA Kernel: GPU 가 실행하는 작은(병렬) 프로그램이고
+
+* CUDA Kernel: GPU 가 실행하는 작은(병렬) 프로그램
 * VRAM: CUDA 가 사용하는 메모리
 
 직접적인 I/O 는 오로지 South PCI Slot 이므로 North PCI 에서는 안됨, 그래서 간접적으로 해야한다. 즉 이 말은 I/O 에서 받아오는것들을 Main Memory 로 들고 온이후에, CUDA Memory (VRAM) 으로 Copy 를 해주면 된다. 그래서 이것저것 GPU 에서 한 이후에, Main Memory 로 다시 넘겨주면 되는 형식이다. 즉 다시 정리를 하자면
@@ -75,7 +76,6 @@ cudaFree(dev_ptr);
 예제를 한번 보자. 자세하게 보면, 메모리를 할당할때, 간접적으로, dev_a 와 dev_b 를 받아주는걸 볼수 있다. 그리고, Host 에서 GPU 로 a 라는 걸 `SIZE * sizeof(float)` 만큼 할당해서, device 에 있는 dev_a 를 가르키게끔 되어있다. 그다음 dev_b 에서 dev_a 를 copy 한 이후에, dev_b 에 있는걸 b 로 Copy 하는 걸 볼 수 있다.
 
 ```c++
-
 #include <stdio.h>
 #include <cuda.h>
 #include <cuda_runtime_api.h>
@@ -107,3 +107,6 @@ int main()
     return 0;
 }
 ```
+
+### Resource
+[Courses](https://developer.nvidia.com/educators/existing-courses#1)

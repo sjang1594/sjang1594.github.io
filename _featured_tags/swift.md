@@ -6,5 +6,5 @@ slug: swift
 category: study
 sidebar: false
 description: >
-   Swift
+   SwiftUI, Swift, UIKit, CoreML, Combine, Metal, etc.
 ---

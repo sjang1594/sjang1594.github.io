@@ -2,7 +2,7 @@
 title: CUDA Architecture on Window
 layout: post
 category: study
-tags: [c++, cuda]
+tags: [c++]
 published: true
 ---
 
@@ -27,6 +27,7 @@ published: true
 이런식으로 3 단계로 일반적인 Step 이라고 볼수 있다.
 
 ### Memory Handling
+
 * CPU 와 GPU 메모리는 공간이 분리되어있다 
 * **메인메모리 할당/복사 C++ 함수 사용**
 >> void* malloc(size_t nBytes);
@@ -54,6 +55,7 @@ cudaFree(dev_ptr);
 ```
 
 여기에서 `cudaMemcpy` 를 한번보자.
+
 * 이전 CUDA 함수들이 모두 종료되어야 복사가 시작된다.
 * copy 중에는 CPU Thread Pause, 작업이 완료되어야 리던한다.
 * host = CPU, main memory, RAM
@@ -65,12 +67,14 @@ cudaFree(dev_ptr);
   * cudaMemcpyHostToHost
 
 특별 이슈라고 말을 할수 있는건 아래와 같다.
+
 * Memory address 문제
 * 어느쪽 주소인지 ㅣ프로그래머가 구별
 * 반대쪽 Address 를 넣으면 System Crash 발생가능
 * 해결책: device 에서는 `dev_` 사용
 
 예제를 한번 보자. 자세하게 보면, 메모리를 할당할때, 간접적으로, dev_a 와 dev_b 를 받아주는걸 볼수 있다. 그리고, Host 에서 GPU 로 a 라는 걸 `SIZE * sizeof(float)` 만큼 할당해서, device 에 있는 dev_a 를 가르키게끔 되어있다. 그다음 dev_b 에서 dev_a 를 copy 한 이후에, dev_b 에 있는걸 b 로 Copy 하는 걸 볼 수 있다.
+
 ```c++
 
 #include <stdio.h>

@@ -118,7 +118,7 @@ int main()
     fflush(stdout);
     return 0;
 }
-```
+``````
 
 ### Resource
 [Courses](https://developer.nvidia.com/educators/existing-courses#1)

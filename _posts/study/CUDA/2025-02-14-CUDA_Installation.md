@@ -2,7 +2,7 @@
 title: CUDA Installation
 layout: post
 category: study
-tags: [c++]
+tags: [CUDA, c++]
 ---
 
 ## Prerequiste for CUDA
@@ -77,6 +77,3 @@ int main()
 
 ### Resource
 [Courses](https://developer.nvidia.com/educators/existing-courses#1)
-
-
-https://us06web.zoom.us/j/89666590243?pwd=BwMZN4QdRmooyvSbcEt04m6PsaKMnS.1

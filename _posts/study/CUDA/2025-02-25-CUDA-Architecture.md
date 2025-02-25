@@ -29,7 +29,7 @@ tags: [c++]
 ### Memory Handling
 CPU 와 GPU 메모리는 공간이 분리되어있다는 걸 염두할 필요가 있다. 그리고 CPU 와 GPU 에서의 Memory 할당을 보자
 
-* **메인메모리 할당/복사 C++ 함수 사용**
+**메인메모리 할당/복사 C++ 함수 사용**
 
 ```c++
 void* malloc(size_t nBytes);
@@ -37,6 +37,8 @@ void free(void* ptr);
 void* memset(void*ptr, int value, size_t count);
 void* memcpy(void* dst, const void*src, size_t num);
 ```
+
+**Example**:
 
 ```c++
 int nbytes = 1024 * sizeof(int);
@@ -46,7 +48,7 @@ memset(ptr, 0, nbytes);
 free(ptr);
 ```
 
-* **비디오 메모리 할당/복사: 별도의 CUDA 함수 이용**
+**비디오 메모리 할당/복사: 별도의 CUDA 함수 이용**
 
 ```c++
 cudaError_t cudaMalloc(void** dev_ptr, size_t nbytes);
@@ -55,6 +57,7 @@ cudaError_t cudaFree(void* dev_ptr);
 cudaError_t cudaMemcpy(void* dst, void* src, size_t nbytes, enum cudaMemcpyKind direction);
 ```
 
+**Example**:
 ```c++
 int nbytes = 1024 * sizeof(int);
 int* dev_ptr = nullptr;

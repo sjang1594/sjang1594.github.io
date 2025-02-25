@@ -1,5 +1,5 @@
 ---
-title: Leet Code - Roman to Integer
+title: Leet Code - Roman to Integer [Easy]
 layout: post
 category: study
 tags: [c++, algorithm]

@@ -11,7 +11,7 @@ tags: [python]
 일단 아래의 그림을 보면, 대충 추상클래스가 왜 필요한지 볼 수 있다.
 
 <figure>
-  <img src = "../../../assets/img/study/Abstract.JPG">
+  <img src = "../../../assets/img/photo/Archieved/Abstract.JPG">
 </figure>
 
 정의는 이러하다 Weapon Class(추상 클래스)가 생성이 되면, 무기마다 다른 특성들을 가지고 있기 때문에 Gun Class 와 Sword Class 가 가지는 action method 들도 다를것이고, 역활? 도 나름 다를 것이다. 사실 무기 클래스는 attack() 이라는 method 를 가질수 있다, 하지만 내부에서 구현하는 방식이, 어떤 종류의 무기에 따라서 내용이 달라진다.

@@ -1,9 +1,9 @@
 ---
-title: Count Duplicates
+title: Count Duplicates [Easy]
 layout: post
 category: study
 tags: [c++, algorithm]
-published: false
+published: true
 ---
 
 ### Problem Statement

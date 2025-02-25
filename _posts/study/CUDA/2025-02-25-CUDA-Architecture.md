@@ -2,7 +2,7 @@
 title: CUDA Architecture on Window
 layout: post
 category: study
-tags: [c++]
+tags: [c++, CUDA]
 ---
 
 ## CUDA Architecture and Memory Handling
@@ -87,6 +87,7 @@ cudaFree(dev_ptr);
 
 예제를 한번 보자. 자세하게 보면, 메모리를 할당할때, 간접적으로, dev_a 와 dev_b 를 받아주는걸 볼수 있다. 그리고, Host 에서 GPU 로 a 라는 걸 `SIZE * sizeof(float)` 만큼 할당해서, device 에 있는 dev_a 를 가르키게끔 되어있다. 그다음 dev_b 에서 dev_a 를 copy 한 이후에, dev_b 에 있는걸 b 로 Copy 하는 걸 볼 수 있다.
 
+{% raw %}
 ```c
 #include <stdio.h>
 #include <cuda.h>
@@ -118,7 +119,8 @@ int main()
     fflush(stdout);
     return 0;
 }
-``````
+```
+{% endraw %}
 
 ### Resource
 [Courses](https://developer.nvidia.com/educators/existing-courses#1)

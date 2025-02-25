@@ -5,7 +5,7 @@ category: study
 tags: [c++]
 ---
 
-## CUDA Architecture & Memory Handling
+## CUDA Architecture and Memory Handling
 
 바로 아래의 Diagram 을 살펴보자.
 
@@ -13,7 +13,7 @@ tags: [c++]
 
 위의 그림을 보자면, Source Code 에서 nvcc (nvidia) CUDA Compiler 가 CUDA 관련된 코드만 쏙 빼가서, 그부분만 컴파일을 하게 된다. Compile 을 한 이후에, executable code 만 GPU 에게 넘겨준다. 즉 전에 Post 에서 사용했던 `__global__` 코드만 nvcc 가 가로채서 GPU 에서 실행을 했다고 생각을 하면된다. 그리고 남은거는, MSVC 또는 GNU 가 pure C++ Code 만 가져가서, CPU 에 실행한다고 볼수 있다.
 
-여기에서 용어를 한번 정리를 한다면, 
+여기에서 용어를 한번 정리를 한다면 ...
 
 * CUDA Kernel: GPU 가 실행하는 작은(병렬) 프로그램
 * VRAM: CUDA 가 사용하는 메모리
@@ -27,8 +27,8 @@ tags: [c++]
 이런식으로 3 단계로 일반적인 Step 이라고 볼수 있다.
 
 ### Memory Handling
+CPU 와 GPU 메모리는 공간이 분리되어있다는 걸 염두할 필요가 있다. 그리고 CPU 와 GPU 에서의 Memory 할당을 보자
 
-* CPU 와 GPU 메모리는 공간이 분리되어있다 
 * **메인메모리 할당/복사 C++ 함수 사용**
 
 ```c++

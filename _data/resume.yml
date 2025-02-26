@@ -110,10 +110,18 @@ Patents:
   - publishedDate: "June, 24, 2024"
 Volunteers:
   - title: 3D Point Cloud Data Processing
+  - position: "Presenter"
   - organization: "Spatial AI KR"
   - Link: https://www.youtube.com/watch?v=hgBlCaCIV10&list=PLubUquiqNQdN83-fPBzzViEEqohpdlwk2&index=5&ab_channel=SpatialAIKR
   - title: Understanding and Implementing SLAM with NVIDIA Jetson Nano
   - organization: "MODULABS"
+  - position: "Leader"
+  - title: Brain Dynamics and Control Research Group
+  - organization: "Washington University in Saint Louis"
+  - position: "Undergraduate Researcher"
+  - title: Computing Club - Camera Control System
+  - organization: "University of Missouri - Saint Louis"
+  - position: "Member"
 skills:
   - name: "Python"
     level: "Master"

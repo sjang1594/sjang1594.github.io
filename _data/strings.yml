@@ -127,8 +127,6 @@ resume:
   work:                Experience
   work_title:          <!--position--> at <!--company-->
   highlights:          Highlights
-  volunteer:           Volunteer
-  volunteer_title:     <!--position--> at <!--organization-->
   education:           Education
   education_title:     <!--study_type--> in <!--area--><br>&emsp;&emsp;from <!--institution--> with GPA of <!--gpa-->
   certificate_title:   <!--certificate-->
@@ -142,6 +140,8 @@ resume:
   patents_title:       "<!--title-->: <!--publishedDate-->"
   publications:        Publications
   publications_title:  <!--name--> by <!--publisher-->
+  volunteer:           Volunteer
+  volunteer_title:     <!--position--> at <!--organization-->
   references:          References
   languages:           Languages
   fluency:             Fluency

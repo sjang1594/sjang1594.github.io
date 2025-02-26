@@ -3,37 +3,25 @@
   <div class="npb">
     <h2 id="patents" class="h3 hr-bottom">
       {{ strings.resume.patents | default:"Patents" }}
-      <span class="symbol {{ icons.history | default:'icon-history' }}"></span>
+      <span class="symbol {{ icons.patents | default:'icon-book' }}"></span>
     </h2>
     {% for patent in resume.patents %}
-    <section>
-      <header class="{% unless forloop.first %}mt2{% endunless %}" typeof="Patent">
-        <h3 class="h4 faded">
-          <meta property="name" content="{{ patent.title }}" />
-          {% capture title %}{% include components/link.html title=patent.title href=patent.url span_class="bc" property="sameAs" %}{% endcapture %}
-          {% capture publishedDate %}<p class="faded patent-date">
-            {{ patent.publishedDate | date: from_to_format }}
-          </p>{% endcapture %}
-          {{ strings.resume.patents_title
-          | default:"<!--title-->: <!--publishedDate-->"
-          | replace:"<!--title-->", title
-          | replace:"<!--publishedDate-->", publishedDate
-        }}
-        </h3>
+    <section style="margin-bottom: 1rem;">
+      <header typeof="Patent">
+        <p style="font-size: 0.95em; font-weight: bold; margin-bottom: 0.1rem;">{{ patent.title }}</p>
+        {% if patent.author %}
+          <p class="faded" style="margin-bottom: 0; font-size: 0.85em;">
+            - Author: {{ patent.author }}
+          </p>
+        {% endif %}
+        {% if patent.publishedDate %}
+          <p class="faded" style="margin-bottom: 0; font-size: 0.85em;">
+            - Published Date: {{ patent.publishedDate }}
+          </p>
+        {% endif %}
       </header>
-
-      {% include components/message.html text=patent.summary alt="" %}
-
-      {% if patent.inventors.size > 0 %}
-      <h4 class="sr-only">{{ strings.resume.inventors | default:"Inventors" }}</h4>
-      <ul>
-        {% for inventor in patent.inventors %}
-        <li>{{ inventor }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
     </section>
-  {% if forloop.first %}</div>{% endif %}
-  {% endfor %}
+    {% endfor %}
+  </div>
 </section>
 {% endif %}

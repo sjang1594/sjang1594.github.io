@@ -4,7 +4,7 @@ type: tag
 title: Metal
 slug: metal
 category: study
-sidebar: true
+sidebar: false
 description: >
    Metal Library
 ---

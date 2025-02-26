@@ -43,8 +43,6 @@ layout: base
         {% case sec %}
         {% when 'work' %}
           {% include pro/resume/work.html %}
-        {% when 'volunteer' %}
-          {% include pro/resume/volunteer.html %}
         {% when 'education' %}
           {% include pro/resume/education.html %}
         {% when 'projects' %}
@@ -55,6 +53,8 @@ layout: base
           {% include pro/resume/patents.html %}
         {% when 'publications' %}
           {% include pro/resume/publications.html %}
+        {% when 'volunteer' %}
+          {% include pro/resume/volunteer.html %}
         {% when 'references' %}
           {% include pro/resume/references.html %}
         {% when 'languages' %}
@@ -72,16 +72,18 @@ layout: base
         {% case sec %}
         {% when 'work' %}
           {% include pro/resume/work.html %}
-        {% when 'volunteer' %}
-          {% include pro/resume/volunteer.html %}
         {% when 'education' %}
           {% include pro/resume/education.html %}
         {% when 'projects' %}
           {% include pro/resume/projects.html %}
         {% when 'awards' %}
           {% include pro/resume/awards.html %}
+        {% when 'patents' %}
+          {% include pro/resume/patents.html %}
         {% when 'publications' %}
           {% include pro/resume/publications.html %}
+        {% when 'volunteer' %}
+          {% include pro/resume/volunteer.html %}
         {% when 'references' %}
           {% include pro/resume/references.html %}
         {% when 'languages' %}

@@ -2,8 +2,7 @@
 title: BootCamp
 layout: post
 category: etc
-tags:
-  - logs
+tags: [logs]
 published: true
 ---
 

@@ -3,6 +3,7 @@ title: TextRPG
 layout: post
 category: study
 tags: [c++]
+published: true
 ---
 
 ### TextRPG

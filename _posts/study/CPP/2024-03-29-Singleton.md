@@ -3,6 +3,7 @@ title: Singleton
 layout: post
 category: study
 tags: [c++]
+published: true
 ---
 
 ## Singleton

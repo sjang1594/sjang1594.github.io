@@ -6,8 +6,6 @@ tags: [directx, computer graphics, Unreal Engine]
 published: false
 ---
 
-
-
 ## Goal & Motivation
 
 DirectX11 또는 DirectX12 를 사용함으로써, 어떤 Resource 를 Assign 을 할 수 있는지와, Software 관점에서 어떻게 GPU 의 Hardware 과 어떻게 연관관계가 있는지를 파악 하는 목적으로 이 글을 써보려고 한다.

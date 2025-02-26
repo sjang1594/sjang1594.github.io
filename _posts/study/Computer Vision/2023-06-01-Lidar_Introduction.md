@@ -3,6 +3,7 @@ title: LiDAR Sensor
 layout: post
 category: study
 tags: [computer vision, sensor]
+published: true
 ---
 
 ## Introduction to Sensor / LiDAR

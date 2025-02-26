@@ -3,6 +3,7 @@ title: CUDA Installation
 layout: post
 category: study
 tags: [cuda, c++]
+published: true
 ---
 
 ## Prerequiste for CUDA

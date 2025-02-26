@@ -3,9 +3,8 @@ title: How to draw the Circle
 layout: post
 category: study
 tags: [computer graphics]
+published: true
 ---
-
-
 
 ## Prep
 Graphics 를 다루기 앞서서, glm 과 imgui 가 필요하다는걸 말씀드리고 싶다. vcpkg 로 설치가 편하니, [vcpkg](https://vcpkg.io/en/packages.html) 찾아보기 바란다.

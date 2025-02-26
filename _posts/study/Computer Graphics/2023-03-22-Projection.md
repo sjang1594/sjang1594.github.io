@@ -3,9 +3,8 @@ title: Projection
 layout: post
 category: study
 tags: [computer graphics]
+published: true
 ---
-
-
 
 ## Orthographic Projection
 

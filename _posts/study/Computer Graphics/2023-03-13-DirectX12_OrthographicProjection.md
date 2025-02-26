@@ -3,6 +3,7 @@ title: Projection
 layout: post
 category: study
 tags: [directx, computer graphics]
+published: false
 ---
 
 ### DirectX Projection

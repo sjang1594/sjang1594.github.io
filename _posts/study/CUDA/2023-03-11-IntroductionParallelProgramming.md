@@ -3,6 +3,7 @@ title: Introduction to Parallel Programming in C / C++
 layout: post
 category: study
 tags: [CUDA, c++, c]
+published: true
 ---
 
 ## Introduction to Parallel Programming in CUDA

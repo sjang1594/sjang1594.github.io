@@ -3,6 +3,7 @@ title: Compute Shader & Particle System & Instancing
 layout: post
 category: study
 tags: [directx, computer graphics]
+published: true
 ---
 
 ### Compute Shader & Particle System

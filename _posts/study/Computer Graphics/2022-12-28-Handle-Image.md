@@ -3,6 +3,7 @@ title: Image Preprocess in Graphics
 layout: post
 category: study
 tags: [computer vision, computer graphics]
+published: true
 ---
 
 ## Handling Images (2D Array)

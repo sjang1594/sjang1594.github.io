@@ -3,6 +3,7 @@ title: Render Target View
 layout: post
 category: study
 tags: [directx, computer graphics]
+published: true
 ---
 
 ### Render Target View

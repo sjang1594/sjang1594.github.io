@@ -3,9 +3,8 @@ title: Lighting
 layout: post
 category: study
 tags: [computer graphics]
+published: true
 ---
-
-
 
 ## Lighting in Rasterization
 

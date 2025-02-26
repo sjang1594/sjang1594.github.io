@@ -3,6 +3,7 @@ title: Shadow Mapping
 layout: post
 category: study
 tags: [directx, computer graphics]
+published: true
 ---
 
 ### Shadow Mapping

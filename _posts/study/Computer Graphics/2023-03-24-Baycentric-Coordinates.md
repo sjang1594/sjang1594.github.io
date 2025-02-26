@@ -3,9 +3,8 @@ title: Baycentric Coordinates
 layout: post
 category: study
 tags: [computer graphics]
+published: true
 ---
-
-
 
 ## Introduction to Barycentric Coordinates
 

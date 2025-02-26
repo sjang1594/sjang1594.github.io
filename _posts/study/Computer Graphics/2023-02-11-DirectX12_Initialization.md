@@ -3,9 +3,8 @@ title: DirectX Initialization
 layout: post
 category: study
 tags: [directx, computer graphics]
+published: true
 ---
-
-
 
 ## DirectX12 Background
 

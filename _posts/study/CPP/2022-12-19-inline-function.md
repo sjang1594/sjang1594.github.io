@@ -3,6 +3,7 @@ title: Inline Function
 layout: post
 category: study
 tags: [c++]
+published: true
 ---
 
 ### Inline Function

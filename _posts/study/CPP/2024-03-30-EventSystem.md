@@ -5,5 +5,3 @@ category: study
 tags: [c++]
 published: false
 ---
-
-### Event System

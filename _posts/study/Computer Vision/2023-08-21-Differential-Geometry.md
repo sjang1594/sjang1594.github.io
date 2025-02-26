@@ -3,6 +3,7 @@ title: Differential Geometry Introduction
 layout: post
 category: study
 tags: [computer vision, differential geometry]
+published: false
 ---
 
 ## What is Geometry like Fundamentally

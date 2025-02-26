@@ -1,8 +1,9 @@
 ---
-title: DirectX11 - Texturing
+title: DirectX11 : Texturing
 layout: post
 category: study
 tags: [directx, computer graphics, shader]
+published: true
 ---
 
 ### DirectX11 - Texturing

@@ -3,6 +3,7 @@ title: Some Useful Computer Vision Links
 layout: post
 category: study
 tags: [computer vision]
+published: true
 ---
 
 ### Computer Vision Course Useful Links & Notes

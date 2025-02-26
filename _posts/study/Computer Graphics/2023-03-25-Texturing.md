@@ -1,8 +1,9 @@
 ---
-title: Texturing
+title: Texture Mapping
 layout: post
 category: study
-tags: [computer graphics, directx]
+tags: [directx, computer graphics]
+published: true
 ---
 
 ## Texturing

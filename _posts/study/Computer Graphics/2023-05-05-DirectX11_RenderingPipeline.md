@@ -3,6 +3,7 @@ title: Rendering PipeLine in DirectX11
 layout: post
 category: study
 tags: [directx, computer graphics]
+published: true
 ---
 
 ## COMPTR - Window Programming & DirectX11 Initialization

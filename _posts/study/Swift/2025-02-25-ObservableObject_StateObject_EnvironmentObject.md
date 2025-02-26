@@ -6,6 +6,8 @@ tags: [swift, mobile dev]
 published: true
 ---
 
+## ObservableObject, StateObject, EnvironmentObject
+
 ### Before we start
 Let's review the `@State` keyword. In order for View to notice, that the value of @State change, the View is re-rendered & update the view. This is the reason why we can see the change of the value in the View. 
 

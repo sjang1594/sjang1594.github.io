@@ -172,7 +172,7 @@ languages:
     fluency: "Native Speaker"
   - language: "English"
     fluency: "Native Speaker"
-interest:
+interests:
   - name: "Activity"
     keywords:
       - "Soccer"

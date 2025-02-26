@@ -139,7 +139,7 @@ resume:
   awards:              Awards
   awards_title:        <!--title--><br>&emsp;&emsp;from <!--awarder-->
   patents:             Patents
-  patents_title:       <!--title-->: <!--publishedDate-->
+  patents_title:       "<!--title-->: <!--publishedDate-->"
   publications:        Publications
   publications_title:  <!--name--> by <!--publisher-->
   references:          References

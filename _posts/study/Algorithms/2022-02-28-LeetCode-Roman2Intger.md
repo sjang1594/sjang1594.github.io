@@ -6,9 +6,11 @@ tags: [c++, algorithm]
 published: true
 ---
 
-## Romans to Integer
+## LeetCode - Roman to Integer [Easy] - 13
 
-Let's look at the problem statement below
+* [LeetCode - Roman to Integer](https://leetcode.com/problems/roman-to-integer/)
+
+## How to Solve
 
 ```
 Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.

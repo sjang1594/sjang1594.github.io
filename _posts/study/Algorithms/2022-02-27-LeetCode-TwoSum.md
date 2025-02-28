@@ -6,7 +6,9 @@ tags: [c++, algorithm]
 published: true
 ---
 
-### Two Sum [Easy]
+## LeetCode - Two Sum [Easy] - 1
+
+* [LeetCode - Two Sum](https://leetcode.com/problems/two-sum/)
 
 The Brute force way is to traverse array for, i and j. and if `nums[i] + nums[j] == target`, then return the index of two.
 

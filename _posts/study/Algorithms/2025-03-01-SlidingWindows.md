@@ -6,7 +6,7 @@ tags: [C/C++, Algorithm]
 published: true
 ---
 
-## LeetCode - Diet Plan Performance [Sliding Windows - Easy]
+## LeetCode - Diet Plan Performance [Sliding Windows - Easy] - 1176
 
 * [LeetCode - Diet Plan Performance](https://leetcode.com/problems/diet-plan-performance/)
 

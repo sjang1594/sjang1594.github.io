@@ -6,11 +6,11 @@ tags: [C/C++, Algorithm]
 published: true
 ---
 
-## Problem
+## LeetCode - Diet Plan Performance [Sliding Windows - Easy]
 
 * [LeetCode - Diet Plan Performance](https://leetcode.com/problems/diet-plan-performance/)
 
-## How to Solve 
+## How to Solve
 
 ```cpp
 int dietPlanPerformance(vector<int>& calories, int k, int lower, int upper) {

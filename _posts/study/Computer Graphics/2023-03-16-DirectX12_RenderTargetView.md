@@ -31,7 +31,7 @@ _cmdList->ClearDepthStencilView(depthStencilView, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 
 
 그래서 실질적으로 그려지는 부분은 Shader 쪽에서 위에서 작성된 코드와 맞물려서 실행된다.
 
-```
+```hlsl
 float4 PS_MAIN(VS_OUT input) : SV_Target
 {
     float4 color = float4(1.f, 1.f, 1.f, 1.f);

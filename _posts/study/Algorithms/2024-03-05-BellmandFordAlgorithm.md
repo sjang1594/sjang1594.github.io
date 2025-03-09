@@ -7,16 +7,22 @@ published: true
 ---
 
 ## Bellman Ford Algorithm
+The Bellman Ford Algorithm is a graph search algorithm that finds the shortest path from a source vertex to all other vertices in a weighted graph. It is similar to Dijkstra's Algorithm but can handle graphs with negative weight edges. However, it can detect negative cycles, which are cycles whose total weight is negative.
 
-* The main goal is to find the optimal solutions (Finding the shortest path). It's smiliar to Dijkstra Algorithm. But there is difference, which is the edge weight can be negative.
+## Key Differences from Dijkstra's Algorithm
+1. Negative Weight Edges: Bellman Ford can handle negative weight edges, whereas Dijkstra's Algorithm assumes all edges have non-negative weights.
+2. Negative Cycles: Bellman Ford can detect negative cycles, which is not possible with Dijkstra's Algorithm.
 
-* The funny thing about this algorithm is that it loops through Vertex (V-1) times and E edges. So the maximum iteration time would be O(V-1 * E). But if the order is correct in some sense, it's faster.
+## Algorithm Overview
+1. Initialization: Initialize the distance to the source vertex as 0 and all other vertices as infinity.
+2. Relaxation: Relax the edges repeatedly. For each edge, if the distance to the destination vertex can be reduced by going through the current vertex, update the distance.
+3. Negative Cycle Detection: After relaxing all edges V-1 times, check for negative cycles by attempting one more relaxation. If any distance can still be reduced, a negative cycle exists.
 
-### Negative Cycle 
+## Time Complexity
+The time complexity of the Bellman Ford Algorithm is O(V*E), where V is the number of vertices and E is the number of edges. This is because in the worst case, we relax all edges V-1 times.
 
-* Since the negative cycles are allowed in this algorithm, it is possible that negative sum (edge.weight + vertex_index) becomes negative. then we should stop the algorithm because the negative weight will make the sum to be more negative.
-
-Let's look at the algorithm!
+## Implementation
+Here's a corrected and complete implementation of the Bellman Ford Algorithm:
 
 ```c++
 void Print(vector<double>& dist)

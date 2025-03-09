@@ -3,7 +3,7 @@ title: Merge Sort
 layout: post
 category: study
 tags: [c++, algorithm]
-published: true
+published: false
 ---
 
 ## Merge Sort 

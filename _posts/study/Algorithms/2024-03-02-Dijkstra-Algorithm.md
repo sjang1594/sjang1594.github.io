@@ -87,7 +87,7 @@ public:
 		dist(g.num_vertices, numeric_limits<double>::infinity()),
 		visited(g.num_vertices, false)
 	{
-		dist[s] = 0.0; // 자기자신과의 거리는 0
+		dist[s] = 0.0; // distance for self is 0
 
 		pq.push(pair<double, int>{ 0.0, s });
 
@@ -177,11 +177,11 @@ The update function is shown below, as new_distance is smaller than the current 
 
 ```cpp
 double new_dist = dist[v] + e.Weight();
-			if (dist[w] > new_dist) {
-				dist[w] = new_dist;
+	if (dist[w] > new_dist) {
+		dist[w] = new_dist;
 
-				prev[w] = e.From();
-				pq.push({ dist[w], w});
-			}
+		prev[w] = e.From();
+		pq.push({ dist[w], w});
+}
 
 ```

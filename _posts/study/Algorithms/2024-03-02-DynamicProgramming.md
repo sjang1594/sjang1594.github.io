@@ -7,6 +7,8 @@ published: true
 ---
 
 ## Dynamic Programming
+* Reviewing what I studied, how this work will be explained as well. 
+---
 
 Dynamic Programming is a method for solving a complex problem by breaking it down into simpler sub-problems. It's one of a method for solving optimization problems. There are two components of Dynamic Programming:
 

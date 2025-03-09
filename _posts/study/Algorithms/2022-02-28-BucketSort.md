@@ -7,6 +7,9 @@ published: true
 ---
 
 ## Bucket Sort
+* Reviewing what I studied, how this work will be explained as well. 
+---
+
 Bucket Sort is a sorting algorithm that is similar in concept to Radix Sort and Counting Sort, but it is designed to handle floating-point numbers. Like these other algorithms, Bucket Sort uses placeholders to sort elements efficiently. However, unlike Radix Sort, which sorts integers digit by digit, Bucket Sort distributes floating-point numbers into buckets and then sorts each bucket individually.
 
 ## Time Complexity

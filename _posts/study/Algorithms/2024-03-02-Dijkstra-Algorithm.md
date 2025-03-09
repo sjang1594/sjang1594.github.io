@@ -7,6 +7,8 @@ published: true
 ---
 
 ## Dijkstra Algorithm
+* Reviewing what I studied, how this work will be explained as well. 
+---
 
 Dijkstra Algorithm is a shortest path algorithm that finds the shortest path from a starting node to all other nodes in a graph. Instead of using BFS, it uses priority queue to find the shortest path.
 

@@ -7,6 +7,9 @@ published: true
 ---
 
 ## Bellman Ford Algorithm
+* Reviewing what I studied, how this work will be explained as well. 
+---
+
 The Bellman Ford Algorithm is a graph search algorithm that finds the shortest path from a source vertex to all other vertices in a weighted graph. It is similar to Dijkstra's Algorithm but can handle graphs with negative weight edges. However, it can detect negative cycles, which are cycles whose total weight is negative.
 
 ## Key Differences from Dijkstra's Algorithm

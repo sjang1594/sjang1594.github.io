@@ -7,9 +7,10 @@ published: true
 ---
 
 ## Rod Cutting Problem
+* Reviewing what I studied, how this work will be explained as well. 
+---
 
 Rod Cutting Problem is a problem that we have a rod of length `n` and we want to cut the rod into `n` pieces, and we want to maximize the profit.
-
 For example, let's look at the table below. If I have a rod of length 4, then we have 4 ways to cut the rod. Then we calculate the profit for each case
 
 1. Cut the rod into 1, 1, 1, 1     => max profit = 1 + 1 + 1 + 1 = 4

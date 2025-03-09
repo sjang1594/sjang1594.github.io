@@ -6,7 +6,9 @@ tags: [C/C++, Algorithm]
 published: false
 ---
 
-### 
+### Separate Chaining
+* Reviewing what I studied, how this work will be explained as well. 
+---
 
 
 

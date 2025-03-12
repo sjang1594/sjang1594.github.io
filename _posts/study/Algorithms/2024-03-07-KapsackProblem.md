@@ -9,3 +9,5 @@ published: true
 ### Knapsack Problem
 * Reviewing what I studied, how this work will be explained as well. 
 ---
+
+The description of this problem is like you have a bag can hold certain number of weights. 

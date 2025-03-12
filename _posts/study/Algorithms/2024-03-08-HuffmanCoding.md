@@ -1,13 +1,11 @@
 ---
-title: Red Black Tree
+title: Huffman Coding
 layout: post
 category: study
-slug: red_black_tree
 tags: [C/C++, Algorithm]
-published: false
+published: true
 ---
 
-## Red Black Tree
-
+### Huffman Coding
 * Reviewing what I studied, how this work will be explained as well. 
 ---

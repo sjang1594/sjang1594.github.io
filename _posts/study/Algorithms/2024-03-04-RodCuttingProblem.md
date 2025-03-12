@@ -25,6 +25,8 @@ Length:                     0  1  2  3  4   5   6   7   8   9  10
 vector<int> price_table = { 0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30 };
 ```
 
+// TODO: Description about mathematical form or Draw Tree
+
 So, let solve this in naive recursive way
 
 ```c++

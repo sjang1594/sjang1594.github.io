@@ -98,4 +98,4 @@ vector<int> rightSideView(TreeNode* root) {
 ```
 
 ### Resource 
-[BST in Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/description/)11
+[BST in Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/description/)

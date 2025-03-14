@@ -95,7 +95,6 @@ vector<int> rightSideView(TreeNode* root) {
     }
     return result;
 }
-
 ```
 
 ### Resource 

@@ -2,7 +2,7 @@
 title: Find All Numbers Disappeared in an Array [Easy]
 layout: post
 category: study
-tags: [C/C++, Algorithm]
+tags: [c++, algorithm]
 published: true
 ---
 

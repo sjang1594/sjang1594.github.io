@@ -2,7 +2,7 @@
 title: Longest Substring Without Repeating Character [Medium]
 layout: post
 category: study
-tags: [C/C++, Algorithm]
+tags: [c++, algorithm]
 published: false
 ---
 

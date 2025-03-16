@@ -2,7 +2,7 @@
 title: Best Time to Buy and Sell Stock [Easy]
 layout: post
 category: study
-tags: [C/C++, Algorithm]
+tags: [c++, algorithm]
 published: true
 ---
 

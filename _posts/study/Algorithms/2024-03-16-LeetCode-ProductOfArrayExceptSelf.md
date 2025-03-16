@@ -2,7 +2,7 @@
 title: Product of Array Except Self [Medium]
 layout: post
 category: study
-tags: [C/C++, Algorithm]
+tags: [c++, algorithm]
 published: true
 ---
 

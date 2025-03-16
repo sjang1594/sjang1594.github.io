@@ -2,7 +2,7 @@
 title: Union-Find
 layout: post
 category: study
-tags: [C/C++, Algorithm]
+tags: [c++, algorithm]
 published: true
 ---
 

@@ -2,7 +2,7 @@
 title: Sequence and Queries 2. [Lv0]
 layout: post
 category: study
-tags: [C/C++, Algorithm]
+tags: [c++, algorithm]
 published: true
 ---
 ## Programmers: Lv.0 Sequency and Queries 2.

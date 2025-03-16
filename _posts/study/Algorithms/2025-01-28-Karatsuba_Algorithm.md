@@ -2,7 +2,7 @@
 title: Karatsuba Algorithm
 layout: post
 category: study
-tags: [C/C++, Algorithm]
+tags: [c++, algorithm]
 published: true
 ---
 

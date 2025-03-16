@@ -2,7 +2,7 @@
 title: Sequence and Queries 1. [Lv0]
 layout: post
 category: study
-tags: [C/C++, Algorithm]
+tags: [c++, algorithm]
 published: true
 ---
 

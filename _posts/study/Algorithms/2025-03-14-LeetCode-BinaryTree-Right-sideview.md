@@ -2,7 +2,7 @@
 title: Binary Tree Right Side View [Medium]
 layout: post
 category: study
-tags: [C/C++, Algorithm]
+tags: [c++, algorithm]
 published: true
 ---
 

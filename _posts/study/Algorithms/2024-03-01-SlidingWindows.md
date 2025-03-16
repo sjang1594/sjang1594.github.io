@@ -2,7 +2,7 @@
 title: Sliding Windows Problem LeetCode - Diet Plan Performance
 layout: post
 category: study
-tags: [C/C++, Algorithm]
+tags: [c++, algorithm]
 published: true
 ---
 

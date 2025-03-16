@@ -2,8 +2,8 @@
 title: Kruskal MST
 layout: post
 category: study
-tags: [C/C++, Algorithm]
-published: true
+tags: [c++, algorithm]
+published: false
 ---
 
 ### Kruskal Minimum Spanning Tree

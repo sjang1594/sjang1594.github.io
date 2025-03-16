@@ -1,9 +1,8 @@
 ---
-title: Red Black Tree
+title: Traveling Sales Person
 layout: post
 category: study
-slug: red_black_tree
-tags: [C/C++, Algorithm]
+tags: [c++, algorithm]
 published: false
 ---
 

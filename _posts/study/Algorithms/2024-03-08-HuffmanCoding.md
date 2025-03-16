@@ -2,8 +2,8 @@
 title: Huffman Coding
 layout: post
 category: study
-tags: [C/C++, Algorithm]
-published: true
+tags: [c++, algorithm]
+published: false
 ---
 
 ### Huffman Coding

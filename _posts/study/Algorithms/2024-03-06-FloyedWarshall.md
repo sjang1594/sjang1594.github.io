@@ -2,8 +2,8 @@
 title: Floyed-Washall Algorithm
 layout: post
 category: study
-tags: [C/C++, Algorithm]
-published: true
+tags: [c++, algorithm]
+published: false
 ---
 
 ## Floyed-Washall Algorithm

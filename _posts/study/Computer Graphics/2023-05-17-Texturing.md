@@ -11,7 +11,7 @@ published: true
 일단, Texturing 을 하기 위해서, Shader Programming 해야된다. 일단 Texturing 을 하려면 Vertex Shader 에서 해야되는지, Pixel Shader 에서 해야되는지가 고민이 되는데, 일단 Microsoft 공식문서에서는 Pixel Shader 에서 하라고 명시가 되어있다.
 
 그러면 PixelShader 의 Program 을 잠깐 봐보자. 일단 GPU 에서 Texture Image 를 `Texture2D` 로 받아 올수 있다. 그리고 앞에서 잠깐 언급했듯이, Texture Image 안에서 색깔 값을 가져오는 걸 Sampling 이라고 했었다. 그래서 `SamplerState` 도 사용해야한다. 여기서 register 일때의 `t0` 과 `s0` 이 있다. `t0` 같은 경우, Texture 일때, 그리고 index 는 0, 그리고 sampler 일때는 s 그리고 index 는 0. 자세한건, 이 [Resource](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-variable-register) 를 활용하자.
-
+{% raw %}
 ```hlsl
 Texture2D g_texture0 : register(t0);
 SamplerState g_sampler : register(s0);

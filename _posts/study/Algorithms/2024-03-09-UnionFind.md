@@ -22,6 +22,31 @@ In order to understand Union-Find Operation, definition-set must be explained, `
 Let's look at the the UnionFind in Code
 
 ```cpp
+int root[max_size];
+
+// Similar to Make-Set function
+for (int i = 0; i < max_size; i++) {
+    parent[i] = i;
+}
+
+int find(int x) { // O(1)
+    if (root[x] == x) {
+        return x;
+    }
+    else {
+        return find(root[x]);
+    }
+}
+
+void union(int x, int y) { // O(N)
+    x = find(x);
+    y = find(y);
+
+    root[y] = x;
+}
+```
+
+```cpp
 struct UnionFind {
     vector<int> parent; // parent link
     vector<int> rank;   // depth information

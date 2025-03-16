@@ -1,5 +1,5 @@
 ---
-title: Closure & OOP in swift
+title: Closure and OOP in swift
 layout: post
 category: study
 tags: [swift, mobile dev]
@@ -7,6 +7,8 @@ published: true
 ---
 
 ## Closure & OOP
+
+Swift 에서의 Closure 를 문법을 배우고, 활용한다.
 
 ### Closure 을 알기 이전에...
 

@@ -31,6 +31,7 @@ float4 main(PixelShaderInput input) : SV_TARGET
     return g_texture0.Sample(g_sampler, input.textcoord);
 }
 ```
+{% endraw %}
 
 hlsl 에서 이렇게 작성을 했다고 한다면, CPU 에서 보내주는 Member 도 만들어줘야한다. 여기서 ShaderResourceView 같은 경우, Texture 의 Resource 로 사용하는데, 왜 구지? View 가 필요하지라고 생각할수 있다. 사실 View 라는건 Texture 자체를 RenderTarget 로 사용할수 있기 때문이다. 같은 Memory 를 사용하더라도, RenderTarget 으로 설정이 가능하며, 이 Shader 를 가지고, 다른 쉐이더로 Input 으로 넣어줄때 ResourceView 로 넘겨줄수있다.
 

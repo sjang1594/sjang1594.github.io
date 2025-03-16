@@ -1,12 +1,12 @@
 ---
-title: TextRPG
+title: TextRPG C++
 layout: post
 category: study
 tags: [c++]
 published: true
 ---
 
-### TextRPG
+## TextRPG Implementation
 
 일단 파일 구조는 아래와 같다.
 ```bash

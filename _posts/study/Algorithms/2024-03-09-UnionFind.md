@@ -19,7 +19,7 @@ In order to understand Union-Find Operation, definition-set must be explained, `
 
 ![Disjoint-Set](../../../assets/img/photo/3-09-2024/disjointSet.png)
 
-Let's look at the the UnionFind in Code
+Let's look at the the UnionFind in Code. There are several different
 
 ```cpp
 int root[max_size];

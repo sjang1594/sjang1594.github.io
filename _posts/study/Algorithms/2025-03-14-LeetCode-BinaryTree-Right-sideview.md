@@ -6,7 +6,7 @@ tags: [C/C++, Algorithm]
 published: true
 ---
 
-## Leet Code 199. Binary Tree Right Side View [Medium]
+## Leet Code 199: Binary Tree Right Side View [Medium]
 
 ### Description 
 

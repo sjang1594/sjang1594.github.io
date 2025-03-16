@@ -6,7 +6,7 @@ tags: [react native, mobile dev]
 published: true
 ---
 
-## React Native
+## React Native Motivation & Installation
 
 ### React Native 시작 및 동기부여
 

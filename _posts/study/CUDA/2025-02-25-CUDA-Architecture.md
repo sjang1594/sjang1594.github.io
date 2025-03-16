@@ -123,5 +123,15 @@ int main()
 ```
 {% endraw %}
 
+그렇다면, 코드 생성은 컴파일러 입장에서는, 어떤 코드는 CPU 로 가고, 어떤 코드는 GPU 로 가는지를 한 소스코드에서 판단을 해야한다. 즉 어디까지는 끊어서 이거는 내가 어디를 끊어야될지를 구분을 지어야한다. 방법으로틑 파일이 있다. 즉 어떤 파일은 CUDA 로 Compile 하게 끔, 다른 어떤 파일은 MSVC 로 Compile 하게끔 한다. 또 한줄씩 컴파일로 할때도 가능이 가능하다. 하지만 둘다 Bottleneck 이 존재한다. 파일로 할때는, 관리를 해줘야하며, 코드 라인으로 할때는 너무 하기에는 양이 너무 많다. 
+
+그래서 그 중간이 Function 이다 (어떠한 Cuda programming model 이라고 보면 좋을것 같다.) 즉 compilation unit 은 function 단위로 하게끔 되고, 각각의 function 들은 GPU 로 할지 CPU 로 할지가 결정된다! 어떻게 이걸 결정을 하느냐? 바로 `PREFIX` 이다. 즉 아래와 같이 어떤 컴파일러가 이 Function 을 가져갈지를 정한다.
+
+Prefix 의 종류는 아래와같다.
+- `__host__` : can be called by CPU (default, can be omitted)
+- `__device__`: called from other GPU Functions, cannot be called by the CPU
+- `__global__`: launched by CPU, cannot be called from GPU, must return void
+- `__host__` and `__device__` qualifiers can be combined.
+
 ### Resource
 [Courses](https://developer.nvidia.com/educators/existing-courses#1)

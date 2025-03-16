@@ -128,10 +128,25 @@ int main()
 그래서 그 중간이 Function 이다 (어떠한 Cuda programming model 이라고 보면 좋을것 같다.) 즉 compilation unit 은 function 단위로 하게끔 되고, 각각의 function 들은 GPU 로 할지 CPU 로 할지가 결정된다! 어떻게 이걸 결정을 하느냐? 바로 `PREFIX` 이다. 즉 아래와 같이 어떤 컴파일러가 이 Function 을 가져갈지를 정한다.
 
 Prefix 의 종류는 아래와같다.
-- `__host__` : can be called by CPU (default, can be omitted)
-- `__device__`: called from other GPU Functions, cannot be called by the CPU
-- `__global__`: launched by CPU, cannot be called from GPU, must return void
-- `__host__` and `__device__` qualifiers can be combined.
+- `__host__` : can be called by CPU (default, can be omitted) (called by host, excuted on host)
+- `__device__`: called from other GPU Functions, cannot be called by the CPU (called by device, executed on device)
+- `__global__`: launched by CPU, cannot be called from GPU, must return void (called by host, executed on device)
+- `__host__` and `__device__` qualifiers can be combined. 
+
+결국에 정리를 하자면, 
+*`__global__` defines kernel function
+  * each "__" consists of two underscore character
+  * A kernel function must return void
+
+* `__device__` and `__host__` can be used together, which means compiled twice(!), both cannot have their address taken!!
+
+그리고 Restriction 이 존재한다. CUDA Language = C/C++ language with some restriction: (즉 병렬처리를 위해서 Bottleneck 을 만든 현상)
+* Can only access GPU Memory (CUDA memory, video memory)
+  * in new versions, can access host memory directly, with performance drawback
+  * No static Variables (No static variable declarations inside the function)
+  * No recursion (it is possible in newer version)
+  * No dynamic polymorphism
+
 
 ### Resource
 [Courses](https://developer.nvidia.com/educators/existing-courses#1)

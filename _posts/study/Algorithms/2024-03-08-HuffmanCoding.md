@@ -7,5 +7,8 @@ published: false
 ---
 
 ### Huffman Coding
+
 * Reviewing what I studied, how this work will be explained as well. 
 ---
+
+Huffman Coding is one of the compression technique 

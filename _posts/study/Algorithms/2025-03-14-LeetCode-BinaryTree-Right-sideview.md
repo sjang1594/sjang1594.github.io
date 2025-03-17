@@ -11,6 +11,7 @@ published: true
 ### Description 
 
 Given the root of a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom. The detail images are below:
+
 ![199. BST in Right Side View](../../../assets/img/photo/3-14-2025/199.png)
 
 ### Implementation

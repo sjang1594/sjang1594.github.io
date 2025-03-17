@@ -185,5 +185,7 @@ double new_dist = dist[v] + e.Weight();
 		prev[w] = e.From();
 		pq.push({ dist[w], w});
 }
-
 ```
+
+### Time Complexity
+* If we use just a simple array, you can get O(V^2), but if you use 

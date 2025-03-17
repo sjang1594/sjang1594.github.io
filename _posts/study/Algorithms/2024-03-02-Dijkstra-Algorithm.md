@@ -188,4 +188,4 @@ double new_dist = dist[v] + e.Weight();
 ```
 
 ### Time Complexity
-* If we use just a simple array, you can get O(V^2), but if you use 
+* If we use just a simple array, you can get O(V^2), but if you use priority queue, you can get (V+E) * LogV because priority queue insertion / deletion (Log V), then this happens for each Vertex => V * Log V. Edge Iteration => O(E) Then for relaxation, we update the distance to add that edge would be E * LogV. So we can conclude that it is (V+E) LogV in average. So, sum all it up (O(ELogV + E + VLogV)) => O(V+E logV).

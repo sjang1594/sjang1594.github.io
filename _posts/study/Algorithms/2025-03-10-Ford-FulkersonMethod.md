@@ -42,7 +42,62 @@ So, let's kinda wrap it up, the ford-fulkerson method continues finding augmenti
 3. augment each edge and the total flow.
 
 ### Implementation
+```cpp 
+class FordFulkerson
+{
+public:
+	vector<bool> marked;
+	vector<FlowEdge*> prev;
+	double value;
 
+	FordFulkerson(FlowNetwork& g, int s, int t)
+		: marked(g.V), prev(g.V), value(0.0){
+		while (HasAugmentingPath(g, s, t))
+		{
+			// Find the minimum Flow from the path
+			double bottlNeck = numeric_limits<double>::max();
+			for (int v = t; v != s; v = prev[v]->Other(v)) {
+				bottlNeck = min(bottlNeck, prev[v]->ResidualCapacityTo(v));
+			}
+
+			for (int v = t; v != s; v = prev[v]->Other(v)) {
+				prev[v]->AddResidualFlowTo(v, bottlNeck);
+			}
+
+			value += bottlNeck;
+			Print(g);
+		}
+	}
+
+	bool HasAugmentingPath(FlowNetwork& g, int s, int t) {
+		fill(marked.begin(), marked.end(), false);
+
+		queue<int> q; // BFS
+
+		marked[s] = true;
+		q.push(s);
+
+		while (!q.empty())
+		{
+			int v = q.front();
+			q.pop();
+
+			for (FlowEdge* e : g.Adj(v))
+			{
+				int w = e->Other(v);
+				if (!marked[w] && e->ResidualCapacityTo(w) > 0) // <- TODO: BFS와의 차이 확인
+				{
+					prev[w] = e;
+					marked[w] = true;
+					q.push(w);
+				}
+			}
+		}
+
+		return marked[t];
+	}
+};
+```
 
 ### Resource 
 * [Max Flow Ford Fulkerson](https://www.youtube.com/watch?v=LdOnanfc5TM&ab_channel=WilliamFiset)

@@ -92,5 +92,8 @@ struct UnionFind {
 }
 ```
 
+### Time Complexity 
+Let's look at the time complexity by the operation. makeSet is O(N) when n element is given. Find Operation is similar, but the worst case scenario it's O(N). Since Union uses Find operation, it takes about O(N). Overall, it becomes O(N) times, but constant time O(a(n)) if path compression & union by rank. (a=> ackerman function). 
+
 ### Resource
 * [Union-Find](https://www.youtube.com/watch?v=WUz7U2BjecQ&ab_channel=%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%98%81%EB%A7%A8%28bluedawnstar%29)

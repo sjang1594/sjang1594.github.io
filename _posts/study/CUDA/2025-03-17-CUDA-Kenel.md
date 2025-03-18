@@ -260,4 +260,6 @@ int main()
 ```
 {% endraw %}
 
-그리고 참고적으로 꿀팁중에 하나는 `const char* cudaGetErrorName( cudaError_t err)` 이 함수이다. cudaError_t 를 넣어서 확인이 가능하며, Return 이 char arr 배열로 받을수 있으니 굉장히 좋은 debugging 꿀팁일수 있겠다.
+그리고 참고적으로 꿀팁중에 하나는 `const char* cudaGetErrorName( cudaError_t err)` 이 함수가 있다.cudaError_t 를 넣어서 확인이 가능하며, Return 이 Enum Type 의 String 을 char arr 배열로 받을수 있으니 굉장히 좋은 debugging 꿀팁일수 있겠다. 또 다른건 `const char* cudaGetErrorString(cudaError_t err)` err code 에 대한 explanation string 값으로 return 을 하게끔 되어있다. 둘다 `cout << <<endl;` 사용 가능하다.
+
+### Error Check

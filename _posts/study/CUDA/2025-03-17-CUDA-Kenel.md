@@ -104,6 +104,7 @@ kernel_name <<<1, SIZE>>>(param, ...)
 
 실제로 예제 파일은 아래와같다. addKernel 이 실제로는 GPU 안에서의 FunctionCall 형태가 될거고, Index 를 넘기지 않기 때문에, 내부안에서 내 함수 Call 의 Index 를 찾을수 있다.
 
+{% raw %}
 ```c
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
@@ -171,6 +172,7 @@ Error:
     return cudaStatus;
 }
 ```
+{% endraw % }
 
 아래와 같이, `cudaDeviceSynchronize()` 는 kernel 이 끝날때까지 기다렸다가 Error_t 를 Return 을 하게 된다. 성공을 하면, `cudaSuccess` 를 받는다. 그리고 마지막으로는 CPU 쪽으로 복사를 해준는 구문 `cudaMemcpy(...)` 가 존재하고, Error 를 내뱉는곳으로 가게된다면, CudaFree 를 해준다.
 
@@ -262,4 +264,5 @@ int main()
 
 그리고 참고적으로 꿀팁중에 하나는 `const char* cudaGetErrorName( cudaError_t err)` 이 함수가 있다.cudaError_t 를 넣어서 확인이 가능하며, Return 이 Enum Type 의 String 을 char arr 배열로 받을수 있으니 굉장히 좋은 debugging 꿀팁일수 있겠다. 또 다른건 `const char* cudaGetErrorString(cudaError_t err)` err code 에 대한 explanation string 값으로 return 을 하게끔 되어있다. 둘다 `cout << <<endl;` 사용 가능하다.
 
-### Error Check
+### cudaGetLastError() -> Thread 단위 처리
+여러가지의 Cuda Process 가 돌릴때, 내가 사용하고 있는 프로세스에서 여러가지의 Thread 가 갈라져서, 이들 thread 가 Cuda system 을 동시에 사용한다고 한다라면, CUDA Error 를 어떻게 처리하는지에 대한 고찰이 생길수도 있다. 그래서 각 Cpu Thread 가 Cuda 의 커널을 독자적으로 사용한다고 가정을 하면 Cuda eror 는 Cpu thread 기준으로 err 의 상태 관리를 하는게 좋다.

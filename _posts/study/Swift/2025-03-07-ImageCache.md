@@ -19,6 +19,7 @@ In iOS, there are several ways to implement image caching, including using built
 For the product, I am not going to post about the app, but I will show you the example of how to chache image on very simple app.
 
 ### Assets.xcassets
+When I try to 
 
 ### How to cache the image in iOS.
 

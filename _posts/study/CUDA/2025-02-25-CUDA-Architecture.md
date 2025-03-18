@@ -147,5 +147,7 @@ Prefix 의 종류는 아래와같다.
   * No recursion (it is possible in newer version)
   * No dynamic polymorphism
 
+이렇게 해서, 일단 한단락을 마무리 지으려고 한다!
+
 ### Resource
 [Courses](https://developer.nvidia.com/educators/existing-courses#1)

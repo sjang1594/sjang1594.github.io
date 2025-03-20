@@ -54,4 +54,3 @@ int main()
     cout << mst_wt << endl;
 }
 ```
-

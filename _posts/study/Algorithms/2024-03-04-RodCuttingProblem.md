@@ -94,3 +94,6 @@ int BottomUpCutRod(const vector<int>& prices, int length)
 ```
 
 But when we think about the time complexity. it would be depending on the O (length). Of course, we do have space complexity which is about O(length + 1).
+
+### Resource
+* [C++ Data Structures and Algorithm Design Principles: Leverage the power of modern C++ to build robust and scalable applications](https://www.amazon.com/Data-Structures-Algorithm-Design-Principles-ebook/dp/B07SYJSGVD?ref_=ast_author_mpb)

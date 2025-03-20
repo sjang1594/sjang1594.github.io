@@ -57,3 +57,6 @@ for (int v = 1; v < V; v++)
 ```
 
 Then how do you think about getting the negative edges!? It's basically same logic! if the distance the next edge is greater than the current(whole) distance, then we can conclude that there will be negative edge. Normally, the dist arrays two indices where negative values are very likely that it's negative cycle.
+
+### Resource
+* [C++ Data Structures and Algorithm Design Principles: Leverage the power of modern C++ to build robust and scalable applications](https://www.amazon.com/Data-Structures-Algorithm-Design-Principles-ebook/dp/B07SYJSGVD?ref_=ast_author_mpb)

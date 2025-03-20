@@ -3,7 +3,7 @@ title: Physically Based Rendering From Theory to Implementation
 layout: post
 category: book
 tags: [logs, book]
-published: true
+published: false
 ---
 
 

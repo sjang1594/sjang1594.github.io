@@ -16,9 +16,7 @@ published: true
 A flow graph (flow network) is a directed graph where each edge (also called an arc) has a certain capacity which can receive a certain amount of flow. The flow running through an edge must be less than or equal to the capacity. Think of this way, we have a path from Chicago to Boston, and Boston to New York. From Chicago to Boston (6 cars allowed per min) & Boston to New York (3 cars allowed per min). Then after 1 min, the state would be 3 cars are still waiting to go to Boston, and 3 cars are already in New York. So, how do we solve it? We just send 3 cars in the beginning. In this case, we are going to define some terms 'flow' / 'capacity'.
 
 ### Ford Fulkerson Method & Edmonds-Karp
-Problem Statement:
-
-Problem Statement:
+**Problem Statement:**
 
 One of the special things about Ford Fulkerson Methods is that there are sink node and source node (think of source node as faucet, and the sink as drainer).
 To find the maximum flow (and min-cut as a byproduct), the Ford-Fulkerson method repeatedly findsaugmenting paths through the residual graph and augments the flow until no more augmenting paths can be found. Then what the heck is an augmenting path? The definition of an augmenting path is a path of edges in the residual graph with unused capacity greater than zero from the source to sink.

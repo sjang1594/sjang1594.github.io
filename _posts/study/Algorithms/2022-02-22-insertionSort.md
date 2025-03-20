@@ -64,5 +64,4 @@ for (int i = 1; i < vec.size(); i++)
 We know that two for loop, which means it will compare the new value and the partitioned elements. So, it will be `O(n^2)`. Best Case is `O(n)` when the array is already sorted. But Worst Case is `O(n^2)` when the array is sorted in decreasing order.
 
 ## Resource
-
 * [Insertion Sort](https://www.geeksforgeeks.org/selection-sort-algorithm-2/)

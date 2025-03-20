@@ -42,7 +42,7 @@ for (register int i = 0; i < SIZE; ++i) {
 
 만약 multi-core CPU's 또는 Parallel Execution 을 한다고 가정을 하면 어떨까? 즉 코어가 2개라면, 짝수개씩 병렬로 처리가 가능하다.
 
-```
+```bash
 at time 0: CPU = core#0 = executes add_kernel(0, ...) 
 at time 0: CPU = core#1 = executes add_kernel(1, ...)
 at time 1: CPU = core#0 = executes add_kernel(2, ...) 
@@ -53,7 +53,7 @@ at time (n-1)/2: CPU = core#1 = executes add_kernel(SIZE - 1, ...)
 
 그렇다면 GPU 는 어떻게 될까? GPU 는 엄청 많은 Core 들을 가지고 있기 때문에, 엄청난 Parallelism 을 가지고 갈수 있다. 아래와 같이 Time 0: 에 ForLoop 을 처리를 병렬 처리로 할수 있다는거다.
 
-```
+```bash
 at time 0: CPU = core#0 = executes add_kernel(0, ...) 
 at time 0: CPU = core#1 = executes add_kernel(1, ...)
 at time 0: CPU = core#2 = executes add_kernel(2, ...) 
@@ -178,7 +178,7 @@ Error:
 
 물론, Host 쪽에서 계속 쭉 Status 를 사용해서, 기다리지만 Kernel 안에서, Kernel launch 중에도 에러가 발생할수 있다. 그 부분은 아래와 같이 받을수 있다. 원래는 `cudaError_t err = cudaPeekAtLastError()` 그리고 `cudaError_t err = cudaGetLastError()` 가 있다 둘의 하는 역활은 동일하다! 하지만 내부안에서 있는 Error Flag 를 Reset 을 해주는게 `cudaGetLastError()` 이며, `cudaPeekAtLastError()` 는 Reset 을 하지 않는다. 그말은 Reset 을 last error only 가 아니라 모든 Error 에 대해서 저장을 한다고 생각을 하면된다. 그리고 아래처럼 Macro 를 설정을 해주어도 좋다.
 
-```cpp
+```c
 // Check for any errors launching the kernel
 cudaError_t cudaStatus = cudaGetLastError();
 if (cudaStatus != cudaSuccess) {
@@ -193,14 +193,14 @@ cudaError_t err = cudaPeekAtLastError();
 // #define CUDA_CHECK_ERROR()  0
 // #else
 #define CUDA_CHECK_ERROR()  do { \
-        cudaError_t e = cudaGetLastError(); \
-        if (cudaSuccess != e) { \
-            printf("cuda failure \"%s\" at %s:%d\n", \
-                   cudaGetErrorString(e), \
-                   __FILE__, __LINE__); \
-            exit(1); \
-        } \
-    } while (0)
+    cudaError_t e = cudaGetLastError(); \
+    if (cudaSuccess != e) { \
+        printf("cuda failure \"%s\" at %s:%d\n", \
+        cudaGetErrorString(e), \
+        __FILE__, __LINE__); \
+        exit(1); \
+    } \
+} while (0)
 // #endif
 ```
 
@@ -209,7 +209,7 @@ cudaError_t err = cudaPeekAtLastError();
 예제 파일로 Vector 안에 모든 Element 에 +1 씩 붙이는 프로그램을 실행한다고 하면 아래와 같이 정의할수 있다.
 
 {% raw %}
-```cpp
+```c
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
@@ -265,4 +265,5 @@ int main()
 그리고 참고적으로 꿀팁중에 하나는 `const char* cudaGetErrorName( cudaError_t err)` 이 함수가 있다.cudaError_t 를 넣어서 확인이 가능하며, Return 이 Enum Type 의 String 을 char arr 배열로 받을수 있으니 굉장히 좋은 debugging 꿀팁일수 있겠다. 또 다른건 `const char* cudaGetErrorString(cudaError_t err)` err code 에 대한 explanation string 값으로 return 을 하게끔 되어있다. 둘다 `cout << <<endl;` 사용 가능하다.
 
 ### cudaGetLastError() -> Thread 단위 처리
+
 여러가지의 Cuda Process 가 돌릴때, 내가 사용하고 있는 프로세스에서 여러가지의 Thread 가 갈라져서, 이들 thread 가 Cuda system 을 동시에 사용한다고 한다라면, CUDA Error 를 어떻게 처리하는지에 대한 고찰이 생길수도 있다. 그래서 각 Cpu Thread 가 Cuda 의 커널을 독자적으로 사용한다고 가정을 하면 Cuda eror 는 Cpu thread 기준으로 err 의 상태 관리를 하는게 좋다.

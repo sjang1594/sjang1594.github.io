@@ -170,9 +170,9 @@ Error:
     cudaFree(dev_a);
     cudaFree(dev_b);
     return cudaStatus;
+    
 }
 ```
-{% endraw % }
 
 아래와 같이, `cudaDeviceSynchronize()` 는 kernel 이 끝날때까지 기다렸다가 Error_t 를 Return 을 하게 된다. 성공을 하면, `cudaSuccess` 를 받는다. 그리고 마지막으로는 CPU 쪽으로 복사를 해준는 구문 `cudaMemcpy(...)` 가 존재하고, Error 를 내뱉는곳으로 가게된다면, CudaFree 를 해준다.
 
@@ -208,7 +208,6 @@ cudaError_t err = cudaPeekAtLastError();
 
 예제 파일로 Vector 안에 모든 Element 에 +1 씩 붙이는 프로그램을 실행한다고 하면 아래와 같이 정의할수 있다.
 
-{% raw %}
 ```c
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"

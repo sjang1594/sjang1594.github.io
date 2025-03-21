@@ -129,5 +129,4 @@ string Multiply(string str1, string str2)
 ## Karatsuba Algorithm 
 
 ## Resource
-* 
-
+* [Karatsuba Algorithm](https://en.wikipedia.org/wiki/Karatsuba_algorithm)

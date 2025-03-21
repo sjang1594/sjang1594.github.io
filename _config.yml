@@ -154,8 +154,6 @@ defaults:
       type:            posts
     values:
       comments:        true
-      # https://applause-button.com/
-      applause_button:       true
 
   # `jekyll-seo-tag` will mark collection outputs as `BlogPosting`,
   # but we want them to be `WebPage`s:
@@ -191,45 +189,19 @@ google_analytics:      google93abcae935f31b7d.html
 
 # Set which comment system to use
 comments:
-  # 'disqus' / 'giscus' / 'utterances' are available
-  provider:            giscus
-
-# Setting a disqus shortname will enable the comment section on
-# pages with `comments: true` in the front matter.
-# disqus:                sjang1594Githbu
-
-# You must install utterances github app before use.(https://github.com/apps/utterances)
-# Make sure all variables are set properly. Check below link for detail.
-# https://utteranc.es/
+  provider:            utterances
 utterances:
-  repo:                "sjang1594/sjang1594.github.io"
+  repo:                "sjang1594/blog_comments"
   issue-term:          "pathname"
-  label:               "Comments"
+  label:               "✨💬Comments✨"
   theme:               "photon-dark"
-
-# You must install giscus github app before use.(https://github.com/apps/giscus)
-# Make sure all variables are set properly. Check below link for detail.
-# https://giscus.vercel.app/
-#giscus:
-  # repo:                "/sjang1594.github.io"
-  # repo-id:             "MDEwOlJlcG9zaXRvcnkyNzU4Mjk1NTc="
-  # category:            "Comments"
-  # category-id:         "DIC_kwDOEHDTNc4B-MIg"
-  # mapping:             "pathname"
-  # reaction-enabled:    "1"
-  # data-emit-metadata:  "0"
-  # theme:               "dark_dimmed"
-  # data-lang:           "en"
-  # crossorigin:         "anonymous"
+  follow_site_theme: true
 
 lightbox:              true
-
 mermaid:               true
-
 # Setting a tinyletter username will enable the newsletter subscription box.
 # PRO version only!
 # tinyletter:            <username>
-
 
 # Hydejack Settings
 # ----------------------------------------------------------------------------------------
@@ -238,7 +210,7 @@ mermaid:               true
 hydejack:
   # Configure the order of complementary content on blog posts
   # post_addons:         [about, newsletter, related, random, comments]
-  post_addons:         [about, comments]
+  post_addons:         [comments, about]
 
   # Configure the order of complementary content on project pages
   # project_addons:      [about, newsletter, other, comments]

@@ -10,9 +10,9 @@ published: true
 
 ### Before Gettign Into Karatsuba Algorithm
 
-예전에 대학원생일때, Addition, Subtraction, Division, Multiplication 에 관련되서 Project 로 작성한적이 있다. (어떻게하면 각 Operation 을 빠르게 할수 있는지에 대해서, Hardware 측면에서 더 이야기를 했던것 같아. Multiplexer 의 추가 등...)
+When I was a graduate student, I worked on a project related to Addition, Subtraction, Division, and Multiplication operations. The focus was on how to perform each operation more efficiently, primarily from a hardware perspective (including topics like adding multiplexers).
 
-그래서 일단 Addition / Subtraction / Multiplication 에 대한 예제코드를 봐보겠다. C++ 로 작성했으며, 항상 First Digit 이 Second Digit 의 길이가 크다라는 가정하에 작성을 했다. 자 특이점은 전부다 String 으로 처리한다는 점이다.
+Let's first examine example code for Addition, Subtraction, and Multiplication. These are implemented in C++, with the assumption that the first digit is always larger than the second digit. The key characteristic is that all operations are handled as strings.
 
 Addition
 ```c++
@@ -47,7 +47,7 @@ string Add(string str1, string str2)
 }
 ```
 
-이 코드에서의 N 에 따른 Performance 를 가지고 있다. Time Complexity 생각을 해보면 대략 T(N) ~= N 이 나온다. 물론 insert 가 일어날때는 약간의 Constant 가 Multiplied 될수 있다. 
+I have performance metrics for this code based on N. Considering the time complexity, it's approximately T(N) ≈ N. Of course, when an insert occurs, there might be a constant factor multiplied.
 
 Subtraction
 ```c++
@@ -82,7 +82,7 @@ string Subtract(string str1, string str2)
 }
 ```
 
-마찬가지로 코드에서의 N 에 따른 Performance 를 가지고 있다. Time Complexity 생각을 해보면 대략 T(N) ~= N 이 나온다. 
+Similarly, I have performance metrics for this code based on N. The time complexity is approximately T(N) ≈ N. 
 
 Multiplication
 ```c++
@@ -124,9 +124,88 @@ string Multiply(string str1, string str2)
 }
 ```
 
-자 여기에서는 조금 다를수 있다. 기본적으로 Two loops 가 있으니까 (N-1) * (N-1) = N^2 로 표현할수 있는데, '0' 의 index 를 찾는데 과정에서, constant * N^2 로 표현할수 있다. 물론 상수를 이야기를 안할수도 있는데 Major 로 Impact 로 줄수 있는걸 찾는게 여기에서는 Main point 이다.
+This case might be a bit different. Since there are two loops, we can express the complexity as (N-1) * (N-1) = N². In the process of finding the index of '0', it can be expressed as constant * N². Of course, we might not always discuss the constant factor, but the main point here is to identify what has a major impact.
 
-## Karatsuba Algorithm 
+## Karatsuba Algorithm
+
+The Karatsuba algorithm is an efficient multiplication algorithm that uses a divide-and-conquer approach to multiply large numbers. Developed by Anatoly Karatsuba in 1960, it reduces the complexity from O(n²) in the standard multiplication algorithm to approximately O(n^(log₂3)) ≈ O(n^1.585).
+
+Let's analyze the implementation:
+
+```c++
+string KaratsubaHelper(string str1, string str2, int level) // level은 디버깅용
+{
+	cout << "Level " << level << " : " << str1 << " x " << str2 << endl;
+
+	int N = max(str1.size(), str2.size());
+	str1.insert(0, string(N - str1.size(), '0'));
+	str2.insert(0, string(N - str2.size(), '0'));
+
+	if (N == 1)
+	{
+		string result = to_string(stoi(str1) * stoi(str2));
+		return result;
+	}
+
+	int mid = N / 2;
+
+	string a = str1.substr(0, mid);
+	string b = str1.substr(mid, N - mid);
+
+	string c = str2.substr(0, mid);
+	string d = str2.substr(mid, N - mid);
+
+	string ac = KaratsubaHelper(a, c, level + 1);
+	ac.append(string((N - mid) * 2, '0'));
+
+	return string("0");
+}
+
+string Karatsuba(string str1, string str2)
+{
+	if (!str1.size() || !str2.size()) return "0";
+	string result = KaratsubaHelper(str1, str2, 0); 
+	int i = 0;
+	while (result[i] == '0') i += 1;
+	result = result.substr(i, result.size() - i);
+	return result;
+}
+```
+
+### Key Insights
+The implementation above is incomplete but demonstrates the core concept of the Karatsuba algorithm. Here's how it works:
+1. Padding: First, we ensure both numbers have the same number of digits by padding with leading zeros.
+2. Base Case: If we're down to single-digit numbers, we perform a direct multiplication.
+3. Divide: For larger numbers, we split each number into two parts:
+   - If we represent the numbers as X = a·10^(n/2) + b and Y = c·10^(n/2) + d Where a, b, c, and d are n/2-digit numbers
+
+4. Recursive Multiplication: The complete algorithm would compute:
+   - ac = a × c
+   - bd = b × d
+   - (a+b)(c+d) = ac + ad + bc + bd
+   - ad + bc = (a+b)(c+d) - ac - bd
+
+5. Combine: The result is ac·10^n + (ad+bc)·10^(n/2) + bd
+   - The current implementation only calculates ac and appends the appropriate number of zeros, but is missing the calculations for bd and (ad+bc).
+
+### Optimizations
+The key insight of Karatsuba is that we can compute the product of two n-digit numbers with only three recursive multiplications instead of four:
+* ac
+* bd
+* (a+b)(c+d)
+
+From these, we derive ad+bc = (a+b)(c+d) - ac - bd, reducing the number of recursive calls and improving efficiency.
+
+### Time Complexity
+The time complexity is O(n^(log₂3)) ≈ O(n^1.585), which is significantly better than the O(n²) complexity of the standard multiplication algorithm for large numbers.
+
+To complete this implementation, we would need to:
+1. Calculate bd = b × d
+2. Calculate (a+b)(c+d)
+3. Derive ad+bc
+4. Combine all terms with appropriate powers of 10
+
+This algorithm is particularly useful for multiplying very large integers that exceed the capacity of built-in numeric types.
 
 ## Resource
 * [Karatsuba Algorithm](https://en.wikipedia.org/wiki/Karatsuba_algorithm)

@@ -6,20 +6,35 @@ slug: study
 sidebar: true
 order: 4
 description: >
-  I love exploring a lot of things
+  I am happy that I can see things!
 ---
 
 # Study
 
 ## Categories
 
-* Computer Vision Computer Vision & Image Processing
-* Deep Learning & Machine Learning
-* Pytorch
-* Python
-* Robotic Operating System [ROS]
-* C/C++/C# [CTree]
-* CUDA Programming
-* Game Development [Unreal Engine]
-* Mathematics
-* Differential Geometry
+* Fields
+  * Computer Vision & Image Processing
+    * Deep Learning & Machine Learning
+  * Computer Graphics
+    * Game Development [Unreal Engine & Unity & Naive]
+  * Mathematics
+    * Differential Geometry
+
+* Platform
+  * Robotic Operating System [ROS]
+
+* Mobile Dev.
+  * React Native
+  * MetalKit
+  * UIKit
+  * SwiftUI
+
+* Language
+  * C/C++/C# [CTree]
+  * Python
+  * swift
+  * javaScript
+
+* Parallel Programing
+  * CUDA Programming (.cu)

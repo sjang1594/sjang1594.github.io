@@ -227,3 +227,4 @@ Sink Operation needs to go down the heap, which means we need to check both chil
 
 ### Resource
 * [IndexMinPQ Youtube](https://www.youtube.com/watch?v=jND_WJ8r7FE&ab_channel=WilliamFiset)
+* [IndexMinPQ](https://github.com/kartikkukreja/blog-codes/blob/master/src/Indexed%20Min%20Priority%20Queue.cpp)

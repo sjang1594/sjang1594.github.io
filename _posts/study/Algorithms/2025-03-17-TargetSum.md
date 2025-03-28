@@ -13,11 +13,11 @@ Given an array of non-negative integers numbers, and a target number target, wri
 
 For example, using the numbers ``, you can make the target number 3 in the following five ways:
 
--1+1+1+1+1 = 3
-+1-1+1+1+1 = 3
-+1+1-1+1+1 = 3
-+1+1+1-1+1 = 3
-+1+1+1+1-1 = 3
+>> -1+1+1+1+1 = 3
+>> +1-1+1+1+1 = 3
+>> +1+1-1+1+1 = 3
+>> +1+1+1-1+1 = 3
+>> +1+1+1+1-1 = 3
 
 ### Thinking Process
 

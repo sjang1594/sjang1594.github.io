@@ -7,6 +7,7 @@ published: false
 ---
 
 ## Apple Invites App
+![Alt text](../../../assets/img/photo/3-07-2025/appleInvites.png)
 
 ### Current State of the project.
 
@@ -51,12 +52,21 @@ In iOS 8.3 and above, cache removal works properly, so the imageNamed: method ca
 ### How to cache the image in iOS.
 // TODO: Develop
 
-### How to manage that.
-
-When my colleague says I need to make file loader or image laoder, I often made singleton so that every cowoker of mine can access that, that was what I intended even though there are several problem with that (eg: shared memory). But in this case, I simply made used **Dependency Injection** (Interface), so that any object can switch the loader. 
+### How to manage that...
+When my colleague says I need to make file loader or image laoder, I often made singleton so that every cowoker of mine can access that, that was what I intended even though there are several problem with that (eg: shared memory). But in this case, I simply made used **Dependency Injection** (Interface), so that any object can switch the loader.
 
 But it's really unnecessary to load the image from Assets.xcassets, so I moved all iamge into specific folders, so called img.
 
+### Result
+
+
 ### Resource
+* [Apple Invites](https://apps.apple.com/us/app/apple-invites/id6472498645)
 * [Swizzeling](https://stackoverflow.com/questions/22856283/use-xcassets-without-imagenamed-to-prevent-memory-problems/23438145#23438145)
 * [What is NSCache](https://baechukim.tistory.com/90)
+* [Async Loading Images](https://developer.apple.com/documentation/uikit/asynchronously-loading-images-into-table-and-collection-views)
+* [How can I cache an image in swift](https://stackoverflow.com/questions/69330135/how-can-i-cache-an-image-in-swift-5)
+* [Image Caching](https://velog.io/@o_joon_/Swift-Image-caching%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%BA%90%EC%8B%B1#%EC%9D%B4%EB%AF%B8%EC%A7%80%EA%B0%80-%EC%BA%90%EC%8B%9C%EC%97%90-%EC%A1%B4%EC%9E%AC%ED%95%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EA%B2%BD%EC%9A%B0)
+* [UITable Fetching](https://andreygordeev.com/2017/02/20/uitableview-prefetching/)
+* [Reusable Image Cahce](https://medium.com/@mshcheglov/reusable-image-cache-in-swift-9b90eb338e8d)
+* [Pagination](https://ios-development.tistory.com/716)

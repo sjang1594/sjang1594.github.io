@@ -96,11 +96,13 @@ for (int i = 0; i < SIZE; i++) {
 }
 ```
 
-하지만 GPU 에서는 많이 다르다. c++ 에서 사용했을때와 다른 방식으로 Kernel(function) 을 사용한다. 이 Syntax 같 경우 `Kernel launch` Syntax 라고 한다. 의미적으로는 1 세트에 SIZE 만큼의 코어를 사용하겠다가 되는것이다. 
+하지만 GPU 에서는 많이 다르다. c++ 에서 사용했을때와 다른 방식으로 Kernel(function) 을 사용한다. 이 Syntax 같 경우 `Kernel launch` Syntax 라고 한다. 의미적으로는 1 세트에 SIZE 만큼의 코어를 사용하겠다가 되는것이다. 또 다른 의미는 바로 `1` 이라는 인자 값은 Thread Block 몇개를 사용할건지와, 그 Thread Block 에 Thread 를 몇개 사용할지가 정의가된다. Thread Block 안에있는 Thread 는 코드 아래의 그림을 참조 하면 좋을것 같다.
 ```c++
 __global void kernel_name(int param, ...);
 kernel_name <<<1, SIZE>>>(param, ...)
 ```
+
+![Thread Block Organization](../../../assets/img/photo/3-17-2025/threadOrganization.png)
 
 실제로 예제 파일은 아래와같다. addKernel 이 실제로는 GPU 안에서의 FunctionCall 형태가 될거고, Index 를 넘기지 않기 때문에, 내부안에서 내 함수 Call 의 Index 를 찾을수 있다.
 
@@ -266,3 +268,7 @@ int main()
 ### cudaGetLastError() -> Thread 단위 처리
 
 여러가지의 Cuda Process 가 돌릴때, 내가 사용하고 있는 프로세스에서 여러가지의 Thread 가 갈라져서, 이들 thread 가 Cuda system 을 동시에 사용한다고 한다라면, CUDA Error 를 어떻게 처리하는지에 대한 고찰이 생길수도 있다. 그래서 각 Cpu Thread 가 Cuda 의 커널을 독자적으로 사용한다고 가정을 하면 Cuda eror 는 Cpu thread 기준으로 err 의 상태 관리를 하는게 좋다.
+
+### Resource
+* [CUDA-thread](https://www.cs.emory.edu/~cheung/Courses/355/Syllabus/94-CUDA/CUDA-thread.html)
+* [Courses](https://developer.nvidia.com/educators/existing-courses#1)

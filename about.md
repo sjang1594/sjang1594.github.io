@@ -24,9 +24,8 @@ I graduated with my master's degree in Computer Science. I enjoyed all my classe
 
 **What I am really interested in ?**
 
-* I am interested in Deep Learning in Computer Vision Applications.
 * Within Computer Vision Applications, I am eager to learn `3D Reconstruction`, `Depth Estimation`, and `Point Cloud Processing`.
-* I am currently developing my own Game Engine!
+* Game Engine Development and Parallel Computing is also part of my interests (CUDA, Compute Shader, Deep Learning).
 
 Please feel free to contact me, if you have any good feedback!
 
@@ -45,10 +44,9 @@ Please feel free to contact me, if you have any good feedback!
 * 저의 학사는 전기 전자 공학입니다. 물론 너무 오래되서, 배웠던걸 많이 잃어버렸죠.. 그런데 어떻게 졸업을 했는지 합리적 의심?이 조금 듭니다.
 
 **저가 제일 관심있는 분야:**
-
-* 딥러닝과 컴퓨터 비전 애플리케이션에 관심을 가지구 있구요
+ㄴ
 * 컴퓨터 비젼에 있는, `3D Reconstruction`, `Depth Estimation`, `Point Cloud Processing` 관해서 배우고 있는 중입니다.
-* 컴퓨터 그래픽스에 관심이 많아서, 게임 엔진을 만들고 있습니다.
+* 게임 엔진이나 병렬 프로그래밍도 관심이 많습니다. (CUDA, Compute Shader, Deep Learning)
 
 언제나 피드백은 감사드리며.. 언제든지 댓글 남겨주세요.
 

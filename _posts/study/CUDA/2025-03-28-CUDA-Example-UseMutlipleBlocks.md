@@ -37,7 +37,7 @@ addKernel <<<2, 4 >>> (dev_a, dev_b, dev_c, size);
 ```c++
 const int size = 1024 * 1024 * 64
 const int threadsPerBlock = 1024; 
-int blocks = int(ceil(float(size) / threadsPerBlock));
+int numBlocks = (size + threadsPerBlock - 1) / threadsPerBlock; 
 addKernel << < blocks, threadsPerBlock >> > (dev_a, dev_b, dev_c, size);
 ```
 

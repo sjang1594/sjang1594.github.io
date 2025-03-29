@@ -116,3 +116,34 @@ public:
     int totalSum;
 };
 ```
+
+### Better Solution
+
+WOW, People are very ge, see if I understand correctly. The point here is to treat this problem as subset sum. I know the main goal is to find all possible solution to get to the target, but i think it's good to break things up.
+
+For example, if we have the list `[1 -2, 3, 4]`, we set this as two sets one for +, the other for -. Then we can separate this `s1 = [1, 3, 4]` and `s2 = [2]`. Then, we can conclude that the `totalSum = s1 + s2`, but to find the target would be `target = s1 - s2` (because we need to think all possible occurence of sum to be target).
+Then, we can write the equation like `2s1 = totalSum + target`, then `s1 = totalSum + target / 2`. We call this as `diff` if this `diff` is not an integer, then we don't have to compute.
+
+Then, we can implement this idea. But this code doesn't consider the sign changes, it's either select one or not, which treat this as subset sum. (you should check any dp problem if you are curious because filling dp table is very similar to LCS or matrix multiplication)
+
+```c++
+int cache(int j, int sum, vector<int>& nums) {
+    if (j == 0) return sum == 0?1:0;
+    // done
+    if (dp[j][sum] != -1) return dp[j][sum];
+    int x = nums[j-1];
+    int ans = cache(j-1, sum, nums);
+    if (sum>=x) ans += cache(j-1, sum-x, nums);
+    return dp[j][sum] = ans;
+}
+
+int findTargetSumWays(vector<int>& nums, int target) {
+    const int n = nums.size();
+    int sum=accumulate(nums.begin(), nums.end(), 0);
+    int diff=sum-target;    // Check if it's possible to achieve the target
+    if (diff<0|| diff%2!=0) return 0; 
+    diff/=2;
+    vector<vector<int>> dp(n + 1, vector<int>(diff + 1, -1))
+    return cache(n, diff, nums);
+}
+```

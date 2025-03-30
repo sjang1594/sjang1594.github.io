@@ -3,7 +3,7 @@ title: Vector Addition using the multiple blocks
 layout: post
 category: study
 tags: [c++, cuda]
-published: false
+published: true
 ---
 
 # CUDA Kernel - Example 
@@ -37,7 +37,7 @@ addKernel <<<2, 4 >>> (dev_a, dev_b, dev_c, size);
 ```c++
 const int size = 1024 * 1024 * 64
 const int threadsPerBlock = 1024; 
-int numBlocks = (size + threadsPerBlock - 1) / threadsPerBlock; 
+int numBlocks = (size + threadsPerBlock - 1) / threadsPerBlock; //int(ceil(float(size) / threadsPerBlock));
 addKernel << < blocks, threadsPerBlock >> > (dev_a, dev_b, dev_c, size);
 ```
 

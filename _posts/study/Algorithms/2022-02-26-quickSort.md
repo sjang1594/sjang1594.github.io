@@ -77,13 +77,13 @@ pair<int, int> hoarePartition2(int data[], int lo, int hi) {
             j--;
 
         if (i < j)
-            swap(data[i++], data[j--];
+            swap(data[i++], data[j--]);
         else
             i++;
     }
     return make_pair(j, j+1);
 }
-```
+``` 
 
 version 3: when pivot was selected in the first element
 ```c++
@@ -92,7 +92,7 @@ pair<int, int> hoarePartition3(int data[], int lo, int hi) {
 
     int i = lo;
     int j = hi+1;
-    while(true) {
+    while(true) {  
         do i++; while( i <= hi && data[i] < pivot);
         do j--; while( j > lo && data[i] > pivot);
 

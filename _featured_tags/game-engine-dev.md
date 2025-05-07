@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: Game Development
-slug: Game Dev
+title: Game Engine Dev
+slug: Game Engine Devs
 category: study
 sidebar: false
 description: >
-   Game Dev
+   Game Engine Development
 ---

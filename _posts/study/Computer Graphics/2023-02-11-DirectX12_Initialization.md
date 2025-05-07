@@ -128,12 +128,14 @@ Root signautre 를 사용할때, constant buffer 를 사용하는데 CPU 와 연
 * 구성요소 
 	* Root Parameter: 
 		* 데이터를 전달하기 위한 기본 단위
-		- **Descriptor Table:** Descriptor Heap에 있는 리소스를 참조하는 테이블
+		- **Descriptor Table:** Descriptor Heap에 있는 리소스를 참조하는 테이블 **(API Bind Slot)**
 		- **Root Constant:** 즉시 데이터를 전달할 때 사용 (ex: 상수 데이터)
 		- **Root Descriptor:** GPU 메모리 주소를 직접 전달
 	- Static Sampler (정적 샘플러)
 		- Sampling Mode 를 미리 정의하여, 성능 최적화
 		- 주로 Texture Filtering 에 사용
+  
+  ![alt text](../../../assets/img/photo/5-07-2025/root_descriptor.png)
 
 ## Resource 
 * [Direct3D 12 Pipeline & Shader](https://learn.microsoft.com/ko-kr/windows/win32/direct3d12/pipelines-and-shaders-with-directx-12)

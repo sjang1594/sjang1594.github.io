@@ -73,3 +73,67 @@ Root signautre 를 사용할때, constant buffer 를 사용하는데 CPU 와 연
 <figure>
   <img src = "../../../assets\img\photo\Archieved\DirectX12_PIPELINE.PNG">
 </figure>
+
+
+## 정리 해보자면....
+
+* **ComPtr**: 
+	* Microsoft 사에서, COM Object (Interface) 를 통해서, 각각의 DX 들을 접근
+	* 일종의 Smart Pointer
+	* 깡 Pointer 로 했을때는, 직접 Release() 를 해야함
+---
+### Device
+- GPU 및 리소스 생성의 총괄 관리자 -> **인력사무소 (GPU)**
+- `CreateDXGIFactory()` → DXGI 팩토리 생성
+- `D3D12CreateDevice()` → 실제 장치 생성
+---
+### CommandQueue
+- **외주 목록 큐**
+- GPU 작업을 보내는 큐
+- `ID3D12CommandAllocator`: 명령 기록용 메모리 공간 --> 일감의 양
+- `ID3D12GraphicsCommandList`: 명령 목록 작성용 --> 작업 지시서
+- `CommandList->Close()` 후 Queue에 제출
+- `Fence`: GPU 작업 완료를 추적하는 동기화 객체 --> 작업 완료 알림 벨
+---
+### SwapChain
+* **결과물 전달 시스템**
+- GPU에서 작업한 결과를 화면에 표시
+- BackBuffer: GPU가 그리는 대상
+- FrontBuffer: 화면에 출력되는 대상
+- Double Buffering 구조
+- `Present()`로 전환
+---
+
+### DescriptorHeap
+* **메뉴판**
+- 리소스를 설명하는 뷰들의 배열 (Texture, Buffer, Resource)
+- CBV / SRV / UAV / RTV / DSV 등을 저장
+- DX11의 View 역할 (RenderTargetView 등)
+---
+
+### DescriptorTable
+* **한 작업자용 메뉴세트**
+- 여러 Descriptor를 묶어서 Shader에 전달
+- Root Signature를 통해 바인딩
+- 효율적인 리소스 접근을 위함
+---
+
+### RootSignature
+* 계약서 또는 결제 
+* *CPU와 GPU는 **메모리 구조가 다르기 때문에** 데이터를 직접 공유할 수 없습니다. 대신, 특정한 형식으로 데이터를 준비하여 **GPU가 이해할 수 있도록** 전달해야 합니다.
+* Root Signature는 이 과정에서 **어떤 리소스(메모리)**를 사용할지 명시하여, CPU와 GPU가 **어떤 데이터를 주고받을지 미리 정의**합니다.
+* 데이터 정의: GPU 가 접근해야할 Resource 를 Slot 에 지정하여 정의
+* Binding 구조, 어떤 데이터를 어떻게 Binding 할것인지 명세
+	* Texture / Constant Buffer / Descriptor Heap
+* 구성요소 
+	* Root Parameter: 
+		* 데이터를 전달하기 위한 기본 단위
+		- **Descriptor Table:** Descriptor Heap에 있는 리소스를 참조하는 테이블
+		- **Root Constant:** 즉시 데이터를 전달할 때 사용 (ex: 상수 데이터)
+		- **Root Descriptor:** GPU 메모리 주소를 직접 전달
+	- Static Sampler (정적 샘플러)
+		- Sampling Mode 를 미리 정의하여, 성능 최적화
+		- 주로 Texture Filtering 에 사용
+
+## Resource 
+* [Direct3D 12 Pipeline & Shader](https://learn.microsoft.com/ko-kr/windows/win32/direct3d12/pipelines-and-shaders-with-directx-12)

@@ -6,7 +6,7 @@ tags: [vulkan, computer graphics, shader, directX12]
 published: true
 --- 
 
-## Intro
+## Luna Game Engine 개발 기록 1
 
 사실상 Game Engine 을 만들고 싶은건 아니다. Game Engine 을 사용한 어떠한 Product 를 만들고 싶었고, 그 Platform 이 Unreal Engine 이 됬든, Unity 가 됬든 사용하면 된다. 하지만 이미 상용화? 된 엔진들의 확실한 장점은 있지만, 그렇다고 해도, 너무 많은 방대한 정보를 이해하기에는 쉽지 않다. 예를 들어서, DirectX11 에서는 확실히 Low Level API 라고 하지만, 거의 High Level API 이다. 특히나 드라이버(인력사무소)가 거의 많은 작업들을 처리 해주었다. 그에 반대 되서, DirectX12 는 대부분의 작업을 따로 처리해줘야한다 (RootSignature, PipelineState, etc) 그리고 병렬 지원에 대해서도 충분히 이야기할수 있다. CommandList 를 병렬 처리가 가능하다고 한다. (이부분은 실제로 해보진 않았다.)
 

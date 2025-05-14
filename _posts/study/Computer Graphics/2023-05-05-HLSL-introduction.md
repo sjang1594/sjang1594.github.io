@@ -56,7 +56,7 @@ float4 main(PixelShaderInput input) : SV_TARGET
 
 위의 코드 같은 경우 `float3 pos : POSITION` 이라고 나와있는데 colon(:) 다음에 나오는건 Sematics 인데, 어떤 Parameter 종류다라는것을 명시한다. 자세한건 [Shader Semantics](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-semantics) 참고하자.
 
-그렇다면 Vertex Shader 와 Pixel Shader 를 조금 더 알아보자. 위의 코드에서 `__ShaderInput` 이라는 구조체가 보인다. 그렇다면 Pipeline 에서 Output 도 존재할수 있는데, 여기서 Vertex Shader 의 Output 이 Interpolation 을 거쳐서 Pixel Shader 의 Input 이 되기때문에 따로 명시하진 않았다.
+그렇다면 Vertex Shader 와 Pixel Shader 를 조금 더 알아보자. 위의 코드에서 `**ShaderInput` 이라는 구조체가 보인다. 그렇다면 Pipeline 에서 Output 도 존재할수 있는데, 여기서 Vertex Shader 의 Output 이 Interpolation 을 거쳐서 Pixel Shader 의 Input 이 되기때문에 따로 명시하진 않았다.
 
 그리고 위의 PixelShaderInput 구조체에서 Vertex Shader 와 비슷하게 생겼지만 `SV` (System-value semantics)라는게 들어가 있는데, 이 이유는 Shader의 Input 으로 들어온다 라는걸 표시한다.
 
@@ -72,6 +72,8 @@ cbuffer ModelViewProjectionConstantBuffer : register(b0)
     matrix projection;
 }
 ```
+
+정리를 하자면, 어떤 Stage 간에, PixelShader / Vertex Shader 에 Input 으로 들어올수 있는 16 byte 로 fit 하게 들어가야하며, ConstantBuffer 같은 경우, 어떤 Shader 에서 연결을 해줘서 Resource 를 Binding 을 해주면 된다.
 
 ## Resource
 - [Graphics Pipeline](https://learn.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-graphics-pipeline)

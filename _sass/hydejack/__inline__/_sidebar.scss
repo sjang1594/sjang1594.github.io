@@ -91,20 +91,12 @@ hy-drawer {
 }
 
 .sidebar-bg {
-  position: absolute;
-  top: 0;
-  left: calc(50% - 50vw);
-  width: 100vw;
-  height: 100%;
-  background: #202020 center / cover;
-  
+  background-image: url('/assets/img/sidebar-bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
-
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    background-image: url('/assets/images/sidbar-bg.jpg');
-    background-size: cover;
-  }
 
   &::after {
     content: "";

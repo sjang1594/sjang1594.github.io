@@ -150,3 +150,5 @@ RenderDoc 으로도 돌려봐야하지 않겠냐? 싶어서, Vertex 의 Input �
 그리고 이건 DrawIndexed 의 호출을 동그라미 친것이다. ImGUI 도 쓰기때문에 저 뒤에 두번째는 ImGUI 가 현재 RenderTarget 에 DrawIndexed 를 해주고, 내가 Rendering 하고 싶은 결과는 노란색 두개 이다.
 
 ![alt text](../../../assets/img/photo/5-15-2025/drawInstanced.png)
+
+이렇게해서 RenderDoc 을 사용해서 검증을 하고 내가 Pipeline 에잘 넣었는지도 확인할수 있다.

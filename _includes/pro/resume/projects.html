@@ -34,6 +34,24 @@
         {% endfor %}
       </ul>
       {% endif %}
+
+      {% if project.features.size > 0 %}
+      <h4 class="sr-only">{{ strings.resume.features | default:"Features" }}</h4>
+      <ul>
+        {% for feature in project.features %}
+        <li>{{ feature }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% if project.goals.size > 0 %}
+      <h4 class="sr-only">{{ strings.resume.goals | default:"Goals" }}</h4>
+      <ul>
+        {% for goal in project.goals %}
+        <li>{{ goal }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
     </section>
   {% if forloop.first %}</div>{% endif %}
   {% endfor %}

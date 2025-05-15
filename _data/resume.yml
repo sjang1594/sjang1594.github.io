@@ -102,6 +102,7 @@ projects:
       - "Shader Programming in HLSL"
   - title: "Luna Game Engine"
     startDate: "2024-04-25"
+    endDate: "current"
     summary: Luna Game Engine is a custom-built rendering engine that supports Vulkan and DirectX 12 backends. Developed with modularity in mind, the engine includes components for device abstraction, resource management, and real-time rendering. The project utilizes Premake for build configuration and integrates ImGui for debugging and UI development. The engine architecture follows the HAL (Hardware Abstraction Layer) design, promoting flexibility and ease of backend integration.
     hightlights:
       - C++

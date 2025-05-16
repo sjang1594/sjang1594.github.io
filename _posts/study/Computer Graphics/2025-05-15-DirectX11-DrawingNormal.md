@@ -2,7 +2,7 @@
 title: DirectX11 - Drawing Normal
 layout: post
 category: study
-tags: [directx, computer graphics, shader]
+tags: [directx, computer graphics, shader, RenderDoc]
 published: true
 ---
 
@@ -121,7 +121,7 @@ CreateConstantBuffer(m_MyVertexConstantData, m_vertexConstantBuffer);
 UpdateBuffer(m_MyVertexConstantData, m_vertexConstantBuffer);
 
 //-----------------------------------------------------//
-// Update ()
+// Render()
 m_context->VSSetShader(m_normalVertexShader.Get(), 0, 0);
 ID3D11Buffer *pptr[1] = {m_vertexConstantBuffer.Get()};
 

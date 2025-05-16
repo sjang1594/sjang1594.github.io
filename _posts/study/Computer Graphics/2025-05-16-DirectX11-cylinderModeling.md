@@ -18,4 +18,4 @@ published: true
 
 그러면 위의 Radius 와 아래의 Radius 를 x-z 평면으로 시작점으로 해서 돌리면 된다. 결과는 아래와 같다. 원통을 그리려면 Vertex 의 정보를 SimpleMath 에 있는 CreateRotationY 로 충분히 해도 되지만, sin, cos 을 사용해서 원통을 만들어도 똑같은 결과를 나타낸다.
 
-![alt text](image.png)
+![alt text](../../../assets/img/photo/5-16-2025/cylinder.png)

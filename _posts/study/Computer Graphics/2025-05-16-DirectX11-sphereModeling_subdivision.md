@@ -6,7 +6,7 @@ tags: [directx, computer graphics, shader, 3d modeling]
 published: true
 ---
 
-### DirectX11 - Sphere Modeling & Subdivision
+### DirectX11 - Sphere Modeling & Subdivision & face normal
 
 앞에 Post 를 봤더라면, 이제 Sphere 는 cylinder 의 맨위와 아래의 radius 를 묶으면 되지 않느나라는 질문을 할수 있다. 맞다! 그리고 Stakc 이 총 6개라면, 6 개만큼을 아래서부터 각도를 줘서 구처럼 구부리면 될수 있다.
 
@@ -48,6 +48,12 @@ v.texcoord.y = phi / XM_PI;
 ![alt text](../../../assets/img/photo/5-16-2025/original.png)
 ![alt text](../../../assets/img/photo/5-16-2025/subdivision2pass.png)
 ![alt text](../../../assets/img/photo/5-16-2025/subdivision_1pass.png)
+
+### Face Normal
+
+사실상 Vertex 를 기준으로해서 즉 하나의 각을 기준으로 해서도 우리는 다른 Normal 을 가진다고 생각을 할수 있다. 즉 각 Vertex 별 Face Normal 이 다르다는 말이다. 이건 구현의 그림으로 보면 편할것 같다. 그리고 삼각형에서 결국에는 Face Normal 을 구하는건 하나의 Vector 에서 다른 하나의 Vector 의 Cross Product 한 결과 값이다.
+
+![alt text](../../../assets/img/photo/5-16-2025/faceNormal.png)
 
 ### Resource
 * [Sphere](https://www.songho.ca/opengl/gl_sphere.html)

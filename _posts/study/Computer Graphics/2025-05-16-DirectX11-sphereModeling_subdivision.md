@@ -6,7 +6,7 @@ tags: [directx, computer graphics, shader, 3d modeling]
 published: true
 ---
 
-### DirectX11 - Sphere Modeling
+### DirectX11 - Sphere Modeling & Subdivision
 
 앞에 Post 를 봤더라면, 이제 Sphere 는 cylinder 의 맨위와 아래의 radius 를 묶으면 되지 않느나라는 질문을 할수 있다. 맞다! 그리고 Stakc 이 총 6개라면, 6 개만큼을 아래서부터 각도를 줘서 구처럼 구부리면 될수 있다.
 

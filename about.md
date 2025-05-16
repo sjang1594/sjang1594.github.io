@@ -51,12 +51,12 @@ Please feel free to contact me, if you have any good feedback!
 * 컴퓨터 비젼에 있는, `3D Reconstruction`, `Depth Estimation`, `Point Cloud Processing` 관해서 배우고 있는 중입니다.
 
 * 게임 엔진이나 병렬 프로그래밍도 관심이 많습니다. (CUDA, Compute Shader, Deep Learning)
-- [GameEngineWDirectX11](https://github.com/sjang1594/GameEngineWDirectX11)
-- [Luna Game Engine](https://github.com/sjang1594/LunaEngine)
+
+* 지금 개발중인 게임 Engine 들입니다.
+  - [GameEngineWDirectX11](https://github.com/sjang1594/GameEngineWDirectX11)
+  - [Luna Game Engine](https://github.com/sjang1594/LunaEngine)
 
 언제나 피드백은 감사드리며.. 언제든지 댓글 남겨주세요.
-
-***
 
 <!--author-->
 

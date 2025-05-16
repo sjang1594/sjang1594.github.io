@@ -2,7 +2,7 @@
 title: DirectX11 - Drawing Grid Plane
 layout: post
 category: study
-tags: [directx, computer graphics, shader, RenderDoc]
+tags: [directx, computer graphics, shader, 3d modeling]
 published: true
 ---
 

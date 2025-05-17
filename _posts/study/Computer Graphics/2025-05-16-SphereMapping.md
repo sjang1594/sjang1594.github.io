@@ -12,7 +12,7 @@ published: true
 
 일단 그림 부터 한번 참고를 해보는게 좋을것 같다. 일단 최악의 상황일때, 즉 Subdivision 을 안했을때를 한번 봐보자. 이상태에서 보면 저렇게 끊겨져 있는걸 볼수 있을거다. 그 이유중에 하나는, 바로 Texture 의 삼각형안에서 Interpolation 을 하려고 보니 생기는 이슈이다. 
 
-![alt text](image.png)
+![alt text](../../../assets/img/photo/5-16-2025/earth.png)
 
 그래서 다시 Subdivision 을 해서 일단 완벽한 구형의 모델을 만들어보자. Wireframe 을 볼수 있다. 아래처럼 일정하게 삼각형들을 그리게 된다고 하면, 아래처럼 똑같이 나온다.
 

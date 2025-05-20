@@ -69,4 +69,4 @@ float4 main(PixelShaderInput input) : SV_TARGET
 
 결과는 아래와 같다.
 
-![alt text](image.png)
+![alt text](../../../assets/img/photo/1_latest/helmet_5_20_2025.png)

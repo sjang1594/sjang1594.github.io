@@ -6,7 +6,7 @@ tags: [directx, computer graphics]
 published: true
 ---
 
-## Introduction to Rim Effect
+## DirectX11 - Introduction to Rim Effect
 
 이제는 조금은 재밌는 장난을 더해서, Lighting 을 개선해보는게 좋을것 같다. Rim Effect 는 물체의 가장자리 (Edge) 에 빛이 강조되어 반사되는 효과를 뜻한다. 주로 역광 (Backlighting) 상황에서 발생하여, 물체의 윤곽을 강조한다. 즉, 빛이 물체를 직접 비추지 않아도 가장자리에서 빛이 새어 나오는 현상을 뜻한다.
 

@@ -6,7 +6,7 @@ tags: [directx, computer graphics, shader, 3d modeling]
 published: true
 ---
  
-### Sphere Mapping
+### DirectX11 - Sphere Mapping
 
 아마 전에 Sphere Modeling 을 Post 를 봤다고 한다면, 약간의 더러움이 보였을거다. 그게 뭔말이냐면... 삼각형이 균일하게 만들어지지 않았다는 점이다. 그리고 아무리 저번처럼 Texture Mapping 에 필요한 공식을 썻더라고 한더란들, 문제는 해결되지 않는다.
 

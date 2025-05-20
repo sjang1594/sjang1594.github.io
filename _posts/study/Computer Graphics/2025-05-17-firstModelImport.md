@@ -6,7 +6,7 @@ tags: [directx, computer graphics, 3d modeling]
 published: true
 ---
 
-## How to import Model Import in DirectX11.
+## DirectX11 - How to import Model Import in DirectX11.
 
 처음으로, Model Import 코드를 짜보고 테스트를 해보았아. Library 는 Assimp 로 3D Model 을 Load 를 하면 된다. 일단 기본적으로 Modeling 에 앞서서 Blender 를 확인 해보자. 
 

@@ -87,14 +87,13 @@ void main(int3 gID: SV_GroupID, uint3 : SV_DispatchThreadID)
 
 SV_GroupID 는 ThreadGroup, 즉 Dispatch 했을때의 인자값이다. 그리고 SV_DispatchThreadID 같은 경우에는 실제 ThreadID 이다. 결국 Group 하나에 256, 1, 1 의 Thread 가 있다고 생각을 하면. 전체 Thread 의 개수는 256 * 5 * 1 * m_screenHeight * 1 * 1 이렇게 되어있고, 두번째 Group 에 있는 (2,1,0), 그리고 numthread가 (256, 1, 1) 이라고, 전체에서, 해당 Index sms (2,1,0) * (256*1*1) + offset 이라고 생각할수 있다. (즉 Pixel 의 위치이다.) Dispatch Group 이 즉 index 를 했을시에 DispatchThreadID 로 저 많은 양의 Thread 를 Indexing 을 한다고 보면된다. 
 
-![alt text](image.png)
+![alt text](../../../assets/img/photo/5-17-2025/image.png)
 
 ## Warp 개념
 
 아래의 그림을 CPU 랑 비교했을때의 GPU 의 Processing 의 역활이다. GPU 는 CPU 와는 달리, 각각의 여러개의 Core 들이 Control 하나와 L1 Cache 가 붙어있다. 즉 Control 이라는 관리자에서 "야 우리팀은 이 일만 공장처럼 찍어낼꺼야" 라는 뜻이 내포되어있다고 생각하면 된다. 즉, 단순 작업의 양이 많을때, Block(Group) 단위로 관리를 하며, Processing 을 한다고 생각하면된다.
 
-![!\[Alt text\](image.png)
-](../../../assets/img/photo/10-12-2024/gpu.png)
+![!\[Alt text\](image.png)](../../../assets/img/photo/10-12-2024/gpu.png)
 
 일단 GPU 의 구조상으로는 [CUDA](https://nyu-cds.github.io/python-gpu/02-cuda/) SIMT(Single Instruction, Multiple Thread) 를 가지고 있다. 그리고 `a scalable array of multithreaded Streaming Multiprocessors (SMs)` 이런말이 있는데 결국에는 thread 가 여러개인 array 인 형태를 띄고 있으며, Streaming 방식으로 쭉쭉 Processing 이 이뤄진다라는걸 볼수 있다. 그리고 Core 개수가 여러개로 나눠져있으니, 이것들의 Core 들을 Scheduling 을 해주며, 관리해서 Multiprocessor 이런식으로 표현한것 같다.
 

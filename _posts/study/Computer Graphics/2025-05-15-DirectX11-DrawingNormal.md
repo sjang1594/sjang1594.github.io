@@ -2,7 +2,7 @@
 title: DirectX11 - Drawing Normal
 layout: post
 category: study
-tags: [directx, computer graphics, shader, RenderDoc]
+tags: [directx, computer graphics, shader, RenderDoc, hlsl]
 published: true
 ---
 

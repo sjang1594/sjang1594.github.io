@@ -2,7 +2,7 @@
 title: DirectX11 - Lighting
 layout: post
 category: study
-tags: [directx, computer graphics, shader]
+tags: [directx, computer graphics, shader, hlsl]
 published: true
 ---
 

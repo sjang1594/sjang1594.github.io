@@ -2,7 +2,7 @@
 title: DirectX11 - Cube Mapping & Environment Mapping
 layout: post
 category: study
-tags: [directx, computer graphics]
+tags: [directx, computer graphics, hlsl]
 published: true
 ---
 

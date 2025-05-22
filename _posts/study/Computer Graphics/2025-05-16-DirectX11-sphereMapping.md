@@ -2,7 +2,7 @@
 title: DirectX11 - Sphere Mapping
 layout: post
 category: study
-tags: [directx, computer graphics, shader, 3d modeling]
+tags: [directx, computer graphics, shader, 3d modeling, hlsl]
 published: true
 ---
  

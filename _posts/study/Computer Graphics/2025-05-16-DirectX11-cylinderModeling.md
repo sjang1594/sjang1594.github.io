@@ -2,7 +2,7 @@
 title: DirectX11 - Drawing Cylinder
 layout: post
 category: study
-tags: [directx, computer graphics, shader, 3d modeling]
+tags: [directx, computer graphics, shader, 3d modeling, hlsl]
 published: true
 ---
 

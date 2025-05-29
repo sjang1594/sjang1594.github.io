@@ -166,13 +166,15 @@ skills:
       - "System Conconcurrent Programming"
   - name: "DirectX11/12"
     level: "Intermediate"
-    keywords: HLSL, Vertex/Pixel Shader, Compute Shader, HDR, RayTracing, RenderDoc
+    keywords: HLSL, Vertex/Pixel Shader, Compute Shader, HDR, RayTracing, Physically-Based Rendering, RenderDoc, Animation, Shadow Mapping
   - name: "Unity"
     level: "Intermediate"
     keywords:
       - Unity
       - C# Programming
       - Job System
+      - Post-processing
+      - ScriptableObject
   - name: "Algorithm"
     level: "Intermediate"
   - name: "Unreal Engine"

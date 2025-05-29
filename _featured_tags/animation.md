@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: 3D Modeling
-slug: 3d modeling
+title: Animation
+slug: animation
 category: study
 sidebar: false
 description: >
-   3D Modeling (gltf, fbx, obj)
+   3D Animation
 ---

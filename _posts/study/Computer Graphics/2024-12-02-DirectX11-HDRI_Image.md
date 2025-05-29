@@ -71,19 +71,20 @@ Tone Mapping 이 안됬을 경우에는 어떤 Side Effect 가 있을까? 라고
 
 Tone Mapping 도 아래와같이 여러개의 Operator 들이 있다.
 
-![alt text](image.png)
+![alt text](../../../assets/img/photo/1_latest/tone_mapping_operator_5_25_2025.png)
+
 
 ### Exposure
 Exposure: 카메라의 어떤 현상, 렌즈를 오래 열어 놓으면, 빛을 더 많이 받아들이는 현상이다. 예를 들어서 예제 JPG 이미지 같은 경우 (즉 SDR) 일때는 Exposure 를 키우게 되면, 그냥 화면 자체가 밝아진다. 하지만 HDRI 같은 경우, 전체 Pixel 이 선명?해지는것과 밝아지는거의 차이가 있다. 그래서 Exposure 을 낮춘다고 했을때 
 
 아래의 그림처럼 진짜 태양 찾기가 가능해진다.
 
-![alt text](image-1.png)
+![alt text](../../../assets/img/photo/1_latest/hdri_5_24_2025.png)
 
 ### Gamma Correction
 Gamma Correction : 어떤 영역에 색을 더 넓게 보여줄지를 의미한다. 옛날 모니터 같은 경우는 cathode-ray tube monitor 라고 하고, Input Voltage 를 두배로 컴퓨터에 줬을때, 2배로 Output 이 전혀 나오지 않았다. 즉 선형보다는 비선형으로 Gamma 지수에 따라서 비선형적으로 출력을 했고, 입력신호의 2.2 제곱에 해당하는 밝기를 출력 했다.
 
-![alt text](image-2.png)
+![alt text](../../../assets/img/photo/1_latest/gamma_correction_5_25_2025.png)
 
 그래서 즉 모니터의 Gamma 가 2.2 fkrh gksekrh gkaus, Image 를 Display 하기전에 Pixel 값을 Input^1/2.2 저장하거나 변환을 해줘서 Linear Tonemapping 을 만들수 있다. 그리고 이 Gamma 값을 조정할수 있는게 Gamma Correction 이라고 말을 할수 있겠다. 
 

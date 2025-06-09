@@ -86,7 +86,7 @@ Gamma Correction : 어떤 영역에 색을 더 넓게 보여줄지를 의미한�
 
 ![alt text](../../../assets/img/photo/1_latest/gamma_correction_5_25_2025.png)
 
-그래서 즉 모니터의 Gamma 가 2.2 fkrh gksekrh gkaus, Image 를 Display 하기전에 Pixel 값을 Input^1/2.2 저장하거나 변환을 해줘서 Linear Tonemapping 을 만들수 있다. 그리고 이 Gamma 값을 조정할수 있는게 Gamma Correction 이라고 말을 할수 있겠다. 
+그래서 즉 모니터의 Gamma 가 2.2 라고 한다고 하면, Image 를 Display 하기전에 Pixel 값을 Input^1/2.2 저장하거나 변환을 해줘서 Linear Tonemapping 을 만들수 있다. 그리고 이 Gamma 값을 조정할수 있는게 Gamma Correction 이라고 말을 할수 있겠다. 
 
 ## HDRI Pipeline
 

@@ -14,27 +14,37 @@ The purpose was to make terrain in my Game Engine. In order to make terrain, you
 
 The idea is to think differently about the texture coordinate, considering that the fragment's surface is higher or lower than it actually is. So the UV coordinate is literally above or below the actual vertices from the vertex shader. If you take a look at the image below, what we want to find is Point B, rather than A. But A is what we actually see (in fragment space). Then how would you calculate Point B? You can think of it as similar to ray casting. Since you have the view direction, you can figure out the P vector by using the height (displacement) map, then we can approximate the displacement to Point B. But it won't always work - I will explain this in the limitations.
 
-![alt text](../../../assets/img/photo/1_latest/parallax-mapping_idea_06-03_2025.png)
+<p align="center">
+  <img src="../../../assets/img/photo/1_latest/parallax-mapping_idea_06-03_2025.png" alt="alt text" width="600">
+</p>
 
 In terms of implementation, one important thing to note is to send the normal and tangent vectors. For each vertex, depending on where the surface is directing, you can set normal and tangent, and pass these through the render pass. In detail, you should calculate the Parallax mapping on tangent space, which means you need to transform the view direction to tangent space multiplying TBN matrix.
 
-Okay! Let's look at the calculation in detail. We think that we are looking at the surface (at height 0.0), and the camera is pointing at A, but we want to figure out Point B. We can calculate the vector P from Point A using the view direction. The key insight is that we use the height value H(A) sampled from the height map at point A to determine how far to offset our texture coordinates along the projected view ray. Then we sample through along the Vector P with the length H(A) to A. Then we can get the end of Point from Vector P and corresponding H(P) from height map. Like i said this is approximation. In order to make it more accurate, you can certainly use steep method where it takes multiple sample by dividing total depth range into multiple layers. The details are shown in this [link](https://learnopengl.com/Advanced-Lighting/Parallax-Mapping). 
+Okay! Let's look at the calculation in detail. We think that we are looking at the surface (at height 0.0), and the camera is pointing at A, but we want to figure out Point B. We can calculate the vector P from Point A using the view direction. The key insight is that we use the height value H(A) sampled from the height map at point A to determine how far to offset our texture coordinates along the projected view ray. Then we sample through along the Vector P with the length H(A) to A. Then we can get the end of Point from Vector P and corresponding H(P) from height map. Like i said this is approximation. In order to make it more accurate, you can certainly use steep method where it takes multiple sample by dividing total depth range into multiple layers. The details are shown in this [link](https://learnopengl.com/Advanced-Lighting/Parallax-Mapping).
 
-![alt text](../../../assets/img/photo/1_latest/parallax_mapping_6_03_2025.png)
+<p align="center">
+  <img src="../../../assets/img/photo/1_latest/parallax_mapping_6_03_2025.png" alt="alt text" width="600">
+</p>
 
 Finally, one more step is needed after steep parallax occlusion mapping. For each step we found T3 and T2, then we sample H(T3) and H(T2). Then we interpolatate those two points, treating like flat surface, if the depth is incorrect.
 
-![alt text](../../../assets/img/photo/1_latest/parallax_occlusion_mapping_6_03_2025.png)
+<p align="center">
+  <img src="../../../assets/img/photo/1_latest/parallax_occlusion_mapping_6_03_2025.png" alt="alt text" width="600">
+</p>
 
 ### Results
 
-![alt text](../../../assets/img/photo/1_latest/result_06-03-2025.png)
+<p align="center">
+  <img src="../../../assets/img/photo/1_latest/result_06-03-2025.png" alt="alt text" width="600">
+</p>
 
-![alt text](../../../assets/img/photo/1_latest/result_1_06_03_2025.png)
+<p align="center">
+  <img src="../../../assets/img/photo/1_latest/result_1_06_03_2025.png" alt="alt text" width="600">
+</p>
 
 ### Limitation
 
-There are some limitation or usage I can mention by doing some experiments. The big issues is an aliasing exist when height map of that texture dramatically changes over a surface. You can test on this [repo](https://github.com/sjang1594/GameEngineWDirectX11). I guess that's why the usecase might be cave, stairs, bricks, some texture that have consistent height values. I can mentioned that each methods have a "bad effect"; it looks distorted in some angles for Parallax Mapping, and you can see the steep if the sample rate is very low for Steep Parallax Mapping. But if we know that why these downside appears to be true when you implementing, it all makes sense.
+There are some limitation or usages I can mention by doing some experiments. The big issues is an aliasing exist when height map of that texture dramatically changes over a surface. You can test on this [repo](https://github.com/sjang1594/GameEngineWDirectX11). I guess that's why the usecase might be cave, stairs, bricks, some texture that have consistent height values. I can mentioned that each methods have a "bad effect"; it looks distorted in some angles in Parallax Mapping, and you can see the steep if the sample rate is very low in Steep Parallax Mapping. But if we know that why these downside appears to be true when you implementing, it all makes sense.
 
 ### Conclusion
 

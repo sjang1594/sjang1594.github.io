@@ -1,11 +1,13 @@
 ---
-title: The strategy to solve the Machine Learning & Deep Learning problems
-layout: post
-category: review
-tags: [book]
+layout: review
+title: "The strategy to solve the Machine Learning & Deep Learning Problems"
+author: "Baek-Kyun Shin"
+year: 2022
+status: "Finished"
+cover: "strategy_to_solve_ml_dl_problem.jpg"
+description: "The strategy to solve the ML & DL Problem"
+date: 2022-02-07
 ---
-
-
 
 ## The strategy to solve the Machine Learning & Deep Learning problems
 

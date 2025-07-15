@@ -1,14 +1,15 @@
 ---
-title: 혁펜하임의 Easy! Deep Learning
-layout: post
-category: review
-tags: [logs, book, review]
-published: true
+layout: review
+title: "Hyukppenheim's Easy Deep Learning"
+author: "Hyukppenheim"
+year: 2025
+status: "Finished"
+cover: "hyukppenheim.jpg"
+description: "혁펜하임의 Easy! Deep Learning"
+date: 2025-02-11
 ---
 
 ## Hyukppenheim's Easy Deep Learning
-
-![Book Cover](../../../assets/img/photo/02-11-2025/book_cover.png)
 
 ### Motivation
 
@@ -35,17 +36,24 @@ Activation Function: tanh 의 문제점 - Data 의 정보가 점점 뭉개지는
 
 Test 환경과 Train 했을때의 문제점을 Case 별로 잘 설명해준다. 이건 사실 경험이 없으면 요약하기 정말 어려운 부분이다. 근데 장황하게 안쓰셨지만, 확실히 이건 전략적으로 작성한게 보인다. (너무 train 된것만 쓰다 보면, 말에 신뢰가 떨어질수 있으니)
 
-![Alt text](../../../assets/img/photo/02-11-2025/page_1.jpg)
+
+<p align="center">
+  <img src="../../../assets/img/photo/02-11-2025/page_1.jpg" alt="alt text" width="600">
+</p>
 
 제일 좋았던건 transformer 에 대한 설명을 천천히 한계로부터 발전되어왔고, 그것에 대한 원리를 잘 설명 해주었던것 같다. 예를 들어서, context vector 와 Encoding 에서의 embeding vector h_n 들 Decoding 에서의 s_n 들을 그림으로 잘설명을 해주셔서 확실히 이해했던 부분이 있었지만, 갑작스런 C4 는 조금 집중을 흐리게했다. (c1, c2, c3 는 뭔데? 라는 질문을 할수 있는데) 이 부분은 확실히 attention 부분에 있어서, 간소화하기 힘든 부분들을 어쩔수 없이 하나의 예제로 가져간걸로 보인다. 하지만 아래의 그림을 보면, 이 부분을 자세하게 어떤 부분이 Query 고 이부분이 Key, 고 이부분이 Value 인지를 통해서 확실히 이해했다고 볼수 있다.
 
-![Alt text](../../../assets/img/photo/02-11-2025/page_2.jpg)
+<p align="center">
+  <img src="../../../assets/img/photo/02-11-2025/page_2.jpg" alt="alt text" width="600">
+</p>
 
 전반적으로 문제, 그리고 Resercher 들의 해결 방법, 하지만 또 한계점에 대해서는 확실히 표현하고 있어서, 이부분을 딥러닝을 입문하는 사람이 보았을때 이해가 안될수도 있지만 흐름을 이해할수 있고, Detail 한 부분은 독자들에게 맡기는 부분도 있을것 같다. 이렇게 사실 좋은 입문서가 있었더라면, 장황한 동영상 하나보다는 훨씬 나은 점이 있다! 예제 Figure 그리고 피할수 없는 수학들을 잘 설명 해주다 보면, 아 뭐 이정도면 알겠다라는 식으로 쉽게 지식을 확장하거나, Application 을 만드는데 사용하거나 할수 있을것 같다라는게 총평이다.
 
 조금 아쉬웠을수도 있고, 최대한 입문서에 맞게 쓰려고 하는것도 기준점을 두고 있으니까라고 이해했지만, 내적을 사용하는 이유에 대해서는 배경설명이 조금 필요한것 같기는 하다. 이건 어느정도 선형 대수의 Background 를 이야기하면 좋았지 않을까이다.
 
-![Alt text](../../../assets/img/photo/02-11-2025/page_3.jpg)
+<p align="center">
+  <img src="../../../assets/img/photo/02-11-2025/page_3.jpg" alt="alt text" width="600">
+</p>
 
 ### Reference 
 * [헥편하임 공식 홈페이지](https://hyukppen.modoo.at/?link=8ex77q4p)

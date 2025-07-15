@@ -1,0 +1,125 @@
+---
+layout: base
+---
+{% include base_path %}
+
+    <h1> Thoughts on reading <i>{{page.title}}</i> by {{ page.author}}. </h1>
+
+   {% assign content = page.content | strip_newlines %}
+
+   {% if content == "" %}
+
+   <figure class="empty-review">
+   {% if page.cover %}
+    <img src="{{ '/assets/img/books/' | append: page.cover | relative_url }}" alt="{{ page.title }} cover" />
+   <figcaption>Cover of <em>{{ page.title }}</em></figcaption>
+   {% elsif page.olid %}
+   <img float: left alt="{{ page.title }} cover" src="http://covers.openlibrary.org/b/olid/{{ page.olid }}-L.jpg?default=false"/>
+   <figcaption>Cover of <em>{{ page.title }}</em> on the <a href="https://openlibrary.org/olid/{{ page.olid }}">Open Library</a>.</figcaption>
+   {% elsif page.isbn %}
+   <img float: left alt="{{ page.title }} cover" src="http://covers.openlibrary.org/b/isbn/{{ page.isbn }}-L.jpg?default=false"/>
+   <figcaption>Cover of <em>{{ page.title }}</em> on the <a href="https://openlibrary.org/isbn/{{ page.isbn }}">Open Library</a>.</figcaption>
+   {% endif %}
+   </figure>
+
+   {% assign status = page.status | upcase %}
+   <b> {{status}} </b>
+
+    {% else %}
+
+    <figure>
+    {% if page.cover %}
+    <img src="{{ '/assets/img/books/' | append: page.cover | relative_url }}" alt="{{ page.title }} cover" />
+    <figcaption>Cover of <em>{{ page.title }}</em></figcaption>
+    {% elsif page.olid %}
+    <img  alt="{{ page.title }} cover" src="http://covers.openlibrary.org/b/olid/{{ page.olid }}-L.jpg?default=false"/>
+    <figcaption>Cover of <em>{{ page.title }}</em> on the <a href="https://openlibrary.org/olid/{{ page.olid }}">Open Library</a>.</figcaption>
+    {% elsif page.isbn %}
+    <img alt="{{ page.title }} cover" src="http://covers.openlibrary.org/b/isbn/{{ page.isbn }}-L.jpg?default=false"/>
+    <figcaption>Cover of <em>{{ page.title }}</em> on the <a href="https://openlibrary.org/isbn/{{ page.isbn }}">Open Library</a>.</figcaption>
+    {% endif %}
+    </figure>
+
+    <br class="mobile-break" clear="right"/>
+
+
+    <h4>
+    {% if page.start %} Start Date: {{page.start| date: "%-d %B %Y"}}. {% endif %}
+    {% if page.end %} End Date: {{page.end | date: "%-d %B %Y"}}. {% endif %}
+    </h4>
+
+    {{ content }}
+
+    {% endif %}
+
+<style>
+figure {
+  float: none;
+  width: 250px;
+  margin: auto;
+}
+
+figure > img {
+  vertical-align: top;
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+}
+
+figure figcaption {
+  display: block;
+  text-align: center;
+}
+
+@media screen and (min-width: 600px) {
+  .empty-review {
+    float: left;
+    padding-right: 20px;
+  }
+
+  figure {
+    float: right;
+    margin: 2px 0 0 20px;
+    padding: 10px 0 0 0;
+    display: block;
+  }
+
+  figure > img {
+    width: 300px;
+    vertical-align: bottom;
+    display: block;
+    padding: 10px;
+  }
+
+  figure figcaption {
+    text-align: center;
+  }
+
+  .mobile-break {
+    display: none;
+  }
+}
+
+blockquote {
+  position: relative;
+  margin: 0px;
+  display: table;
+}
+
+ /* properties to format the block quotes /*
+
+}
+blockquote:before {
+    top: 0;
+    left: 0;
+
+
+}
+blockquote:after {
+    top: 0;
+    right: 0;
+
+}
+
+
+  </style>

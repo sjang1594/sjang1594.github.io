@@ -1,9 +1,12 @@
 ---
-title: Mangwon-Brothers
-layout: post
-category: review
-tags: [logs, book]
-published: true
+layout: review
+title: "Mangwon-Brothers"
+author: "Hoyoen Kim"
+year: 2024
+status: "Finished"
+cover: "mangwon_brother.jpg"
+description: "Mangwon Brothers"
+date: 2022-06-06
 ---
 
 ## Mangwon Brothers

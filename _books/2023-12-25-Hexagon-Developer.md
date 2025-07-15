@@ -1,18 +1,17 @@
 ---
-title: The Hexagon Developer
-layout: post
-category: review
-tags: [logs, book]
-published: true
+layout: review
+title: "The Hexagon Developer"
+author: "Bumkyun Choi"
+year: 2023
+status: "Finished"
+cover: "hexagon_developer.jpg"
+description: "Hexagon Developer"
+date: 2023-12-25
 ---
-
-
 
 ## Hexagon Developer
 
-이 책을 보기 시작한 보게된 계기는, 내 직장 동료가 신기해서 구매 요청을 올렸다고 해서 책을 한번 빌려봤다. 육각형 개발자 책의 표지는 아래와 같다.
-
-![The Hexagon Developer](../../../assets/img/photo/12-18-2023/book.jpg)
+이 책을 보기 시작한 보게된 계기는, 내 직장 동료가 신기해서 구매 요청을 올렸다고 해서 책을 한번 빌려봤다. 육각형 개발자 책의 표지는 옆과 같다.
 
 책의 표지만 봐도 개발자로서 밸런스를 맞출려고 하는 것 들이 보인다. 일단 대체적인 이 책에 내용과 느낌은 일단 이번 년도를 가만히 돌아보게 되었고, 주니어로서 내가 멈춰있다고 생각했는데, 이걸 계기로 뭔가 더 성장할수 있겠다라는 마음이 들었다. 몇 부분은 생각나는대로 적어보려고 한다.
 

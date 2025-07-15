@@ -327,6 +327,14 @@ collections:
   projects:
     permalink:         /projects/:path/
     output:            true
+  
+  books:
+    permalink:         /:collection/:title/
+    output:            true
+
+future: true
+include:
+  - assets/img/books
 
 
 # File inclusion/exclusion

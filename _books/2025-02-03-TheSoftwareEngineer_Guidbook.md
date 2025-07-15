@@ -1,14 +1,15 @@
 ---
-title: The Engineer's Guidebook
-layout: post
-category: review
-tags: [logs, book, review]
-published: true
+layout: review
+title: "The Software Engineer's Guidebook: Navigating senior, tech lead, and staff engineer positions at tech companies and startups"
+author: "Gergely Orosz"
+year: 2025
+status: "Finished"
+cover: "software_engineer_guidebook.jpg"
+description: "The Software Engineer's Guidebook"
+date: 2025-02-03
 ---
 
 ## The Engineer's Guide Book
-
-![!\[Alt text\](image.png)](../../../assets/img/photo/2-03-2025/book_cover.png)
 
 이제 퇴사한지도 거의 한달이 다가오고, 설도 눈깜빡할사이에 지나갔다. 12 월부터 읽었던 책을 공유하려고 하는데, 내가 "소프트웨어" 회사에 다니고 있었을때 바랬던 부분들이 있었는데, 첫번째로는 시니어가 없는 회사에서, 일단 Roadmap 에 맞게 이것저것 해보고, 다른 Resource 도 찾아보고, Process 를 채택하려고 했었던 부분도 있었고, Managing 하는것도 없어서 굉장히 곤란해서, Burn out 이 왔었었다. 이러한 부분들을 정말 가볍고 포근하게 이 책은 다 풀어주었다.
 
@@ -49,7 +50,9 @@ published: true
 
 사실은 어디에서나, 새 회사에 취직한다고 하면, 그 회사의 일의 업무 양과 좋은 개발자가 있다는건 확실히 알수 없다! 그래서 "회사 가봐야 알아?" 이런말들이 많이 나온다. 하지만 전체적으로 현업에서 일을 하다보면, 저 위에 있는 목록을 다한 내용들이 아래와 같은 이미지로 표현이 될수 있다. 아무리 AI 가 나오라고 한들, 개발자 또는 엔지니어는 새로운 기술을 배워야하고, 그리고 더 나아가서 성장해야한다. 그러기위해서는 긴호흡을 가지기위해서는 아래와 같은걸로 기준을 세울수 있다.
 
-![Alt text](../../../assets/img/photo/2-03-2025/image.png)
+<p align="center">
+  <img src="../../../assets/img/photo/2-03-2025/image.png" alt="alt text" width="600">
+</p>
 
 **커리어 관리**
 가끔씩 물경력? 이라는 소리가 굉장히 많이 나온다. 어떤 Product 나 Project 를 하고 있지만 내가 뭘 위해서 하고 있는건지를 가끔씩 놓쳐버리는때가 있을것 같다. 이때 정말로 중요한건 커리어에 대한 주인 의식이다. 기본적으로 일을 할때는 제일 중요 한것은 **업무를 완수** 가 중요하다. 그리고 **영향력이 높은 작업을 많이 수행**하는 것이다. 가끔씩은 작은 리팩토링은 팀원들에게 중요할수 있지만, 우리 회사의 Product 가 어떤 비즈니스에 영향을 끼치는건 생각을 해보지는 않았을것 이다. 그래서 팀의 우선순위 및 비즈니스의 우선순위를 두는게 중요하다. (참 회사가 어떻게해서 돈을 버는지, 정확하게 몰랐었다.).

@@ -1,12 +1,13 @@
 ---
-title: Physically Based Rendering From Theory to Implementation
-layout: post
-category: book
-tags: [logs, book]
-published: false
+layout: review
+title: "Physically Based Rendering From Theory to Implementation"
+author: "Matt Pharr, Wenzel Jakob, Greg Humphreys"
+year: 2023
+status: "Reading"
+cover: "physically_based_rendering.jpg"
+description: "Physically Based Rendering From Theory to Implementation"
+date: 2023-10-21
 ---
-
-
 
 ## Physically Based Rendering From Theory to Implementation
 

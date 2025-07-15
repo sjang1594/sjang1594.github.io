@@ -6,7 +6,7 @@ description: >
   Hi, I'm Seungho Jang.
 hide_description: true
 sidebar: true
-order: 6
+order: 7
 left_column:
  - work
  - education

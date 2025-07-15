@@ -1,0 +1,128 @@
+---
+layout: base
+---
+
+{{ content }}
+
+{% assign books = site.books | sort: "date" %}
+{% assign current_year = '' %}
+
+<h2>{{ page.list_title | default: "Bookshelf" }}</h2>
+
+{% if books != empty %}
+
+  {% for book in books reversed %}
+    {% assign book_year = book.date | date: "%Y" %}
+    
+    {% if book_year != current_year %}
+      {% unless forloop.first %}</ul>{% endunless %}
+      <h2 id="{{ book_year }}">{{ book_year }}</h2>
+      <ul class="bookshelf">
+      {% assign current_year = book_year %}
+    {% endif %}
+
+    <li class="book-item">
+      <figure>
+        <a href="{{ book.url | relative_url }}">
+          {% if book.cover %}
+            <img src="{{ '/assets/img/books/' | append: book.cover | relative_url }}" alt="{{ book.title }} cover" />
+          {% elsif book.olid %}
+            <img src="https://covers.openlibrary.org/b/olid/{{ book.olid }}-L.jpg?default=false" alt="{{ book.title }} cover" />
+          {% elsif book.isbn %}
+            <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg?default=false" alt="{{ book.title }} cover" />
+          {% endif %}
+
+          <figcaption class="book-status {{ book.status | downcase | strip }}">
+            {{ book.status | upcase }}
+          </figcaption>
+        </a>
+        <figcaption class="book-caption">
+          {{ book.title }}<br />
+          <small>{{ book.author }}</small>
+        </figcaption>
+      </figure>
+    </li>
+
+    {% if forloop.last %}</ul>{% endif %}
+  {% endfor %}
+
+{% else %}
+  <p>아직 책이 없습니다.</p>
+{% endif %}
+
+<style>
+  .bookshelf {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: 2em;
+  }
+
+  .book-item {
+    width: 120px;
+    text-align: center;
+  }
+
+  .book-item figure {
+    margin: 0;
+  }
+
+  .book-item img {
+    width: 120px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  }
+
+  .book-caption {
+    margin-top: 0.5em;
+    font-size: 0.9em;
+    line-height: 1.3em;
+  }
+
+  .book-status {
+    font-family: monospace;
+    font-size: 0.75em;
+    font-weight: bold;
+    color: #23212D;
+    padding: 2px 6px;
+    margin-top: 4px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #b0abb3;
+    text-transform: uppercase;
+  }
+
+  .book-status.reading {
+    background-color: #f89406;
+  }
+
+  .book-status.finished {
+    background-color: #62c462;
+  }
+
+  .book-status.queued {
+    background-color: #9e76b5;
+  }
+
+  .book-status.abandoned {
+    background-color: #ee5f5b;
+  }
+
+  .book-status.interested {
+    background-color: #7691db;
+  }
+
+  .book-status.uncategorized {
+    background-color: #b0abb3;
+  }
+
+  h2 {
+    margin-top: 2em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+  }
+</style>

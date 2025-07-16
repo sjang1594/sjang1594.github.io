@@ -150,6 +150,8 @@ According to the paper, as the network depth increases, there is a noticeable tr
 
 The following diagram shows how these challenges have been addressed in the improved architecture.
 
+
+
 ### 6. DenseNet
 
 ### 7. MobileNet

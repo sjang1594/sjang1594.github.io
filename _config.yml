@@ -183,13 +183,18 @@ kramdown:
   footnote_backlink:   '&#x21a9;&#xfe0e;'
   # hard_wrap:           true  # Setting it to `true` will interprets line breaks literally from the markdown file.
 
+analytics:
+  provider               : "google-gtag" 
+                          # false (default), "google", "google-universal", "google-gtag", "custom"
+  google:
+    tracking_id          : "G-Y4BQ400TH0"
+    anonymize_ip         : # true, false (default)
 
 # 3rd Party Integrations
 # ----------------------------------------------------------------------------------------
 
 # Set your Google Analytics id to receive `pageview` events.
 # To remove Google Analytics from your page, remove the line below.
-google_analytics:      google93abcae935f31b7d.html
 
 # Set which comment system to use
 comments:

@@ -4,7 +4,7 @@ type: tag
 title: ROS
 slug: ros
 category: study
-sidebar: true
+sidebar: false
 description: >
    Robotic Operating System
 ---

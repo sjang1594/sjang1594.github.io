@@ -4,7 +4,7 @@ type: tag
 title: Game Development
 slug: Game Dev
 category: study
-sidebar: false
+sidebar: true
 description: >
    Game Dev
 ---

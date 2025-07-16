@@ -150,13 +150,113 @@ According to the paper, as the network depth increases, there is a noticeable tr
 
 The following diagram shows how these challenges have been addressed in the improved architecture.
 
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/bottle_neck.png" alt="alt text" width="600">
+</p>
 
+1. Reduction stage: Reduce the number of parameters
+2. Processing stage: Extract local features
+3. Input/Output alignment: Match channel dimensions for 𝐻(𝑥) − 𝑥
+
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/result.png" alt="alt text" width="600">
+</p>
 
 ### 6. DenseNet
 
-### 7. MobileNet
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/dense_net.png" alt="alt text" width="600">
+</p>
+
+As shown above, the layers are densely connected, meaning each layer is connected to every other layer in a feed-forward fashion.
+This dense connectivity is the key point, and can be seen as an extension of residual learning.
+
+Key characteristics include:
+1. Feature reuse: Each layer receives the outputs of all preceding layers as its input.
+2. Parameter efficiency: The number of feature maps is controlled by a growth rate (k), which limits how much the output grows per layer.
+3. Implicit multi-scale learning: Low-level and high-level features are naturally fused through dense connections, enabling the network to learn across multiple scales automatically.
+
+| Component            | Role                                | Mathematical Expression                                      |
+|----------------------|-------------------------------------|--------------------------------------------------------------|
+| **Dense Block**      | Preserve feature map connections     | xₗ = Hₗ([x₀, x₁, ..., xₗ₋₁])                                 |
+| **Transition Layer** | Reduce dimensions and prevent redundancy | T(x) = Conv₁×₁(BN(ReLU(x)))                             |
+| **Bottleneck Layer** | Improve computational efficiency     | Hₗ = Conv₃×₃(Conv₁×₁(x))   
+
+From the equations above, we can clearly see the difference from ResNet.
+In ResNet, the residual connection is defined as: 𝑥𝑙 = 𝐻𝑙(𝑥𝑙 −1) + 𝑥𝑙 −1
+ 
+This means each layer receives input only from the previous layer, and the outputs are summed.
+In contrast, DenseNet connects all preceding feature maps to the current layer as input, which increases the diversity of learned representations.
+
+One drawback of ResNet is that if the two feature maps being summed come from different distributions, the addition operation may become less effective or even harmful.
+
+In short:
+* ResNet uses `sum`
+* DenseNet uses `concat`
+
+### 7. EfficientNet
+
+Traditional models typically scale along a single dimension—either depth, width, or resolution.
+What sets this approach apart is the idea of scaling all three dimensions in a balanced way.
+This is the core of what’s called Compound Scaling.
+
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/efficientnet.png" alt="alt text" width="600">
+</p>
+
+So the key point of this architecture lies in how to find the optimal balance between depth, width, and resolution.
+
+Let’s briefly look at what each dimension represents:
+* Depth: Increasing the number of layers → allows the model to capture more complex patterns
+* Width: Increasing the number of channels → improves the model's ability to learn fine-grained features
+* Resolution: Increasing the input image size → enables the use of higher-resolution spatial information
+* Based on these definitions, the architecture introduces a compound coefficient, denoted as ϕ (phi), to uniformly scale all three dimensions.
+
+This coefficient is found using a greedy search, which led to the discovery of the following scaling constants: α=1.2 (depth) β=1.1 (width) 𝛾 =1.15 (resolution). 
+
+These constants are then used to guide the compound scaling process in EfficientNet
+| Component         | Technique                        | Mathematical Expression                                              |
+|-------------------|----------------------------------|----------------------------------------------------------------------|
+| **MBConv**        | Inverted residual block          | `F̂(x) = T_proj(T_expand(x)) ⊙ SE(T_dw(x))`                          |
+| **SE Block**      | Channel-wise attention modulation| `w_c = σ(W₂ δ(W₁ · GAP(x)))`                                        |
+| **Swish Activation** | Smooth activation function    | `swish(x) = x · σ(βx)`
+
+### 6. MobileNet
+
+Just from the name alone, it's clear where this model is meant to be used—on mobile devices.
+It’s a deep learning model designed specifically for mobile and resource-constrained environments.At its core, the key challenge was: "How can we reduce the amount of computation?" and that’s exactly what this architecture set out to solve.
+
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/mobilenet.png" alt="alt text" width="600">
+</p>
+
+In MobileNet, the goal is to balance latency and accuracy. Ultimately, the model achieves successful lightweight optimization, making it suitable for mobile and embedded devices.
+
+To understand how this is done, it’s important to grasp the concept of Depthwise Separable Convolution.
+
+Unlike standard convolutions (often referred to as pointwise convolutions when using 1×1 kernels), depthwise separable convolutions learn a separate filter for each input channel.
+In traditional convolutions, each filter operates across all input channels, making it difficult to isolate spatial features.
+Depthwise convolution, on the other hand, performs a convolution independently per channel, similar to grouping filters—a technique that dramatically reduces computation while retaining performance.
+
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/mobilenet_1.png" alt="alt text" width="600">
+</p>
+
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/mobilenet_2.png" alt="alt text" width="600">
+</p>
+
+| Technique                      | Description                                                                 |
+|-------------------------------|-----------------------------------------------------------------------------|
+| **Channel Reduction**         | Reduce the number of channels using a width multiplier: `channels × α` (e.g., α = 1.0, 0.75, 0.5) |
+| **Compression**               | Reduce model size and parameters by setting a smaller α (e.g., α = 0.5)     |
+| **Evenly Spaced Downsampling**| Use stride = 2 in early layers (e.g., 224×224 → 112×112)                    |
+| **Shuffle Operation**         | Shuffle channels to promote cross-group information flow (e.g., ShuffleNet) |
+| **Knowledge Distillation & Compression** | Model compression techniques like **pruning**, **quantization**, and **distillation** |
+
 
 ### Resource
 * [CNN 흐름 역사](https://junklee.tistory.com/111)
 * [Reproducibility in Deep Learning and Smooth Activations](https://research.google/blog/reproducibility-in-deep-learning-and-smooth-activations/)
 * [CNN Case Study (2)](https://blog.naver.com/sohyunst/221665969575)
+* [CNN Algorithm Implementation](https://velog.io/@tbvjvsladla/%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5-%EA%B3%A0%EA%B8%89%EC%8B%9C%EA%B0%81-%EA%B0%95%EC%9D%98-%EB%B3%B5%EC%8A%B5-16.-%EC%A3%BC%EC%9A%94-CNN%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EA%B5%AC%ED%98%84-ResNet)

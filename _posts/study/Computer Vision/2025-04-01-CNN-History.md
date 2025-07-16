@@ -138,7 +138,17 @@ This is how deeply layered networks with Residual Learning end up looking, as il
   <img src="../../../assets/img/photo/4-01-2025/residual_iter.png" alt="alt text" width="600">
 </p>
 
-According to the paper, as the network depth increases, there is a noticeable trend in performance—but this trend is not necessarily due to overfitting
+According to the paper, as the network depth increases, there is a noticeable trend in performance—but this trend is not necessarily due to overfitting.
+
+**Performance Analysis** 
+
+| Cause              | Explanation                                             | Resolution                    |
+|--------------------|---------------------------------------------------------|-------------------------------|
+| Vanishing Gradient | Weakened gradients in upper layers during backpropagation | Skip Connection               |
+| Weight Attenuation | Imbalanced parameter updates in deeper layers          | Residual Learning Architecture|
+| Optimization Issues| Non-convex functions increase local minima              | Bottleneck Architecture       |
+
+The following diagram shows how these challenges have been addressed in the improved architecture.
 
 ### 6. DenseNet
 

@@ -6,6 +6,8 @@ tags: [computer vision]
 published: true
 ---
 
+## CNN History
+
 ### From Deep Learning Aspirations to Systems Development: My Unexpected Path into AI
 
 During grad school, I studied Deep Learning, thinking it was a promising field worth diving into. I was genuinely excited about neural networks and how they were changing the landscape of tech.

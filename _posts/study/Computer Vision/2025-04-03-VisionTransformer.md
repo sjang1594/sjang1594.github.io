@@ -176,9 +176,129 @@ Create QKV (Query, Key Value)
 The embedding vector generated from the previous steps is linearly transformed into multiple large vectors, which are subdivided into three components: Q (Query), K (Key), and V (Value). These vectors are derived from the $(n + 1) \times d$ array, where $n + 1$ represents the number of patches plus the CLS token, and each component retains the same $n + 1$ length.
 
 <p align="center">
-  <img src="../../../assets/img/photo/4-01-2025/embedding_3.png" alt="alt text" width="400">
+  <img src="../../../assets/img/photo/4-01-2025/vit_4.png" alt="alt text" width="400">
 </p>
 
+The equations are following:
+
+$$
+q = z \cdot w_q,\quad k = z \cdot w_k,\quad v = z \cdot w_v \quad \text{where} \quad w_q, w_k, w_v \in \mathbb{R}^{D \times D_h}
+$$
+
+* usually, $D_h$ set to $D/k$, (k is the number of attention heads — enabling parallel processing.)
+
+### Self.Attention
+Now, we need to compute the attention score.  As shown in the image below, the similarity is calculated by taking the dot product between the query and the key. Then, softmax is applied so that the sum of each row in matrix \( A \) becomes 1.
+
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/vit_5.png" alt="alt text" width="400">
+</p>
+
+The equations are following:
+
+$$
+SA(z) = A \cdot v \in \mathbb{R}^{N \times D_h}, \quad \text{where} \quad A = \text{softmax} \left( \frac{q \cdot k^T}{\sqrt{D_h}} \right) \in \mathbb{R}^{N \times N}
+$$
+
+After that, a weighted sum is computed over \( v \) using the attention weights.
+
+Here’s the process: to obtain the aggregated contextual information for each element, we perform the computation using the first row of the attention matrix. At this point, we use the weights applied to \( V \) to generate the aggregated vector for the first image embedding. This operation is then applied to all patches.
+
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/vit_6.png" alt="alt text" width="400">
+</p>
+
+### Multi-Head Attention
+The above process is ultimately repeated multiple times.
+
+$$
+MSA(z) = [SA_1(z); SA_2(z); \cdots; SA_k(z)] U_{\text{msa}} \quad \text{where} \quad U_{\text{msa}} \in \mathbb{R}^{(k \cdot D_h) \times D}
+$$
+
+### MLP (Additional Details)
+
+- **Pretraining**: Uses one hidden layer.
+- **Finetuning**: Uses a single linear layer.
+- In total, two linear layers are used, along with the GELU (Gaussian Error Linear Unit) activation function.
+
+### Last Attention Layer Setup
+
+After stacking multiple attention heads, the result is mapped to a vector of dimension \( D \), which matches the patch embedding size.
+
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/vit_7.png" alt="alt text" width="400">
+</p>
+
+### Attention Layer Result
+
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/vit_8.png" alt="alt text" width="400">
+</p>
+
+### Residual Connection
+
+Simply adds the input from the previous layer to the current layer.
+
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/vit_9.png" alt="alt text" width="400">
+</p>
+
+### Feed Forward Network
+
+The output from the previous steps is passed into a feed-forward network.
+
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/vit_10.png" alt="alt text" width="400">
+</p>
+
+### Repeating Process
+Repeat the above process L times.  As shown in the second figure below, after L repetitions, the final classification is performed by passing the first vector y of the Encoder's final output through an MLP Head consisting of a single hidden layer (dimension D × C).
+
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/vit_11.png" alt="alt text" width="400">
+</p>
+
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/vit_12.png" alt="alt text" width="400">
+</p>
+
+### Transformer Layer Processing
+The output $z_l$ at layer $l$ is computed by applying a Multi-Layer Perceptron (MLP) and Layer Normalization (LN) to the input $z_l'$, combined with the residual connection $z_l$. The process is defined as:
+
+**Mathematical Formulation**
+$$z_l = MLP(LN(z_l')) + z_l \quad \text{for} \quad l = 1, 2, \dots, L$$
+where:
+$$LN(z_l') = \gamma \frac{z_l' - \mu_i}{\sqrt{\sigma_i^2 + \epsilon}} + \beta$$
+
+* $LN$: Layer Normalization.
+* $MLP$: Multi-Layer Perceptron.
+* $\gamma, \beta$: Learnable scaling and shift parameters.
+* $\mu_i$: Mean of the input.
+* $\sigma_i^2$: Variance of the input.
+* $\epsilon$: Small constant for numerical stability.
+
+This iterative process refines the embeddings across $L$ layers.
+
+### Identifying Classification Token Output and Predicting Classification Probabilities
+The final step involves examining the output of the CLS Token (Classification Token). This vector serves as the last step in the Vision Transformer. In the final stage, it is passed through a Fully Connected Layer to compute Classification Probabilities, enabling the prediction of the image class.
+
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/vit_13.png" alt="alt text" width="400">
+</p>
+
+<p align="center">
+  <img src="../../../assets/img/photo/4-01-2025/vit_14.png" alt="alt text" width="400">
+</p>
+
+
+### Inductive Bias
+* The term Inductive Bias frequently appears in this context. For CNNs, the use of Convolution Operations, which are specific to images, introduces an inductive bias. This bias includes:
+
+* Locality: Focusing on local regions of the image.
+* Two-Dimensional Neighborhood Structure: Capturing spatial relationships in a 2D grid.
+* Translation Equivariance: Ensuring the model responds consistently to translated inputs.
+
+In contrast, Vision Transformers (ViTs) rely on MLP Layers to implicitly address Locality and Translation Equivariance. ViTs learn these properties through the Input Image Patches and refine them via Positional Embeddings (e.g., through fine-tuning).
 
 ### Resource
 [Transformers for Image Recognition at Scale](https://research.google/blog/transformers-for-image-recognition-at-scale/)

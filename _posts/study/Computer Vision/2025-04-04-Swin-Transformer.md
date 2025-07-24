@@ -214,4 +214,4 @@ In conclusion, as shown in the figure above, the Relative Position Bias is gener
 * [Swin Transformer Paper Review](https://kimjy99.github.io/%EB%85%BC%EB%AC%B8%EB%A6%AC%EB%B7%B0/swin-transformer/)
 * [Swin Transformer Paper Review](https://stevenkim1217.tistory.com/entry/%EB%85%BC%EB%AC%B8-%EC%A0%95%EB%A6%AC-Swin-Transformer-Hierarchical-Vision-Transformer-using-Shifted-Windows)
 * [Youtube - Swin Transformer Animated and Explained](https://www.youtube.com/watch?v=SndHALawoag&t=360s&ab_channel=AICoffeeBreakwithLetitia)
-* [Youtube - Hierarchical Vision Transformer using Shifted Window](https://www.youtube.com/watch?v=tFYxJZBAbE8&ab_channel=AIBites)
+* [Youtube - Hierarchical Vision Transformer using Shifted Window](https://www.youtube.com/watch?v=tFYxJZBAbE8&ab_channel=AIBites)    

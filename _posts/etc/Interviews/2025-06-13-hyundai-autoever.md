@@ -1,11 +1,11 @@
 ---
-title: Hyundai Autoever
+title: Hyundai Autoever Interviews
 layout: post
 category: etc
 tags: [interviews]
-published: false
+published: True
 ---
 
 ### Motivation
-I was thinking about on 
 
+It's been quite a while after I left the previous job, which made me focus on what I really wanted to do with my career. When the AI technology 

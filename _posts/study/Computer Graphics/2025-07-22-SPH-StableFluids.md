@@ -23,7 +23,7 @@ $$
 * ${N}(i)$ : Neighboring particles of i.
 * ${W}{ij}$: Weight function dependent on the distance between particles i and j (calculated via a kernel). 
 
-To make things easier is to put the particle into grid system.
+To make things easier is to put the particle into grid system. 
 
 ### Stable Fluids
 

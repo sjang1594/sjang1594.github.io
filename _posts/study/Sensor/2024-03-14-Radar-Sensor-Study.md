@@ -6,13 +6,11 @@ tags: [RADAR]
 published: false
 ---
 
-### RADAR 에 대해서 공부한 내용을 정리 하려고 한다.
+### RADAR (Sensor)
 
 ## PreRequiste
 
 ### SNR
-
-### RADAR
 
 Air 에서 Electromagentic Wave 감소가 됩니다.
 

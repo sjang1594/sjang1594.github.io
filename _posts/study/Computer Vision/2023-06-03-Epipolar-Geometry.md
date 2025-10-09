@@ -6,6 +6,4 @@ tags: [computer vision]
 published: false
 ---
 
-
-
 ## Epipolar Geometry

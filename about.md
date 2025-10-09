@@ -24,10 +24,10 @@ I graduated with my master's degree in Computer Science. I enjoyed all my classe
 
 **What I am really interested in & Project ?**
 
-* Within Computer Vision Applications, I am eager to learn `3D Reconstruction`, `Depth Estimation`, and `Point Cloud Processing`.
+- Within Computer Vision Applications, I am eager to learn `3D Reconstruction`, `Depth Estimation`, and `Point Cloud Processing`.
 
-* Game Engine Development and Parallel Computing is also part of my interests (CUDA, Compute Shader, Deep Learning).
-* - [GameEngineWDirectX11](https://github.com/sjang1594/GameEngineWDirectX11)
+- Game Engine Development and Parallel Computing is also part of my interests (CUDA, Compute Shader, Deep Learning).
+- [GameEngineWDirectX11](https://github.com/sjang1594/GameEngineWDirectX11)
 - [Luna Game Engine](https://github.com/sjang1594/LunaEngine)
 
 Please feel free to contact me, if you have any good feedback!

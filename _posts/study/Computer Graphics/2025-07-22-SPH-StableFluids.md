@@ -6,12 +6,12 @@ tags: [directx, computer graphics, hlsl]
 published: false
 ---
 
-### Particle Based Simulation
+## Particle Based Simulation
 
 
-### Smooth Particle Hydrodynamics (SPH)
+## Smooth Particle Hydrodynamics (SPH)
 
-### Grid Based(Structure Grid) or Mesh Based Simulation
+## Grid Based(Structure Grid) or Mesh Based Simulation
 
 In particle-based simulations, a significant challenge arises from the need to locate all neighboring particles for each computation, since their positions are randomly distributed. This irregular spacing makes it hard to directly apply classic derivative formulas—as in grid-based approaches—and instead requires taking weighted averages over unevenly spaced neighbors. Consequently, not only does this complicate the mathematical approximation of derivatives, but it also substantially increases computational demands, since neighbor searching and kernel weight calculations must be adapted to the random geometry of the system. This is basic example (or equation) that this can be difficult to takes the gradient on random distributed particles is following:
 
@@ -25,8 +25,9 @@ $$
 
 To make things easier is to put the particle into grid system. 
 
-### Stable Fluids
+## Stable Fluids
 
+Major Concepts in Stable Fluids are **Incompressibility** & **Viscosity**
 
 ## Resource
 **Smooth Particle Hydrodynamics**

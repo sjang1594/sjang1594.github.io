@@ -56,6 +56,8 @@ Where N is the number of samples, and p(wi) is the probability density function 
 </p>
 
 
+
+
 ## Resource 
 * [Youtube - MIT](https://www.youtube.com/watch?v=BCZ56MU-KhQ&ab_channel=AlexanderAmini)
 * [What is Neural Rendering - Medium](https://hu-po.medium.com/what-is-neural-rendering-e25371afc771)

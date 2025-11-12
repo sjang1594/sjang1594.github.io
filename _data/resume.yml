@@ -33,7 +33,13 @@ work:
     startDate: "20-10-05"
     endDate: "24-12-31"
     summary: >
-      I was a passionate Junior Software Engineer with a strong foundation in game engine development and simulation systems. I've cultivated my expertise in Unreal Engine and Unity creating systems are necessary for simulation industry, while embracing CI/CD practices to enhance code quality and system reliability. All the details can be found in project section or my resume. <br>
+      I was a passionate Junior Software Engineer with a strong foundation in game engine development and simulation systems. I've cultivated my expertise in Unreal Engine and Unity creating systems are necessary for simulation industry, while embracing CI/CD practices to enhance code quality and system reliability. All the details can be found in project section or my resume.
+  - company: "Hyundai-Autoever"
+    position: "Unreal & Game Engine Engineer"
+    website: "https://www.hyundai-autoever.com/kor/business-area/digital-transformation/sdf/contents.do?cntnSeq=455"
+    startDate: "25-08-01"
+    summary: >
+      At Hyundai AutoEver, engineered a real-time factory monitoring and control platform by integrating Unreal Engine with NVIDIA Isaac Sim, enabling advanced visualization of industrial operations. Built TCP-based communication layers for interactive robotic arm control using Lula, implementing precise inverse kinematics in a digital twin environment. This work drove instant feedback cycles on the factory floor—demonstrating the convergence of simulation, robotics, and graphics in next-generation smart manufacturing. <br/>
 education:
   - institution: "Washington University in Saint Louis / UMSL"
     area: "Electrical & Electronic Engineering"

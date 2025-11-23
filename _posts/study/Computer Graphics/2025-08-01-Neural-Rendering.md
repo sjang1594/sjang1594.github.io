@@ -7,6 +7,9 @@ published: false
 ---
 
 ## Motivation
+
+I have been studying neural rendering in months, and I still think rendering is one of the awesome thing I care about the most. Let's get into it!
+
 Firstly, Let's look at the diagram below, Forward Rendering (in this case specific, this is not forward rendering/deferrered rendering context, this just shows the computer graphics and computer vision=inverse rendering) is what we learn from Computer Graphics, such as PBR. Inverse Rendering application, for instance, might be 3D reconstruction and motion capture, etc. 
 
 <p align="center">

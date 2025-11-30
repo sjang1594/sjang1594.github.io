@@ -6,6 +6,8 @@ tags: [computer graphics]
 published: true
 ---
 
+## Volume Rendering
+
 ### Motivation
 
 Volume rendering is a technique used to visualize 3D volumetric data, such as medical scans (CT, MRI), scientific simulations, and fluid dynamics. Unlike traditional surface rendering, which only displays the surfaces of objects, volume rendering allows us to see the internal structures and variations within a volume.
@@ -53,7 +55,10 @@ If at one point, there is s_tilde that it's emtting light towards the view direc
 
 Let's look at the image below!
 
-![alt text](image-1.png)
+<p align="center">
+  <img src="../../../assets/img/photo/1_latest/equation_volume_rendering.png" alt="alt text" width="600">
+</p>
+
 
 The 1) shows the how much light blocks along the ray segment. We won't be able to see the light source (L^s), but by this transmittance function T(x, x_surface) => Basically tells us how much light is getting through from point x_s to x. Then the 2) integral of how much(percentage) we can see along the z direction, then if we go up to surface level, that becomes the T(x, x_surface). Since it is possible that the inside of the volume can emit the lights, scatter, and absorb, we need to evaluate in this volume. T(x,z) will be absorbed, sigma_t(z) is the materials property. 
 

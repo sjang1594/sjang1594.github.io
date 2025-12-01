@@ -1,9 +1,9 @@
 ---
 layout: portfolio
+type: category
 title: Portfolio
-permalink: /Portfolio/
+slug: portfolio
 sidebar: true
 order: 8
 description: >
-  List of What I have done
 ---

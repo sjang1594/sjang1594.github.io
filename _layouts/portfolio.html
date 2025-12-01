@@ -1,0 +1,153 @@
+---
+layout: base
+title: Portfolio
+---
+
+<h1 class="portfolio-title">Portfolio</h1>
+
+<!-- Portfolio Filters -->
+<div id="portfolio-filters">
+  <button class="filter-btn active" data-filter="*">All</button>
+  <button class="filter-btn" data-filter=".rendering">Rendering</button>
+  <button class="filter-btn" data-filter=".simulation">Simulation</button>
+  <button class="filter-btn" data-filter=".photography">Photography</button>
+  <button class="filter-btn" data-filter=".video">Video</button>
+</div>
+
+<!-- Portfolio Grid -->
+<div class="portfolio-grid">
+  {% assign items = site.portfolio | sort: "year" %}
+  {% for item in items reversed %}
+  <div class="portfolio-item {{ item.category }}">
+    <a href="{{ item.full | relative_url }}" class="portfolio-link" data-gallery="portfolio" data-glightbox="title: {{ item.title }}; description: {{ item.year }}">
+      <img src="{{ item.thumbnail | relative_url }}" alt="{{ item.title }}" />
+
+      <div class="portfolio-info">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.year }}</p>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Lightbox -->
+<link rel="stylesheet" href="/assets/lib/glightbox.min.css" />
+<script src="/assets/lib/glightbox.min.js"></script>
+<script>
+  const lightbox = GLightbox({
+    selector: '[data-glightbox]'
+  });
+</script>
+
+<!-- Isotope Filtering (Optional but Recommended) -->
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<script>
+  var grid = document.querySelector('.portfolio-grid');
+  var iso = new Isotope(grid, {
+    itemSelector: '.portfolio-item',
+    layoutMode: 'fitRows'
+  });
+
+  var filterButtons = document.querySelectorAll('.filter-btn');
+  filterButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+
+      var filterValue = this.getAttribute('data-filter');
+      iso.arrange({ filter: filterValue });
+    });
+  });
+</script>
+
+<style>
+  /* Page Title */
+  .portfolio-title {
+    font-size: 2.4em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid #555;
+    padding-bottom: 10px;
+  }
+
+  /* Filter Buttons */
+  #portfolio-filters {
+    margin-bottom: 1.5em;
+  }
+
+  .filter-btn {
+    background: #333;
+    color: white;
+    padding: 8px 18px;
+    margin-right: 8px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: background 0.2s;
+  }
+
+  .filter-btn:hover {
+    background: #444;
+  }
+
+  .filter-btn.active {
+    background: #5a8dee;
+  }
+
+  /* Grid */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #222;
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  }
+
+  .portfolio-item img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  /* Hover Effect */
+  .portfolio-item:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Overlay */
+  .portfolio-info {
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+    transition: opacity 0.25s ease;
+  }
+
+  .portfolio-item:hover .portfolio-info {
+    opacity: 1;
+  }
+
+  .portfolio-info h3 {
+    margin: 0;
+    font-size: 1.1em;
+  }
+
+  .portfolio-info p {
+    margin: 0;
+    opacity: 0.8;
+    font-size: 0.85em;
+  }
+</style>

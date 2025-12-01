@@ -337,6 +337,10 @@ collections:
     permalink:         /:collection/:title/
     output:            true
 
+  portfolio:
+    permalink:         /portfolio/:title/
+    output:            true
+
 future: true
 include:
   - assets/img/books

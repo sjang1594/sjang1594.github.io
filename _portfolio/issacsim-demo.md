@@ -1,6 +1,6 @@
 ---
 title: Issac SIM - E-Forest Tech Day
-category: Robotics
+category: [Robotics, Simulation]
 type: video
 thumbnail: /assets/porfolio/thumbs/e-forest-demo.png
 embed: https://www.youtube.com/watch?v=Bmy-zSBnjkE

@@ -4,10 +4,9 @@ title: Portfolio
 permalink: /portfolio/
 ---
 
-<h1 class="portfolio-title">Portfolio</h1>
+<h1 class="page-title">Portfolio</h1>
 
-<!-- Filter Buttons -->
-<div class="filters">
+<div id="portfolio-filters" class="filters">
   <button class="filter-btn active" data-filter="*">All</button>
   <button class="filter-btn" data-filter="Rendering">Rendering</button>
   <button class="filter-btn" data-filter="Simulation">Simulation</button>
@@ -15,131 +14,116 @@ permalink: /portfolio/
   <button class="filter-btn" data-filter="Computer Vision">Computer Vision</button>
 </div>
 
-<!-- Masonry Grid -->
-<div class="grid">
-  {% assign items = site.portfolio | sort: "year" %}
-  {% for item in items reversed %}
+<div class="masonry-grid">
+  {% assign items = site.portfolio %}
+  {% for item in items %}
+    {% assign categories = item.category %}
+    <div class="masonry-item"
+        data-category="{{ categories | join: ',' }}">
+      
+      {% if item.type == "image" %}
+        <a href="{{ item.full }}" class="glightbox">
+          <img src="{{ item.thumbnail }}" alt="{{ item.title }}">
+        </a>
 
-    {% assign is_video = item.type == "video" %}
+      {% elsif item.type == "video" %}
+        <video class="video-thumb" controls preload="metadata">
+          <source src="{{ item.source }}" type="video/mp4">
+        </video>
+      {% endif %}
 
-    <div class="grid-item" data-category="{{ item.category }}">
-      <a
-        {% if is_video %}
-          href="{{ item.source }}"
-          class="glightbox"
-          data-type="video"
-        {% else %}
-          href="{{ item.full }}"
-          class="glightbox"
-          data-type="image"
-        {% endif %}
-        data-title="{{ item.title }}"
-      >
-        <img src="{{ item.thumbnail }}" alt="{{ item.title }}">
-      </a>
-      <div class="caption">{{ item.title }}</div>
+      <p class="caption">{{ item.title }}</p>
     </div>
-
   {% endfor %}
 </div>
 
-<!-- Libraries -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-
-<!-- Portfolio Logic -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  // GLightbox
-  GLightbox({ selector: ".glightbox" });
-
-  // Masonry
-  const grid = document.querySelector(".grid");
-  const msnry = new Masonry(grid, {
-    itemSelector: ".grid-item",
-    columnWidth: ".grid-item",
-    percentPosition: true,
-    gutter: 12
-  });
+  const lightbox = GLightbox({ selector: ".glightbox" });
 
   // Filtering
-  const filterBtns = document.querySelectorAll(".filter-btn");
+  const buttons = document.querySelectorAll(".filter-btn");
+  const items = document.querySelectorAll(".masonry-item");
 
-  filterBtns.forEach(btn => {
+  buttons.forEach(btn => {
     btn.addEventListener("click", () => {
-      const filter = btn.dataset.filter;
-
-      filterBtns.forEach(b => b.classList.remove("active"));
+      document.querySelector(".filter-btn.active").classList.remove("active");
       btn.classList.add("active");
 
-      document.querySelectorAll(".grid-item").forEach(item => {
-        const category = item.dataset.category;
+      const filter = btn.dataset.filter;
 
-        if (filter === "*" || category === filter) {
+      items.forEach(item => {
+        const categories = item.dataset.category.split(",");
+
+        if (filter === "*" || categories.includes(filter)) {
           item.style.display = "block";
         } else {
           item.style.display = "none";
         }
       });
-
-      msnry.layout();
     });
   });
-});
+
+  // Simple Masonry layout
+  window.addEventListener("load", () => {
+    const grid = document.querySelector('.masonry-grid');
+    const msnry = new Masonry(grid, {
+      itemSelector: '.masonry-item',
+      columnWidth: 240,
+      gutter: 16
+    });
+  });
 </script>
 
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
 <style>
-.portfolio-title {
+.masonry-grid {
+  margin-top: 30px;
+}
+
+.masonry-item {
+  width: 240px;
   margin-bottom: 16px;
+}
+
+.masonry-item img,
+.masonry-item video {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.video-thumb {
+  background: #000;
+}
+
+.caption {
+  margin-top: 8px;
+  font-size: 0.9em;
+  color: #ddd;
   text-align: center;
 }
 
 .filters {
-  text-align: center;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .filter-btn {
-  margin: 0 6px;
-  padding: 6px 12px;
-  border: none;
-  cursor: pointer;
   background: #444;
-  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  color: white;
   border-radius: 6px;
-  font-size: 0.85em;
+  margin: 0 6px;
+  cursor: pointer;
 }
 
 .filter-btn.active {
-  background: #6c5ce7;
-}
-
-.grid {
-  margin-top: 20px;
-}
-
-.grid-item {
-  width: 180px; /* 썸네일 크기 줄임 */
-  margin-bottom: 16px;
-  display: inline-block;
-  vertical-align: top;
-}
-
-.grid-item img {
-  width: 180px;
-  height: auto;
-  display: block;
-  border-radius: 8px;
-  object-fit: cover;
-  box-shadow: 0 0 6px rgba(0,0,0,0.15);
-}
-
-.caption {
-  margin-top: 6px;
-  text-align: center;
-  font-size: 0.85em;
-  color: #ccc;
+  background: #9c6df9;
 }
 </style>

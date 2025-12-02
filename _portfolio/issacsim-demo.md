@@ -1,7 +1,7 @@
 ---
 title: Issac SIM - E-Forest Tech Day
-thumbnail: /assets/portfolio/thumbs/ue5_reel.jpg
+thumbnail: /assets/porfolio/thumbs/e-forest-demo.png
 embed: https://www.youtube.com/watch?v=Bmy-zSBnjkE
 category: video
-year: 2024
+year: 2025
 ---

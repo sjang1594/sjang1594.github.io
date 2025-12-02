@@ -30,11 +30,6 @@ permalink: /portfolio/
 <div class="masonry-grid">
   {% for item in site.portfolio %}
 
-    {% comment %}
-    ---------------------------------------------------------
-    CATEGORY CLASS BUILDING (normalize: "Computer Vision" → "computer-vision")
-    ---------------------------------------------------------
-    {% endcomment %}
     {% assign categories_class = "" %}
     {% for cat in item.category %}
       {% assign normalized = cat | downcase | replace: ' ', '-' %}
@@ -44,11 +39,6 @@ permalink: /portfolio/
     <div class="grid-item {{ categories_class }}">
       <div class="portfolio-card">
 
-        {% comment %}
-        ---------------------------------------------------------
-        VIDEO TYPE: YOUTUBE THUMBNAIL AUTO-DETECTION
-        ---------------------------------------------------------
-        {% endcomment %}
         {% if item.type == "video" %}
           {% assign yt = item.embed %}
           {% if yt contains "youtube.com" %}
@@ -63,18 +53,11 @@ permalink: /portfolio/
           </a>
         {% endif %}
 
-
-        {% comment %}
-        ---------------------------------------------------------
-        IMAGE TYPE
-        ---------------------------------------------------------
-        {% endcomment %}
         {% if item.type == "image" %}
           <a href="{{ item.full }}" class="glightbox">
             <img src="{{ item.thumbnail }}" class="thumb" />
           </a>
         {% endif %}
-
 
         <div class="caption">
           <h3>{{ item.title }}</h3>
@@ -94,22 +77,34 @@ permalink: /portfolio/
   {% endfor %}
 </div>
 
+
+<!-- Dependencies -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+
 
 <script>
   const lightbox = GLightbox({ selector: '.glightbox' });
 
   const grid = document.querySelector('.masonry-grid');
-  const msnry = new Masonry(grid, {
-    itemSelector: '.grid-item',
-    columnWidth: '.grid-item',
-    percentPosition: true,
-    gutter: 20
+
+  // Masonry must run ONLY after images load
+  imagesLoaded(grid, function () {
+    msnry = new Masonry(grid, {
+      itemSelector: '.grid-item',
+      columnWidth: '.grid-item',
+      percentPosition: true,
+      gutter: 20
+    });
   });
 
+
+  // Filtering logic
   const filterBtns = document.querySelectorAll(".filter-btn");
+
   filterBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       const filter = btn.getAttribute("data-filter");
@@ -119,9 +114,9 @@ permalink: /portfolio/
 
       document.querySelectorAll(".grid-item").forEach(item => {
         if (filter === "*" || item.classList.contains(filter.substring(1))) {
-          item.style.display = "block";
+          item.classList.remove("hidden");
         } else {
-          item.style.display = "none";
+          item.classList.add("hidden");
         }
       });
 
@@ -129,6 +124,7 @@ permalink: /portfolio/
     });
   });
 </script>
+
 
 <style>
   .filter-buttons {
@@ -157,6 +153,13 @@ permalink: /portfolio/
   .grid-item {
     width: 180px;
     margin-bottom: 20px;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Hide with opacity instead of display:none → keeps Masonry stable */
+  .grid-item.hidden {
+    opacity: 0;
+    pointer-events: none;
   }
 
   .portfolio-card img.thumb {
@@ -175,7 +178,7 @@ permalink: /portfolio/
     font-size: 1em;
   }
 
-  /* 🔥 Category tags 색상 = filter button(active)와 동일 */
+  /* Tag color = filter-btn.active */
   .tag {
     background: #6c5ce7;
     color: white;

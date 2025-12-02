@@ -4,7 +4,6 @@ type: tag
 title: Book
 slug: book
 category: review
-sidebar: true
+sidebar: false
 description: >
-   Book Reviews
 ---

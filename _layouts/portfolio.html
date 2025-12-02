@@ -4,126 +4,155 @@ title: Portfolio
 permalink: /portfolio/
 ---
 
-<h1 class="page-title">Portfolio</h1>
+<h1>Portfolio</h1>
 
-<div id="portfolio-filters" class="filters">
+<div class="filter-buttons">
   <button class="filter-btn active" data-filter="*">All</button>
-  <button class="filter-btn" data-filter="Rendering">Rendering</button>
-  <button class="filter-btn" data-filter="Simulation">Simulation</button>
-  <button class="filter-btn" data-filter="Robotics">Robotics</button>
-  <button class="filter-btn" data-filter="Computer Vision">Computer Vision</button>
+  {% assign all_categories = "" %}
+  {% for item in site.portfolio %}
+    {% for cat in item.category %}
+      {% unless all_categories contains cat %}
+        {% assign all_categories = all_categories | append: cat | append: "," %}
+      {% endunless %}
+    {% endfor %}
+  {% endfor %}
+  {% assign unique_categories = all_categories | split: "," | uniq | sort %}
+  {% for c in unique_categories %}
+    {% if c != "" %}
+      <button class="filter-btn" data-filter=".{{ c | downcase }}">{{ c }}</button>
+    {% endif %}
+  {% endfor %}
 </div>
 
 <div class="masonry-grid">
-  {% assign items = site.portfolio %}
-  {% for item in items %}
-    {% assign categories = item.category %}
-    <div class="masonry-item"
-        data-category="{{ categories | join: ',' }}">
-      
-      {% if item.type == "image" %}
-        <a href="{{ item.full }}" class="glightbox">
-          <img src="{{ item.thumbnail }}" alt="{{ item.title }}">
-        </a>
+  {% for item in site.portfolio %}
+    {% assign categories_class = "" %}
+    {% for cat in item.category %}
+      {% assign categories_class = categories_class | append: cat | downcase | append: " " %}
+    {% endfor %}
 
-      {% elsif item.type == "video" %}
-        <video class="video-thumb" controls preload="metadata">
-          <source src="{{ item.source }}" type="video/mp4">
-        </video>
-      {% endif %}
+    <div class="grid-item {{ categories_class }}">
+      <div class="portfolio-card">
 
-      <p class="caption">{{ item.title }}</p>
+        {% if item.type == "video" %}
+          <a href="{{ item.embed }}" class="glightbox" data-type="video">
+            <img src="{{ item.thumbnail }}" class="thumb" />
+          </a>
+
+        {% elsif item.type == "image" %}
+          <a href="{{ item.full }}" class="glightbox">
+            <img src="{{ item.thumbnail }}" class="thumb" />
+          </a>
+        {% endif %}
+
+        <div class="caption">
+          <h3>{{ item.title }}</h3>
+          <p class="categories">
+            {% for c in item.category %}
+              <span>{{ c }}</span>
+            {% endfor %}
+          </p>
+          <p class="year">{{ item.year }}</p>
+        </div>
+
+      </div>
     </div>
   {% endfor %}
 </div>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 
 <script>
-  const lightbox = GLightbox({ selector: ".glightbox" });
+  const lightbox = GLightbox({ selector: '.glightbox' });
+
+  // Masonry
+  const grid = document.querySelector('.masonry-grid');
+  const msnry = new Masonry(grid, {
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-item',
+    percentPosition: true,
+    gutter: 20
+  });
 
   // Filtering
-  const buttons = document.querySelectorAll(".filter-btn");
-  const items = document.querySelectorAll(".masonry-item");
-
-  buttons.forEach(btn => {
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  filterBtns.forEach(btn => {
     btn.addEventListener("click", () => {
+      const filter = btn.getAttribute("data-filter");
+
+      // active class
       document.querySelector(".filter-btn.active").classList.remove("active");
       btn.classList.add("active");
 
-      const filter = btn.dataset.filter;
-
-      items.forEach(item => {
-        const categories = item.dataset.category.split(",");
-
-        if (filter === "*" || categories.includes(filter)) {
+      document.querySelectorAll(".grid-item").forEach(item => {
+        if (filter === "*" || item.classList.contains(filter.substring(1))) {
           item.style.display = "block";
         } else {
           item.style.display = "none";
         }
       });
-    });
-  });
 
-  // Simple Masonry layout
-  window.addEventListener("load", () => {
-    const grid = document.querySelector('.masonry-grid');
-    const msnry = new Masonry(grid, {
-      itemSelector: '.masonry-item',
-      columnWidth: 240,
-      gutter: 16
+      msnry.layout();
     });
   });
 </script>
 
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-
 <style>
-.masonry-grid {
-  margin-top: 30px;
-}
+  .filter-buttons {
+    margin-bottom: 20px;
+  }
+  .filter-btn {
+    padding: 6px 14px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 6px;
+    background: #444;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  .filter-btn.active {
+    background: #6c5ce7;
+  }
 
-.masonry-item {
-  width: 240px;
-  margin-bottom: 16px;
-}
+  .masonry-grid {
+    margin-top: 20px;
+  }
 
-.masonry-item img,
-.masonry-item video {
-  width: 100%;
-  border-radius: 10px;
-  display: block;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
+  .grid-item {
+    width: 180px; /* 🔥 thumbnail 크기 줄임 */
+    margin-bottom: 20px;
+  }
 
-.video-thumb {
-  background: #000;
-}
+  .portfolio-card img.thumb {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+  }
 
-.caption {
-  margin-top: 8px;
-  font-size: 0.9em;
-  color: #ddd;
-  text-align: center;
-}
+  .caption {
+    margin-top: 6px;
+    font-size: 0.85em;
+  }
 
-.filters {
-  margin-bottom: 20px;
-  text-align: center;
-}
+  .caption h3 {
+    margin: 0;
+    font-size: 1em;
+  }
 
-.filter-btn {
-  background: #444;
-  border: none;
-  padding: 8px 14px;
-  color: white;
-  border-radius: 6px;
-  margin: 0 6px;
-  cursor: pointer;
-}
+  .categories span {
+    background: #eee;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75em;
+    margin-right: 4px;
+  }
 
-.filter-btn.active {
-  background: #9c6df9;
-}
+  .year {
+    color: #aaa;
+    font-size: 0.75em;
+    margin-top: 4px;
+  }
 </style>

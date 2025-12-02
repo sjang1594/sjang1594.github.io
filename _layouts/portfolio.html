@@ -4,127 +4,142 @@ title: Portfolio
 permalink: /portfolio/
 ---
 
-<h1 class="page-title">Portfolio</h1>
+<h1 class="portfolio-title">Portfolio</h1>
 
 <!-- Filter Buttons -->
-<div class="portfolio-filters">
-  <button class="filter-btn active" data-filter="all">All</button>
+<div class="filters">
+  <button class="filter-btn active" data-filter="*">All</button>
   <button class="filter-btn" data-filter="Rendering">Rendering</button>
   <button class="filter-btn" data-filter="Simulation">Simulation</button>
   <button class="filter-btn" data-filter="Robotics">Robotics</button>
   <button class="filter-btn" data-filter="Computer Vision">Computer Vision</button>
 </div>
 
-<div class="masonry" id="portfolio-grid">
-  {% assign items = site.portfolio | sort: 'year' | reverse %}
+<!-- Masonry Grid -->
+<div class="grid">
+  {% assign items = site.portfolio | sort: "year" %}
+  {% for item in items reversed %}
 
-  {% for item in items %}
-    <div class="masonry-item" data-category="{{ item.category }}">
-      <a 
-        href="{% if item.type == 'image' %}{{ item.full | relative_url }}{% else %}{{ item.video_source }}{% endif %}"
-        class="glightbox"
-        data-type="{{ item.type }}"
+    {% assign is_video = item.type == "video" %}
+
+    <div class="grid-item" data-category="{{ item.category }}">
+      <a
+        {% if is_video %}
+          href="{{ item.source }}"
+          class="glightbox"
+          data-type="video"
+        {% else %}
+          href="{{ item.full }}"
+          class="glightbox"
+          data-type="image"
+        {% endif %}
         data-title="{{ item.title }}"
       >
-        <img src="{{ item.thumbnail | relative_url }}" alt="{{ item.title }}">
+        <img src="{{ item.thumbnail }}" alt="{{ item.title }}">
       </a>
-      <div class="caption">
-        <strong>{{ item.title }}</strong>
-        <p>{{ item.category }} — {{ item.year }}</p>
-      </div>
+      <div class="caption">{{ item.title }}</div>
     </div>
+
   {% endfor %}
 </div>
 
-<!-- Masonry, Filtering, GLightbox -->
-<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<!-- Libraries -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"/>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 
+<!-- Portfolio Logic -->
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+  // GLightbox
+  GLightbox({ selector: ".glightbox" });
 
-    /* Masonry layout */
-    const grid = document.querySelector('#portfolio-grid');
-    const masonry = new Masonry(grid, {
-      itemSelector: '.masonry-item',
-      columnWidth: '.masonry-item',
-      percentPosition: true,
-      gutter: 16
-    });
-
-    /* GLightbox */
-    const lightbox = GLightbox({
-      touchNavigation: true,
-      loop: true,
-      autoplayVideos: true
-    });
-
-    /* Filtering */
-    const buttons = document.querySelectorAll('.filter-btn');
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        buttons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const filter = btn.dataset.filter;
-        document.querySelectorAll('.masonry-item').forEach(item => {
-          if (filter === "all" || item.dataset.category === filter) {
-            item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-
-        masonry.layout();
-      });
-    });
-
+  // Masonry
+  const grid = document.querySelector(".grid");
+  const msnry = new Masonry(grid, {
+    itemSelector: ".grid-item",
+    columnWidth: ".grid-item",
+    percentPosition: true,
+    gutter: 12
   });
+
+  // Filtering
+  const filterBtns = document.querySelectorAll(".filter-btn");
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter;
+
+      filterBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      document.querySelectorAll(".grid-item").forEach(item => {
+        const category = item.dataset.category;
+
+        if (filter === "*" || category === filter) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+
+      msnry.layout();
+    });
+  });
+});
 </script>
 
 <style>
-  .page-title {
-    margin-bottom: 1.2em;
-  }
+.portfolio-title {
+  margin-bottom: 16px;
+  text-align: center;
+}
 
-  .portfolio-filters {
-    margin-bottom: 1.5em;
-  }
+.filters {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-  .portfolio-filters .filter-btn {
-    background: #333;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 6px;
-    margin-right: 8px;
-    border: none;
-    cursor: pointer;
-  }
+.filter-btn {
+  margin: 0 6px;
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  background: #444;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 0.85em;
+}
 
-  .filter-btn.active {
-    background: #6c4ad0;
-  }
+.filter-btn.active {
+  background: #6c5ce7;
+}
 
-  .masonry {
-    column-gap: 16px;
-  }
+.grid {
+  margin-top: 20px;
+}
 
-  .masonry-item {
-    margin-bottom: 16px;
-    break-inside: avoid;
-  }
+.grid-item {
+  width: 180px; /* 썸네일 크기 줄임 */
+  margin-bottom: 16px;
+  display: inline-block;
+  vertical-align: top;
+}
 
-  .masonry-item img {
-    width: 100%;
-    border-radius: 8px;
-    display: block;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.15);
-  }
+.grid-item img {
+  width: 180px;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 0 6px rgba(0,0,0,0.15);
+}
 
-  .caption {
-    margin-top: 6px;
-    font-size: 0.9em;
-  }
+.caption {
+  margin-top: 6px;
+  text-align: center;
+  font-size: 0.85em;
+  color: #ccc;
+}
 </style>

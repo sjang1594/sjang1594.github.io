@@ -4,230 +4,127 @@ title: Portfolio
 permalink: /portfolio/
 ---
 
-<h1 class="portfolio-title">Portfolio</h1>
+<h1 class="page-title">Portfolio</h1>
 
-<!-- Filters -->
-<div id="portfolio-filters" class="filters">
-  <button class="filter-btn active" data-filter="*">All</button>
-  <button class="filter-btn" data-filter=".rendering">Rendering</button>
-  <button class="filter-btn" data-filter=".simulation">Simulation</button>
-  <button class="filter-btn" data-filter=".photography">Photography</button>
-  <button class="filter-btn" data-filter=".video">Video</button>
+<!-- Filter Buttons -->
+<div class="portfolio-filters">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="Rendering">Rendering</button>
+  <button class="filter-btn" data-filter="Simulation">Simulation</button>
+  <button class="filter-btn" data-filter="Robotics">Robotics</button>
+  <button class="filter-btn" data-filter="Computer Vision">Computer Vision</button>
 </div>
 
-<!-- Grid container -->
-<div class="portfolio-grid">
-  {% if site.portfolio and site.portfolio != empty %}
-    {% assign items = site.portfolio | sort: "year" %}
-    {% for item in items reversed %}
-      {% assign cat = item.category | default: "uncategorized" %}
-      {% assign title = item.title | escape %}
-      {% assign thumb = item.thumbnail | relative_url %}
-      {% assign full = item.full | default: item.embed | relative_url %}
-      {% comment %}
-        Determine media type:
-         - If frontmatter has type: 'video' or 'image', prefer that.
-         - Else check file extension or presence of 'youtube'/'vimeo' in URL.
-      {% endcomment %}
-      {% assign declared_type = item.type | downcase | default: "" %}
-      {% if declared_type == "video" %}
-        {% assign media_type = "video" %}
-      {% elsif declared_type == "image" %}
-        {% assign media_type = "image" %}
-      {% elsif full contains ".mp4" or full contains ".webm" %}
-        {% assign media_type = "video" %}
-      {% elsif full contains "youtube.com" or full contains "youtu.be" or full contains "vimeo.com" %}
-        {% assign media_type = "video" %}
-      {% else %}
-        {% assign media_type = "image" %}
-      {% endif %}
+<div class="masonry" id="portfolio-grid">
+  {% assign items = site.portfolio | sort: 'year' | reverse %}
 
-      <div class="portfolio-item {{ cat }} {% if media_type == 'video' %}video{% endif %}"
-           data-year="{{ item.year }}" data-category="{{ cat }}">
-        {% if media_type == "image" %}
-          <a href="{{ full }}" class="portfolio-link" data-glightbox="title: {{ title }}; description: {{ item.year }}">
-            <img src="{{ thumb }}" alt="{{ item.title }}" loading="lazy">
-            <div class="overlay">
-              <div class="meta">
-                <h3>{{ item.title }}</h3>
-                <p>{{ item.year }}</p>
-              </div>
-            </div>
-          </a>
-        {% else %}
-          {%- comment -%}
-            For video, GLightbox supports:
-              - inline video file: data-type="video" href="path/to/video.mp4"
-              - YouTube/Vimeo: href = video url (it auto-detects)
-          {%- endcomment -%}
-          {% if full contains "youtube.com" or full contains "youtu.be" or full contains "vimeo.com" %}
-            <a href="{{ full }}" class="portfolio-link" data-glightbox="title: {{ title }}; description: {{ item.year }}; type: video">
-          {% else %}
-            <a href="{{ full }}" class="portfolio-link" data-glightbox="title: {{ title }}; description: {{ item.year }}; type: video">
-          {% endif %}
-              <img src="{{ thumb }}" alt="{{ item.title }}" loading="lazy">
-              <div class="overlay">
-                <div class="play-icon">▶</div>
-                <div class="meta">
-                  <h3>{{ item.title }}</h3>
-                  <p>{{ item.year }}</p>
-                </div>
-              </div>
-          </a>
-        {% endif %}
+  {% for item in items %}
+    <div class="masonry-item" data-category="{{ item.category }}">
+      <a 
+        href="{% if item.type == 'image' %}{{ item.full | relative_url }}{% else %}{{ item.video_source }}{% endif %}"
+        class="glightbox"
+        data-type="{{ item.type }}"
+        data-title="{{ item.title }}"
+      >
+        <img src="{{ item.thumbnail | relative_url }}" alt="{{ item.title }}">
+      </a>
+      <div class="caption">
+        <strong>{{ item.title }}</strong>
+        <p>{{ item.category }} — {{ item.year }}</p>
       </div>
-    {% endfor %}
-  {% else %}
-    <p class="empty-msg">아직 포트폴리오 항목이 없습니다. `_portfolio/` 폴더에 항목을 추가하세요.</p>
-  {% endif %}
+    </div>
+  {% endfor %}
 </div>
 
-<!-- CSS -->
-<style>
-  :root{
-    --bg: #0f1115;
-    --card: #15171c;
-    --muted: rgba(255,255,255,0.75);
-    --accent: #5a8dee;
-  }
-  .portfolio-title{
-    color: white;
-    margin-bottom: 0.6rem;
-    border-bottom: 1px solid #222;
-    padding-bottom: 8px;
-  }
+<!-- Masonry, Filtering, GLightbox -->
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
-  /* Filters */
-  .filters{ margin: 14px 0 18px; }
-  .filter-btn{
-    background: #222;
-    color: var(--muted);
-    padding: 8px 14px;
-    margin-right: 8px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-size: 0.94rem;
-  }
-  .filter-btn.active{ background: var(--accent); color: #fff; }
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"/>
 
-  /* Grid */
-  .portfolio-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 18px;
-    align-items: start;
-  }
-
-  .portfolio-item{
-    background: var(--card);
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
-  }
-
-  .portfolio-item img{
-    width: 100%;
-    height: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    display: block;
-    transition: transform .35s ease;
-  }
-
-  .portfolio-item:hover img{ transform: scale(1.04); }
-
-  .overlay{
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 14px;
-    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%);
-    color: white;
-    transition: background .35s;
-  }
-
-  .play-icon{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    font-size: 2.4rem;
-    opacity: 0.95;
-    pointer-events: none;
-    color: rgba(255,255,255,0.95);
-    text-shadow: 0 6px 18px rgba(0,0,0,0.6);
-  }
-
-  .meta h3{ margin: 0 0 4px; font-size: 1.02rem; }
-  .meta p{ margin: 0; opacity: 0.85; font-size: 0.85rem; }
-
-  .empty-msg{ color: #ddd; padding: 1rem 0; }
-
-  /* Responsive tweaks */
-  @media (max-width:720px){
-    .portfolio-grid{ grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap:12px; }
-    .play-icon{ font-size: 1.8rem; }
-  }
-</style>
-
-<!-- Libraries: GLightbox, imagesLoaded, Isotope -->
-<link rel="stylesheet" href="https://unpkg.com/glightbox/dist/css/glightbox.min.css" />
-<script src="https://unpkg.com/glightbox/dist/js/glightbox.min.js"></script>
-
-<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
-<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-
-<!-- JS: init GLightbox + Isotope + filtering -->
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-  // GLightbox init
-  const lightbox = GLightbox({
-    selector: '.portfolio-link',
-    touchNavigation: true,
-    loop: true,
-    plyr: {
-      css: 'https://cdn.plyr.io/3.6.8/plyr.css',
-      js: 'https://cdn.plyr.io/3.6.8/plyr.polyfilled.js',
-    }
-  });
+  document.addEventListener("DOMContentLoaded", function () {
 
-  // Isotope grid init after images loaded
-  var gridElem = document.querySelector('.portfolio-grid');
-
-  if (!gridElem) return;
-
-  imagesLoaded( gridElem, function() {
-    // init isotope
-    var iso = new Isotope( gridElem, {
-      itemSelector: '.portfolio-item',
-      layoutMode: 'masonry',
-      masonry: {
-        columnWidth: '.portfolio-item',
-        gutter: 18,
-        fitWidth: false
-      },
-      percentPosition: true
+    /* Masonry layout */
+    const grid = document.querySelector('#portfolio-grid');
+    const masonry = new Masonry(grid, {
+      itemSelector: '.masonry-item',
+      columnWidth: '.masonry-item',
+      percentPosition: true,
+      gutter: 16
     });
 
-    // Filtering buttons
-    var filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(function(btn){
-      btn.addEventListener('click', function(e){
-        filterBtns.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
+    /* GLightbox */
+    const lightbox = GLightbox({
+      touchNavigation: true,
+      loop: true,
+      autoplayVideos: true
+    });
 
-        var filter = this.getAttribute('data-filter');
-        iso.arrange({ filter: filter });
+    /* Filtering */
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.masonry-item').forEach(item => {
+          if (filter === "all" || item.dataset.category === filter) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        masonry.layout();
       });
     });
 
-    // Re-layout when GLightbox closes (in case video thumbnail sizes cause mismatch)
-    lightbox.on('close', function(){ iso.layout(); });
   });
-
-});
 </script>
+
+<style>
+  .page-title {
+    margin-bottom: 1.2em;
+  }
+
+  .portfolio-filters {
+    margin-bottom: 1.5em;
+  }
+
+  .portfolio-filters .filter-btn {
+    background: #333;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    margin-right: 8px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .filter-btn.active {
+    background: #6c4ad0;
+  }
+
+  .masonry {
+    column-gap: 16px;
+  }
+
+  .masonry-item {
+    margin-bottom: 16px;
+    break-inside: avoid;
+  }
+
+  .masonry-item img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.15);
+  }
+
+  .caption {
+    margin-top: 6px;
+    font-size: 0.9em;
+  }
+</style>

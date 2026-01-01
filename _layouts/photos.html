@@ -1,0 +1,114 @@
+---
+layout: base
+---
+
+{{ content }}
+
+<p style="font-size: 1.1em; font-style: italic; color: #fff; font-family: 'Fira Sans', 'Fira Code', monospace;">
+  Captured moments and memories
+</p>
+
+{% assign photos = site.photos | sort: "date" | reverse %}
+
+<h2>{{ page.list_title | default: "Photo Albums" }}</h2>
+
+{% if photos != empty %}
+  <div class="photo-grid">
+    {% for album in photos %}
+      <div class="photo-album-card">
+        <a href="{{ album.url | relative_url }}">
+          {% if album.cover %}
+            <img src="{{ album.cover | relative_url }}" alt="{{ album.title }}" />
+          {% else %}
+            <div class="placeholder-cover">
+              <span>{{ album.title }}</span>
+            </div>
+          {% endif %}
+          <div class="album-info">
+            <h3>{{ album.title }}</h3>
+            <p class="album-date">{{ album.date | date: "%B %d, %Y" }}</p>
+            {% if album.description %}
+              <p class="album-description">{{ album.description }}</p>
+            {% endif %}
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No photo albums yet.</p>
+{% endif %}
+
+<style>
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 2em;
+  }
+
+  .photo-album-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .photo-album-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .photo-album-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .photo-album-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .placeholder-cover {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .album-info {
+    padding: 15px;
+  }
+
+  .album-info h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.2em;
+  }
+
+  .album-date {
+    color: #aaa;
+    font-size: 0.85em;
+    margin: 4px 0;
+  }
+
+  .album-description {
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: #ccc;
+    line-height: 1.4;
+  }
+
+  h2 {
+    margin-top: 1em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+  }
+</style>

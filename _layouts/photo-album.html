@@ -1,0 +1,98 @@
+---
+layout: base
+---
+
+<article class="photo-album">
+  <header>
+    <h1>{{ page.title }}</h1>
+    <p class="album-date">{{ page.date | date: "%B %d, %Y" }}</p>
+    {% if page.description %}
+      <p class="album-description">{{ page.description }}</p>
+    {% endif %}
+  </header>
+
+  {{ content }}
+
+  {% if page.photos %}
+    <div class="photo-gallery">
+      {% for photo in page.photos %}
+        <a href="{{ photo.path | relative_url }}" class="glightbox" data-gallery="album">
+          <img src="{{ photo.path | relative_url }}" alt="{{ photo.caption | default: page.title }}" loading="lazy" />
+        </a>
+      {% endfor %}
+    </div>
+  {% endif %}
+</article>
+
+<!-- GLightbox CSS & JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+<script>
+  const lightbox = GLightbox({
+    selector: '.glightbox',
+    touchNavigation: true,
+    loop: true,
+    autoplayVideos: true
+  });
+</script>
+
+<style>
+  .photo-album header {
+    margin-bottom: 2em;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1em;
+  }
+
+  .photo-album h1 {
+    margin-bottom: 0.5em;
+  }
+
+  .album-date {
+    color: #aaa;
+    font-size: 0.95em;
+    margin: 0.5em 0;
+  }
+
+  .album-description {
+    font-size: 1.05em;
+    color: #ccc;
+    line-height: 1.6;
+    margin-top: 1em;
+  }
+
+  .photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 2em;
+  }
+
+  .photo-gallery a {
+    display: block;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+    aspect-ratio: 1 / 1;
+  }
+
+  .photo-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    display: block;
+  }
+
+  .photo-gallery a:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .photo-gallery {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+    }
+  }
+</style>

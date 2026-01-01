@@ -341,6 +341,10 @@ collections:
     permalink:         /portfolio/:title/
     output:            true
 
+  photos:
+    permalink:         /photos/:title/
+    output:            true
+
 future: true
 include:
   - assets/img/books

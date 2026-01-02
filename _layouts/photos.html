@@ -18,7 +18,14 @@ layout: base
       <div class="photo-album-card">
         <a href="{{ album.url | relative_url }}">
           {% if album.cover %}
-            <img src="{{ album.cover | relative_url }}" alt="{{ album.title }}" />
+            {% assign cover_src = album.cover_thumb | default: album.cover %}
+            <img
+              data-src="{{ cover_src | relative_url }}"
+              alt="{{ album.title }}"
+              loading="lazy"
+              decoding="async"
+              class="album-cover lazy-img" />
+            <div class="cover-placeholder"></div>
           {% else %}
             <div class="placeholder-cover">
               <span>{{ album.title }}</span>
@@ -35,6 +42,32 @@ layout: base
       </div>
     {% endfor %}
   </div>
+
+  <script>
+    // Lazy load album covers
+    document.addEventListener('DOMContentLoaded', function() {
+      const coverObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            const src = img.getAttribute('data-src');
+            if (src) {
+              img.src = src;
+              img.classList.add('loaded');
+              img.removeAttribute('data-src');
+              observer.unobserve(img);
+            }
+          }
+        });
+      }, {
+        rootMargin: '100px'
+      });
+
+      document.querySelectorAll('.lazy-img').forEach(img => {
+        coverObserver.observe(img);
+      });
+    });
+  </script>
 {% else %}
   <p>No photo albums yet.</p>
 {% endif %}
@@ -69,6 +102,31 @@ layout: base
     height: 200px;
     object-fit: cover;
     display: block;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .photo-album-card img.loaded {
+    opacity: 1;
+  }
+
+  .cover-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, rgba(100, 100, 100, 0.2) 0%, rgba(80, 80, 80, 0.2) 100%);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  .photo-album-card:has(img.loaded) .cover-placeholder {
+    display: none;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.3; }
   }
 
   .placeholder-cover {

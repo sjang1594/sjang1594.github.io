@@ -17,14 +17,12 @@ layout: base
     <div class="photo-gallery">
       {% for photo in page.photos %}
         {% assign thumb_src = photo.thumb | default: photo.path %}
-        <a href="{{ photo.path | relative_url }}" class="glightbox lazy-image" data-gallery="album">
+        <a href="{{ photo.path | relative_url }}" class="glightbox" data-gallery="album">
           <img
-            data-src="{{ thumb_src | relative_url }}"
+            src="{{ thumb_src | relative_url }}"
             alt="{{ photo.caption | default: page.title }}"
             loading="lazy"
-            decoding="async"
-            class="lazy-img" />
-          <div class="image-placeholder"></div>
+            decoding="async" />
         </a>
       {% endfor %}
     </div>
@@ -36,42 +34,16 @@ layout: base
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
 
 <script>
-  // Progressive lazy loading with Intersection Observer
+  // Initialize GLightbox
   document.addEventListener('DOMContentLoaded', function() {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          const src = img.getAttribute('data-src');
-
-          if (src) {
-            img.src = src;
-            img.classList.add('loaded');
-            img.removeAttribute('data-src');
-            observer.unobserve(img);
-          }
-        }
+    if (typeof GLightbox !== 'undefined') {
+      const lightbox = GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: true,
+        autoplayVideos: true
       });
-    }, {
-      rootMargin: '50px' // Start loading 50px before entering viewport
-    });
-
-    // Observe all lazy images
-    document.querySelectorAll('.lazy-img').forEach(img => {
-      imageObserver.observe(img);
-    });
-
-    // Initialize GLightbox after images start loading
-    setTimeout(() => {
-      if (typeof GLightbox !== 'undefined') {
-        const lightbox = GLightbox({
-          selector: '.glightbox',
-          touchNavigation: true,
-          loop: true,
-          autoplayVideos: true
-        });
-      }
-    }, 500);
+    }
   });
 </script>
 
@@ -119,36 +91,11 @@ layout: base
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease, opacity 0.4s ease;
+    transition: transform 0.3s ease;
     display: block;
-    opacity: 0;
   }
 
-  .photo-gallery img.loaded {
-    opacity: 1;
-  }
-
-  .image-placeholder {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(100, 100, 100, 0.2) 0%, rgba(80, 80, 80, 0.2) 100%);
-    animation: pulse 1.5s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  .photo-gallery a:has(img.loaded) .image-placeholder {
-    display: none;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 0.3; }
-  }
-
-  .photo-gallery a:hover img.loaded {
+  .photo-gallery a:hover img {
     transform: scale(1.05);
   }
 

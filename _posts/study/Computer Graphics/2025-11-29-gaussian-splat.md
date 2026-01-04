@@ -6,6 +6,14 @@ tags: [computer graphics, deep learning]
 published: false
 ---
 
+## Introduction 
+
+Let's look at the output of 3D Gaussian Splatting first.
+
+<p align="center">
+  <img src="../../../assets/img/photo/1_latest/gaussian_splat.gif" alt="alt text" width="600">
+</p>
+
 ## Image Based Rendering:
  
 ### View Interpolation for Image Synthesis

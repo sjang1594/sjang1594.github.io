@@ -100,6 +100,9 @@ Point Based -> Sphere -> Gaussian Splat
 - PhysGaussian: Physics-Integrated 3D Gaussians for Generative Dynamics
 - pixelSplat: 3D Gaussian Splats from Image Pairs for Scalable Generalizable 3D reconstruction.
 
+---
+### Gaussian Functions 
+
 
 ### Resources
 * [TUM AI Lecture Series - The 3D Gaussian Splatting Adventure: Past, Present, Future (George Drettakis)](https://www.youtube.com/watch?v=DjOqkVIlEGY&t=800s)

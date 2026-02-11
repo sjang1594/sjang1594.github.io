@@ -3,7 +3,7 @@ title: Gaussian Splatting Experiments
 layout: post
 category: study
 tags: [computer graphics, deep learning]
-published: True
+published: true
 ---
 
 ### Frist Experiment: Basic Gaussian Splatting

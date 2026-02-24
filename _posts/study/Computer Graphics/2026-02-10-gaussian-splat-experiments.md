@@ -152,8 +152,6 @@ python train.py -s data/mipnerf360/kitchen --eval --sh_degree 3 -m .../kitchen/s
 | 3      | 16              | 0.9326434 | 31.5447502 | 0.1158840 | 7k         |
 - **Note:** sh0, sh1, sh3 trained at 7k iterations, sh2 at 30k → metrics for sh2 may be overestimated. Re-run with unified iteration count for fair comparison.
 
-Make a table for images
-
 | Image Index | Description | Image       |
 |-------------|-------------|-------------|
 | 18          | SH degree 0 ~ 3 with ground truth Comparison | ![alt text](../../../assets/img/photo/1_latest/sh_comparison_idx18.png)
@@ -161,11 +159,94 @@ Make a table for images
 | 23          |SH degree 0 ~ 3 with ground truth Comparison | ![alt text](../../../assets/img/photo/1_latest/sh_comparison_idx23.png)
 
 
+### Hyperparameter 2: Densify Grad Threshold (`densification`)
+- Controls when Gaussians are split/cloned during training based on the gradient magnitude
+- Lower threshold → more aggressive densification → more Gaussians generated → better representation of thin structures (e.g. bicycle spokes, tree branches)
+- Higher threshold → fewer Gaussians → faster training but worse representation of fine details
+- Bicycle scene contains many thin structures (spokes, leaves, handlebars) that may benefit from aggressive densification and require 1–2 pixel level detail reconstruction
+
+Parameters:
+
+```bash
+# Low (more Gaussians, detail ↑, VRAM ↑)
+python train.py -s data/mipnerf360/bicycle --eval --densify_grad_threshold 0.0001 -m .../bicycle/dense_low
+
+# Medium (default)
+python train.py -s data/mipnerf360/bicycle --eval --densify_grad_threshold 0.0002 -m .../bicycle/dense_med
+
+# High (fewer Gaussians, faster, detail ↓)
+python train.py -s data/mipnerf360/bicycle --eval --densify_grad_threshold 0.0005 -m .../bicycle/dense_high
+```
+
+### Results (30k iterations)
+
+| Threshold | Config        | SSIM      | PSNR       | LPIPS     |
+| --------- | ------------- | --------- | ---------- | --------- |
+| 0.0001    | Low           | 0.7719774 | 25.3083401 | 0.1857106 |
+| 0.0002    | Medium (Base) | 0.7473353 | 25.1360970 | 0.2421628 |
+| 0.0005    | High          | 0.6516691 | 24.1706982 | 0.3792148 |
+
+| Image Index | Description | Image       |
+|-------------|-------------|-------------|
+| 0          | Densification Threshold Comparison (0.0001, 0.0002, 0.0005) with GT | ![alt text](../../../assets/img/photo/1_latest/densification_comparison_idx_0.png)
+| 1          | Densification Threshold Comparison (0.0001, 0.0002, 0.0005) with GT | ![alt text](../../../assets/img/photo/1_latest/densification_comparison_idx_1.png)
+| 2          | Densification Threshold Comparison (0.0001, 0.0002, 0.0005) with GT | ![alt text](../../../assets/img/photo/1_latest/densification_comparison_idx_2.png)
+
 ### Observations
 - SH degree 0: Reflective surfaces appear as flat, uniform color. No highlights
 - SH degree 3: Highlights on pots and faucets shift as the camera angle changes
 - Higher degree increases view-dependent effects but also increases VRAM usage and training time
 - Diminishing returns: 0→1 gives the largest PSNR gain (+0.46), subsequent steps are smaller
+- 
+### Observations
+- Lower threshold (more Gaussians) = higher PSNR/SSIM and lower LPIPS → better across all metrics
+- LPIPS degrades more than 2x from Low → High (0.186 → 0.379) → thin structures deteriorate sharply
+- However, more Gaussians = higher VRAM usage → memory constraints must be considered in practic
+
+### Hyperparameter 3: Number of Training Iterations (`iterations`)
+
+### Objective
+- Does longer training improve quality? like NeRF?
+- At what point does the model converge?
+
+Parameters:
+
+```bash
+# 7k
+python train.py -s data/mipnerf360/bonsai --eval --iterations 7000 --densify_until_iter 5000 -m .../bonsai/iter7k
+
+# 30k (default)
+python train.py -s data/mipnerf360/bonsai --eval --iterations 30000 -m .../bonsai/iter30k
+
+# 50k
+python train.py -s data/mipnerf360/bonsai --eval --iterations 50000 --densify_until_iter 25000 --test_iterations 7000 30000 50000 --save_iterations 7000 30000 50000 -m .../bonsai/iter50k
+```
+
+### Results
+
+| Iterations | SSIM      | PSNR       | LPIPS     | PSNR Gain |
+| ---------- | --------- | ---------- | --------- | --------- |
+| 7k         | 0.9323797 | 30.5002346 | 0.2045038 | -         |
+| 30k        | 0.9468836 | 32.3352585 | 0.1800254 | +1.84     |
+| 50k        | 0.9468449 | 32.6032143 | 0.1798774 | +0.26     |
+
+| Image Index | Description | Image       |
+|-------------|-------------|-------------|
+| 5          | Iteration Comparison (7k, 30k, 50k) with GT | ![alt text](../../../assets/img/photo/1_latest/iteration_comparison_idx_5.png)
+| 10         | Iteration Comparison (7k, 30k, 50k) with GT | ![alt text](../../../assets/img/photo/1_latest/iteration_comparison_idx_10.png)
+| 15         | Iteration Comparison (7k, 30k, 50k) with GT | ![alt text](../../../assets/img/photo/1_latest/iteration_comparison_idx_15.png)
+
+### Observations
+- 7k → 30k: PSNR +1.84 improvement. Leaf and stem sharpness clearly improved
+- 30k → 50k: PSNR +0.26, SSIM nearly identical (0.9468) → **convergence confirmed**
+- **Conclusion: 3DGS converges at ~30k iterations.** Training beyond 50k yields diminishing returns
+
+### Summary
+| Experiment                 | Key Variable                     | Conclusion                                                                                             |
+| -------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Spherical Harmonics Degree | View-dependent color             | Higher degree improves PSNR/SSIM and reduces LPIPS. Re-run with unified iterations for fair comparison |
+| Densify Threshold          | Gaussian count / thin structures | Lower threshold = better quality. VRAM trade-off exists                                                |
+| Iterations                 | Training time vs quality         | Converges at 30k. Beyond 50k is inefficient                                                            |
 
 ### Resource
 - Repo History: https://github.com/sjang1594/3dgs-experiments/tree/main/experiments

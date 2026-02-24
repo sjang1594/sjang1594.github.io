@@ -243,6 +243,7 @@ python train.py -s data/mipnerf360/bonsai --eval --iterations 50000 --densify_un
 - **Conclusion: 3DGS converges at ~30k iterations.** Training beyond 50k yields diminishing returns
 
 ### Summary
+
 | Experiment                 | Key Variable                     | Conclusion                                                                                             |
 | -------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | Spherical Harmonics Degree | View-dependent color             | Higher degree improves PSNR/SSIM and reduces LPIPS. Re-run with unified iterations for fair comparison |

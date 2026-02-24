@@ -49,7 +49,6 @@ Then I did not get the results that I expected because I did not add --eval flag
 
 Iteration Comparison in Point Cloud Output:
 
-make table
 | Iteration | 7K | 30K |
 | --- | --- | --- |
 |     | ![alt text](../../../assets/img/photo/1_latest/gaussian_splat_first_run_7k_iter.png) | ![alt text](../../../assets/img/photo/1_latest/gaussian_splat_first_run_30k_iter.png) |
@@ -152,6 +151,15 @@ python train.py -s data/mipnerf360/kitchen --eval --sh_degree 3 -m .../kitchen/s
 | 2      | 9               | 0.9311565 | 31.2686272 | 0.1176810 | 30k        |
 | 3      | 16              | 0.9326434 | 31.5447502 | 0.1158840 | 7k         |
 - **Note:** sh0, sh1, sh3 trained at 7k iterations, sh2 at 30k → metrics for sh2 may be overestimated. Re-run with unified iteration count for fair comparison.
+
+Make a table for images
+
+| Image Index | Description | Image       |
+|-------------|-------------|-------------|
+| 18          | SH degree 0 ~ 3 with ground truth Comparison | ![alt text](../../../assets/img/photo/1_latest/sh_comparison_idx18.png)
+| 20          | SH degree 0 ~ 3 with ground truth Comparison | ![alt text](../../../assets/img/photo/1_latest/sh_comparison_idx20.png)
+| 23          |SH degree 0 ~ 3 with ground truth Comparison | ![alt text](../../../assets/img/photo/1_latest/sh_comparison_idx23.png)
+
 
 ### Observations
 - SH degree 0: Reflective surfaces appear as flat, uniform color. No highlights

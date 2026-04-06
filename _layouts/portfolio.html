@@ -54,7 +54,7 @@ permalink: /portfolio/
         {% endif %}
 
         {% if item.type == "image" %}
-          <a href="{{ item.full }}" class="glightbox">
+          <a href="{{ item.url | relative_url }}">
             <img src="{{ item.thumbnail }}" class="thumb" />
           </a>
         {% endif %}

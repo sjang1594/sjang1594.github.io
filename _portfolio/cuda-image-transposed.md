@@ -1,4 +1,5 @@
 ---
+layout: page
 title: CUDA Image Transposed
 category: [CUDA, Parallel Computing]
 type: image

@@ -1,7 +1,8 @@
 ---
 title: CUDA Image Transposed
 category: [CUDA, Parallel Computing]
-type: video
+type: image
+thumbnail: /assets/img/photo/1_latest/image_transpose_tiling.png
 year: 2025
 ---
 

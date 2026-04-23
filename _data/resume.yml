@@ -1,6 +1,6 @@
 basics:
   name: "Seungho Jang"
-  label: "Software Engineer"
+  label: "Graphics Engineer & Computer Vision Researcher"
   picture: /assets/img/bio-photo.jpg
   email: "sjang1594@gmail.com"
   phone: "(+1) 314-332-9498 / (+82) 10-5610-6541"
@@ -109,7 +109,7 @@ projects:
   - title: "Luna Game Engine"
     startDate: "2024-04-25"
     summary: Luna Game Engine is a custom-built rendering engine that supports Vulkan and DirectX 12 backends. Developed with modularity in mind, the engine includes components for device abstraction, resource management, and real-time rendering. The project utilizes Premake for build configuration and integrates ImGui for debugging and UI development. The engine architecture follows the HAL (Hardware Abstraction Layer) design, promoting flexibility and ease of backend integration.
-    hightlights:
+    highlights:
       - C++
       - Vulkan
       - DirectX 12
@@ -117,19 +117,24 @@ projects:
       - ImGui
       - Premake
       - HAL Design Pattern
-    features:
-      - Backend-agnostic rendering system
-      - Cross-platform support (Windows, planned support for iOS via Metal)
-      - Real-time graphics with modern API integration
-      - HAL-based architecture for modular and extensible backend support
-      - Custom HAL layer for resource management, command buffering, and pipeline abstraction
-      - Efficient resource and pipeline management
-      - Real-time debugging tools (RenderDoc, Visual Studio Graphics Debugger)
-    goals:
-      - Achieve high performance in real-time rendering applications
-      - Provide a flexible architecture for adding new rendering backends
-      - Integrate mobile support with Metal for iOS
-      - Maintain a clean and professional codebase through HAL abstraction
+  - title: "Custom Flash Attention CUDA Kernel"
+    startDate: "2025-01-01"
+    summary: "Memory-efficient attention kernel implemented from scratch in CUDA. Applies tiled matrix multiplication and online softmax to avoid materializing the full N×N attention matrix, reducing HBM bandwidth to O(N) and fitting large sequence lengths on GPU. Targets DL systems roles (NVIDIA, GPU compiler teams) as a low-level compute demonstration."
+    highlights:
+      - CUDA
+      - Tiled GEMM
+      - Online Softmax
+      - Memory-efficient Attention
+      - Deep Learning Systems
+  - title: "GPU Gaussian Splatting Rasterizer"
+    startDate: "2025-01-01"
+    summary: "Custom CUDA rasterizer for 3D Gaussian Splatting. Implements forward pass tile-based rasterization, alpha compositing, and gradient flow through Gaussian parameters (mean, covariance, opacity, spherical harmonics). Designed to support custom densification research and novel view synthesis experimentation outside of the official INRIA codebase."
+    highlights:
+      - CUDA
+      - 3D Gaussian Splatting
+      - Alpha Compositing
+      - Neural Rendering
+      - Novel View Synthesis
 patents:
   - title: "SCENARIO-BASED AUTONOMOUS DRIVING VEHICLE SIMULATION METHOD AND SYSTEM."
   - author: "Eungback Kim, Seungho Jang, Seongyeon Park, Hoseup Lee, Hein Jo"
@@ -156,41 +161,77 @@ volunteer:
     title: "Computing Club - Camera Control System"
     highlights: []
 skills:
-  - name: "Python"
-    level: "Master"
-    keywords:
-      - "PyQT"
-      - "OpenGl"
-      - "Python"
-      - "PyTest"
-      - "Numpy"
-      - "gRPC Protocol"
   - name: "C++"
     level: "Master"
     keywords:
       - "Modern C++ (17/20)"
-      - "System Conconcurrent Programming"
-  - name: "DirectX11/12"
-    level: "Intermediate"
-    keywords: HLSL, Vertex/Pixel Shader, Compute Shader, HDR, RayTracing, Physically-Based Rendering, RenderDoc, Animation, Shadow Mapping
-  - name: "Unity"
-    level: "Intermediate"
+      - "System Concurrent Programming"
+      - "Rendering Engine Architecture"
+      - "HAL Design Pattern"
+  - name: "CUDA / GPU Compute"
+    level: "Advanced"
     keywords:
-      - Unity
-      - C# Programming
-      - Job System
-      - Post-processing
-      - ScriptableObject
-  - name: "Algorithm"
-    level: "Intermediate"
+      - "Custom Kernel Development"
+      - "Tiled GEMM"
+      - "Memory Hierarchy Optimization"
+      - "Compute Shaders"
+      - "Flash Attention"
+      - "Gaussian Splatting Rasterizer"
+  - name: "Graphics APIs"
+    level: "Master"
+    keywords:
+      - "Vulkan"
+      - "DirectX 12"
+      - "DirectX 11"
+      - "OpenGL"
+      - "HLSL / GLSL"
+      - "Render Graph"
+      - "PBR"
+      - "Ray Tracing"
+      - "Shadow Mapping"
   - name: "Unreal Engine"
     level: "Master"
     keywords:
-      - Unreal Engine 4 and 5
-      - C++ Programming
-      - Shader Programming (.usf)
-      - Radar / LiDAR
-      - RenderDoc
+      - "Unreal Engine 4 / 5"
+      - "C++ Programming"
+      - "Shader Programming (.usf)"
+      - "Virtual Sensor Plugin"
+      - "Scenario Runner (UE5 port)"
+      - "Digital Twin / Factory Sim"
+      - "RenderDoc"
+      - "NVIDIA Isaac SIM Integration"
+  - name: "Computer Vision"
+    level: "Advanced"
+    keywords:
+      - "Multi-view Geometry"
+      - "SfM / Bundle Adjustment"
+      - "Depth Estimation"
+      - "3D Reconstruction"
+      - "Point Cloud Processing"
+      - "Image Processing"
+      - "OpenCV"
+  - name: "ML / Neural Rendering"
+    level: "Advanced"
+    keywords:
+      - "PyTorch"
+      - "3D Gaussian Splatting"
+      - "NeRF"
+      - "Diffusion Models"
+  - name: "Sensor Simulation"
+    level: "Master"
+    keywords:
+      - "FMCW Radar (MIMO, Range-Doppler)"
+      - "LiDAR (noise, motion distortion)"
+      - "EO/IR"
+      - "ASAM OpenSCENARIO"
+  - name: "Python"
+    level: "Master"
+    keywords:
+      - "PyTorch"
+      - "NumPy"
+      - "PyQT"
+      - "PyTest"
+      - "gRPC Protocol"
   - name: "Swift"
     level: "Intermediate"
     keywords:

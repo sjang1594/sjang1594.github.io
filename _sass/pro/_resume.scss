@@ -98,6 +98,10 @@
       float: left;
       width: 2rem;
 
+      &::after {
+        content: none;
+      }
+
       [class*="icon-"] {
         font-size: 1.17rem;
         position: relative;

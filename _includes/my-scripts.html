@@ -1,4 +1,22 @@
 <script src="/assets/js/sidebar-folder.js"></script>
+<script>
+  function initPortfolioFilter() {
+    var btns = document.querySelectorAll(".filter-btn");
+    if (!btns.length) return;
+    btns.forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        var active = document.querySelector(".filter-btn.active");
+        if (active) active.classList.remove("active");
+        btn.classList.add("active");
+        var filter = btn.getAttribute("data-filter");
+        document.querySelectorAll(".grid-item").forEach(function(item) {
+          item.style.display = (filter === "*" || item.classList.contains(filter)) ? "" : "none";
+        });
+      });
+    });
+  }
+  document.addEventListener("DOMContentLoaded", initPortfolioFilter);
+</script>
 <script src="/assets/js/clap-button.js"></script>
 {% if site.lightbox %}
   <script src="/assets/js/lightbox.js"></script>
@@ -21,5 +39,6 @@
       get_clap_count();
       {% if site.mermaid %} mermaid.run({ querySelector: ".language-mermaid" }); {% endif %}
       {% if site.lightbox %} apply_lightbox(); {% endif %}
+      initPortfolioFilter();
     });
 </script>

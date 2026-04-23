@@ -42,7 +42,7 @@ permalink: /portfolio/
           {% assign yt = item.embed %}
           {% if yt contains "youtube.com" %}
             {% assign video_id = yt | split: 'v=' | last | split: '&' | first %}
-            {% assign auto_thumb = "https://img.youtube.com/vi/" | append: video_id | append: "/hqdefault.jpg" %}
+            {% assign auto_thumb = "https://img.youtube.com/vi/" | append: video_id | append: "/mqdefault.jpg" %}
           {% endif %}
           {% assign final_thumb = item.thumbnail | default: auto_thumb %}
           <a href="{{ item.embed }}" class="glightbox" data-type="video">
@@ -79,31 +79,7 @@ permalink: /portfolio/
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-
-<script>
-  const lightbox = GLightbox({ selector: '.glightbox' });
-
-  const filterBtns = document.querySelectorAll(".filter-btn");
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      // Update active button
-      document.querySelector(".filter-btn.active").classList.remove("active");
-      btn.classList.add("active");
-
-      const filter = btn.getAttribute("data-filter");
-
-      document.querySelectorAll(".grid-item").forEach(item => {
-        if (filter === "*" || item.classList.contains(filter)) {
-          item.style.display = "";
-        } else {
-          item.style.display = "none";
-        }
-      });
-    });
-  });
-</script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" onload="GLightbox({ selector: '.glightbox' })"></script>
 
 
 <style>
@@ -168,6 +144,11 @@ permalink: /portfolio/
   }
 
   /* ── Thumbnail ── */
+  .portfolio-card a {
+    display: block;
+    text-decoration: none;
+  }
+
   .thumb-wrap {
     position: relative;
     width: 100%;

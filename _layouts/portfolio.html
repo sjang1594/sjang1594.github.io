@@ -21,13 +21,12 @@ permalink: /portfolio/
   {% assign unique_categories = all_categories | split: "," | uniq | sort %}
   {% for c in unique_categories %}
     {% if c != "" %}
-      <button class="filter-btn" data-filter=".{{ c | downcase | replace: ' ', '-' }}">{{ c }}</button>
+      <button class="filter-btn" data-filter="{{ c | downcase | replace: ' ', '-' }}">{{ c }}</button>
     {% endif %}
   {% endfor %}
 </div>
 
-
-<div class="masonry-grid">
+<div class="portfolio-grid">
   {% for item in site.portfolio %}
 
     {% assign categories_class = "" %}
@@ -45,29 +44,30 @@ permalink: /portfolio/
             {% assign video_id = yt | split: 'v=' | last | split: '&' | first %}
             {% assign auto_thumb = "https://img.youtube.com/vi/" | append: video_id | append: "/hqdefault.jpg" %}
           {% endif %}
-
           {% assign final_thumb = item.thumbnail | default: auto_thumb %}
-
           <a href="{{ item.embed }}" class="glightbox" data-type="video">
-            <img src="{{ final_thumb }}" class="thumb" />
+            <div class="thumb-wrap">
+              <img src="{{ final_thumb }}" class="thumb" loading="lazy" />
+              <span class="play-icon">▶</span>
+            </div>
           </a>
         {% endif %}
 
         {% if item.type == "image" %}
           <a href="{{ item.url | relative_url }}">
-            <img src="{{ item.thumbnail }}" class="thumb" />
+            <div class="thumb-wrap">
+              <img src="{{ item.thumbnail }}" class="thumb" loading="lazy" />
+            </div>
           </a>
         {% endif %}
 
         <div class="caption">
           <h3>{{ item.title }}</h3>
-
           <p class="categories">
             {% for c in item.category %}
               <span class="tag">{{ c }}</span>
             {% endfor %}
           </p>
-
           <p class="year">{{ item.year }}</p>
         </div>
 
@@ -78,120 +78,156 @@ permalink: /portfolio/
 </div>
 
 
-<!-- Dependencies -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
-
 
 <script>
   const lightbox = GLightbox({ selector: '.glightbox' });
 
-  const grid = document.querySelector('.masonry-grid');
-
-  // Masonry must run ONLY after images load
-  imagesLoaded(grid, function () {
-    msnry = new Masonry(grid, {
-      itemSelector: '.grid-item',
-      columnWidth: '.grid-item',
-      percentPosition: true,
-      gutter: 20
-    });
-  });
-
-
-  // Filtering logic
   const filterBtns = document.querySelectorAll(".filter-btn");
 
   filterBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-      const filter = btn.getAttribute("data-filter");
-
+      // Update active button
       document.querySelector(".filter-btn.active").classList.remove("active");
       btn.classList.add("active");
 
+      const filter = btn.getAttribute("data-filter");
+
       document.querySelectorAll(".grid-item").forEach(item => {
-        if (filter === "*" || item.classList.contains(filter.substring(1))) {
-          item.classList.remove("hidden");
+        if (filter === "*" || item.classList.contains(filter)) {
+          item.style.display = "";
         } else {
-          item.classList.add("hidden");
+          item.style.display = "none";
         }
       });
-
-      msnry.layout();
     });
   });
 </script>
 
 
 <style>
+  /* ── Filter buttons ── */
   .filter-buttons {
-    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
   }
 
   .filter-btn {
-    padding: 6px 14px;
-    margin-right: 8px;
-    border: none;
-    border-radius: 6px;
-    background: #444;
-    color: white;
+    padding: 6px 16px;
+    border: 1.5px solid #555;
+    border-radius: 20px;
+    background: transparent;
+    color: var(--body-color, #ccc);
     cursor: pointer;
-    font-size: 0.9em;
+    font-size: 0.85em;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+
+  .filter-btn:hover {
+    border-color: #6c5ce7;
+    color: #6c5ce7;
   }
 
   .filter-btn.active {
     background: #6c5ce7;
+    border-color: #6c5ce7;
+    color: white;
   }
 
-  .masonry-grid {
-    margin-top: 20px;
+  /* ── Grid ── */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 8px;
   }
 
-  .grid-item {
-    width: 180px;
-    margin-bottom: 20px;
-    transition: opacity 0.3s ease;
+  @media (max-width: 900px) {
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  /* Hide with opacity instead of display:none → keeps Masonry stable */
-  .grid-item.hidden {
-    opacity: 0;
+  @media (max-width: 560px) {
+    .portfolio-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Card ── */
+  .portfolio-card {
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--card-bg, #1e1e1e);
+    border: 1px solid var(--border-color, #333);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .portfolio-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  }
+
+  /* ── Thumbnail ── */
+  .thumb-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #111;
+  }
+
+  .thumb-wrap img.thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .portfolio-card:hover .thumb {
+    transform: scale(1.04);
+  }
+
+  .play-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: rgba(255,255,255,0.85);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
     pointer-events: none;
   }
 
-  .portfolio-card img.thumb {
-    width: 100%;
-    border-radius: 8px;
-    display: block;
-  }
-
+  /* ── Caption ── */
   .caption {
-    margin-top: 6px;
-    font-size: 0.85em;
+    padding: 12px 14px 14px;
   }
 
   .caption h3 {
-    margin: 0;
-    font-size: 1em;
+    margin: 0 0 8px;
+    font-size: 0.95em;
+    line-height: 1.3;
   }
 
-  /* Tag color = filter-btn.active */
+  .caption .categories {
+    margin: 0 0 6px;
+  }
+
   .tag {
     background: #6c5ce7;
     color: white;
-    padding: 2px 6px;
+    padding: 2px 8px;
     border-radius: 4px;
-    font-size: 0.75em;
+    font-size: 0.72em;
     margin-right: 4px;
     display: inline-block;
   }
 
   .year {
-    color: #aaa;
+    color: #888;
     font-size: 0.75em;
-    margin-top: 4px;
+    margin: 0;
   }
 </style>

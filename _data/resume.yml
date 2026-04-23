@@ -18,6 +18,9 @@ basics:
     - network: "LinkedIn"
       username: "Seungho Jang"
       url: "https://www.linkedin.com/in/seungho-jang-41b3b9145/"
+    - network: "YouTube"
+      username: "nugabab_life"
+      url: "https://www.youtube.com/@nugabab_life/"
 work:
   - company: "University of Missouri - Saint Louis"
     position: "Graduate Teaching Assistant"

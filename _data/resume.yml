@@ -31,6 +31,8 @@ work:
       - "Architecting UE5-based real-time 3D industrial twins for shipyard, steel plant, and automotive assembly operations across 3 HMG group sites."
       - "Designed IoT data pipeline (Valkey/Redis → Unreal runtime) streaming live asset state to operator dashboards at 30+ Hz."
       - "Implementing replay system for incident root-cause analysis and WebRTC remote streaming for distributed monitoring."
+      - "Built OpenFOAM → OpenVDB conversion pipeline and UE5.3 VDB Sequencer plugin for Hyundai Steel CFD digital twin — per-tick PPM computation and VDB field cutoff streamed to operator dashboard."
+      - "Optimized POD-ROM reconstruction solver (C++17, Eigen, OpenMP parallel for simd) — POD basis caching cut per-input latency from 107ms → 23ms (4.6×) and disk I/O from 41 iterations to 1 (12.5×) on 240-core MPI cluster."
   - company: "Self-Directed"
     position: "Independent Technical Development"
     startDate: "2024-12-01"
@@ -131,6 +133,16 @@ projects:
       - "3D Gaussian Splatting"
       - "Alpha Compositing"
       - "Neural Rendering"
+  - title: "Hyundai Steel CFD Digital Twin (POD-ROM)"
+    startDate: "2025-08-01"
+    summary: >
+      Real-time CFD visualization pipeline for Hyundai Steel digital twin: converted OpenFOAM simulation output to OpenVDB for UE5.3 streaming, built a custom VDB Sequencer Unreal plugin for per-tick PPM computation and field cutoff, and optimized the POD-ROM reconstruction solver — reducing per-input latency 4.6× and disk I/O 12.5× on a 240-core MPI cluster.
+    highlights:
+      - "OpenFOAM / OpenVDB / UE5.3"
+      - "POD-ROM Solver"
+      - "C++17 / Eigen / OpenMP SIMD"
+      - "VDB Sequencer Plugin"
+      - "CFD / Digital Twin"
   - title: "Hyundai UAM — Radar Point Cloud Visualization (UE5)"
     startDate: "2024-01-01"
     endDate: "2024-12-31"

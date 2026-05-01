@@ -27,7 +27,7 @@ work:
     summary: >
       Engineered real-time factory monitoring and digital twin systems integrating Unreal Engine with NVIDIA Isaac Sim across HMG manufacturing sites.
     highlights:
-      - "Built real-time factory line monitoring system on NVIDIA Isaac Sim with TCP-based robotic arm control via Lula IK — enabling sub-100ms remote actuation for HMG production R&D."
+      - "Built real-time factory line monitoring system on NVIDIA Isaac Sim with TCP-based robotic arm control via Lula IK — enabling sub-100ms remote actuation for KIA production R&D."
       - "Architecting UE5-based real-time 3D industrial twins for shipyard, steel plant, and automotive assembly operations across 3 HMG group sites."
       - "Designed IoT data pipeline (Valkey/Redis → Unreal runtime) streaming live asset state to operator dashboards at 30+ Hz."
       - "Implementing replay system for incident root-cause analysis and WebRTC remote streaming for distributed monitoring."

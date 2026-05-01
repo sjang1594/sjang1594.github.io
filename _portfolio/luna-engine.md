@@ -34,4 +34,4 @@ Built as an open-source alternative to proprietary sim environments (Isaac SIM, 
 
 ## Source
 
-- [GitHub — sjang1594/luna-engine](https://github.com/sjang1594/luna-engine)
+- [GitHub — sjang1594/LunaEngine](https://github.com/sjang1594/LunaEngine)

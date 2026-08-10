@@ -1,10 +1,6 @@
----
-title: Gaussian Splatting History
-layout: post
-category: study
-tags: [computer graphics, deep learning]
-published: false
----
+
+
+
 
 ## Introduction 
 

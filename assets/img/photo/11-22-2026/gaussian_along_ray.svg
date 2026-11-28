@@ -14,11 +14,12 @@
   <line x1="60" y1="250" x2="678" y2="84.4" stroke="#d9480f" stroke-width="2.5" stroke-linecap="round"/>
   <circle cx="60" cy="250" r="6" fill="#1b2230"/>
   <text x="50" y="274" fill="#1b2230">o</text>
-  <text x="150" y="216" fill="#d9480f">x(t) = o + t d</text>
+  <text x="170" y="252" fill="#d9480f">x(t) = o + t d</text>
   <!-- tau max -->
   <circle cx="372.9" cy="166.1" r="6" fill="#d9480f" stroke="#ffffff" stroke-width="1.5"/>
   <line x1="372.9" y1="166.1" x2="372.9" y2="300" stroke="#d9480f" stroke-dasharray="4 4"/>
-  <text x="250" y="150" fill="#d9480f">o + τ_max d</text>
+  <text x="286" y="132" text-anchor="end" fill="#d9480f">o + τ_max d</text>
+  <line x1="290" y1="136" x2="366" y2="162" stroke="#d9480f" stroke-width="1"/>
   <text x="470" y="60" fill="#6a4fc9">3D Gaussian (μ, Σ)</text>
   <!-- 1D response -->
   <line x1="100" y1="370" x2="660" y2="370" stroke="#1b2230"/>

@@ -16,7 +16,7 @@
   </g>
   <circle cx="180" cy="250" r="6" fill="#1b2230"/>
   <text x="192" y="266" fill="#1b2230">o (camera center)</text>
-  <text x="18" y="190" fill="#1c6dd0">flat image plane</text>
+  <text x="18" y="236" fill="#1c6dd0">flat image plane</text>
   <text x="180" y="302" text-anchor="middle" font-size="13" fill="#5d6779">equal pixel spacing, unequal angles</text>
   <text x="180" y="320" text-anchor="middle" font-size="13" fill="#5d6779">never reaches 90°</text>
 

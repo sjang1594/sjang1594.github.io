@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <rect width="900" height="440" fill="#ffffff"/>
+
+  <!-- optical axis -->
+  <line x1="40" y1="200" x2="690" y2="200" stroke="#5d6779" stroke-dasharray="5 5"/>
+  <text x="44" y="192" fill="#5d6779">optical axis</text>
+
+  <!-- sensor -->
+  <line x1="560" y1="70" x2="560" y2="410" stroke="#1b2230" stroke-width="4"/>
+  <text x="560" y="56" text-anchor="middle" fill="#1b2230">image sensor</text>
+
+  <!-- incoming light from a 3D point -->
+  <line x1="160.8" y1="32.9" x2="360" y2="200" stroke="#1b2230" stroke-width="2"/>
+  <circle cx="160.8" cy="32.9" r="5" fill="#1b2230"/>
+  <text x="172" y="30" fill="#1b2230">3D point</text>
+
+  <!-- pinhole: straight through -->
+  <line x1="360" y1="200" x2="560" y2="367.8" stroke="#1c6dd0" stroke-width="2.5"/>
+  <circle cx="560" cy="367.8" r="5" fill="#1c6dd0"/>
+  <!-- fisheye: bent by the lens -->
+  <line x1="360" y1="200" x2="560" y2="339.6" stroke="#d9480f" stroke-width="2.5"/>
+  <circle cx="560" cy="339.6" r="5" fill="#d9480f"/>
+
+  <!-- theta -->
+  <path d="M310,200 A50,50 0 0 1 321.7,167.9" fill="none" stroke="#1b2230" stroke-width="1.5"/>
+  <text x="290" y="182" fill="#1b2230">θ</text>
+
+  <!-- camera center -->
+  <circle cx="360" cy="200" r="6" fill="#1b2230"/>
+  <text x="350" y="226" text-anchor="end" fill="#1b2230">o (camera center / lens)</text>
+
+  <!-- f -->
+  <line x1="360" y1="176" x2="560" y2="176" stroke="#5d6779"/>
+  <line x1="360" y1="171" x2="360" y2="181" stroke="#5d6779"/>
+  <line x1="555" y1="176" x2="552" y2="176" stroke="#5d6779"/>
+  <text x="460" y="168" text-anchor="middle" fill="#5d6779">f</text>
+
+  <!-- image center -->
+  <circle cx="560" cy="200" r="5" fill="#1b2230"/>
+  <text x="574" y="190" fill="#1b2230">image center (r = 0)</text>
+
+  <!-- r for fisheye -->
+  <line x1="566" y1="339.6" x2="592" y2="339.6" stroke="#d9480f" stroke-dasharray="3 3"/>
+  <line x1="586" y1="200" x2="586" y2="339.6" stroke="#d9480f" stroke-width="3"/>
+  <text x="596" y="266" fill="#d9480f">r = f θ</text>
+  <text x="596" y="284" font-size="12" fill="#d9480f">(fisheye)</text>
+
+  <!-- r for pinhole -->
+  <line x1="566" y1="367.8" x2="716" y2="367.8" stroke="#1c6dd0" stroke-dasharray="3 3"/>
+  <line x1="710" y1="200" x2="710" y2="367.8" stroke="#1c6dd0" stroke-width="3"/>
+  <text x="720" y="280" fill="#1c6dd0">r = f tan θ</text>
+  <text x="720" y="298" font-size="12" fill="#1c6dd0">(pinhole)</text>
+
+  <!-- legend -->
+  <line x1="40" y1="335" x2="70" y2="335" stroke="#1c6dd0" stroke-width="2.5"/>
+  <text x="78" y="340" fill="#1b2230">pinhole: light goes straight through o</text>
+  <line x1="40" y1="365" x2="70" y2="365" stroke="#d9480f" stroke-width="2.5"/>
+  <text x="78" y="370" fill="#1b2230">fisheye: the lens bends the light inward</text>
+  <text x="40" y="405" font-size="12" fill="#5d6779">r is measured on the sensor, from the image center to where the light lands</text>
+</svg>

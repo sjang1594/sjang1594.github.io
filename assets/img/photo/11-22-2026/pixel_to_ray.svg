@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 730 330" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <rect width="730" height="330" fill="#ffffff"/>
+  <!-- Pinhole -->
+  <text x="180" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#1b2230">Pinhole</text>
+  <g stroke="#d9480f" stroke-width="2" stroke-linecap="round">
+    <line x1="180" y1="250" x2="47.2" y2="143.8"/>
+    <line x1="180" y1="250" x2="89.9" y2="105.8"/>
+    <line x1="180" y1="250" x2="180" y2="80"/>
+    <line x1="180" y1="250" x2="270.1" y2="105.8"/>
+    <line x1="180" y1="250" x2="312.8" y2="143.8"/>
+  </g>
+  <line x1="70" y1="170" x2="290" y2="170" stroke="#1c6dd0" stroke-width="3"/>
+  <g fill="#1c6dd0">
+    <circle cx="80" cy="170" r="5"/><circle cx="130" cy="170" r="5"/><circle cx="180" cy="170" r="5"/>
+    <circle cx="230" cy="170" r="5"/><circle cx="280" cy="170" r="5"/>
+  </g>
+  <circle cx="180" cy="250" r="6" fill="#1b2230"/>
+  <text x="192" y="266" fill="#1b2230">o (camera center)</text>
+  <text x="18" y="190" fill="#1c6dd0">flat image plane</text>
+  <text x="180" y="302" text-anchor="middle" font-size="13" fill="#5d6779">equal pixel spacing, unequal angles</text>
+  <text x="180" y="320" text-anchor="middle" font-size="13" fill="#5d6779">never reaches 90°</text>
+
+  <line x1="365" y1="20" x2="365" y2="310" stroke="#d5dae3"/>
+
+  <!-- Fisheye -->
+  <text x="540" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#1b2230">Fisheye (equidistant)</text>
+  <g stroke="#d9480f" stroke-width="2" stroke-linecap="round">
+    <line x1="540" y1="250" x2="372.6" y2="279.5"/>
+    <line x1="540" y1="250" x2="409.8" y2="140.7"/>
+    <line x1="540" y1="250" x2="540" y2="80"/>
+    <line x1="540" y1="250" x2="670.2" y2="140.7"/>
+    <line x1="540" y1="250" x2="707.4" y2="279.5"/>
+  </g>
+  <path d="M461.2,263.9 A80,80 0 1 1 618.8,263.9" fill="none" stroke="#1c6dd0" stroke-width="3"/>
+  <g fill="#1c6dd0">
+    <circle cx="461.2" cy="263.9" r="5"/><circle cx="478.7" cy="198.6" r="5"/><circle cx="540" cy="170" r="5"/>
+    <circle cx="601.3" cy="198.6" r="5"/><circle cx="618.8" cy="263.9" r="5"/>
+  </g>
+  <circle cx="540" cy="250" r="6" fill="#1b2230"/>
+  <text x="540" y="274" text-anchor="middle" fill="#1b2230">o</text>
+  <text x="540" y="302" text-anchor="middle" font-size="13" fill="#5d6779">equal pixel spacing = equal angles</text>
+  <text x="540" y="320" text-anchor="middle" font-size="13" fill="#5d6779">field of view can exceed 180°</text>
+
+  <text x="186" y="74" fill="#d9480f">ray: x(t) = o + t d</text>
+  <text x="546" y="74" fill="#d9480f">ray: x(t) = o + t d</text>
+</svg>

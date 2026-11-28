@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 410" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <defs>
+    <radialGradient id="g">
+      <stop offset="0%" stop-color="#6a4fc9" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#6a4fc9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="720" height="410" fill="#ffffff"/>
+  <!-- Gaussian (drawn at 2 sigma) -->
+  <ellipse cx="380" cy="150" rx="90" ry="40" transform="rotate(-30 380 150)" fill="url(#g)" stroke="#6a4fc9" stroke-opacity="0.5"/>
+  <circle cx="380" cy="150" r="4" fill="#6a4fc9"/>
+  <text x="388" y="142" fill="#6a4fc9">μ</text>
+  <!-- ray -->
+  <line x1="60" y1="250" x2="678" y2="84.4" stroke="#d9480f" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="60" cy="250" r="6" fill="#1b2230"/>
+  <text x="50" y="274" fill="#1b2230">o</text>
+  <text x="150" y="216" fill="#d9480f">x(t) = o + t d</text>
+  <!-- tau max -->
+  <circle cx="372.9" cy="166.1" r="6" fill="#d9480f" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="372.9" y1="166.1" x2="372.9" y2="300" stroke="#d9480f" stroke-dasharray="4 4"/>
+  <text x="250" y="150" fill="#d9480f">o + τ_max d</text>
+  <text x="470" y="60" fill="#6a4fc9">3D Gaussian (μ, Σ)</text>
+  <!-- 1D response -->
+  <line x1="100" y1="370" x2="660" y2="370" stroke="#1b2230"/>
+  <text x="664" y="375" fill="#1b2230">t</text>
+  <path d="M190,370 C310,370 330,300 372.9,300 C416,300 436,370 556,370" fill="#6a4fc9" fill-opacity="0.15" stroke="#6a4fc9" stroke-width="2"/>
+  <line x1="372.9" y1="300" x2="372.9" y2="376" stroke="#d9480f" stroke-dasharray="4 4"/>
+  <text x="372.9" y="394" text-anchor="middle" fill="#d9480f">τ_max</text>
+  <text x="100" y="330" fill="#5d6779">response along the ray:</text>
+  <text x="100" y="348" fill="#5d6779">exactly a 1D Gaussian in t</text>
+  <text x="440" y="318" fill="#5d6779">peak value → α</text>
+</svg>
